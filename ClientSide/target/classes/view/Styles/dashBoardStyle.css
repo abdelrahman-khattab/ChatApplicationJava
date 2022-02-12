@@ -1,0 +1,14 @@
+.container
+{
+    -fx-background-color : #F1ECC3;
+    -fx-background-radius : 10;
+}
+
+.shadow
+{
+    -fx-effect : dropShadow( three-pass-box, rgba(0,0,0,0.2) , 10.0, 0.0, 0.0, 10.0 );
+}
+.title
+{
+    -fx-fill:#57837B;
+}

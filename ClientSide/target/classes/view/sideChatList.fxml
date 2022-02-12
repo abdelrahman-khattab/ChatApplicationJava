@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<ScrollPane fx:id="secondPane" fitToHeight="true" stylesheets="@Styles/chatStyle.css" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" style="-fx-background-color: #303841;" prefWidth="280" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideChatListController">
+   <content>
+<VBox minHeight="700.0" minWidth="400.0" prefHeight="700.0" prefWidth="449.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+   <children>
+      <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Chats" textFill="#181d31" />
+      <HBox alignment="CENTER" stylesheets="@Styles/chatStyle.css">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="38.0" style="-fx-background-color: tranparent;">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField fx:id="searchBar" prefHeight="35.0" prefWidth="366.0" promptText="Search users" stylesheets="@Styles/chatStyle.css">
+               <styleClass>
+                  <String fx:value="transparent-bg" />
+                  <String fx:value="radius" />
+                  <String fx:value="textColor" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+         <styleClass>
+            <String fx:value="radius" />
+            <String fx:value="transparent-bg" />
+         </styleClass>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="88.0" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" vbarPolicy="NEVER">
+         <content>
+            <HBox styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+               <children>
+                  <VBox fx:id="contactStatusVBox" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: transparent;" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+                     <children>
+                        <AnchorPane maxHeight="58.0" maxWidth="80.0" minHeight="50.0" minWidth="80.0" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #36404A;" stylesheets="@Styles/chatStyle.css">
+                           <children>
+                              <Circle fx:id="contactImageStatusBar" fill="WHITE" layoutX="39.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="contactNameStatusBar" alignment="CENTER" layoutY="19.0" prefHeight="33.0" prefWidth="82.0" stylesheets="@Styles/chatStyle.css" text="Patrick" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="chatText" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Circle fx:id="userStatusStatusBar" fill="#06d6a0" layoutX="53.0" layoutY="12.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="transparent-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane maxHeight="58.0" maxWidth="80.0" minHeight="50.0" minWidth="80.0" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #36404A;" stylesheets="@Styles/chatStyle.css">
+                           <children>
+                              <Circle fx:id="chatImage1" fill="WHITE" layoutX="39.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="contactOnlineName1" alignment="CENTER" layoutY="19.0" prefHeight="33.0" prefWidth="82.0" stylesheets="@Styles/chatStyle.css" text="Doris" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="chatText" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="#ffcd04" layoutX="53.0" layoutY="12.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="transparent-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane maxHeight="58.0" maxWidth="80.0" minHeight="50.0" minWidth="80.0" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #36404A;" stylesheets="@Styles/chatStyle.css">
+                           <children>
+                              <Circle fx:id="chatImage11" fill="WHITE" layoutX="39.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="contactOnlineName11" alignment="CENTER" layoutY="19.0" prefHeight="33.0" prefWidth="82.0" stylesheets="@Styles/chatStyle.css" text="Emily" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="chatText" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="#ff0505" layoutX="53.0" layoutY="12.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="transparent-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane maxHeight="58.0" maxWidth="80.0" minHeight="50.0" minWidth="80.0" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #36404A;" stylesheets="@Styles/chatStyle.css">
+                           <children>
+                              <Circle fx:id="chatImage2" fill="WHITE" layoutX="39.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="contactOnlineName2" alignment="CENTER" layoutY="19.0" prefHeight="33.0" prefWidth="82.0" stylesheets="@Styles/chatStyle.css" text="Steve" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="chatText" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="#06d6a0" layoutX="53.0" layoutY="12.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="transparent-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane maxHeight="58.0" maxWidth="80.0" minHeight="50.0" minWidth="80.0" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #36404A;" stylesheets="@Styles/chatStyle.css">
+                           <children>
+                              <Circle fx:id="chatImage111" fill="WHITE" layoutX="39.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="contactOnlineName111" alignment="CENTER" layoutY="19.0" prefHeight="33.0" prefWidth="82.0" stylesheets="@Styles/chatStyle.css" text="Mark" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="chatText" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="#ff0505" layoutX="53.0" layoutY="12.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="transparent-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
+         </content>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </ScrollPane>
+      <Label prefHeight="39.0" prefWidth="399.0" stylesheets="@Styles/chatStyle.css" text="Recent" textFill="#181d31" wrapText="true">
+         <styleClass>
+            <String fx:value="SecondHeaderFont" />
+            <String fx:value="fontColor" />
+         </styleClass></Label>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" style="-fx-background-color: #303841;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="400.0" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+               <children>
+                  <HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+                     <children>
+                        <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="53.0">
+                           <children>
+                              <Circle fx:id="contactImageContactBar" fill="WHITE" layoutX="20.0" layoutY="34.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Circle fx:id="contactStatusContactBar" fill="#06d6a0" layoutX="35.0" layoutY="44.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                           </children>
+                        </AnchorPane>
+                        <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="contactNameContactBar" prefHeight="20.0" stylesheets="@Styles/chatStyle.css" text="Patrick Hendricks" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="messagerHeader" />
+                                    <String fx:value="textColor" />
+                                 </styleClass>
+                              </Label>
+                              <Label fx:id="contactMessageContactBar" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="Hey! there I'm availableHey! there I'm availableHey! there I'm available">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="message" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="70.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="messageTimeContactBar" stylesheets="@Styles/chatStyle.css" text="05 min">
+                                 <styleClass>
+                                    <String fx:value="textColor" />
+                                    <String fx:value="time" />
+                                 </styleClass>
+                              </Label>
+                              <Label fx:id="mesaageNumbersContactBar" alignment="CENTER" prefHeight="18.0" prefWidth="32.0" stylesheets="@Styles/chatStyle.css" text="02" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="messageNumber" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+         <VBox.margin>
+            <Insets bottom="25.0" />
+         </VBox.margin>
+      </ScrollPane>
+   </children>
+   <padding>
+      <Insets left="30.0" right="30.0" top="10.0" />
+   </padding>
+</VBox>
+   </content>
+</ScrollPane> 

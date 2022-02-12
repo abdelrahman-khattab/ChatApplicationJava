@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="vboxReg" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="480.0" spacing="10.0" style="-fx-border-color: white; -fx-border-width: 7;" styleClass="color-pane" stylesheets="@Styles/formStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.RegisterController">
+   <children>
+      <Label text="Register" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="16.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+         <children>
+            <TextField fx:id="userName" promptText="User Name" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <FontAwesomeIconView fx:id="userIcon" glyphName="USER" size="18.0" styleClass="icon" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+         <children>
+            <PasswordField fx:id="password" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <FontAwesomeIconView fx:id="passwordIcon" glyphName="LOCK" size="18.0" styleClass="icon" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+         <children>
+            <TextField fx:id="phoneNo" promptText="Phone number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <FontAwesomeIconView fx:id="phoneNoIcon" glyphName="PHONE" size="18.0" styleClass="icon" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+         <children>
+            <TextField fx:id="eMail" promptText="E-Mail" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+         <children>
+            <TextField fx:id="age" promptText="Age" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+         <children>
+            <TextField fx:id="address" promptText="Address" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_LEFT" layoutX="15.0" layoutY="337.0" prefHeight="115.0" prefWidth="470.0" stylesheets="@Styles/formStyle.css">
+         <children>
+            <ImageView fx:id="profileImage" fitHeight="108.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true" />
+            <Button mnemonicParsing="false" onAction="#onGetImageButtonClick" prefHeight="19.0" prefWidth="150.0" styleClass="btnImage" stylesheets="@Styles/formStyle.css" text="Upload Image">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <VBox alignment="TOP_CENTER" prefHeight="113.0" prefWidth="148.0" spacing="5.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" textAlignment="CENTER" />
+                  <DatePicker styleClass="btnGender" />
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" styleClass="btnGender" text="Choose Gender" textFill="WHITE">
+                    <items>
+                        <RadioMenuItem fx:id="genMale" mnemonicParsing="false" selected="true" text="Male">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gender" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="genFemale" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                    </items>
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </MenuButton>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="259.0" styleClass="btn" stylesheets="@Styles/formStyle.css" text="Register">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+</VBox>

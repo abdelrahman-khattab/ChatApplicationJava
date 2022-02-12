@@ -1,0 +1,101 @@
+.parent{
+   -fx-background-color:transparent;
+}
+
+.pane
+{
+  -fx-background-color:#E1E9F1;
+
+}
+
+.color-pane{
+  -fx-background-color:#303841;
+}
+
+.animateVbox{
+    -fx-background-color:#ffffff;
+}
+
+.header-Text
+{
+    -fx-text-fill:#E1E9F1;
+}
+
+.tfBox{
+-fx-background-color:transparent;
+-fx-border-color:#7269EF;
+-fx-border-width: 0px 0px 1px 0px;
+}
+
+.tfinput{
+    -fx-background-color:transparent;
+    -fx-text-fill:#E1E9F1;
+    -fx-font-size:16;
+    -fx-font-weight:bold;
+    -fx-prompt-text-size : 14;
+    -fx-prompt-text-fill : #C9D8B6;
+}
+.icon
+{
+-fx-fill:#F2F2F0;
+
+}
+.btn{
+-fx-font-weight:bold;
+-fx-background-color:#7269EF;
+-fx-border-radius:5;
+-fx-font-size:18;
+-fx-text-fill:#E1E9F1;
+}
+.btn:hover{
+          -fx-font-weight:bold;
+          -fx-background-color:#E1E9F1;
+          -fx-background-radius:5;
+          -fx-border-radius:5;
+          -fx-font-size:18;
+          -fx-text-fill:#7269EF;
+          -fx-border-width:2;
+          -fx-border-color:#7269EF;
+ }
+
+ .btnImage{
+ -fx-background-color:#303841;
+ -fx-border-radius:5;
+ -fx-border-width: 0px 0px 2px 0px;
+ -fx-font-size:18;
+ -fx-text-fill:white;
+ -fx-border-color:#7269EF;
+ }
+ .btnImage:hover{
+           -fx-font-weight:bold;
+           -fx-background-color:#9c94ff;
+           -fx-background-radius:5;
+           -fx-border-radius:5;
+           -fx-text-fill:#E1E9F1;
+           -fx-border-width: 0px 0px 2px 0px;
+           -fx-border-color:#463eb5;
+  }
+
+ .btnGender{
+ -fx-background-color:#303841;
+ -fx-border-radius:5;
+ -fx-border-width: 0px 0px 2px 0px;
+ -fx-font-size:14;
+ -fx-border-color:#7269EF;
+ }
+ .btnGender:hover{
+           -fx-font-weight:bold;
+           -fx-background-color:#9c94ff;
+           -fx-background-radius:5;
+           -fx-border-radius:5;
+           -fx-border-width: 0px 0px 2px 0px;
+           -fx-border-color:#463eb5;
+  }
+
+
+
+
+ .closeBtn
+ {
+ -fx-background-color:transparent;
+ }
