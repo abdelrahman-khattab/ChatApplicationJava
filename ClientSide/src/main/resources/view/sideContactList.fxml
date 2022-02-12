@@ -84,7 +84,7 @@
                                     <String fx:value="textColor" />
                                  </styleClass>
                               </Label>
-                              <Label fx:id="contactNumber" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="01014607733">
+                              <Label fx:id="contactNumber" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="01014607733" VBox.vgrow="ALWAYS">
                                  <styleClass>
                                     <String fx:value="textColor" />
                                     <String fx:value="message" />
@@ -92,7 +92,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER_LEFT" prefHeight="70.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER_RIGHT" prefHeight="70.0" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Button mnemonicParsing="false" style="-fx-background-color: #00000000;">
                                        <graphic>
