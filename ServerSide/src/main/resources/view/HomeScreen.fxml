@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,11 +12,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.project.presentation.controllers.ChatScreenController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Styles/mainscreen.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.project.presentation.controllers.ChatScreenController">
    <children>
-      <AnchorPane minWidth="50.0" prefHeight="600.0" prefWidth="88.0" style="-fx-background-color: #340D3E;" HBox.hgrow="NEVER">
+      <AnchorPane minWidth="50.0" prefHeight="600.0" prefWidth="88.0" styleClass="sidebar-background" stylesheets="@Styles/mainscreen.css" HBox.hgrow="NEVER">
          <children>
-            <Button fx:id="profileButton" layoutX="20.0" layoutY="170.0" mnemonicParsing="false" onAction="#onProfileButtonClicked" style="-fx-background-color: #00000000;" textFill="#690f0f" AnchorPane.topAnchor="170.0">
+            <Button fx:id="profileButton" layoutX="20.0" layoutY="170.0" mnemonicParsing="false" onAction="#onProfileButtonClicked" textFill="#690f0f" AnchorPane.topAnchor="170.0">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -23,8 +24,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="icons" />
+                  <String fx:value="mouse-hand" />
+                  <String fx:value="side-bar-buttons" />
+                  <String fx:value="button-pressing" />
+               </styleClass>
             </Button>
-            <Button fx:id="chatListButton" layoutX="24.0" layoutY="225.0" mnemonicParsing="false" onAction="#onChatListButtonClicked" style="-fx-background-color: #00000000;" textFill="#690f0f" AnchorPane.topAnchor="225.0">
+            <Button fx:id="chatListButton" layoutX="24.0" layoutY="225.0" mnemonicParsing="false" onAction="#onChatListButtonClicked" textFill="#690f0f" AnchorPane.topAnchor="225.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="23.0" preserveRatio="true">
                      <image>
@@ -32,8 +39,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="icons" />
+                  <String fx:value="mouse-hand" />
+                  <String fx:value="side-bar-buttons" />
+                  <String fx:value="button-pressing" />
+               </styleClass>
             </Button>
-            <Button fx:id="contactListButton" layoutX="24.0" layoutY="275.0" mnemonicParsing="false" onAction="#onContactListButtonClicked" style="-fx-background-color: #00000000;" textFill="#690f0f" AnchorPane.topAnchor="275.0">
+            <Button fx:id="contactListButton" layoutX="24.0" layoutY="275.0" mnemonicParsing="false" onAction="#onContactListButtonClicked" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" AnchorPane.topAnchor="275.0">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="24.0" preserveRatio="true">
                      <image>
@@ -41,8 +54,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="side-bar-buttons" />
+                  <String fx:value="mouse-hand" />
+                  <String fx:value="button-pressing" />
+                  <String fx:value="icons" />
+               </styleClass>
             </Button>
-            <Button fx:id="groupChatButton" layoutX="24.0" layoutY="322.0" mnemonicParsing="false" onAction="#onGroupChatButtonClicked" style="-fx-background-color: #00000000;" textFill="#690f0f" AnchorPane.topAnchor="322.0">
+            <Button fx:id="groupChatButton" layoutX="24.0" layoutY="322.0" mnemonicParsing="false" onAction="#onGroupChatButtonClicked" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" AnchorPane.topAnchor="322.0">
                <graphic>
                   <ImageView preserveRatio="true">
                      <image>
@@ -50,8 +69,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="icons" />
+                  <String fx:value="mouse-hand" />
+                  <String fx:value="button-pressing" />
+                  <String fx:value="side-bar-buttons" />
+               </styleClass>
             </Button>
-            <Button fx:id="logOutButton" layoutX="24.0" layoutY="478.0" mnemonicParsing="false" onAction="#onLogOutButtonClicked" style="-fx-background-color: #00000000;" textFill="#690f0f" AnchorPane.bottomAnchor="90.0">
+            <Button fx:id="logOutButton" layoutX="24.0" layoutY="478.0" mnemonicParsing="false" onAction="#onLogOutButtonClicked" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" AnchorPane.bottomAnchor="90.0">
                <graphic>
                   <ImageView>
                      <image>
@@ -59,8 +84,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="mouse-hand" />
+                  <String fx:value="side-bar-buttons" />
+                  <String fx:value="button-pressing" />
+                  <String fx:value="icons" />
+               </styleClass>
             </Button>
-            <Button fx:id="unknownFunctionaityButton" layoutX="24.0" layoutY="510.0" mnemonicParsing="false" onAction="#onLogOutButtonClicked" style="-fx-background-color: #00000000;" textFill="#690f0f" AnchorPane.bottomAnchor="58.0">
+            <Button fx:id="unknownFunctionaityButton" layoutX="24.0" layoutY="510.0" mnemonicParsing="false" onAction="#onLogOutButtonClicked" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" AnchorPane.bottomAnchor="58.0">
                <graphic>
                   <ImageView>
                      <image>
@@ -68,8 +99,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="icons" />
+                  <String fx:value="side-bar-buttons" />
+                  <String fx:value="button-pressing" />
+                  <String fx:value="mouse-hand" />
+               </styleClass>
             </Button>
-            <ToggleButton layoutX="20.0" layoutY="49.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="40.0">
+            <ToggleButton layoutX="20.0" layoutY="49.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="40.0" stylesheets="@Styles/mainscreen.css">
                <graphic>
                   <ImageView>
                      <image>
@@ -77,23 +114,33 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="icons" />
+                  <String fx:value="mouse-hand" />
+                  <String fx:value="button-pressing" />
+                  <String fx:value="side-bar-buttons" />
+               </styleClass>
             </ToggleButton>
             <Label layoutX="13.0" layoutY="24.0" text="Start Server" textFill="#faf8f8" />
          </children>
       </AnchorPane>
-      <StackPane fx:id="sideNavigationStackPane" HBox.hgrow="SOMETIMES">
+      <StackPane fx:id="sideNavigationStackPane" styleClass="main-chat-background" stylesheets="@Styles/mainscreen.css" HBox.hgrow="SOMETIMES">
          <children>
-            <ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: red;">
+            <ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="400.0" prefWidth="200.0" styleClass="main-chat-background" stylesheets="@Styles/mainscreen.css">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #DED6DD; -fx-border-color: #340D3E; -fx-border-radius: 3;" />
                </content>
             </ScrollPane>
-            <ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+            <ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0" styleClass="main-chat-background" stylesheets="@Styles/mainscreen.css">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #DED6DD; -fx-border-color: #340D3E; -fx-border-radius: 3;" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="main-chat-background" stylesheets="@Styles/mainscreen.css" />
                </content>
             </ScrollPane>
          </children>
       </StackPane>
    </children>
+   <styleClass>
+      <String fx:value="list-chat-background" />
+      <String fx:value="sidebar-background" />
+   </styleClass>
 </HBox>
