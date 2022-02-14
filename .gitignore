@@ -20,8 +20,8 @@
 *.rar
 
 .idea
-Client/target
-Server/target
+ClientSide/target
+ServerSide/target
 /ChatApplicationProject.iml
 /Client/Client.iml
 /Server/Server.iml
