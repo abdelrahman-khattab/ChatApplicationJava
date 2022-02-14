@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -13,15 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-
-<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" prefWidth="300.0" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideChatListController">
+<ScrollPane fx:id="secondPane" fitToHeight="true" stylesheets="@Styles/chatStyle.css" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" style="-fx-background-color: #303841;" prefWidth="280" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideChatListController">
    <content>
-<VBox minHeight="700.0" prefHeight="700.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+<VBox minHeight="700.0" minWidth="400.0" prefHeight="700.0" prefWidth="449.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
    <children>
       <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Chats" textFill="#181d31" />
-      <HBox alignment="CENTER_LEFT" fillHeight="false" stylesheets="@Styles/chatStyle.css" VBox.vgrow="NEVER">
+      <HBox alignment="CENTER" stylesheets="@Styles/chatStyle.css">
          <children>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="38.0" style="-fx-background-color: #00000000;">
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="38.0" style="-fx-background-color: tranparent;">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -30,7 +30,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="searchBar" prefHeight="35.0" promptText="Search users" stylesheets="@Styles/chatStyle.css">
+            <TextField fx:id="searchBar" prefHeight="35.0" prefWidth="366.0" promptText="Search users" stylesheets="@Styles/chatStyle.css">
                <styleClass>
                   <String fx:value="transparent-bg" />
                   <String fx:value="radius" />
@@ -56,7 +56,7 @@
          <content>
             <HBox styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                <children>
-                  <VBox fx:id="contactStatusVBox" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00000000;" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+                  <VBox fx:id="contactStatusVBox" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: transparent;" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                      <children>
                         <AnchorPane maxHeight="58.0" maxWidth="80.0" minHeight="50.0" minWidth="80.0" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #36404A;" stylesheets="@Styles/chatStyle.css">
                            <children>
@@ -220,7 +220,7 @@
          <content>
             <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="400.0" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                <children>
-                  <HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0" spacing="6.0" stylesheets="@Styles/chatStyle.css">
+                  <HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                      <children>
                         <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="53.0">
                            <children>
@@ -270,10 +270,6 @@
                            </children>
                         </VBox>
                      </children>
-                           <styleClass>
-                              <String fx:value="vBox" />
-                              <String fx:value="hBox" />
-                           </styleClass>
                   </HBox>
                </children>
             </VBox>
@@ -284,8 +280,8 @@
       </ScrollPane>
    </children>
    <padding>
-      <Insets left="10.0" right="10.0" top="10.0" />
+      <Insets left="30.0" right="30.0" top="10.0" />
    </padding>
 </VBox>
    </content>
-</ScrollPane>
+</ScrollPane> 

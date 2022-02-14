@@ -12,65 +12,53 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" pannable="true" prefWidth="300.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ProfileController">
+<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" style="-fx-background-color: #303841;" prefWidth="280" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ProfileController">
    <content>
       <!-- <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black; -fx-border-color: #340D3E; -fx-border-radius: 3;">
          
       </VBox> -->
 
-      <VBox spacing="15.0" style="-fx-background-color: #303841;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280" style="-fx-background-color: #303841;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="61.0" prefWidth="322.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                  <AnchorPane prefHeight="86.0" prefWidth="323.0">
                      <children>
-                        <Label text="My Profile" textFill="#e1e9f1">
+                        <Label layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="161.0" text="My Profile" textFill="#e1e9f1">
                            <font>
                               <Font name="SansSerif Bold" size="22.0" />
                            </font>
                         </Label>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #00000000;">
-                           <graphic>
-                              <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
+                  </AnchorPane>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+            <HBox>
                <children>
-                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="165.0" spacing="7.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="165.0" prefWidth="322.0" spacing="7.0" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="137.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/profile.jpg" />
                            </image>
                         </ImageView>
-                        <Label fx:id="clientNameLabel" alignment="CENTER" contentDisplay="RIGHT" lineSpacing="5.0" prefHeight="30.0" text="Ahmed Adel  " textFill="#e1e9f1">
+                        <Label fx:id="clientNameLabel" alignment="CENTER" contentDisplay="RIGHT" lineSpacing="5.0" prefHeight="30.0" prefWidth="190.0" text="Ahmed Adel  " textFill="#e1e9f1">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <AnchorPane>
                            <children>
-                              <Label fx:id="clientStatusLabel" text="Active" textFill="#9aa1b9">
+                              <Label fx:id="clientStatusLabel" layoutX="133.0" layoutY="4.0" text="Active" textFill="#9aa1b9">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Circle fill="#07d329" radius="5.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+                              <Circle fill="#07d329" layoutX="121.0" layoutY="15.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
                            </children>
-                        </HBox>
+                        </AnchorPane>
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -78,21 +66,25 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="104.0" prefWidth="270">
                <children>
-                  <Label prefWidth="500.0" text="Some desc about the client (BIO) k k k k k k Some desc about the client (BIO) k k k k k k " textFill="#9aa1b9" wrapText="true">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="CENTER" prefHeight="93.0" prefWidth="280" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text fx:id="clientBioText" fill="#9aa1b9" fontSmoothingType="LCD" lineSpacing="3.0" stroke="#ff3c3c" strokeType="OUTSIDE" strokeWidth="0.0" text="Some desc about the client (BIO) k k k k k k " wrappingWidth="250.13671875">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+            <HBox>
                <children>
-                  <Label text="Information" textFill="#e1e9f1">
+                  <Label prefHeight="45.0" prefWidth="195.0" text="Information" textFill="#e1e9f1">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -102,7 +94,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox spacing="5.0" style="-fx-background-color: #303841;" VBox.vgrow="ALWAYS">
+            <VBox prefHeight="199.0" prefWidth="322.0" style="-fx-background-color: #303841;">
                <children>
                   <Label text="Name" textFill="#9aa1b9">
                      <font>
@@ -207,9 +199,6 @@
                </children>
             </AnchorPane>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
       </VBox>
 
    </content>
