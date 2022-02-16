@@ -18,11 +18,12 @@
 *.zip
 *.tar.gz
 *.rar
+*.lst
 
 .idea
 ClientSide/target
 ServerSide/target
-/ChatApplicationProject.iml
+/ChatApplicationJava.iml
 /Client/Client.iml
 /Server/Server.iml
 /Server/server_settings.xml
