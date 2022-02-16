@@ -39,6 +39,10 @@
 .transparent-bg{
     -fx-background-color:-transparnt-bg;
 }
+.search{
+-fx-text-fill: -primaryBgColor;
+-fx-font-family: Public Sans,sans-serif;
+}
 .radius{
     -fx-background-radius:10px;
 }

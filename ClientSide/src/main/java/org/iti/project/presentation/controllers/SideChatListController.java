@@ -1,6 +1,8 @@
 package org.iti.project.presentation.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -8,6 +10,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Label;
+
+import java.util.ArrayList;
 
 public class SideChatListController {
     @FXML
@@ -44,13 +48,16 @@ public class SideChatListController {
     public VBox contactStatusVBox;
     @FXML
     public HBox contactInfoHBox;
+    @FXML
+    public ListView<?> chatListView;
 
     public void initialize() {
         // ImagePattern pattern = new ImagePattern(new Image("target/classes/view/images/img.png"));
         // contactImageStatusBar.setFill(pattern);
         // contactImageContactBar.setFill(pattern);
-
     }
+
+
    
 
 }
