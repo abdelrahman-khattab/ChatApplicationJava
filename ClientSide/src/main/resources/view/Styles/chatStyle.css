@@ -96,3 +96,8 @@
 .searchFontColor{
 -fx-fill: -secondarycolor;
 }
+.borderBottom{
+-fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1;
+    -fx-border-color: #e1e9f159;
+}

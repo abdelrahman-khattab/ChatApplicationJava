@@ -19,7 +19,7 @@
     <content>
 <VBox spacing="10.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
    <children>
-            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="51.0" VBox.vgrow="ALWAYS">
                <children>
             <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Contact List" textFill="#181d31" />
                   <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

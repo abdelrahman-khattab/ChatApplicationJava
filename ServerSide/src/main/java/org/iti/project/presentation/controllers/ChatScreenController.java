@@ -1,5 +1,6 @@
 package org.iti.project.presentation.controllers;
 
+import javafx.scene.layout.BorderPane;
 import org.iti.project.presentation.util.StageCoordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,7 +70,7 @@ public class ChatScreenController implements Initializable {
 
         private void switchToContactListPane() {
             try {
-                ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/announcement.fxml"));
+                BorderPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/announcement.fxml"));
                 sideNavigationStackPane.getChildren().removeAll();
                 sideNavigationStackPane.getChildren().add(sideProfilePane);
             } catch (IOException e) {
@@ -83,7 +84,7 @@ public class ChatScreenController implements Initializable {
         }
         private void switchToGroupChat(){
             try {
-                ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/memberList.fxml"));
+                BorderPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/memberList.fxml"));
                 sideNavigationStackPane.getChildren().removeAll();
                 sideNavigationStackPane.getChildren().add(sideProfilePane);
             } catch (IOException e) {
