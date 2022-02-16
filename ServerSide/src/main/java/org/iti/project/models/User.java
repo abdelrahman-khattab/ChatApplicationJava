@@ -1,4 +1,4 @@
-package org.iti.project.presentation.models;
+package org.iti.project.models;
 
 import java.io.Serializable;
 
