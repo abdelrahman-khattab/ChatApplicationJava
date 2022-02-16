@@ -93,3 +93,6 @@
 .hBox:hover{
  -fx-background-color: -secondBgColor
 }
+.searchFontColor{
+-fx-fill: -secondarycolor;
+}
