@@ -8,8 +8,8 @@ module ServerSide {  // change this to gov.iti.jets.project if needed
     requires java.sql;
     requires mysql.connector.java;
     requires java.naming;
-
     opens gov.iti.jets.project to javafx.fxml;
+    opens gov.iti.jets.project.presistence.util to java.sql;
     exports gov.iti.jets.project;
     exports gov.iti.jets.project.presentation.controllers;
     opens gov.iti.jets.project.presentation.controllers to javafx.fxml;

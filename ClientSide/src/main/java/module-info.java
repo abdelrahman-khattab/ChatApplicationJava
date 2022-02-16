@@ -6,6 +6,7 @@ module org.iti.project {
     requires de.jensd.fx.glyphs.commons;
 
     opens org.iti.project to javafx.fxml;
+
     opens org.iti.project.presentation.controllers to  javafx.fxml;
     exports org.iti.project;
     exports org.iti.project.presentation.controllers;
