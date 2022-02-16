@@ -9,6 +9,10 @@ gov\iti\jets\project\App.class
 gov\iti\jets\project\presentation\controllers\LoginController.class
 gov\iti\jets\project\presentation\models\UserModel.class
 gov\iti\jets\project\presentation\util\StageCoordinator.class
+gov\iti\jets\project\presentation\controllers\RegisterController.class
+gov\iti\jets\project\presentation\controllers\LoginController.class
+gov\iti\jets\project\presentation\models\UserModel.class
+gov\iti\jets\project\presentation\util\StageCoordinator.class
 gov\iti\jets\project\presistence\UserDAO.class
 gov\iti\jets\project\presentation\controllers\RegisterController.class
 gov\iti\jets\project\presistence\DBConnector.class
