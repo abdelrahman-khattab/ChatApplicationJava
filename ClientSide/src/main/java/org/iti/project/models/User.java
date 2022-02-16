@@ -11,7 +11,26 @@ public class User  implements Serializable {
     private String userDOB;
     private String userDate;
     private String userPhone;
+    private String gender;
+    private String image;
     // Adding array of bytes for image
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getUserName() {
         return userName;

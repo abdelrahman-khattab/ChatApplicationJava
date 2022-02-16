@@ -5,6 +5,7 @@ module ServerSide {  // change this to gov.iti.jets.project if needed
     requires de.jensd.fx.glyphs.fontawesome;
     requires de.jensd.fx.glyphs.commons;
     requires java.rmi;
+    requires java.sql;
     //requires org.controlsfx.controls;
 
     opens org.iti.project to javafx.fxml;
