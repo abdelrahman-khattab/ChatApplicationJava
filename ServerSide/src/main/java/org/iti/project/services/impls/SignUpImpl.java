@@ -1,5 +1,6 @@
 package org.iti.project.services.impls;
 
+import org.iti.project.models.User;
 import org.iti.project.services.interfaces.SignUpInt;
 
 import java.rmi.RemoteException;
@@ -10,7 +11,7 @@ public class SignUpImpl extends UnicastRemoteObject implements SignUpInt {
     }
 
     @Override
-    public boolean registerMe(String name) throws RemoteException{
-        return false;
+    public User registerMe(User user) throws RemoteException{
+        return user;
     }
 }

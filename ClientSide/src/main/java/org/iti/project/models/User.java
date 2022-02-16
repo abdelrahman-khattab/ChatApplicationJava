@@ -1,8 +1,8 @@
-package org.iti.project.presentation.models;
+package org.iti.project.models;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User  implements Serializable {
     private String userName;
     private String userPassword;
     private String userEmail;
