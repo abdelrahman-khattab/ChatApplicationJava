@@ -79,4 +79,8 @@ public class RegisterController implements Initializable {
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
 
     }
+    @FXML
+    void onRegisterButtonClicked(ActionEvent event) {
+
+    }
 }

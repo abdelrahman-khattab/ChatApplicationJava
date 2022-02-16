@@ -91,7 +91,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="259.0" styleClass="btn" stylesheets="@Styles/formStyle.css" text="Register">
+      <Button fx:id="registerButton" mnemonicParsing="false" onAction="#onRegisterButtonClicked" prefHeight="25.0" prefWidth="259.0" styleClass="btn" stylesheets="@Styles/formStyle.css" text="Register">
          <font>
             <Font size="14.0" />
          </font>
