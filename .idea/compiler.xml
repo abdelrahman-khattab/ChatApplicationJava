@@ -10,8 +10,5 @@
         <module name="ServerSide" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Client" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

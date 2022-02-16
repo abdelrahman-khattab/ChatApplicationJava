@@ -25,7 +25,7 @@
                <children>
                   <ImageView fitHeight="400.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../new-york-jets.jpg" />
+                        <Image url="@../images/new-york-jets.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -36,7 +36,7 @@
                      <center>
                         <ImageView fitHeight="107.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../664538.png" />
+                              <Image url="@../images/664538.png" />
                            </image>
                         </ImageView>
                      </center>

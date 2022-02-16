@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.project.presentation.controllers.RegisterController">
+<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.RegisterController">
    <content>
 
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="500.0" style="-fx-background-color: #303841;" translateX="170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">

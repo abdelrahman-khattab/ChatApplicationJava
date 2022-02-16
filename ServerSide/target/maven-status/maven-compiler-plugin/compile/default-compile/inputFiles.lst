@@ -1,11 +1,14 @@
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\util\StageCoordinator.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\module-info.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\controllers\LoginController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\controllers\MemberListController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\App.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\controllers\ChatScreenController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\models\UserModel.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\controllers\DashboardController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\util\ModelFactory.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\controllers\AnnouncementController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ServerSide\src\main\java\gov\iti\jets\project\presentation\controllers\RegisterController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\models\UserModel.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\services\interfaces\SignUpInt.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\App.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\network\RMIConnector.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\controllers\ChatScreenController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\controllers\DashboardController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\controllers\LoginController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\util\StageCoordinator.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\controllers\RegisterController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\util\ModelFactory.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\controllers\AnnouncementController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\services\impls\SignUpImpl.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\org\iti\project\presentation\controllers\MemberListController.java
+G:\ITI\web\ChatApplicationJava - Copy\ServerSide\src\main\java\module-info.java

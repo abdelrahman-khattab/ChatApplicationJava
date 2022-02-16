@@ -1,17 +1,19 @@
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\LoginController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\ProfileController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\models\MessageModel.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\App.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\SideContactListController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\SideGroupListController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\util\StageCoordinator.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\ChatScreenController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\RegisterController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\util\ModelFactory.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\UserMessageController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\ForgotPassword.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\module-info.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\FormsController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\models\UserModel.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\ContactMessageController.java
-G:\ITI\java project\New folder (2)\ChatAppProject\ChatAppProject\ClientSide\src\main\java\org\iti\project\presentation\controllers\SideChatListController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\LoginController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\FormsController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\services\interfaces\SignUpInt.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\ProfileController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\util\StageCoordinator.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\models\UserModel.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\network\RMIConnector.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\ContactMessageController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\module-info.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\RegisterController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\SideGroupListController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\UserMessageController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\SideChatListController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\util\ModelFactory.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\models\MessageModel.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\ForgotPassword.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\App.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\ChatScreenController.java
+G:\ITI\web\ChatApplicationJava - Copy\ClientSide\src\main\java\org\iti\project\presentation\controllers\SideContactListController.java

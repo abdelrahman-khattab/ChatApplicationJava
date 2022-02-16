@@ -145,9 +145,9 @@ public class ChatScreenController implements Initializable {
 
     private void switchToContactListPane() {
         try {
-            ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/sideContactList.fxml"));
+            ScrollPane sideContactList = FXMLLoader.load(getClass().getResource("/view/sideContactList.fxml"));
             sideNavigationStackPane.getChildren().removeAll();
-            sideNavigationStackPane.getChildren().add(sideProfilePane);
+            sideNavigationStackPane.getChildren().add(sideContactList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -228,9 +228,9 @@ public class ChatScreenController implements Initializable {
 
     public void onGroupChatButtonClicked(ActionEvent actionEvent) {
         try {
-            ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/SideGroupList.fxml"));
+            ScrollPane sideGroupPane = FXMLLoader.load(getClass().getResource("/view/SideGroupList.fxml"));
             sideNavigationStackPane.getChildren().removeAll();
-            sideNavigationStackPane.getChildren().add(sideProfilePane);
+            sideNavigationStackPane.getChildren().add(sideGroupPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

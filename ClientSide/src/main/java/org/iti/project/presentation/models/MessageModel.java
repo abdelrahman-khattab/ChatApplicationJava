@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 public class MessageModel {
     private String messageBody ;
     private StringProperty time = new SimpleStringProperty();
-    private ObjectProperty<Image> imageObjectProperty = new SimpleObjectProperty<Image>(new Image("/R.png"));
+    private ObjectProperty<Image> imageObjectProperty = new SimpleObjectProperty<Image>(new Image("/images/R.png"));
 
     public String getMessageBody() {
         return messageBody;

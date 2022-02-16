@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.presentation.util.StageCoordinator;
 
@@ -23,7 +24,9 @@ public class App extends Application {
 
         StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
         stageCoordinator.initStage(stage);
+        if(!RMIConnector.getRmiConnector().getChatService().registerMe("now")) System.out.println("done!");
         stage.show();
+
     }
 
 

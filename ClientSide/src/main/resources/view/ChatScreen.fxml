@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Styles/mainscreen.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ChatScreenController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Styles/mainscreen.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ChatScreenController">
    <children>
       <AnchorPane minWidth="50.0" prefHeight="600.0" prefWidth="72.0" styleClass="sidebar-background" stylesheets="@Styles/mainscreen.css" HBox.hgrow="NEVER">
          <children>
@@ -63,7 +63,7 @@
                         <String fx:value="side-bar-buttons" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="contactListButton" mnemonicParsing="false" onAction="#onContactListButtonClicked" textFill="#690f0f" VBox.vgrow="NEVER">
+                  <Button fx:id="groupChatButton" mnemonicParsing="false" onAction="#onGroupChatButtonClicked" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
                         <ImageView fitHeight="37.0" fitWidth="40.0" preserveRatio="true">
                            <image>
@@ -78,7 +78,7 @@
                         <String fx:value="button-pressing" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="groupChatButton" mnemonicParsing="false" onAction="#onGroupChatButtonClicked" prefHeight="35.0" prefWidth="10.0" textFill="#690f0f" VBox.vgrow="NEVER">
+                  <Button fx:id="contactListButton" mnemonicParsing="false" onAction="#onContactListButtonClicked" prefHeight="35.0" prefWidth="10.0" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
                         <ImageView fitHeight="37.0" fitWidth="40.0" preserveRatio="true">
                            <image>
@@ -101,7 +101,7 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="33.0">
                            <image>
-                              <Image url="@../icons8_exit_24px.png" />
+                              <Image url="@../images/icons8_exit_24px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -116,7 +116,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="31.0">
                            <image>
-                              <Image url="@../icons8_menu_24px.png" />
+                              <Image url="@../images/closeWindow.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -173,7 +173,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0">
                            <image>
-                              <Image url="@../icons8_search_48px_1.png" />
+                              <Image url="@../images/icons8_search_48px_1.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -182,7 +182,7 @@
                      <graphic>
                         <ImageView fitHeight="27.0" fitWidth="25.0">
                            <image>
-                              <Image url="@../icons8_phone_100px.png" />
+                              <Image url="@../images/icons8_phone_100px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -294,7 +294,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../icons8_attach_32px.png" />
+                              <Image url="@../images/icons8_attach_32px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -308,7 +308,7 @@
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="27.0">
                            <image>
-                              <Image url="@../icons8_smiling_50px.png" />
+                              <Image url="@../images/icons8_smiling_50px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -348,7 +348,7 @@
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../icons8_bold_26px.png" />
+                              <Image url="@../images/icons8_bold_26px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -364,7 +364,7 @@
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../icons8_italic_26px.png" />
+                              <Image url="@../images/icons8_italic_26px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -377,7 +377,7 @@
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../icons8_underline_26px.png" />
+                              <Image url="@../images/icons8_underline_26px.png" />
                            </image>
                         </ImageView>
                      </graphic>

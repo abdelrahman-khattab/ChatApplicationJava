@@ -27,7 +27,7 @@ public class UserModel {
         this.userImage.set(userImage);
     }
 
-    private ObjectProperty<Image> userImage = new SimpleObjectProperty(new Image("/R.png"));
+    private ObjectProperty<Image> userImage = new SimpleObjectProperty(new Image("/images/R.png"));
 
 
     public String getPhoneNo() {

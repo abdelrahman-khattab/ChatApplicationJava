@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.project.presentation.controllers.MemberListController">
+<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.MemberListController">
     <content>
       <VBox maxWidth="400.0" minWidth="400.0" prefWidth="400.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
    <children>
