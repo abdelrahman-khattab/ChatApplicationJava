@@ -24,7 +24,7 @@ public class DBConnector {
             PropertiesConnection properties = new PropertiesConnection();
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chat_app_project","root" , "admin1234");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chat_app_project","root" , "root");
 
             } catch (ClassNotFoundException e) {
                 System.err.println("The Layer doesn't connect to DB  DBConnection Error ");

@@ -5,6 +5,7 @@ module ClientSide {
     requires de.jensd.fx.glyphs.fontawesome;
     requires de.jensd.fx.glyphs.commons;
     requires java.rmi;
+    requires java.sql;
 
     opens org.iti.project to javafx.fxml;
     opens org.iti.project.presentation.controllers to  javafx.fxml;

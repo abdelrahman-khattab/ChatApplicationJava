@@ -25,6 +25,7 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setString(8, user.getUserBio());
             preparedStatement.setString(9, user.getImage());
             preparedStatement.execute();
+            System.out.println(user.getUserName() + " with phone :" +user.getUserPhone());
         } catch (SQLException e) {
             e.printStackTrace();
         }
