@@ -50,10 +50,17 @@
             <groupId>org.glassfish.web</groupId>
             <artifactId>javax.el</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>

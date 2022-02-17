@@ -16,37 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `message`
+-- Table structure for table `group`
 --
 
-DROP TABLE IF EXISTS `message`;
+DROP TABLE IF EXISTS `group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `message` (
-  `MESSAGE_ID` int NOT NULL AUTO_INCREMENT,
-  `BODY` varchar(10000) DEFAULT NULL,
-  `CREATED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `CREATOR_ID` varchar(20) DEFAULT NULL,
-  `RECEIPENT_ID` varchar(45) DEFAULT NULL,
-  `GROUP_RECEIPENT_ID` int DEFAULT NULL,
-  PRIMARY KEY (`MESSAGE_ID`),
-  KEY `phone_number_idx` (`CREATOR_ID`),
-  KEY `receipent_fk_idx` (`RECEIPENT_ID`),
-  KEY `group_receipnt_fk_idx` (`GROUP_RECEIPENT_ID`),
-  KEY `group_receipnt_forignkey_idx` (`GROUP_RECEIPENT_ID`),
-  CONSTRAINT `creator_fk` FOREIGN KEY (`CREATOR_ID`) REFERENCES `user` (`PHONE_NUMBER`),
-  CONSTRAINT `group_receipnt_forignkey` FOREIGN KEY (`GROUP_RECEIPENT_ID`) REFERENCES `group` (`GROUP_ID`),
-  CONSTRAINT `receipent_fk` FOREIGN KEY (`RECEIPENT_ID`) REFERENCES `user` (`PHONE_NUMBER`)
+CREATE TABLE `group` (
+  `GROUP_ID` int NOT NULL AUTO_INCREMENT,
+  `GROUP_NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`GROUP_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `message`
+-- Dumping data for table `group`
 --
 
-LOCK TABLES `message` WRITE;
-/*!40000 ALTER TABLE `message` DISABLE KEYS */;
-/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+LOCK TABLES `group` WRITE;
+/*!40000 ALTER TABLE `group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-13 19:54:17
+-- Dump completed on 2022-02-17  9:14:10

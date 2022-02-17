@@ -6,6 +6,9 @@ module ServerSide {  // change this to gov.iti.jets.project if needed
     requires de.jensd.fx.glyphs.commons;
     requires java.rmi;
     requires java.sql;
+    requires mysql.connector.java;
+    requires java.sql.rowset;
+    requires org.apache.commons.io;
     //requires org.controlsfx.controls;
 
     opens org.iti.project to javafx.fxml;
