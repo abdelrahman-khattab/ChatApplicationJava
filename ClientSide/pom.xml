@@ -80,17 +80,6 @@
                 <configuration>
                     <mainClass>ClientSide/org.iti.project.ClientApp</mainClass>
                 </configuration>
-
-                <executions>
-                    <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
-                        <id>default-cli</id>
-                        <configuration>
-                            <mainClass>ClientSide/org.iti.project.ClientApp</mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

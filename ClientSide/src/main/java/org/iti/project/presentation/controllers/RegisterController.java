@@ -1,4 +1,5 @@
 package org.iti.project.presentation.controllers;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -6,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.controlsfx.control.Notifications;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
+import javafx.scene.input.KeyEvent;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
 import javafx.event.ActionEvent;
@@ -94,30 +96,32 @@ public class RegisterController implements Initializable {
     private VBox vboxReg;
     @FXML
     private ComboBox<String> countryComboBox;
-    private String countries[]={"Egypt" , "Tunisia","Morocco"};
+    private String countries[] = {"Egypt", "Tunisia", "Morocco"};
 
     @FXML
+
     private ComboBox<String> genderComboBox;
-    private String genders[]={"Male" , "Female"};
+    private String genders[] = {"Male", "Female"};
+
+
     @FXML
     private Label dateValidation;
     private File file = new File("C://Users/eltaweel/Desktop/Abdallah/ChatApplicationJava/ClientSide/target/classes/images/R.png");
     ;
 
     @FXML
-    void onGetImageButtonClick(ActionEvent event)
-    {
+    void onGetImageButtonClick(ActionEvent event) {
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg","*.png");
+                new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg", "*.png");
         fc.getExtensionFilters().add(extFilter);
-        file = fc.showOpenDialog((Stage)vboxReg.getScene().getWindow());
+        file = fc.showOpenDialog((Stage) vboxReg.getScene().getWindow());
 
         Image image = null;
         //
 
         //imageView = new ImageView(image);
-        if(file != null) {
+        if (file != null) {
 
             image = new Image(file.getPath());
             profileImage.setImage(image);
@@ -132,10 +136,13 @@ public class RegisterController implements Initializable {
         userName.textProperty().bindBidirectional(userModel.userUserNameProperty());
         password.textProperty().bindBidirectional(userModel.userPasswordProperty());
         eMail.textProperty().bindBidirectional(userModel.emailProperty());
+//        address.textProperty().bindBidirectional(userModel.addressProperty());
         phoneNo.textProperty().bindBidirectional(userModel.phoneNoProperty());
+        //       age.textProperty().bindBidirectional(userModel.ageProperty());
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
         countryComboBox.getItems().addAll(countries);
         genderComboBox.getItems().addAll(genders);
+
         countryComboBox.getSelectionModel().select(0);
         genderComboBox.getSelectionModel().select(0);
 
@@ -149,16 +156,15 @@ public class RegisterController implements Initializable {
     void enterBirthDate() {
         birthDate.getEditor().setDisable(true);
         birthDate.getEditor().setOpacity(1);
-        if(birthDate.getValue() == null){
+        if (birthDate.getValue() == null) {
             dateValidation.setVisible(true);
 
-        }else{
+        } else {
             dateValidation.setVisible(false);
             birthDateValidation = true;
 
         }
     }
-
 
 
     @FXML
@@ -190,21 +196,20 @@ public class RegisterController implements Initializable {
     @FXML
     void enterConfirmPassword(KeyEvent event) {
 
-        if(!confirmPassword.getText().equals(password.getText())) {
+        if (!confirmPassword.getText().equals(password.getText())) {
 
             confirmPassword.setStyle("-fx-border-color:RED;-fx-border-width:0 0 2px 0;");
 
-        }
-     else {
+        } else {
             confirmPassword.setStyle("-fx-border-color:#7269EF;-fx-border-width:0 0 2px 0;");
             confirmPasswordValidation = true;
-     }
+        }
 
     }
 
     @FXML
     void enterPhoneNumber(KeyEvent event) {
-        if(phoneNo == null)
+        if (phoneNo == null)
             phoneNo.setText("");
         if (!Validator.phoneValidation(phoneNo.getText())) {
             phoneNo.setStyle("-fx-border-color:RED;-fx-border-width:0 0 2px 0;");
@@ -234,7 +239,6 @@ public class RegisterController implements Initializable {
 
     @FXML
     void onRegisterButtonClicked(ActionEvent event) {
-
         if(nameValidation && emailValidation && mobileValidation && birthDateValidation && passwordValidation && confirmPasswordValidation){
 
             User user = new User();
@@ -284,7 +288,10 @@ public class RegisterController implements Initializable {
                     .text("All Data Here Must Be Exsists").position(Pos.CENTER)
                     .showError();
         }
-
     }
 
 }
+
+
+
+

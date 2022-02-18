@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -45,6 +44,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
+
             <PasswordField fx:id="password" focusTraversable="false" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="Plz use this in creating Password (Aa,numbers,_.@)" />
@@ -60,6 +60,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
+
             <TextField fx:id="eMail" focusTraversable="false" onKeyTyped="#enterEmail" promptText="E-Mail" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="Plz enter an email should contain&quot; name@domain.com&quot;" />
