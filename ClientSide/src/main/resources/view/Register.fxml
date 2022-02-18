@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -26,19 +27,28 @@
       </Label>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="userName" onKeyTyped="#enterUserName" promptText="User Name" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="userName" onKeyTyped="#enterUserName" promptText="User Name" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz enter Full Name" />
+               </tooltip></TextField>
             <FontAwesomeIconView fx:id="userIcon" glyphName="USER" size="18.0" styleClass="icon" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="phoneNo" onKeyTyped="#enterPhoneNumber" promptText="Phone number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="phoneNo" onKeyTyped="#enterPhoneNumber" promptText="Phone number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz Enter Phone Number start  with 01/(0,1,2)" />
+               </tooltip></TextField>
             <FontAwesomeIconView fx:id="phoneNoIcon" glyphName="PHONE" size="18.0" styleClass="icon" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <PasswordField fx:id="password" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <PasswordField fx:id="password" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz use this in creating Password (Aa,numbers,_.@)" />
+               </tooltip></PasswordField>
             <FontAwesomeIconView fx:id="passwordIcon" glyphName="LOCK" size="18.0" styleClass="icon" />
          </children>
       </HBox>
@@ -50,7 +60,10 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="eMail" onKeyTyped="#enterEmail" promptText="E-Mail" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="eMail" onKeyTyped="#enterEmail" promptText="E-Mail" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz enter an email should contain&quot; name@domain.com&quot;" />
+               </tooltip></TextField>
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" styleClass="tfBox">
