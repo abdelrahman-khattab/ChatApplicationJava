@@ -10,7 +10,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 
 public class ImageConverter {
-    public static Blob fromBytesToBlob(byte[] bytesArr) {
+    public static Blob fromBytesToBlob(byte[] bytesArr) { // to be removed from clientside
         Blob blob = null;
         try {
             if (bytesArr != null)
@@ -22,7 +22,7 @@ public class ImageConverter {
 
     }
 
-    public static byte[] fromBlobToBytes(Blob blob) {
+    public static byte[] fromBlobToBytes(Blob blob) { //to be removed from clientside
         int blobLength;
         byte[] blobAsBytes = null;
         try {

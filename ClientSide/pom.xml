@@ -76,11 +76,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-<<<<<<< HEAD
-                <configuration>
-                    <mainClass>ClientSide/org.iti.project.ClientApp</mainClass>
-                </configuration>
-=======
+
                 <executions>
                     <execution>
                         <!-- Default configuration for running -->
@@ -91,7 +87,7 @@
                         </configuration>
                     </execution>
                 </executions>
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+
             </plugin>
         </plugins>
     </build>

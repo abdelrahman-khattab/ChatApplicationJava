@@ -1,14 +1,13 @@
 package org.iti.project.presentation.controllers;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-<<<<<<< HEAD
-=======
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,11 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-<<<<<<< HEAD
+
 import org.iti.project.presentation.util.Validator;
-=======
+
 import org.controlsfx.control.*;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+
 
 import java.io.File;
 import java.io.IOException;
@@ -232,22 +231,13 @@ public class RegisterController implements Initializable {
 
     @FXML
     void onRegisterButtonClicked(ActionEvent event) {
-
-<<<<<<< HEAD
-    }
-
-
-}
-=======
-
-
-    /////////////////////////////////////
+        /////////////////////////////////////
         /////////ahmed ashraf hyktb hena ////
         User user = new User();
         user.setGender("asdas");
         user.setUserCountry("asdas");
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
+        FileChooser fileChooser = new FileChooser(); /////needs to be global
+        File file = fileChooser.showOpenDialog(null);////needs to be global
         try {
             byte[] fileContent = FileUtils.readFileToByteArray(file);
             user.setImage(fileContent);
@@ -260,7 +250,7 @@ public class RegisterController implements Initializable {
         user.setUserName("ali");
         user.setUserPassword("asdas");
         user.setUserDOB("asdas");
-        user.setUserPhone("01223657582");
+        user.setUserPhone("01523657582");
         user.setUserBio("jjj");
         boolean added = false;
 
@@ -276,8 +266,17 @@ public class RegisterController implements Initializable {
                     .text("Congrats! You are one of us now, go login talk to your friends!").position(Pos.TOP_CENTER)
                     .showConfirm();
 
+        }else {
+            System.out.println("not added");
         }
         //
-         }
+    }
+
+
 }
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+
+
+
+
+
+

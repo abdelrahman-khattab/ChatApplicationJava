@@ -9,15 +9,17 @@ import java.rmi.registry.Registry;
 
 public class RMIConnector {
     private SignUpInt signUpService;
+    private Registry reg;
 
     private static final RMIConnector rmiConnector = new RMIConnector();
 
     private RMIConnector(){
         try {
-            Registry reg = LocateRegistry.getRegistry();
-            signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
+            //Registry reg = LocateRegistry.getRegistry();
+            reg = LocateRegistry.getRegistry();
+            //signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
             System.out.println(signUpService.lookupName + " service found!");
-        } catch (RemoteException | NotBoundException e) {
+        } catch (RemoteException  e) { //| NotBoundException
             e.printStackTrace();
         }
 
@@ -29,6 +31,11 @@ public class RMIConnector {
     }
     public SignUpInt getChatService(){
         //getRmiConnector(); //
+        try {
+            signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
+        }
         return signUpService;
     }
 }
