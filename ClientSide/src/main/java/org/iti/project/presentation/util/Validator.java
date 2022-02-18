@@ -8,7 +8,7 @@ public class Validator {
 
     public static boolean nameValidation(String clientName) {
 
-        if (clientName.trim().matches("^[A-Za-z ]{5,29}$") && clientName != null)
+        if (clientName.trim().matches("^[A-Za-z ]{3,29}$") && clientName != null)
             return true;
 
         return false;

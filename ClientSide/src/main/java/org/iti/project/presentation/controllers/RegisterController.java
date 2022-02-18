@@ -1,54 +1,44 @@
 package org.iti.project.presentation.controllers;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-<<<<<<< HEAD
-=======
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import org.apache.commons.io.FileUtils;
+import org.controlsfx.control.Notifications;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import org.iti.project.presentation.models.UserModel;
-import org.iti.project.presentation.util.ModelFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import org.iti.project.presentation.util.Validator;
-=======
-import org.controlsfx.control.*;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
-import org.apache.commons.io.FileUtils;
-
 
 public class RegisterController implements Initializable {
+
     private boolean nameValidation = false;
     private boolean emailValidation = false;
     private boolean passwordValidation = false;
+    private boolean confirmPasswordValidation = false;
     private boolean mobileValidation = false;
     private boolean birthDateValidation = false;
-    private boolean genderValidation = false;
+
 
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     UserModel userModel;
     @FXML
     private TextField bio;
-
-
     @FXML
     private DatePicker birthDate;
 
@@ -102,9 +92,17 @@ public class RegisterController implements Initializable {
 
     @FXML
     private VBox vboxReg;
+    @FXML
+    private ComboBox<String> countryComboBox;
+    private String countries[]={"Egypt" , "Tunisia","Morocco"};
 
     @FXML
+    private ComboBox<String> genderComboBox;
+    private String genders[]={"Male" , "Female"};
+    @FXML
     private Label dateValidation;
+    private File file = new File("C://Users/eltaweel/Desktop/Abdallah/ChatApplicationJava/ClientSide/target/classes/images/R.png");
+    ;
 
     @FXML
     void onGetImageButtonClick(ActionEvent event)
@@ -113,15 +111,19 @@ public class RegisterController implements Initializable {
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg","*.png");
         fc.getExtensionFilters().add(extFilter);
-        File file = fc.showOpenDialog((Stage)vboxReg.getScene().getWindow());
+        file = fc.showOpenDialog((Stage)vboxReg.getScene().getWindow());
+
         Image image = null;
         //
 
         //imageView = new ImageView(image);
         if(file != null) {
+
             image = new Image(file.getPath());
             profileImage.setImage(image);
+
         }
+
     }
 
     @Override
@@ -132,18 +134,14 @@ public class RegisterController implements Initializable {
         eMail.textProperty().bindBidirectional(userModel.emailProperty());
         phoneNo.textProperty().bindBidirectional(userModel.phoneNoProperty());
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
+        countryComboBox.getItems().addAll(countries);
+        genderComboBox.getItems().addAll(genders);
+        countryComboBox.getSelectionModel().select(0);
+        genderComboBox.getSelectionModel().select(0);
 
 
-        // initialize Bio
-
-        // set the default value for the datepicker
         enterBirthDate();
 
-
-    }
-
-    @FXML
-    void enterBio(KeyEvent event) {
 
     }
 
@@ -156,6 +154,7 @@ public class RegisterController implements Initializable {
 
         }else{
             dateValidation.setVisible(false);
+            birthDateValidation = true;
 
         }
     }
@@ -169,14 +168,10 @@ public class RegisterController implements Initializable {
 
         } else {
             eMail.setStyle("-fx-border-color:#7269EF;-fx-border-width:0 0 2px 0;");
-
+            emailValidation = true;
         }
     }
 
-    @FXML
-    void enterGender(KeyEvent event) {
-
-    }
 
     @FXML
     void enterPassword(KeyEvent event) {
@@ -187,6 +182,7 @@ public class RegisterController implements Initializable {
 
         } else {
             password.setStyle("-fx-border-color:#7269EF;-fx-border-width:0 0 2px 0;");
+            passwordValidation = true;
 
         }
     }
@@ -195,24 +191,28 @@ public class RegisterController implements Initializable {
     void enterConfirmPassword(KeyEvent event) {
 
         if(!confirmPassword.getText().equals(password.getText())) {
+
             confirmPassword.setStyle("-fx-border-color:RED;-fx-border-width:0 0 2px 0;");
 
         }
-     else
+     else {
             confirmPassword.setStyle("-fx-border-color:#7269EF;-fx-border-width:0 0 2px 0;");
-
+            confirmPasswordValidation = true;
+     }
 
     }
 
     @FXML
     void enterPhoneNumber(KeyEvent event) {
+        if(phoneNo == null)
+            phoneNo.setText("");
         if (!Validator.phoneValidation(phoneNo.getText())) {
             phoneNo.setStyle("-fx-border-color:RED;-fx-border-width:0 0 2px 0;");
-
+            mobileValidation = false;
 
         } else {
             phoneNo.setStyle("-fx-border-color:#7269EF;-fx-border-width:0 0 2px 0;");
-
+            mobileValidation = true;
         }
     }
 
@@ -221,10 +221,12 @@ public class RegisterController implements Initializable {
 
         if (!Validator.nameValidation(userName.getText())) {
             userName.setStyle("-fx-border-color:RED;-fx-border-width:0 0 2px 0;");
+            nameValidation = false;
 
 
         } else {
             userName.setStyle("-fx-border-color:#7269EF;-fx-border-width:0 0 2px 0;");
+            nameValidation = true;
 
         }
 
@@ -233,51 +235,56 @@ public class RegisterController implements Initializable {
     @FXML
     void onRegisterButtonClicked(ActionEvent event) {
 
-<<<<<<< HEAD
+        if(nameValidation && emailValidation && mobileValidation && birthDateValidation && passwordValidation && confirmPasswordValidation){
+
+            User user = new User();
+
+            user.setGender(genderComboBox.getValue());
+            user.setUserCountry(countryComboBox.getValue());
+
+            try {
+
+                byte[] fileContent = FileUtils.readFileToByteArray(file);
+                user.setImage(fileContent);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            user.setUserEmail(eMail.getText());
+            user.setUserName(userName.getText());
+            user.setUserPassword(password.getText());
+            user.setUserDOB(String.valueOf(birthDate.getValue()));
+            user.setUserPhone(phoneNo.getText());
+            user.setUserBio("@chat app");
+
+            boolean added = false;
+
+            try {
+                added = RMIConnector.getRmiConnector().getChatService().registerMe(user);
+            } catch (RemoteException e) {
+                Alert remoteExceptionAlert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+                remoteExceptionAlert.showAndWait();
+            }
+            if(added) {
+                Notifications.create()
+                        .title("Registration")
+                        .text("Congrats! You are one of us now, go login talk to your friends!").position(Pos.TOP_CENTER)
+                        .showConfirm();
+
+            }else{
+                Notifications.create()
+                        .title("Registration Faild !!")
+                        .text("You Can Log in , You Have already Email On The System").position(Pos.TOP_CENTER)
+                        .showWarning();
+            }
+            //
+        }else{
+            Notifications.create()
+                    .title("All Data Required")
+                    .text("All Data Here Must Be Exsists").position(Pos.CENTER)
+                    .showError();
+        }
+
     }
 
-
 }
-=======
-
-
-    /////////////////////////////////////
-        /////////ahmed ashraf hyktb hena ////
-        User user = new User();
-        user.setGender("asdas");
-        user.setUserCountry("asdas");
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
-        try {
-            byte[] fileContent = FileUtils.readFileToByteArray(file);
-            user.setImage(fileContent);
-            System.out.println("image set" + fileContent.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        user.setUserEmail("asdas");
-        user.setUserName("ali");
-        user.setUserPassword("asdas");
-        user.setUserDOB("asdas");
-        user.setUserPhone("01223657582");
-        user.setUserBio("jjj");
-        boolean added = false;
-
-        try {
-            added = RMIConnector.getRmiConnector().getChatService().registerMe(user);
-        } catch (RemoteException e) {
-            Alert remoteExceptionAlert = new Alert(Alert.AlertType.ERROR, e.getMessage());
-            remoteExceptionAlert.showAndWait();
-        }
-        if(added) {
-            Notifications.create()
-                    .title("Registration")
-                    .text("Congrats! You are one of us now, go login talk to your friends!").position(Pos.TOP_CENTER)
-                    .showConfirm();
-
-        }
-        //
-         }
-}
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195

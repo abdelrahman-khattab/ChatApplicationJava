@@ -1,10 +1,14 @@
 package org.iti.project.presentation.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 //import gov.iti.jets.presentation.models.UserModel;
 //import gov.iti.jets.presentation.util.ModelFactory;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 import org.iti.project.presentation.util.StageCoordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +21,11 @@ public class ProfileController implements Initializable {
     // private final StageCoordinator stageCoordinator =
     // StageCoordinator.getStageCoordinator();
     // private final ModelFactory modelFactory = ModelFactory.getInstance();
+    @FXML
+    private ScrollPane secondPane;
+
+    @FXML
+    private VBox vboxContainer;
 
     @FXML
     private Text clientBioText;
@@ -51,7 +60,14 @@ public class ProfileController implements Initializable {
     @FXML
     public void editClientInformation(ActionEvent event) {
 
-        // Login of Edit button
+        try {
+            ScrollPane editProfile = FXMLLoader.load(getClass().getResource("/view/editprofile.fxml"));
+            vboxContainer.getChildren().removeAll(vboxContainer.getChildren());
+            vboxContainer.getChildren().add(editProfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
