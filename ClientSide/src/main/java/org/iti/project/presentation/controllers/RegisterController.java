@@ -1,14 +1,14 @@
 package org.iti.project.presentation.controllers;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-<<<<<<< HEAD
-=======
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
+import javafx.scene.input.KeyEvent;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,11 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import org.iti.project.presentation.util.Validator;
-=======
 import org.controlsfx.control.*;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
 
 import java.io.File;
 import java.io.IOException;
@@ -104,6 +101,13 @@ public class RegisterController implements Initializable {
     private VBox vboxReg;
 
     @FXML
+    private ComboBox<String> countryComboBox;
+    private String countries[]={"Egypt" , "Morocco"};
+
+    @FXML
+    private ComboBox<String> genderComboBox;
+    private String genders[]={"male" , "female"};
+    @FXML
     private Label dateValidation;
 
     @FXML
@@ -130,8 +134,12 @@ public class RegisterController implements Initializable {
         userName.textProperty().bindBidirectional(userModel.userUserNameProperty());
         password.textProperty().bindBidirectional(userModel.userPasswordProperty());
         eMail.textProperty().bindBidirectional(userModel.emailProperty());
+//        address.textProperty().bindBidirectional(userModel.addressProperty());
         phoneNo.textProperty().bindBidirectional(userModel.phoneNoProperty());
+ //       age.textProperty().bindBidirectional(userModel.ageProperty());
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
+        countryComboBox.getItems().addAll(countries);
+        genderComboBox.getItems().addAll(genders);
 
 
         // initialize Bio
@@ -232,16 +240,42 @@ public class RegisterController implements Initializable {
 
     @FXML
     void onRegisterButtonClicked(ActionEvent event) {
+        User user = new User();
+        user.setGender("asdas");
+        user.setUserCountry("asdas");
 
-<<<<<<< HEAD
+        user.setUserEmail("asdas");
+        user.setUserName("Khattab");
+        user.setUserPassword("asdas");
+        user.setUserDOB("asdas");
+        user.setUserPhone("01157665457");
+        user.setUserBio("jjj");
+        boolean added = false;
+
+        try {
+            added = RMIConnector.getRmiConnector().getChatService().registerMe(user);
+        } catch (RemoteException e) {
+            Alert remoteExceptionAlert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            remoteExceptionAlert.showAndWait();
+        }
+        if(added) {
+            Notifications.create()
+                    .title("Registration")
+                    .text("Congrats! You are one of us now, go login talk to your friends!").position(Pos.TOP_CENTER)
+                    .showConfirm();
+
+        }
+        //
+    }
+
     }
 
 
-}
-=======
 
 
-    /////////////////////////////////////
+
+/*
+*     /////////////////////////////////////
         /////////ahmed ashraf hyktb hena ////
         User user = new User();
         user.setGender("asdas");
@@ -279,5 +313,4 @@ public class RegisterController implements Initializable {
         }
         //
          }
-}
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+}*/

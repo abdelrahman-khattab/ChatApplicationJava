@@ -1,5 +1,9 @@
 package org.iti.project.presistence.util;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,7 +12,7 @@ public class DBConnector {
 
     static private DBConnector instance= null;
     private Connection connection = null;
-
+    private static HikariDataSource dataSource;
     private DBConnector() {
     }
 
@@ -19,18 +23,19 @@ public class DBConnector {
         return instance;
     }
 
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/chat_app_project?user=root&password=admin1234");
+        dataSource = new HikariDataSource(config);
+        dataSource.setMaximumPoolSize(5);
+    }
     public Connection connect() {
         if (connection == null) {
             PropertiesConnection properties = new PropertiesConnection();
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chat_app_project","root" , "root");
-
-            } catch (ClassNotFoundException e) {
-                System.err.println("The Layer doesn't connect to DB  DBConnection Error ");
-                e.getMessage();
+                connection = dataSource.getConnection();
             } catch (SQLException e) {
-                System.err.println("Connection to DataBase Failed");
+                System.out.println("db pool connection fail");
                 e.getMessage();
             }
         }

@@ -10,11 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 
 public class SignUpImpl extends UnicastRemoteObject implements SignUpInt {
-<<<<<<< HEAD
 
-=======
-    //Connection conn = DBConnector.getConnection().connect();
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
     public SignUpImpl() throws RemoteException {
 
     }
@@ -22,7 +18,7 @@ public class SignUpImpl extends UnicastRemoteObject implements SignUpInt {
     @Override
     public boolean registerMe(User user) throws RemoteException{
         System.out.println(user.getUserName() + " reached the service");
-        Connection conn = DBConnector.getConnection().connect();
+        //Connection conn = DBConnector.getConnection().connect();
         UserDAOImpl userDAO = new UserDAOImpl();
         boolean result = userDAO.insertUser(user);
         return result;

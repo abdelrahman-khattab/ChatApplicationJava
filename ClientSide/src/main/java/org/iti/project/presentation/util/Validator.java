@@ -24,8 +24,7 @@ public class Validator {
 
     public static boolean emailValidation(String clientEmail) {
 
-        if (clientEmail.trim().matches("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") && clientEmail != null)
+        if (clientEmail.trim().matches("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") && clientEmail != null)
             return true;
 
         return false;
