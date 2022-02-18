@@ -1,4 +1,5 @@
 module ClientSide {
+
     requires javafx.controls;
     requires javafx.fxml;
     //requires validatorfx;
