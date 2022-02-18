@@ -2,7 +2,9 @@ package org.iti.project.presistence.dao;
 
 import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
+import org.iti.project.util.ImageConverter;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,7 +13,8 @@ public class UserDAOImpl implements UserDAO {
     Connection con = DBConnector.getConnection().connect();
 
     @Override
-    public void insertUser(User user) {
+    public boolean insertUser(User user) {
+        Blob userImageAsBlop = ImageConverter.fromBytesToBlob(user.getImage());
         try {
             PreparedStatement preparedStatement = con.prepareStatement("insert into user (PHONE_NUMBER ,USER_NAME ,EMAIL ,PASSWORD ,GENDER , COUNTRY , BIRTH_DATE , BIO ,IMAGE) \n" +
                     "values (?,?,?,?,?,?,?,?,?)");
@@ -23,10 +26,14 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setString(6, user.getUserCountry());
             preparedStatement.setString(7, user.getUserDOB());
             preparedStatement.setString(8, user.getUserBio());
-            preparedStatement.setString(9, user.getImage());
+            preparedStatement.setBlob(9,userImageAsBlop);
             preparedStatement.execute();
+            System.out.println(user.getUserName() + " with phone :" +user.getUserPhone());
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            ///ChatClientCallback.loadError(e.getMessage());
+            return false;
         }
     }
 

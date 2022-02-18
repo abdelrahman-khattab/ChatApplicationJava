@@ -12,18 +12,25 @@ public class User  implements Serializable {
     private String userDate;
     private String userPhone;
     private String gender;
-    private String image;
+    private byte[] image;
     // Adding array of bytes for image
 
-    public String getImage() {
+//    public String getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
+
+
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
-
-
     public String getGender() {
         return gender;
     }

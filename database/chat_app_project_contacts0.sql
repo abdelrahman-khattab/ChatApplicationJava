@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_group`
+-- Table structure for table `contacts`
 --
 
-DROP TABLE IF EXISTS `user_group`;
+DROP TABLE IF EXISTS `contacts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_group` (
+CREATE TABLE `contacts` (
   `user_id` varchar(20) NOT NULL,
-  `group_id` int NOT NULL,
-  PRIMARY KEY (`user_id`,`group_id`),
-  KEY `group_id_fk_idx` (`group_id`),
-  CONSTRAINT `group_id_fk` FOREIGN KEY (`group_id`) REFERENCES `group` (`GROUP_ID`),
-  CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`PHONE_NUMBER`)
+  `friend_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`user_id`,`friend_id`),
+  KEY `friend_id_fk_idx` (`friend_id`),
+  CONSTRAINT `friend_id_fk` FOREIGN KEY (`friend_id`) REFERENCES `user` (`PHONE_NUMBER`),
+  CONSTRAINT `user_id_fk_friendlist` FOREIGN KEY (`user_id`) REFERENCES `user` (`PHONE_NUMBER`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_group`
+-- Dumping data for table `contacts`
 --
 
-LOCK TABLES `user_group` WRITE;
-/*!40000 ALTER TABLE `user_group` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_group` ENABLE KEYS */;
+LOCK TABLES `contacts` WRITE;
+/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-13 19:54:16
+-- Dump completed on 2022-02-17  9:14:09

@@ -12,6 +12,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.presentation.util.StageCoordinator;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 /**
  * JavaFX App
@@ -26,9 +27,8 @@ public class ClientApp extends Application {
         StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
         stageCoordinator.initStage(stage);
         User user = new User();
-        user.setUserName("hala");
-        User returned = RMIConnector.getRmiConnector().getChatService().registerMe(user);
-        System.out.println(returned.getUserName() + " returned");
+
+
         stage.show();
 
     }
