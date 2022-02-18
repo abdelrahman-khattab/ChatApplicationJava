@@ -33,8 +33,18 @@ public class App extends Application {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
+            Connection conn = DBConnector.getConnection().connect();
+            UserDAOImpl userDAO = new UserDAOImpl();
+            User user = new User();
+        user = userDAO.selectUser(user);
+        System.out.println(user.toString());
         launch();
     }
+
+
+
+
+
 
 }

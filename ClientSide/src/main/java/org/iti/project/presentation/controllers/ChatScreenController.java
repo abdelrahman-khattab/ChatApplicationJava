@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -204,6 +205,7 @@ public class ChatScreenController implements Initializable {
     public void onSendButtonClicked(ActionEvent actionEvent) {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
+            RMIConnector.getRmiConnector().getChatService();
             renderMessage(messageBody);
         }
     }
