@@ -15,11 +15,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" prefWidth="300.0" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideGroupListController">
+<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" prefWidth="300.0" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideContactListController">
     <content>
 <VBox spacing="10.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
    <children>
-            <HBox alignment="CENTER" prefHeight="51.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="51.0" VBox.vgrow="ALWAYS">
                <children>
             <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Contact List" textFill="#181d31" />
                   <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

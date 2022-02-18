@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" spacing="5.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="46.0">
+         <children>
+            <Circle fx:id="groupImage" fill="WHITE" layoutX="20.0" layoutY="34.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Label fx:id="groupName" prefHeight="20.0" stylesheets="@Styles/chatStyle.css" text="Group name" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="messagerHeader" />
+                  <String fx:value="textColor" />
+               </styleClass>
+            </Label>
+            <Label fx:id="GroupDescription" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="Last mesaage">
+               <styleClass>
+                  <String fx:value="textColor" />
+                  <String fx:value="message" />
+               </styleClass>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" prefHeight="70.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Label fx:id="groupMessageTime" stylesheets="@Styles/chatStyle.css" text="05 min">
+               <styleClass>
+                  <String fx:value="textColor" />
+                  <String fx:value="time" />
+               </styleClass>
+            </Label>
+            <Label fx:id="groupMesaageNumbers" alignment="CENTER" prefHeight="18.0" prefWidth="32.0" stylesheets="@Styles/chatStyle.css" text="02" textAlignment="CENTER">
+               <styleClass>
+                  <String fx:value="messageNumber" />
+                  <String fx:value="radius" />
+               </styleClass>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="hBox" />
+      <String fx:value="vBox" />
+   </styleClass>
+</HBox>

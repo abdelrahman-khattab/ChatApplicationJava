@@ -101,3 +101,11 @@
     -fx-border-width: 1;
     -fx-border-color: #e1e9f159;
 }
+
+.list-cell { -fx-background-color: #00000000;}
+.list-cell:odd { -fx-background-color: #00000000; }
+.list-cell:even { -fx-background-color: #00000000;}
+.list-cell:selected{
+    -fx-background-color: -whiteColorTransparent;
+    -fx-text-fill: -primaryBgColor;
+}

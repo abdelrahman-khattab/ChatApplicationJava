@@ -10,11 +10,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 
 public class SignUpImpl extends UnicastRemoteObject implements SignUpInt {
-<<<<<<< HEAD
 
-=======
     //Connection conn = DBConnector.getConnection().connect();
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
     public SignUpImpl() throws RemoteException {
 
     }

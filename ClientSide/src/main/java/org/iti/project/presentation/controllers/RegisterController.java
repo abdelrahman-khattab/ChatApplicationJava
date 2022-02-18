@@ -1,14 +1,12 @@
 package org.iti.project.presentation.controllers;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-<<<<<<< HEAD
-=======
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,11 +19,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import org.iti.project.presentation.util.Validator;
-=======
 import org.controlsfx.control.*;
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+
 
 import java.io.File;
 import java.io.IOException;
@@ -233,15 +229,7 @@ public class RegisterController implements Initializable {
     @FXML
     void onRegisterButtonClicked(ActionEvent event) {
 
-<<<<<<< HEAD
-    }
-
-
-}
-=======
-
-
-    /////////////////////////////////////
+        /////////////////////////////////////
         /////////ahmed ashraf hyktb hena ////
         User user = new User();
         user.setGender("asdas");
@@ -277,7 +265,10 @@ public class RegisterController implements Initializable {
                     .showConfirm();
 
         }
-        //
-         }
+
+    }
+
+
 }
->>>>>>> 8bfc779ee8ab034c8fde65f7e8dd030554944195
+
+
