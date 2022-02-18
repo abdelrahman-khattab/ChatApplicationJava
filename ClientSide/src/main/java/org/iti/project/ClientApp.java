@@ -26,7 +26,6 @@ public class ClientApp extends Application {
 
         StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
         stageCoordinator.initStage(stage);
-        User user = new User();
         stage.show();
 
     }

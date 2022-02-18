@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -28,73 +26,82 @@
       </Label>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="userName" onKeyTyped="#enterUserName" promptText="User Name" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="userName" focusTraversable="false" onKeyTyped="#enterUserName" promptText="User Name" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz enter Full Name" />
+               </tooltip></TextField>
             <FontAwesomeIconView fx:id="userIcon" glyphName="USER" size="18.0" styleClass="icon" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="phoneNo" onKeyTyped="#enterPhoneNumber" promptText="Phone number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="phoneNo" focusTraversable="false" onKeyTyped="#enterPhoneNumber" promptText="Phone number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz Enter Phone Number start  with 01/(0,1,2)" />
+               </tooltip></TextField>
             <FontAwesomeIconView fx:id="phoneNoIcon" glyphName="PHONE" size="18.0" styleClass="icon" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <PasswordField fx:id="password" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+
+            <PasswordField fx:id="password" focusTraversable="false" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz use this in creating Password (Aa,numbers,_.@)" />
+               </tooltip></PasswordField>
             <FontAwesomeIconView fx:id="passwordIcon" glyphName="LOCK" size="18.0" styleClass="icon" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="204.0" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <PasswordField fx:id="confirmPassword" onKeyTyped="#enterConfirmPassword" promptText="Confirm Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <PasswordField fx:id="confirmPassword" focusTraversable="false" onKeyTyped="#enterConfirmPassword" promptText="Confirm Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
             <FontAwesomeIconView fx:id="passwordIcon1" glyphName="LOCK" size="18.0" styleClass="icon" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="238.0" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
-         <children>
-            <TextField fx:id="country" onKeyTyped="#enterConfirmPassword" promptText="Country" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="eMail" onKeyTyped="#enterEmail" promptText="E-Mail" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+
+            <TextField fx:id="eMail" focusTraversable="false" onKeyTyped="#enterEmail" promptText="E-Mail" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="Plz enter an email should contain&quot; name@domain.com&quot;" />
+               </tooltip></TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
+      <HBox alignment="CENTER_LEFT" styleClass="tfBox">
          <children>
-            <TextField fx:id="bio" onKeyTyped="#enterBio" promptText="Bio ........" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <HBox alignment="BOTTOM_LEFT" layoutX="15.0" layoutY="337.0" prefHeight="115.0" prefWidth="470.0" stylesheets="@Styles/formStyle.css">
-         <children>
-            <ImageView fx:id="profileImage" fitHeight="108.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#onGetImageButtonClick" prefHeight="19.0" prefWidth="150.0" styleClass="btnImage" stylesheets="@Styles/formStyle.css" text="Upload Image">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <VBox alignment="TOP_CENTER" prefHeight="113.0" prefWidth="148.0" spacing="5.0">
+            <VBox>
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" textAlignment="CENTER" />
-                  <DatePicker fx:id="birthDate" onAction="#enterBirthDate" styleClass="btnGender" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tfinput" text="Birth Date" wrappingWidth="182.962890625">
+                     <VBox.margin>
+                        <Insets left="8.0" />
+                     </VBox.margin>
+                  </Text>
                   <Label fx:id="dateValidation" text="*date required" textFill="RED" visible="false" />
-                  <MenuButton fx:id="genderButton" mnemonicParsing="false" onKeyTyped="#enterGender" prefHeight="25.0" prefWidth="148.0" styleClass="btnGender" text="Choose Gender" textFill="WHITE">
-                    <items>
-                        <RadioMenuItem fx:id="genMale" mnemonicParsing="false" selected="true" text="Male">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="gender" />
-                           </toggleGroup>
-                        </RadioMenuItem>
-                        <RadioMenuItem fx:id="genFemale" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
-                    </items>
-                     <font>
-                        <Font name="Arial Bold" size="14.0" />
-                     </font>
-                  </MenuButton>
                </children>
+            </VBox>
+            <DatePicker fx:id="birthDate" onAction="#enterBirthDate" prefHeight="32.0" prefWidth="257.0" styleClass="btnGender" />
+         </children>
+      </HBox>
+      <HBox alignment="BASELINE_CENTER" layoutX="25.0" layoutY="238.0" prefHeight="144.0" prefWidth="458.0" spacing="50.0" stylesheets="@Styles/formStyle.css">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="69.0" prefWidth="184.0" spacing="5.0">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
+               <children>
+                  <ComboBox fx:id="countryComboBox" prefWidth="150.0" promptText="Choose Country" style="-fx-prompt-fill: white;" styleClass="btnGender" />
+                  <ComboBox fx:id="genderComboBox" layoutX="10.0" layoutY="47.0" prefWidth="150.0" promptText="Choose Gender" style="-fx-prompt-fill: white;" styleClass="btnGender" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <ImageView fx:id="profileImage" fitHeight="108.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#onGetImageButtonClick" prefHeight="19.0" prefWidth="150.0" styleClass="btnImage" stylesheets="@Styles/formStyle.css" text="Upload Image">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
             </VBox>
          </children>
       </HBox>
