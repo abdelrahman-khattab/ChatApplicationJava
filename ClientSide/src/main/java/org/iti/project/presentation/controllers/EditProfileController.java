@@ -52,6 +52,15 @@ public class EditProfileController implements Initializable {
     @FXML
     private VBox vboxContainer;
 
+    private static EditProfileController editProfileController;
+
+    public static void setController(EditProfileController editProfileController) {
+        EditProfileController.editProfileController = editProfileController;
+    }
+    public static EditProfileController getInstance(){
+        return editProfileController;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryCombobox.getItems().addAll("Egypt","Tunsia","Morocco");

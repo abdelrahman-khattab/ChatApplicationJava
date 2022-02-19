@@ -30,12 +30,12 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ChatScreenController implements Initializable {
+
+    //private final Map<String, Scene> sceneMap = stageCoordinator.getSceneMap();
+
     private static ChatScreenController chatScreenController;
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
-    //private final ChatScreenCoordinator chatScreenCoordinator = ChatScreenCoordinator.getChatScreenCoordinator();
-    //private final Map<String, Scene> sceneMap = stageCoordinator.getSceneMap();
     private final Map<String, ScrollPane> paneMap = new HashMap<>();
-    private final Tooltip exitTip = new Tooltip("Exit");
     private FileChooser fileChooser;
 
     @FXML
@@ -124,6 +124,10 @@ public class ChatScreenController implements Initializable {
     private ScrollPane sideGroupPane;
     private ScrollPane chatListPane;
 
+    private SideGroupListController sideGroupListController;
+    private SideChatListController sideChatListController;
+    private ProfileController profileController;
+
     private final UserModel userModel = new UserModel();
 
     public static void setController(ChatScreenController chatScreenController) {
@@ -204,6 +208,8 @@ public class ChatScreenController implements Initializable {
 //            }
 //        }
         sideProfilePane.toFront();
+        System.out.println(sideNavigationStackPane.getChildren().get(sideNavigationStackPane.getChildren().size()-1)==sideProfilePane);
+
 
     }
 
@@ -293,21 +299,29 @@ public class ChatScreenController implements Initializable {
 
             FXMLLoader profilePaneLoader = new FXMLLoader(getClass().getResource("/view/sideProfilePane.fxml"));
             sideProfilePane = profilePaneLoader.load();
+            ProfileController.setController(profilePaneLoader.getController());
+            profileController = ProfileController.getInstance();
             System.out.println("sideProfilePane created");
             paneMap.put("sideProfilePane",sideProfilePane);
             sideNavigationStackPane.getChildren().add(sideProfilePane);
 
             FXMLLoader sideGroupListLoader = new FXMLLoader(getClass().getResource("/view/SideGroupList.fxml"));
             sideGroupPane = sideGroupListLoader.load();
+            SideGroupListController.setController(sideGroupListLoader.getController());
+            sideGroupListController = SideGroupListController.getInstance();
             System.out.println("sideGroupPane created");
             paneMap.put("sideGroupPane",sideGroupPane);
             sideNavigationStackPane.getChildren().add(sideGroupPane);
 
             FXMLLoader chatLoader = new FXMLLoader(getClass().getResource("/view/sideChatList.fxml"));
             chatListPane = chatLoader.load();
+            SideChatListController.setController(chatLoader.getController());
+            sideChatListController = SideChatListController.getInstance();
             System.out.println("chatPane created");
             paneMap.put("chatListPane",chatListPane);
             sideNavigationStackPane.getChildren().add(chatListPane);
+
+            System.out.println(sideNavigationStackPane.getChildren().get(sideNavigationStackPane.getChildren().size()-1)==chatListPane);
 
         } catch (IOException e) {
             e.printStackTrace();
