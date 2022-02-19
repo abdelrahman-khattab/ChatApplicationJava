@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import org.iti.project.presentation.models.Group;
+import org.iti.project.util.ImageConverter;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,17 +29,21 @@ public class SideGroupListController implements Initializable {
     private ScrollPane secondPane;
 
     public ObservableList<Group> groupsObservableList;
+    byte[] user1;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         groupsObservableList = FXCollections.observableArrayList();
 
+        File file=new FileChooser().showOpenDialog(null);
+        user1= ImageConverter.fromImageToBytes(file.getPath());
+
         //add user groups here
         groupsObservableList.addAll(
-                new Group("Iti Group","welcome to the hell"),
-                new Group("Dark Life","hello every one ")
+                new Group("Iti Group","welcome to the hell",user1),
+                new Group("Dark Life","hello every one ",user1)
         );
         groupListView.setItems(groupsObservableList);
-        groupListView.setCellFactory(groupListView -> new GroupsInfoController());
+        groupListView.setCellFactory(groupListView -> new GroupsInfoListCellController());
         groupListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
 
             @Override

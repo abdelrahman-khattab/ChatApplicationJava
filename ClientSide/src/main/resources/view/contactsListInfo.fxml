@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="contactInfoHBox" accessibleRole="BUTTON" alignment="CENTER_LEFT" spacing="5.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="53.0">
+         <children>
+            <Circle fx:id="contactImage" fill="WHITE" layoutX="20.0" layoutY="34.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="27.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/correct.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <VBox alignment="CENTER_LEFT" prefWidth="150.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Label fx:id="contactName" prefHeight="20.0" stylesheets="@Styles/chatStyle.css" text="Contact name" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="messagerHeader" />
+                  <String fx:value="textColor" />
+               </styleClass>
+            </Label>
+            <Label fx:id="contactNumber" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="01014607733">
+               <styleClass>
+                  <String fx:value="textColor" />
+                  <String fx:value="message" />
+               </styleClass>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefHeight="70.0" HBox.hgrow="ALWAYS" />
+   </children>
+   <styleClass>
+      <String fx:value="hBox" />
+      <String fx:value="vBox" />
+   </styleClass>
+</HBox>
