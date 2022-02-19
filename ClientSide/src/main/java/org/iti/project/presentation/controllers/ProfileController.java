@@ -51,6 +51,15 @@ public class ProfileController implements Initializable {
     @FXML
     private Label infoClientNameLabel;
 
+    private static ProfileController profileController;
+
+    public static void setController(ProfileController profileController) {
+        ProfileController.profileController = profileController;
+    }
+    public static ProfileController getInstance(){
+        return profileController;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

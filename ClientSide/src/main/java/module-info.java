@@ -15,5 +15,6 @@ module ClientSide {
     opens org.iti.project.presentation.controllers to  javafx.fxml;
     exports org.iti.project;
     exports org.iti.project.presentation.controllers;
+    exports org.iti.project.services.interfaces;
 
 }
