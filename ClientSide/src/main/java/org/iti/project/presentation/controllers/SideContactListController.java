@@ -24,6 +24,17 @@ public class SideContactListController {
     @FXML
     public TextField searchBar;
 
+    private static SideContactListController sideContactListController;
+
+    public static void setController(SideContactListController sideContactListController){
+        SideContactListController.sideContactListController = sideContactListController;
+    }
+
+    public static SideContactListController getInstance() {
+        return sideContactListController;
+    }
+
+
     @FXML
     void test(MouseEvent event) {
 

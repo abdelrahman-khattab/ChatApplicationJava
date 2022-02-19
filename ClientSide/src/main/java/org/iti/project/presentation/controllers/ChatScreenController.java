@@ -127,6 +127,7 @@ public class ChatScreenController implements Initializable {
     private SideGroupListController sideGroupListController;
     private SideChatListController sideChatListController;
     private ProfileController profileController;
+    private SideContactListController sideContactListController;
 
     private final UserModel userModel = new UserModel();
 
@@ -293,6 +294,8 @@ public class ChatScreenController implements Initializable {
         try {
             FXMLLoader sideContactListLoader = new FXMLLoader(getClass().getResource("/view/sideContactList.fxml"));
             sideContactListPane = sideContactListLoader.load();
+            SideContactListController.setController(sideContactListLoader.getController());
+            sideContactListController = SideContactListController.getInstance();
             System.out.println("sideContactListPane created");
             paneMap.put("sideContactListPane",sideContactListPane);
             sideNavigationStackPane.getChildren().add(sideContactListPane);
