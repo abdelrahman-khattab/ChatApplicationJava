@@ -240,7 +240,7 @@ public class ChatScreenController implements Initializable {
     public void onSendButtonClicked(ActionEvent actionEvent) {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
-            RMIConnector.getRmiConnector().getChatService();
+            RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(messageBody , 111);
             renderMessage(messageBody);
         }
     }

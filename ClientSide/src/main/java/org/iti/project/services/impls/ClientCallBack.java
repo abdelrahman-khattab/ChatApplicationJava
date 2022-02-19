@@ -26,7 +26,7 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
         return instance;
     }
     @Override
-    public void receiveGroupMessage(String message, int groupId, User user) {
-
+    public void receiveGroupMessage(String message) {
+        System.out.println(message+" ana gowa el clientcallback");
     }
 }

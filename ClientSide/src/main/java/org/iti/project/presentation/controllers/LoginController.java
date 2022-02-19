@@ -3,6 +3,7 @@ package org.iti.project.presentation.controllers;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import javafx.event.ActionEvent;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
 import javafx.fxml.FXML;
@@ -13,9 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.iti.project.presentation.util.StageCoordinator;
+import org.iti.project.services.impls.ClientCallBack;
+import org.iti.project.services.interfaces.ClientCallBackInt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -56,6 +60,11 @@ public class LoginController implements Initializable {
     @FXML
     void login()
     {
+        try {
+            RMIConnector.getRmiConnector().getLoginService().logIn(userName.getText(), ClientCallBack.getInstance());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         StageCoordinator.getStageCoordinator().switchToChatScreen();
     }
     @Override
