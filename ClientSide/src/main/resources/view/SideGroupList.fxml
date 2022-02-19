@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideGroupListController">
+<ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" prefWidth="300.0" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.SideGroupListController">
    <content>
 
 <VBox spacing="10.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
@@ -57,9 +57,9 @@
             <String fx:value="SecondHeaderFont" />
             <String fx:value="fontColor" />
          </styleClass></Label>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" styleClass="vBox" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" styleClass="vBox" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
          <content>
-            <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
+            <VBox nodeOrientation="LEFT_TO_RIGHT" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                <children>
                         <ListView fx:id="groupListView" stylesheets="@Styles/chatStyle.css" VBox.vgrow="ALWAYS">
                            <styleClass>
