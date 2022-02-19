@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ChatScreenController implements Initializable {
+    private static ChatScreenController chatScreenController;
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
     //private final ChatScreenCoordinator chatScreenCoordinator = ChatScreenCoordinator.getChatScreenCoordinator();
     private final Map<String, Scene> sceneMap = stageCoordinator.getSceneMap();
@@ -120,6 +121,13 @@ public class ChatScreenController implements Initializable {
 
     private final UserModel userModel = new UserModel();
 
+    public static void setController(ChatScreenController chatScreenController) {
+        ChatScreenController.chatScreenController = chatScreenController;
+    }
+    public static ChatScreenController getInstance(){
+        return chatScreenController;
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
@@ -181,7 +189,7 @@ public class ChatScreenController implements Initializable {
 
     @FXML
     void onLogOutButtonClicked(ActionEvent event) {
-        stageCoordinator.switchToLoginScene();
+        stageCoordinator.switchToLoginFormScene();
 
     }
 
