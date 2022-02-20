@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import org.iti.project.presentation.models.Group;
 import org.iti.project.util.ImageConverter;
+import javafx.stage.Stage;
+import org.iti.project.presentation.models.Group;
+import org.iti.project.presentation.util.StageCoordinator;
 
 import java.io.File;
 import java.net.URL;
@@ -28,11 +31,15 @@ public class SideGroupListController implements Initializable {
     @FXML
     private ScrollPane secondPane;
 
+    private ChatScreenController chatScreenController;
+
     public ObservableList<Group> groupsObservableList;
 
     byte[] user1;
 
     private static SideGroupListController sideGroupListController;
+
+    private static final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
 
     public static void setController(SideGroupListController sideGroupListController) {
         SideGroupListController.sideGroupListController = sideGroupListController;
@@ -43,6 +50,7 @@ public class SideGroupListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        chatScreenController = ChatScreenController.getInstance();
         groupsObservableList = FXCollections.observableArrayList();
 
         File file=new FileChooser().showOpenDialog(null);
@@ -60,6 +68,9 @@ public class SideGroupListController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
                 System.out.println("Selected item1: " + newValue.getGroupName());
+                stageCoordinator.getChatScreenController().setIsGroup(true);
+                System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
+
 
 
             }

@@ -13,10 +13,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
+import org.iti.project.presentation.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -25,6 +28,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -37,9 +41,6 @@ public class ChatScreenController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
     private final Map<String, ScrollPane> paneMap = new HashMap<>();
     private FileChooser fileChooser;
-
-    @FXML
-    private Button boldButton;
 
     @FXML
     private Button callButton;
@@ -69,16 +70,22 @@ public class ChatScreenController implements Initializable {
     private Button fileAttachementButton;
 
     @FXML
-    private SplitMenuButton fontFamilyButton;
+    private ChoiceBox<String> fontFamilyButton;
 
     @FXML
-    private SplitMenuButton fontSizeButton;
+    private ChoiceBox<Integer> fontSizeButton;
+
+    @FXML
+    private ToggleButton italicButton;
 
     @FXML
     private Button groupChatButton;
 
     @FXML
-    private Button italicButton;
+    private ToggleButton boldButton;
+
+    @FXML
+    private ToggleButton underlineButton;
 
     @FXML
     private Button logOutButton;
@@ -97,9 +104,6 @@ public class ChatScreenController implements Initializable {
 
     @FXML
     private StackPane sideNavigationStackPane;
-
-    @FXML
-    private Button underlineButton;
 
     @FXML
     private Button unknownFunctionaityButton;
@@ -129,6 +133,11 @@ public class ChatScreenController implements Initializable {
     private ProfileController profileController;
     private SideContactListController sideContactListController;
 
+    private static volatile boolean isGroup = false;
+    private static Group currentContactedGroup;
+    private static User currentContactedUser;
+    private User currentUser;
+
     private final UserModel userModel = new UserModel();
 
     public static void setController(ChatScreenController chatScreenController) {
@@ -139,6 +148,16 @@ public class ChatScreenController implements Initializable {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    public void setIsGroup(boolean boolean_value) {
+        ChatScreenController.isGroup = boolean_value;
+    }
+
+    public boolean isIsGroup() {
+        return isGroup;
+    }
+
 
     @FXML
     void onChatListButtonClicked(ActionEvent event) {
@@ -290,6 +309,12 @@ public class ChatScreenController implements Initializable {
         Tooltip.install(unknownFunctionaityButton, new Tooltip("Leave"));
         chatScrollPane.vvalueProperty().bind(chatVBox.heightProperty());
         contactImageCircle.setFill(new ImagePattern(userModel.getUserImage())); // bind this property with current contacted entity
+
+        fontSizeButton.getItems().addAll(14,16,18,20);
+        fontSizeButton.setValue(14);
+
+        fontFamilyButton.getItems().addAll(Font.getFamilies());
+        fontFamilyButton.setValue("Berlin Sans FB");
 
         try {
             FXMLLoader sideContactListLoader = new FXMLLoader(getClass().getResource("/view/sideContactList.fxml"));

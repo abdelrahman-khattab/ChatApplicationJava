@@ -14,7 +14,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.impls.ClientCallBack;
 
 import java.io.IOException;
-import java.sql.Connection;
+
 
 /**
  * JavaFX App
@@ -38,7 +38,6 @@ public class ClientApp extends Application {
 
     public static void main(String[] args) {
         launch();
-
 
     }
 

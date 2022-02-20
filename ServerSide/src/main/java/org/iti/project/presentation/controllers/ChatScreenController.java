@@ -130,5 +130,18 @@ public class ChatScreenController implements Initializable {
     }
 
 
+    public void onSendButtonClicked(ActionEvent actionEvent) {
+    }
 
+    public void onFileAttachingButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void addItalicStyle(ActionEvent actionEvent) {
+    }
+
+    public void addBoldStyle(ActionEvent actionEvent) {
+    }
+
+    public void addUnderline(ActionEvent actionEvent) {
+    }
 }

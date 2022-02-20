@@ -17,6 +17,11 @@ import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
+    private ChatScreenController chatScreenController;
+
+    public ChatScreenController getChatScreenController() {
+        return chatScreenController;
+    }
 
     private Stage primaryStage;
     private final Map<String, Scene> sceneMap = new HashMap<>();
@@ -67,8 +72,9 @@ public class StageCoordinator {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ChatScreen.fxml"));
                 Pane root = fxmlLoader.load();
-                ChatScreenController chatScreenController = fxmlLoader.getController();
-                ChatScreenController.setController(chatScreenController);
+//                ChatScreenController chatScreenController = fxmlLoader.getController();
+                ChatScreenController.setController(fxmlLoader.getController());
+                chatScreenController = ChatScreenController.getInstance();
                 //Parent root = FXMLLoader.load(getClass().getResource("/view/ChatScreen.fxml"));
                 System.out.println("chat scene created");
                 chatScene = new Scene(root);
