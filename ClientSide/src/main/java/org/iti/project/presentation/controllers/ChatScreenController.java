@@ -16,7 +16,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
+import org.iti.project.presentation.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -129,6 +131,11 @@ public class ChatScreenController implements Initializable {
     private ProfileController profileController;
     private SideContactListController sideContactListController;
 
+    private static volatile boolean isGroup = false;
+    private static Group currentContactedGroup;
+    private static User currentContactedUser;
+    private User currentUser;
+
     private final UserModel userModel = new UserModel();
 
     public static void setController(ChatScreenController chatScreenController) {
@@ -139,6 +146,16 @@ public class ChatScreenController implements Initializable {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    public void setIsGroup(boolean boolean_value) {
+        ChatScreenController.isGroup = boolean_value;
+    }
+
+    public boolean isIsGroup() {
+        return isGroup;
+    }
+
 
     @FXML
     void onChatListButtonClicked(ActionEvent event) {

@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.iti.project.presentation.models.Group;
+import org.iti.project.presentation.util.StageCoordinator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,9 +27,13 @@ public class SideGroupListController implements Initializable {
     @FXML
     private ScrollPane secondPane;
 
+    private ChatScreenController chatScreenController;
+
     public ObservableList<Group> groupsObservableList;
 
     private static SideGroupListController sideGroupListController;
+
+    private static final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
 
     public static void setController(SideGroupListController sideGroupListController) {
         SideGroupListController.sideGroupListController = sideGroupListController;
@@ -38,6 +44,7 @@ public class SideGroupListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        chatScreenController = ChatScreenController.getInstance();
         groupsObservableList = FXCollections.observableArrayList();
 
         //add user groups here
@@ -52,6 +59,9 @@ public class SideGroupListController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
                 System.out.println("Selected item1: " + newValue.getGroupName());
+                stageCoordinator.getChatScreenController().setIsGroup(true);
+                System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
+
 
 
             }
