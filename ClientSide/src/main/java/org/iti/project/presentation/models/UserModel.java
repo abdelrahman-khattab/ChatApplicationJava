@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 
 public class UserModel {
     private static final String DEFAULT_USER_NAME = "USER NAME";
-    private StringProperty userUserName = new SimpleStringProperty("User Name");
+    private StringProperty userUserName = new SimpleStringProperty();
     private StringProperty userPassword = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
     private StringProperty address = new SimpleStringProperty();

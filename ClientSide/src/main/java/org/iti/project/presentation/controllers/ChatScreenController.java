@@ -4,11 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -23,12 +20,11 @@ import org.iti.project.presentation.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
-import org.iti.project.presentation.util.StageCoordinator;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -136,7 +132,6 @@ public class ChatScreenController implements Initializable {
     private static volatile boolean isGroup = false;
     private static Group currentContactedGroup;
     private static User currentContactedUser;
-    private User currentUser;
 
     private final UserModel userModel = new UserModel();
 
@@ -157,7 +152,6 @@ public class ChatScreenController implements Initializable {
     public boolean isIsGroup() {
         return isGroup;
     }
-
 
     @FXML
     void onChatListButtonClicked(ActionEvent event) {
@@ -243,8 +237,12 @@ public class ChatScreenController implements Initializable {
 
     @FXML
     void onLogOutButtonClicked(ActionEvent event) {
+        try {
+            RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         stageCoordinator.switchToLoginFormScene();
-
     }
 
 

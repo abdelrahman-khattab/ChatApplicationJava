@@ -17,6 +17,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean insertUser(User user) {
         Blob userImageAsBlop = ImageConverter.fromBytesToBlob(user.getImage());
         try {
+            System.out.println("enter insert stm");
             PreparedStatement preparedStatement = con.prepareStatement("insert into user (PHONE_NUMBER ,USER_NAME ,EMAIL ,PASSWORD ,GENDER , COUNTRY , BIRTH_DATE , BIO ,IMAGE) \n" +
                     "values (?,?,?,?,?,?,?,?,?)");
             preparedStatement.setString(1, user.getUserPhone());
@@ -40,17 +41,20 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User selectUser(User user) {
+//        Connection conn = DBConnector.getConnection().connect();
         PreparedStatement pstmt = null;
         ResultSet rs;
 
         try {
             pstmt = con.prepareStatement(
-                    "SELECT * from user WHERE PHONE_NUMBER=?");
-            pstmt.setString(1,"122j");      // Assign value to input parameter      2
+                    "SELECT * from user WHERE PHONE_NUMBER=? AND PASSWORD=?");
+            pstmt.setString(1,user.getUserPhone());
+            pstmt.setString(2,user.getUserPassword());
+            System.out.println("enter select");
+            rs = pstmt.executeQuery();
 
-            rs = pstmt.executeQuery();        // Get the result table from the query  3
-            while (rs.next())
-            {
+            if (rs.next())
+            {            System.out.println("enter RS");
 
                 user.setUserPhone(rs.getString(1));
                 user.setUserName(rs.getString(2));
@@ -64,13 +68,16 @@ public class UserDAOImpl implements UserDAO {
 
                 System.out.println("Employee number = " + user.getUserName() +
                         "Phone number = " + user.getUserPhone());
+                return user;
                 // Print the column values
              }
         } catch (SQLException e) {
+            System.out.println("enter problem");
             e.printStackTrace();
         }
         // Create a PreparedStatement object    1
-        return user;
+        System.out.println(user.toString());
+        return null;
     }
 
     @Override

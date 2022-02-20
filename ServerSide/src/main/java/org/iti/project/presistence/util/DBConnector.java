@@ -35,8 +35,12 @@ public class DBConnector {
             try {
                 connection = dataSource.getConnection();
             } catch (SQLException e) {
-                System.out.println("db pool connection fail");
-                e.getMessage();
+                try {
+                    connection = dataSource.getConnection();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage()+"db pool connection fail");
+
+                }
             }
         }
         return connection;
