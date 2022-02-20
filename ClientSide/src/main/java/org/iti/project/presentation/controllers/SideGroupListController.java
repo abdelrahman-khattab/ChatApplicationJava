@@ -29,7 +29,18 @@ public class SideGroupListController implements Initializable {
     private ScrollPane secondPane;
 
     public ObservableList<Group> groupsObservableList;
+
     byte[] user1;
+
+    private static SideGroupListController sideGroupListController;
+
+    public static void setController(SideGroupListController sideGroupListController) {
+        SideGroupListController.sideGroupListController = sideGroupListController;
+    }
+    public static SideGroupListController getInstance(){
+        return sideGroupListController;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         groupsObservableList = FXCollections.observableArrayList();

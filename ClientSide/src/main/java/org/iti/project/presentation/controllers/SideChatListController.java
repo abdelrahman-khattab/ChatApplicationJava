@@ -67,6 +67,16 @@ public class SideChatListController {
     public ObservableList<User> contactChatObservableList;
     byte[] user1;
 
+    public static SideChatListController getInstance() {
+        return sideChatListController;
+    }
+
+    public static void setController(SideChatListController sideChatListController) {
+        SideChatListController.sideChatListController = sideChatListController;
+    }
+
+    private static SideChatListController sideChatListController;
+
     public void initialize() throws IOException {
 
         contactChatObservableList = FXCollections.observableArrayList();
@@ -91,7 +101,6 @@ public class SideChatListController {
             }
 
         });
-
 
     }
    

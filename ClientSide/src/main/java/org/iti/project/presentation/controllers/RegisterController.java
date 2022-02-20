@@ -277,7 +277,7 @@ public class RegisterController implements Initializable {
             boolean added = false;
 
             try {
-                added = RMIConnector.getRmiConnector().getChatService().registerMe(user);
+                added = RMIConnector.getRmiConnector().getSignUpService().registerMe(user);
             } catch (RemoteException e) {
                 Alert remoteExceptionAlert = new Alert(Alert.AlertType.ERROR, e.getMessage());
                 remoteExceptionAlert.showAndWait();

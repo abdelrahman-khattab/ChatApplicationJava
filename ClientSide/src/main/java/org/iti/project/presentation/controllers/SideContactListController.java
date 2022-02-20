@@ -35,6 +35,17 @@ public class SideContactListController {
     @FXML
     private ScrollPane secondPane;
 
+    private static SideContactListController sideContactListController;
+
+    public static void setController(SideContactListController sideContactListController){
+        SideContactListController.sideContactListController = sideContactListController;
+    }
+
+    public static SideContactListController getInstance() {
+        return sideContactListController;
+    }
+
+
     @FXML
     void test(MouseEvent event) {
 
