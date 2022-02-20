@@ -41,9 +41,6 @@ public class ChatScreenController implements Initializable {
     private FileChooser fileChooser;
 
     @FXML
-    private Button boldButton;
-
-    @FXML
     private Button callButton;
 
     @FXML
@@ -71,16 +68,22 @@ public class ChatScreenController implements Initializable {
     private Button fileAttachementButton;
 
     @FXML
-    private SplitMenuButton fontFamilyButton;
+    private ChoiceBox<?> fontFamilyButton;
 
     @FXML
-    private SplitMenuButton fontSizeButton;
+    private ChoiceBox<?> fontSizeButton;
+
+    @FXML
+    private ToggleButton italicButton;
 
     @FXML
     private Button groupChatButton;
 
     @FXML
-    private Button italicButton;
+    private ToggleButton boldButton;
+
+    @FXML
+    private ToggleButton underlineButton;
 
     @FXML
     private Button logOutButton;
@@ -99,9 +102,6 @@ public class ChatScreenController implements Initializable {
 
     @FXML
     private StackPane sideNavigationStackPane;
-
-    @FXML
-    private Button underlineButton;
 
     @FXML
     private Button unknownFunctionaityButton;
