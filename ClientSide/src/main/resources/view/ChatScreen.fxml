@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Styles/mainscreen.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ChatScreenController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Styles/mainscreen.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ChatScreenController">
    <children>
       <AnchorPane minWidth="50.0" prefHeight="600.0" prefWidth="72.0" styleClass="sidebar-background" stylesheets="@Styles/mainscreen.css" HBox.hgrow="NEVER">
          <children>
@@ -344,7 +344,7 @@
             </HBox>
             <HBox minWidth="20.0" prefHeight="19.0" prefWidth="650.0">
                <children>
-                  <ToggleButton fx:id="boldButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" onAction="#addBoldStyle" stylesheets="@Styles/mainscreen.css">
+                  <ToggleButton fx:id="boldButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
@@ -360,7 +360,7 @@
                         <String fx:value="text-formates-button" />
                      </styleClass>
                   </ToggleButton>
-                  <ToggleButton fx:id="italicButton" mnemonicParsing="false" onAction="#addItalicStyle" stylesheets="@Styles/mainscreen.css">
+                  <ToggleButton fx:id="italicButton" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
@@ -376,7 +376,7 @@
                         <String fx:value="text-formates-button" />
                      </styleClass>
                   </ToggleButton>
-                  <ToggleButton fx:id="underlineButton" mnemonicParsing="false" onAction="#addUnderline" stylesheets="@Styles/mainscreen.css">
+                  <ToggleButton fx:id="underlineButton" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
