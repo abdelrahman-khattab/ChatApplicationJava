@@ -45,6 +45,15 @@ public class SideChatListController {
     @FXML
     public HBox contactInfoHBox;
 
+    private static SideChatListController sideChatListController;
+
+    public static void setController(SideChatListController sideChatListController) {
+        SideChatListController.sideChatListController = sideChatListController;
+    }
+    public static SideChatListController getInstance(){
+        return sideChatListController;
+    }
+
     public void initialize() {
         // ImagePattern pattern = new ImagePattern(new Image("target/classes/view/images/img.png"));
         // contactImageStatusBar.setFill(pattern);

@@ -8,15 +8,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
+import org.iti.project.presentation.controllers.ChatScreenController;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.presentation.util.StageCoordinator;
+import org.iti.project.services.impls.ClientCallBack;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class ClientApp extends Application {
 
     private static Scene scene;
 
@@ -25,11 +28,9 @@ public class App extends Application {
 
         StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
         stageCoordinator.initStage(stage);
-        User user = new User();
-        user.setUserName("hala");
-        User returned = RMIConnector.getRmiConnector().getChatService().registerMe(user);
-        System.out.println(returned.getUserName() + " returned");
         stage.show();
+
+
 
     }
 
@@ -37,6 +38,8 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+
+
     }
 
 }

@@ -1,32 +1,73 @@
 package org.iti.project.presentation.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import org.iti.project.presentation.models.Group;
+import org.iti.project.presentation.util.StageCoordinator;
 
-public class SideGroupListController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    public HBox contactInfoHBox;
-
-    @FXML
-    public Circle groupImage;
+public class SideGroupListController implements Initializable {
 
     @FXML
-    public Label groupLastMessage;
+    private ListView<Group> groupListView;
 
     @FXML
-    public Label groupMesaageNumbers;
+    private TextField searchBar;
 
     @FXML
-    public Label groupMessageTime;
+    private ScrollPane secondPane;
 
-    @FXML
-    public Label groupName;
+    private ChatScreenController chatScreenController;
 
-    @FXML
-    public TextField searchBar;
-    
+    public ObservableList<Group> groupsObservableList;
+
+    private static SideGroupListController sideGroupListController;
+
+    private static final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
+
+    public static void setController(SideGroupListController sideGroupListController) {
+        SideGroupListController.sideGroupListController = sideGroupListController;
+    }
+    public static SideGroupListController getInstance(){
+        return sideGroupListController;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+//        chatScreenController = ChatScreenController.getInstance();
+        groupsObservableList = FXCollections.observableArrayList();
+
+        //add user groups here
+        groupsObservableList.addAll(
+                new Group("Iti Group","welcome to the hell"),
+                new Group("Dark Life","hello every one ")
+        );
+        groupListView.setItems(groupsObservableList);
+        groupListView.setCellFactory(groupListView -> new GroupsInfoController());
+        groupListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
+                System.out.println("Selected item1: " + newValue.getGroupName());
+                stageCoordinator.getChatScreenController().setIsGroup(true);
+                System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
+
+
+
+            }
+
+        });
+
+
+    }
 }

@@ -16,33 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `user_group`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `user_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `PHONE_NUMBER` varchar(20) NOT NULL,
-  `USER_NAME` varchar(100) NOT NULL,
-  `EMAIL` varchar(100) NOT NULL,
-  `PASSWORD` varchar(100) NOT NULL,
-  `GENDER` varchar(6) NOT NULL,
-  `COUNTRY` varchar(50) NOT NULL,
-  `BIRTH_DATE` varchar(100) NOT NULL,
-  `BIO` varchar(45) DEFAULT 'HEY THERE!',
-  `IMAGE` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`PHONE_NUMBER`)
+CREATE TABLE `user_group` (
+  `user_id` varchar(20) NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`user_id`,`group_id`),
+  KEY `group_id_fk_idx` (`group_id`),
+  CONSTRAINT `group_id_fk` FOREIGN KEY (`group_id`) REFERENCES `group` (`GROUP_ID`),
+  CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`PHONE_NUMBER`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `user_group`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `user_group` WRITE;
+/*!40000 ALTER TABLE `user_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-13 19:54:16
+-- Dump completed on 2022-02-17  9:14:09

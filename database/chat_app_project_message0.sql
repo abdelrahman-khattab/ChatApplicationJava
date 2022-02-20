@@ -16,29 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contacts`
+-- Table structure for table `message`
 --
 
-DROP TABLE IF EXISTS `contacts`;
+DROP TABLE IF EXISTS `message`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contacts` (
-  `user_id` varchar(20) NOT NULL,
-  `friend_id` varchar(20) NOT NULL,
-  PRIMARY KEY (`user_id`,`friend_id`),
-  KEY `friend_id_fk_idx` (`friend_id`),
-  CONSTRAINT `friend_id_fk` FOREIGN KEY (`friend_id`) REFERENCES `user` (`PHONE_NUMBER`),
-  CONSTRAINT `user_id_fk_friendlist` FOREIGN KEY (`user_id`) REFERENCES `user` (`PHONE_NUMBER`)
+CREATE TABLE `message` (
+  `MESSAGE_ID` int NOT NULL AUTO_INCREMENT,
+  `BODY` varchar(10000) DEFAULT NULL,
+  `CREATED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CREATOR_ID` varchar(20) DEFAULT NULL,
+  `RECEIPENT_ID` varchar(45) DEFAULT NULL,
+  `GROUP_RECEIPENT_ID` int DEFAULT NULL,
+  PRIMARY KEY (`MESSAGE_ID`),
+  KEY `phone_number_idx` (`CREATOR_ID`),
+  KEY `receipent_fk_idx` (`RECEIPENT_ID`),
+  KEY `group_receipnt_fk_idx` (`GROUP_RECEIPENT_ID`),
+  KEY `group_receipnt_forignkey_idx` (`GROUP_RECEIPENT_ID`),
+  CONSTRAINT `creator_fk` FOREIGN KEY (`CREATOR_ID`) REFERENCES `user` (`PHONE_NUMBER`),
+  CONSTRAINT `group_receipnt_forignkey` FOREIGN KEY (`GROUP_RECEIPENT_ID`) REFERENCES `group` (`GROUP_ID`),
+  CONSTRAINT `receipent_fk` FOREIGN KEY (`RECEIPENT_ID`) REFERENCES `user` (`PHONE_NUMBER`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contacts`
+-- Dumping data for table `message`
 --
 
-LOCK TABLES `contacts` WRITE;
-/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-13 19:54:16
+-- Dump completed on 2022-02-17  9:14:10

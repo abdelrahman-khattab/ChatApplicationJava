@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.iti.project.presentation.controllers.ChatScreenController;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,6 +17,11 @@ import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
+    private ChatScreenController chatScreenController;
+
+    public ChatScreenController getChatScreenController() {
+        return chatScreenController;
+    }
 
     private Stage primaryStage;
     private final Map<String, Scene> sceneMap = new HashMap<>();
@@ -38,24 +44,24 @@ public class StageCoordinator {
         primaryStage.setMinHeight(900);
         primaryStage.setMinWidth(600);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        switchToLoginScene();
+        switchToLoginFormScene();
         //switchToChatScreen();
     }
 
-    public void switchToLoginScene(){
-        Scene loginScene = sceneMap.get("loginScene");
+    public void switchToLoginFormScene(){
+        Scene loginFormScene = sceneMap.get("loginFormScene");
         //Parent root = null;
-        if (loginScene == null){}
+        if (loginFormScene == null){}
         try {
             Pane root = FXMLLoader.load(getClass().getResource("/view/chatForms.fxml"));
-            System.out.println("login scene created");
-            loginScene = new Scene(root);
-            sceneMap.put("loginScene", loginScene);
+            System.out.println("login form scene created");
+            loginFormScene = new Scene(root);
+            sceneMap.put("loginFormScene", loginFormScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        loginScene.setFill(Color.TRANSPARENT);
-        primaryStage.setScene(loginScene);
+        loginFormScene.setFill(Color.TRANSPARENT);
+        primaryStage.setScene(loginFormScene);
         primaryStage.setFullScreen(false);
     }
 
@@ -64,7 +70,12 @@ public class StageCoordinator {
         //Parent root = null;
         if (chatScene == null) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/view/ChatScreen.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ChatScreen.fxml"));
+                Pane root = fxmlLoader.load();
+//                ChatScreenController chatScreenController = fxmlLoader.getController();
+                ChatScreenController.setController(fxmlLoader.getController());
+                chatScreenController = ChatScreenController.getInstance();
+                //Parent root = FXMLLoader.load(getClass().getResource("/view/ChatScreen.fxml"));
                 System.out.println("chat scene created");
                 chatScene = new Scene(root);
                 sceneMap.put("chatScene", chatScene);
