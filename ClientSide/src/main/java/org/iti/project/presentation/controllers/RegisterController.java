@@ -252,6 +252,7 @@ public class RegisterController implements Initializable {
     @FXML
     void onRegisterButtonClicked(ActionEvent event) {
 
+
         if(nameValidation && emailValidation && mobileValidation && birthDateValidation && passwordValidation && confirmPasswordValidation){
 
             User user = new User();
