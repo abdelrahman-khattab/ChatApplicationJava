@@ -10,6 +10,7 @@ public class GroupMessage implements Serializable {
     private String senderPhoneNumber;
     private int groupId;
     private LocalDateTime messageCreationTime;
+    private byte[] groupImage;
 
     public GroupMessage(String groupMessageContent, String senderPhoneNumber, int groupId) {
         this.groupMessageContent = groupMessageContent;
@@ -57,6 +58,14 @@ public class GroupMessage implements Serializable {
         this.messageCreationTime = messageCreationTime;
     }
 
+    public byte[] getGroupImage() {
+        return groupImage;
+    }
+
+    public void setGroupImage(byte[] groupImage) {
+        this.groupImage = groupImage;
+    }
+
     @Override
     public String toString() {
         return "GroupMessage{" +
@@ -80,4 +89,5 @@ public class GroupMessage implements Serializable {
     public int hashCode() {
         return Objects.hash(messageId);
     }
+
 }
