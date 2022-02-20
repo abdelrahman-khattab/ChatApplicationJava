@@ -15,6 +15,8 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
     public SignInImpl() throws RemoteException {
 
     }
+
+
     @Override
     public User loginMe(User user , ClientCallBackInt clientCallBack) throws RemoteException {
 
@@ -32,5 +34,9 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
             return user;
         }
 
+    }
+
+    public static HashMap<String, ClientCallBackInt> getOnlineClients() {
+        return onlineClients;
     }
 }

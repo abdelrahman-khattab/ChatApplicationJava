@@ -18,7 +18,7 @@ public class User  implements Serializable {
     private byte[] image;
     private String status;
     private int unsavedMessageCount;
-    List<MessageModel> unseenmessgaeslist;
+    //List<MessageModel> unseenmessgaeslist;
 
 
 
