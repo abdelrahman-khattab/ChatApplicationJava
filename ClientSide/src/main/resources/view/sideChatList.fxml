@@ -221,62 +221,7 @@
                <content>
                   <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="400.0" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                      <children>
-                        <HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0" spacing="6.0" stylesheets="@Styles/chatStyle.css">
-                           <children>
-                              <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="53.0">
-                                 <children>
-                                    <Circle fx:id="contactImageContactBar" fill="WHITE" layoutX="20.0" layoutY="34.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
-                                    <Circle fx:id="contactStatusContactBar" fill="#06d6a0" layoutX="35.0" layoutY="44.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
-                                 </children>
-                              </AnchorPane>
-                              <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label fx:id="contactNameContactBar" prefHeight="20.0" stylesheets="@Styles/chatStyle.css" text="Patrick Hendricks" VBox.vgrow="ALWAYS">
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="messagerHeader" />
-                                          <String fx:value="textColor" />
-                                       </styleClass>
-                                    </Label>
-                                    <Label fx:id="contactMessageContactBar" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="Hey! there I'm availableHey! there I'm availableHey! there I'm available">
-                                       <styleClass>
-                                          <String fx:value="textColor" />
-                                          <String fx:value="message" />
-                                       </styleClass>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER_RIGHT" prefHeight="70.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label fx:id="messageTimeContactBar" stylesheets="@Styles/chatStyle.css" text="05 min">
-                                       <styleClass>
-                                          <String fx:value="textColor" />
-                                          <String fx:value="time" />
-                                       </styleClass>
-                                    </Label>
-                                    <Label fx:id="mesaageNumbersContactBar" alignment="CENTER" prefHeight="18.0" prefWidth="32.0" stylesheets="@Styles/chatStyle.css" text="02" textAlignment="CENTER">
-                                       <styleClass>
-                                          <String fx:value="messageNumber" />
-                                          <String fx:value="radius" />
-                                       </styleClass>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <styleClass>
-                              <String fx:value="vBox" />
-                              <String fx:value="hBox" />
-                           </styleClass>
-                        </HBox>
-                        <ListView fx:id="contactinfoLV" prefHeight="329.0" prefWidth="276.0" style="-fx-background-color: #00000000;" />
+                        <ListView fx:id="contactinfoLV" style="-fx-background-color: #00000000;" />
                      </children>
                   </VBox>
                </content>

@@ -57,11 +57,11 @@
             <String fx:value="SecondHeaderFont" />
             <String fx:value="fontColor" />
          </styleClass></Label>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" styleClass="vBox" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" pannable="true" prefWidth="250.0" styleClass="vBox" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
          <content>
             <VBox nodeOrientation="LEFT_TO_RIGHT" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                <children>
-                        <ListView fx:id="groupListView" stylesheets="@Styles/chatStyle.css" VBox.vgrow="ALWAYS">
+                        <ListView fx:id="groupListView" minWidth="220.0" prefWidth="250.0" stylesheets="@Styles/chatStyle.css" VBox.vgrow="ALWAYS">
                            <styleClass>
                               <String fx:value="list-cell" />
                               <String fx:value="vBox" />

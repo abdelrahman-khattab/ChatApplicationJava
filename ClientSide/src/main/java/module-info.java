@@ -10,6 +10,7 @@ module ClientSide {
     requires org.controlsfx.controls;
     requires org.apache.commons.io;
     requires java.sql.rowset;
+    requires java.desktop;
 
     opens org.iti.project to javafx.fxml;
     opens org.iti.project.presentation.controllers to  javafx.fxml;
