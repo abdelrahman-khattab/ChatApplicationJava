@@ -1,6 +1,10 @@
 package org.iti.project.network;
 
+import org.iti.project.services.impls.SignInImpl;
+import org.iti.project.services.impls.SignOutImpl;
 import org.iti.project.services.impls.SignUpImpl;
+import org.iti.project.services.interfaces.SignInInt;
+import org.iti.project.services.interfaces.SignOutInt;
 import org.iti.project.services.interfaces.SignUpInt;
 
 import java.net.MalformedURLException;
@@ -14,8 +18,11 @@ public class RMIConnector {
         try {
 
             SignUpInt SignUpObj = new SignUpImpl();
-
+            SignInInt signInObj = new SignInImpl();
+            SignOutInt signOutObj = new SignOutImpl();
             Naming.rebind(SignUpObj.lookupName, SignUpObj);
+            Naming.rebind(signInObj.lookupName, signInObj);
+            Naming.rebind(signOutObj.lookupName, signOutObj);
 
             System.out.println(" SignUp Bounded! ");
         } catch (RemoteException | MalformedURLException e) {

@@ -6,11 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox fx:id="vBox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" spacing="15.0" styleClass="color-pane" stylesheets="@Styles/formStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.LoginController">
    <children>
@@ -20,10 +22,18 @@
          </font>
       </Label>
       <ImageView fx:id="profileImage" fitHeight="88.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="validationText" fill="#ff2f2f" strokeType="OUTSIDE" strokeWidth="0.0" text="The Phone Number Or Password Is Invalid , Try Again!">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
       <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="12.0" prefWidth="470.0" />
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="userName" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="User Name" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="userPhone" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#enterPhoneNumber" promptText="Phone Number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="The Number Should conatain 11 Digits " />
+               </tooltip></TextField>
             <FontAwesomeIconView fx:id="userIcon" glyphName="USER" size="1.7em" styleClass="icon" />
          </children>
          <VBox.margin>
@@ -32,7 +42,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="217.0" prefHeight="50.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <PasswordField fx:id="password" alignment="CENTER" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <PasswordField fx:id="password" alignment="CENTER" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
             <FontAwesomeIconView fx:id="passwordIcon" glyphName="LOCK" size="1.7em" styleClass="icon" />
          </children>
          <VBox.margin>
@@ -41,7 +51,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="470.0" stylesheets="@Styles/formStyle.css">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" styleClass="btn" stylesheets="@Styles/formStyle.css" text="Login" onAction="#login" textAlignment="CENTER">
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="149.0" styleClass="btn" stylesheets="@Styles/formStyle.css" text="Login" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

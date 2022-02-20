@@ -248,7 +248,7 @@ public class RegisterController implements Initializable {
         user.setUserName("Khattab");
         user.setUserPassword("asdas");
         user.setUserDOB("asdas");
-        user.setUserPhone("01157665457");
+        user.setUserPhone("0165457");
         user.setUserBio("jjj");
         boolean added = false;
 

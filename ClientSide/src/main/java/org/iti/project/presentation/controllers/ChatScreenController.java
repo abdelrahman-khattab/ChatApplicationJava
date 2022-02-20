@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -24,6 +25,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -180,6 +182,11 @@ public class ChatScreenController implements Initializable {
 
     @FXML
     void onLogOutButtonClicked(ActionEvent event) {
+        try {
+            RMIConnector.getRmiConnector().getSignOutService().logoutMe(userModel.getPhoneNo());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         stageCoordinator.switchToLoginScene();
 
     }
