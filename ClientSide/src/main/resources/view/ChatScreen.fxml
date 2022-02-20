@@ -344,7 +344,7 @@
             </HBox>
             <HBox minWidth="20.0" prefHeight="19.0" prefWidth="650.0">
                <children>
-                  <ToggleButton fx:id="boldButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectBold" stylesheets="@Styles/mainscreen.css">
+                  <ToggleButton fx:id="boldButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" onAction="#addBoldStyle" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
@@ -360,7 +360,7 @@
                         <String fx:value="text-formates-button" />
                      </styleClass>
                   </ToggleButton>
-                  <ToggleButton fx:id="italicButton" mnemonicParsing="false" onAction="#selectItalic" stylesheets="@Styles/mainscreen.css">
+                  <ToggleButton fx:id="italicButton" mnemonicParsing="false" onAction="#addItalicStyle" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
@@ -376,7 +376,7 @@
                         <String fx:value="text-formates-button" />
                      </styleClass>
                   </ToggleButton>
-                  <ToggleButton fx:id="underlineButton" mnemonicParsing="false" onAction="#selectUnderline" stylesheets="@Styles/mainscreen.css">
+                  <ToggleButton fx:id="underlineButton" mnemonicParsing="false" onAction="#addUnderline" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="15.0">
                            <image>
