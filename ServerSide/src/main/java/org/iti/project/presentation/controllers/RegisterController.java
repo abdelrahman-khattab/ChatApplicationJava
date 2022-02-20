@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 
 public class RegisterController implements Initializable {
     @FXML
@@ -54,4 +55,33 @@ public class RegisterController implements Initializable {
         
     }
 
+    public void enterPhoneNumber(KeyEvent keyEvent) {
+    }
+
+    public void enterPassword(KeyEvent keyEvent) {
+    }
+
+    public void enterConfirmPassword(KeyEvent keyEvent) {
+    }
+
+    public void enterEmail(KeyEvent keyEvent) {
+    }
+
+    public void enterBio(KeyEvent keyEvent) {
+    }
+
+    public void onGetImageButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void enterBirthDate(KeyEvent keyEvent) {
+    }
+
+    public void enterGender(KeyEvent keyEvent) {
+    }
+
+    public void onRegisterButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void enterUserName(KeyEvent keyEvent) {
+    }
 }
