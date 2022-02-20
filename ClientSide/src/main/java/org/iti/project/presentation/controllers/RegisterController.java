@@ -32,6 +32,7 @@ import org.controlsfx.control.*;
 
 
 import org.iti.project.presentation.util.Validator;
+import org.iti.project.util.ImageConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -118,7 +119,8 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Label dateValidation;
-    private File file = new File("C://Users/eltaweel/Desktop/Abdallah/ChatApplicationJava/ClientSide/target/classes/images/R.png");
+    private final Image DEFAULT_IMAGE = new Image("/images/R.png");
+    private File file = new File("/images/R.png");
     ;
 
     @FXML
@@ -129,17 +131,17 @@ public class RegisterController implements Initializable {
         fc.getExtensionFilters().add(extFilter);
         file = fc.showOpenDialog((Stage) vboxReg.getScene().getWindow());
 
-        Image image = null;
+        Image image = profileImage.getImage();
         //
 
         //imageView = new ImageView(image);
+
         if (file != null) {
 
             image = new Image(file.getPath());
             profileImage.setImage(image);
 
         }
-
     }
 
     @Override
@@ -260,14 +262,9 @@ public class RegisterController implements Initializable {
             user.setGender(genderComboBox.getValue());
             user.setUserCountry(countryComboBox.getValue());
 
-            try {
+            byte[] fileContent = ImageConverter.fromImageToBytes(profileImage.getImage().getUrl());
+            user.setImage(fileContent);
 
-                byte[] fileContent = FileUtils.readFileToByteArray(file);
-                user.setImage(fileContent);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             user.setUserEmail(eMail.getText());
             user.setUserName(userName.getText());
             user.setUserPassword(password.getText());
@@ -299,7 +296,7 @@ public class RegisterController implements Initializable {
         }else{
             Notifications.create()
                     .title("All Data Required")
-                    .text("All Data Here Must Be Exsists").position(Pos.CENTER)
+                    .text("All Data fields Must Be filled").position(Pos.CENTER)
                     .showError();
         }
     }

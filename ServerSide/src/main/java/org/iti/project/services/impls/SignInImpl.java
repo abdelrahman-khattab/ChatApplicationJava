@@ -17,7 +17,7 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
     }
     @Override
     public User loginMe(User user , ClientCallBackInt clientCallBack) throws RemoteException {
-        System.out.println("User Catch the Service , Hi Iam " + user.getUserPhone() );
+
         UserDAOImpl userDAO = new UserDAOImpl();
 
          user = userDAO.selectUser(user);

@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
+    public User currentUser;
     private ChatScreenController chatScreenController;
 
     public ChatScreenController getChatScreenController() {

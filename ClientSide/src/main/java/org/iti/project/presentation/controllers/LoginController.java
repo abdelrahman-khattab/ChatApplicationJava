@@ -98,7 +98,7 @@ public class LoginController implements Initializable {
     }
     @FXML
     void enterPassword(KeyEvent event) {
-        if(password.getText().equals(""))
+        if(password.getText().isEmpty())
         {
             passFlag=false;
         }
@@ -119,19 +119,20 @@ public class LoginController implements Initializable {
 //        }
 //        StageCoordinator.getStageCoordinator().switchToChatScreen();
 //=======
-        User user = null;
+        User returnedUser = null;
         System.out.println(userPhone.getText());
         mainUser.setUserPhone(userPhone.getText());
         mainUser.setUserPassword(password.getText());
         ClientCallBackInt clientCallBackInt=null;
         try {
-            user = RMIConnector.getRmiConnector().getSignInService().loginMe(mainUser ,clientCallBackInt );
+            returnedUser = RMIConnector.getRmiConnector().getSignInService().loginMe(mainUser ,ClientCallBack.getInstance() );
        //     System.out.println(user.toString());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        if(user!=null)
+        if(returnedUser!=null)
         {
+            StageCoordinator.getStageCoordinator().currentUser = returnedUser;
             StageCoordinator.getStageCoordinator().switchToChatScreen();
 
         }

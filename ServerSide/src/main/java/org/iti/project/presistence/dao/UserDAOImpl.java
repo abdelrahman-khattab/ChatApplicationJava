@@ -41,6 +41,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User selectUser(User user) {
+//        Connection conn = DBConnector.getConnection().connect();
         PreparedStatement pstmt = null;
         ResultSet rs;
 

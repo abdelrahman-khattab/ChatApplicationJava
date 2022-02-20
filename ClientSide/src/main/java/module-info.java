@@ -16,5 +16,6 @@ module ClientSide {
     exports org.iti.project;
     exports org.iti.project.presentation.controllers;
     exports org.iti.project.services.interfaces;
+    exports  org.iti.project.models;
 
 }

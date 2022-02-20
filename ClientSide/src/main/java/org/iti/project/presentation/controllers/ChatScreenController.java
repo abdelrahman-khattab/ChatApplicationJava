@@ -132,7 +132,6 @@ public class ChatScreenController implements Initializable {
     private static volatile boolean isGroup = false;
     private static Group currentContactedGroup;
     private static User currentContactedUser;
-    private User currentUser;
 
     private final UserModel userModel = new UserModel();
 
@@ -153,7 +152,6 @@ public class ChatScreenController implements Initializable {
     public boolean isIsGroup() {
         return isGroup;
     }
-
 
     @FXML
     void onChatListButtonClicked(ActionEvent event) {
@@ -240,7 +238,7 @@ public class ChatScreenController implements Initializable {
     @FXML
     void onLogOutButtonClicked(ActionEvent event) {
         try {
-            RMIConnector.getRmiConnector().getSignOutService().logoutMe(userModel.getPhoneNo());
+            RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
