@@ -12,7 +12,6 @@ public class GroupMessage implements Serializable {
     private LocalDateTime messageCreationTime;
     private byte[] groupImage;
 
-
     public GroupMessage(String groupMessageContent, String senderPhoneNumber, int groupId) {
         this.groupMessageContent = groupMessageContent;
         this.senderPhoneNumber = senderPhoneNumber;

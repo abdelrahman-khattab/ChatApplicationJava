@@ -42,7 +42,7 @@
   -fx-background-radius: 20 0 20 20;
 }
 .button-pressing:pressed {
-  -fx-background-color: #ccd0d4;
+  -fx-background-color: #CBCF92;
   -fx-background-radius: 20;
   -fx-border-color: transparent;
 }
@@ -59,7 +59,7 @@
 }
 .side-bar-buttons:hover {
   -fx-border-radius: 20;
-  -fx-border-color: #6874cc;
+  -fx-border-color: #CBCF92;
 }
 .mouse-hand {
   -fx-cursor: hand;
@@ -68,8 +68,7 @@
   -fx-background-color: transparent;
 }
 .text-formates-button:hover {
-  -fx-border-radius: 3px, 3px, 2px, 1px;
-  -fx-border-color: #ccd0d4;
+  -fx-background-color:#CBCF92;
 }
 .input-text
 {
@@ -97,3 +96,22 @@
     -fx-background-color: white;
     -fx-background-radius: 5em;
 }
+
+
+
+.choice-box > .label { -fx-text-fill: white; }
+
+
+.choice-box{
+    -fx-background-color: transparent;
+	  -fx-mark-color: #CBCF92;
+	  -fx-border-width:0.5;
+	  -fx-border-color:#CBCF92
+}
+.color-picker {
+    -fx-background-color: transparent;
+		  -fx-mark-color: #CBCF92;
+	  -fx-border-width:0.5;
+	  -fx-border-color:#CBCF92
+}
+.color-picker > .label { -fx-text-fill: white; }
