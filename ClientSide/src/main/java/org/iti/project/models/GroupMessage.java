@@ -1,5 +1,7 @@
 package org.iti.project.models;
 
+import javafx.scene.text.Font;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -10,6 +12,7 @@ public class GroupMessage implements Serializable {
     private String senderPhoneNumber;
     private int groupId;
     private LocalDateTime messageCreationTime;
+    private Font groupMessageFont;
 
     public GroupMessage(String groupMessageContent, String senderPhoneNumber, int groupId) {
         this.groupMessageContent = groupMessageContent;
