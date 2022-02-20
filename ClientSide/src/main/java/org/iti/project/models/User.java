@@ -1,11 +1,11 @@
 package org.iti.project.models;
 
-import org.iti.project.presentation.models.MessageModel;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class User  implements Serializable {
+    long serialVersionUID = 8909363310171168522L;
     private String userName;
     private String userPassword;
     private String userEmail;
@@ -18,7 +18,7 @@ public class User  implements Serializable {
     private byte[] image;
     private String status;
     private int unsavedMessageCount;
-    List<MessageModel> unseenmessgaeslist;
+    //List<GroupMessage> unseenmessgaeslist;
 
 
 

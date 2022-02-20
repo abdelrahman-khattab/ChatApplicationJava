@@ -1,8 +1,11 @@
 package org.iti.project.models;
 
-import java.io.Serializable;
 
-public class User  implements Serializable {
+import java.io.Serializable;
+import java.util.List;
+
+public class User implements Serializable {
+    long serialVersionUID = 8909363310171168522L;
     private String userName;
     private String userPassword;
     private String userEmail;
@@ -13,7 +16,47 @@ public class User  implements Serializable {
     private String userPhone;
     private String gender;
     private byte[] image;
-    // Adding array of bytes for image
+    private String status;
+    private int unsavedMessageCount;
+    //List<GroupMessage> unseenmessgaeslist;
+
+
+
+    public User(String userName, byte[] image, String status, int unsavedMessageCount) {
+        this.userName = userName;
+        this.image = image;
+        this.status = status;
+        this.unsavedMessageCount = unsavedMessageCount;
+    }
+
+    public User(String userName, String userPhone, byte[] image) {
+        this.userName = userName;
+        this.userPhone = userPhone;
+        this.image = image;
+    }
+
+    public User() {
+    }
+
+
+
+
+    public int getUnsavedMessageCount() {
+        return unsavedMessageCount;
+    }
+
+    public void setUnsavedMessageCount(int unsavedMessageCount) {
+        this.unsavedMessageCount = unsavedMessageCount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+// Adding array of bytes for image
 
 //    public String getImage() {
 //        return image;
@@ -31,6 +74,7 @@ public class User  implements Serializable {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
     public String getGender() {
         return gender;
     }
