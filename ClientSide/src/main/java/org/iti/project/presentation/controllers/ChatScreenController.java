@@ -71,7 +71,7 @@ public class ChatScreenController implements Initializable {
     private ChoiceBox<?> fontFamilyButton;
 
     @FXML
-    private ChoiceBox<?> fontSizeButton;
+    private ChoiceBox<Integer> fontSizeButton;
 
     @FXML
     private ToggleButton italicButton;
@@ -307,6 +307,8 @@ public class ChatScreenController implements Initializable {
         Tooltip.install(unknownFunctionaityButton, new Tooltip("Leave"));
         chatScrollPane.vvalueProperty().bind(chatVBox.heightProperty());
         contactImageCircle.setFill(new ImagePattern(userModel.getUserImage())); // bind this property with current contacted entity
+        fontSizeButton.getItems().addAll(14,16,18,20);
+        fontSizeButton.setValue(14);
 
         try {
             FXMLLoader sideContactListLoader = new FXMLLoader(getClass().getResource("/view/sideContactList.fxml"));
