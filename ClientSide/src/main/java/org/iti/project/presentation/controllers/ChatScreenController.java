@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -27,6 +28,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -68,7 +70,7 @@ public class ChatScreenController implements Initializable {
     private Button fileAttachementButton;
 
     @FXML
-    private ChoiceBox<?> fontFamilyButton;
+    private ChoiceBox<String> fontFamilyButton;
 
     @FXML
     private ChoiceBox<Integer> fontSizeButton;
@@ -307,8 +309,12 @@ public class ChatScreenController implements Initializable {
         Tooltip.install(unknownFunctionaityButton, new Tooltip("Leave"));
         chatScrollPane.vvalueProperty().bind(chatVBox.heightProperty());
         contactImageCircle.setFill(new ImagePattern(userModel.getUserImage())); // bind this property with current contacted entity
+
         fontSizeButton.getItems().addAll(14,16,18,20);
         fontSizeButton.setValue(14);
+
+        fontFamilyButton.getItems().addAll(Font.getFamilies());
+        fontFamilyButton.setValue("Berlin Sans FB");
 
         try {
             FXMLLoader sideContactListLoader = new FXMLLoader(getClass().getResource("/view/sideContactList.fxml"));

@@ -14,6 +14,7 @@ public class GroupMessage implements Serializable {
     private LocalDateTime messageCreationTime;
     private Font groupMessageFont;
 
+
     public GroupMessage(String groupMessageContent, String senderPhoneNumber, int groupId) {
         this.groupMessageContent = groupMessageContent;
         this.senderPhoneNumber = senderPhoneNumber;
