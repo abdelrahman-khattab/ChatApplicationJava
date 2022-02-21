@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.presentation.models.*;
+import org.iti.project.util.ImageConverter;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -35,7 +36,10 @@ public class ContactMessageController implements Initializable {
 
 
     public void setMessage(GroupMessage groupMessage){
-        imageCircle.setFill(new ImagePattern(messageModel.getImageObjectProperty()));
+        Image senderImage = ImageConverter.fromBytesToImage(groupMessage.getSender().getImage());
+//        System.out.println(senderImage+ "image coming from server after converting");
+        messageModel.setImageObjectProperty(senderImage);
+        imageCircle.setFill(new ImagePattern(senderImage));
         messageBodyText.setText(groupMessage.getGroupMessageContent());
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
