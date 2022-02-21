@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -380,10 +381,10 @@ public class ChatScreenController implements Initializable {
         GroupMessage groupMessage = new GroupMessage(messageTextField.getText().trim(),
                 stageCoordinator.currentUser, currentContactedGroup.getGroupId());
         String msgColor = toRGBCode(messageColorPickerButton.getValue());
-        Font msgFont = Font.font(fontFamilyButton.getValue(),
-                boldButton.isSelected()? FontWeight.BOLD:FontWeight.NORMAL,
-                italicButton.isSelected()? FontPosture.ITALIC : FontPosture.REGULAR,
-                fontSizeButton.getValue() );
+        groupMessage.setFontFamily(fontFamilyButton.getValue());
+        groupMessage.setFontSize(fontSizeButton.getValue());
+        groupMessage.setFontPosture(italicButton.isSelected()? "ITALIC" : "REGULAR");
+        groupMessage.setFontWeight(boldButton.isSelected()? "BOLD":"NORMAL");
         LocalDateTime msgCreationTime = LocalDateTime.now();
         groupMessage.setGroupMessageColor(msgColor);
         groupMessage.setMessageCreationTime(msgCreationTime);
@@ -396,5 +397,9 @@ public class ChatScreenController implements Initializable {
                 (int) (color.getRed() * 255),
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
+    }
+    public void updateChatScene(Image image , String name){
+        contactImageCircle.setFill(new ImagePattern(image));
+        contactImageLabel.setText(name);
     }
 }

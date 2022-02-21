@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import org.iti.project.models.Group;
 import org.iti.project.util.ImageConverter;
@@ -38,7 +39,7 @@ public class SideGroupListController implements Initializable {
 
     private static SideGroupListController sideGroupListController;
 
-    private static final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
+    private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
 
     public static void setController(SideGroupListController sideGroupListController) {
         SideGroupListController.sideGroupListController = sideGroupListController;
@@ -69,7 +70,11 @@ public class SideGroupListController implements Initializable {
                 System.out.println("Selected item1: " + newValue.getGroupName());
                 stageCoordinator.getChatScreenController().setIsGroup(true);
                 System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
-                stageCoordinator.getChatScreenController().setCurrentContactedGroup(groupListView.getSelectionModel().getSelectedItem());
+//                stageCoordinator.getChatScreenController().setCurrentContactedGroup(groupListView.getSelectionModel().getSelectedItem());
+                Group newGroup = groupListView.getSelectionModel().getSelectedItem();
+                stageCoordinator.getChatScreenController().setCurrentContactedGroup(newGroup);
+                Image newGroupImage = ImageConverter.fromBytesToImage(newGroup.getGroupImageBytes());
+                stageCoordinator.getChatScreenController().updateChatScene(newGroupImage , newGroup.getGroupName());
 
 
 
