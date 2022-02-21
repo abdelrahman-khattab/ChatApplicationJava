@@ -21,6 +21,7 @@ import org.iti.project.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
+import org.iti.project.util.ImageConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -277,23 +278,24 @@ public class ChatScreenController implements Initializable {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
             try {
-                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( createGroupMessage(), currentContactedGroup.getGroupId());
+                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( createGroupMessage());
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-            renderMessage(messageBody);
+//            renderMessage();
         }
     }
 
-    private void renderMessage(String messageBody) {
+    public void renderMessage(GroupMessage groupMessage) {
         MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
         try {
             HBox messageHBox = fxmlLoader.load();
             ContactMessageController messageController = fxmlLoader.getController();
-            messageModel.setMessageBody(messageBody);
-            messageController.setMessage(messageModel);
+            Image senderImage = ImageConverter.fromBytesToImage(groupMessage.getSender().getImage());
+            messageModel.setImageObjectProperty(senderImage);
+            messageController.setMessage(groupMessage);
             chatVBox.getChildren().add(messageHBox);
             messageTextField.clear();
         } catch (IOException e) {

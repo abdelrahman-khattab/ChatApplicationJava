@@ -17,14 +17,15 @@ import java.util.List;
 
 public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceInt {
     Connection con = DBConnector.getConnection().connect();
-    private HashMap<String, ClientCallBackInt> onlineClients;
+    private final HashMap<String, ClientCallBackInt> onlineClients;
     public ChatServiceImpl() throws RemoteException { // it was protected modifier , return it as it was and test
         onlineClients = SignInImpl.getOnlineClients();
     }
 
     @Override
-    public void sendGroupMessage(GroupMessage groupMessage, int groupId) throws RemoteException {
+    public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException {
         System.out.println("your message received from server");
+        int groupId = groupMessage.getGroupId();
         List<String> userPhones = new ArrayList<>();
         try {
             PreparedStatement psttmnt = con.prepareStatement("select user_id from user_group where group_id = ?");

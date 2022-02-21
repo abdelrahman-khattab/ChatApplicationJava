@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
 
 public interface ChatServiceInt extends Remote {
     public String lookupName = "ChatService";
-    public void sendGroupMessage(GroupMessage groupMessage , int groupId) throws RemoteException;
+    public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException;
 }
