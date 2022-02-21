@@ -17,6 +17,7 @@ public class GroupMessage implements Serializable {
     private String fontFamily;
     private String fontWeight;
     private String fontPosture;
+    private boolean fontUnderLine;
     private int fontSize;
 //    private Font messageFont;
 
@@ -27,7 +28,16 @@ public class GroupMessage implements Serializable {
         this.sender = sender;
         this.groupId = groupId;
     }
-//
+
+    public boolean isFontUnderLine() {
+        return fontUnderLine;
+    }
+
+    public void setFontUnderLine(boolean fontUnderLine) {
+        this.fontUnderLine = fontUnderLine;
+    }
+
+    //
 //    public Font getMessageFont() {
 //        return messageFont;
 //    }

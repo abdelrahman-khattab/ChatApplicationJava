@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.text.*;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.presentation.models.*;
 import org.iti.project.util.ImageConverter;
@@ -41,6 +41,17 @@ public class ContactMessageController implements Initializable {
         messageModel.setImageObjectProperty(senderImage);
         imageCircle.setFill(new ImagePattern(senderImage));
         messageBodyText.setText(groupMessage.getGroupMessageContent());
+        int fontSize = groupMessage.getFontSize();
+        String fontFamily = groupMessage.getFontFamily();
+        String fontWeight = groupMessage.getFontWeight();
+        String fontPosture = groupMessage.getFontPosture();
+        Font msgFont = Font.font(fontFamily,
+                fontWeight.equalsIgnoreCase("bold")? FontWeight.BOLD : FontWeight.NORMAL,
+                fontPosture.equalsIgnoreCase("italic")? FontPosture.ITALIC:FontPosture.REGULAR,
+                fontSize);
+        messageBodyText.setFont(msgFont);
+        messageBodyText.setFill(Color.valueOf(groupMessage.getGroupMessageColor()));
+        messageBodyText.setUnderline(groupMessage.isFontUnderLine());
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         String formattedDate = myDateObj.format(myFormatObj);

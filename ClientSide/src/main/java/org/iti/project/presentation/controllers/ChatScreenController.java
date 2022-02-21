@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -347,6 +348,7 @@ public class ChatScreenController implements Initializable {
         fontFamilyButton.getItems().addAll(Font.getFamilies());
         fontFamilyButton.setValue("Berlin Sans FB");
 
+
         try {
             FXMLLoader sideContactListLoader = new FXMLLoader(getClass().getResource("/view/sideContactList.fxml"));
             sideContactListPane = sideContactListLoader.load();
@@ -396,6 +398,7 @@ public class ChatScreenController implements Initializable {
         groupMessage.setFontSize(fontSizeButton.getValue());
         groupMessage.setFontPosture(italicButton.isSelected()? "ITALIC" : "REGULAR");
         groupMessage.setFontWeight(boldButton.isSelected()? "BOLD":"NORMAL");
+        groupMessage.setFontUnderLine(underlineButton.isSelected());
         LocalDateTime msgCreationTime = LocalDateTime.now();
         groupMessage.setGroupMessageColor(msgColor);
         groupMessage.setMessageCreationTime(msgCreationTime);
