@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import org.iti.project.presentation.models.Group;
+import org.iti.project.models.Group;
 import org.iti.project.util.ImageConverter;
 
 import java.io.IOException;

@@ -10,10 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import org.iti.project.presentation.models.Group;
+import org.iti.project.models.Group;
 import org.iti.project.util.ImageConverter;
-import javafx.stage.Stage;
-import org.iti.project.presentation.models.Group;
+
 import org.iti.project.presentation.util.StageCoordinator;
 
 import java.io.File;
@@ -35,7 +34,7 @@ public class SideGroupListController implements Initializable {
 
     public ObservableList<Group> groupsObservableList;
 
-    byte[] user1;
+    byte[] user1Img;
 
     private static SideGroupListController sideGroupListController;
 
@@ -54,12 +53,12 @@ public class SideGroupListController implements Initializable {
         groupsObservableList = FXCollections.observableArrayList();
 
         File file=new FileChooser().showOpenDialog(null);
-        user1= ImageConverter.fromImageToBytes(file.getPath());
+        user1Img= ImageConverter.fromImageToBytes(file.getPath());
 
         //add user groups here
         groupsObservableList.addAll(
-                new Group("Iti Group","welcome to the hell",user1),
-                new Group("Dark Life","hello every one ",user1)
+                new Group("Iti Group","welcome to the hell",user1Img,111),
+                new Group("Dark Life","hello every one ",user1Img,112)
         );
         groupListView.setItems(groupsObservableList);
         groupListView.setCellFactory(groupListView -> new GroupsInfoListCellController());
@@ -70,6 +69,7 @@ public class SideGroupListController implements Initializable {
                 System.out.println("Selected item1: " + newValue.getGroupName());
                 stageCoordinator.getChatScreenController().setIsGroup(true);
                 System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
+                stageCoordinator.getChatScreenController().setCurrentContactedGroup(groupListView.getSelectionModel().getSelectedItem());
 
 
 

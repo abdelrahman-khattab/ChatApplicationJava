@@ -8,16 +8,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.text.*;
 import javafx.stage.FileChooser;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
-import org.iti.project.presentation.models.Group;
+import org.iti.project.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -26,6 +25,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -131,8 +132,8 @@ public class ChatScreenController implements Initializable {
     private SideContactListController sideContactListController;
 
     private static volatile boolean isGroup = false;
-    private static Group currentContactedGroup;
-    private static User currentContactedUser;
+    private Group currentContactedGroup;
+    private User currentContactedUser;
 
     private final UserModel userModel = new UserModel();
 
@@ -145,6 +146,22 @@ public class ChatScreenController implements Initializable {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    public Group getCurrentContactedGroup() {
+        return currentContactedGroup;
+    }
+
+    public void setCurrentContactedGroup(Group currentContactedGroup) {
+        this.currentContactedGroup = currentContactedGroup;
+    }
+
+    public User getCurrentContactedUser() {
+        return currentContactedUser;
+    }
+
+    public void setCurrentContactedUser(User currentContactedUser) {
+        this.currentContactedUser = currentContactedUser;
+    }
 
     public void setIsGroup(boolean boolean_value) {
         ChatScreenController.isGroup = boolean_value;
@@ -259,7 +276,7 @@ public class ChatScreenController implements Initializable {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
             try {
-                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( new GroupMessage(), 111);
+                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( createGroupMessage(), currentContactedGroup.getGroupId());
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -358,5 +375,26 @@ public class ChatScreenController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+    private GroupMessage createGroupMessage(){
+        GroupMessage groupMessage = new GroupMessage(messageTextField.getText().trim(),
+                stageCoordinator.currentUser, currentContactedGroup.getGroupId());
+        String msgColor = toRGBCode(messageColorPickerButton.getValue());
+        Font msgFont = Font.font(fontFamilyButton.getValue(),
+                boldButton.isSelected()? FontWeight.BOLD:FontWeight.NORMAL,
+                italicButton.isSelected()? FontPosture.ITALIC : FontPosture.REGULAR,
+                fontSizeButton.getValue() );
+        LocalDateTime msgCreationTime = LocalDateTime.now();
+        groupMessage.setGroupMessageColor(msgColor);
+        groupMessage.setMessageCreationTime(msgCreationTime);
+//        groupMessage.setMessageFont(msgFont);
+
+        return groupMessage;
+    }
+    public static String toRGBCode(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 }

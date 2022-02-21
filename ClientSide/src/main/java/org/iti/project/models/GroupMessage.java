@@ -11,25 +11,26 @@ public class GroupMessage implements Serializable {
     private String groupMessageContent;
     private User sender;
     private int groupId;
+    private String groupMessageColor;
     private LocalDateTime messageCreationTime;
     private byte[] groupImage;
-    private Font messageFont;
+//    private Font messageFont;
 
     public GroupMessage(){}
-
-    public Font getMessageFont() {
-        return messageFont;
-    }
-
-    public void setMessageFont(Font messageFont) {
-        this.messageFont = messageFont;
-    }
 
     public GroupMessage(String groupMessageContent, User sender, int groupId) {
         this.groupMessageContent = groupMessageContent;
         this.sender = sender;
         this.groupId = groupId;
     }
+//
+//    public Font getMessageFont() {
+//        return messageFont;
+//    }
+//
+//    public void setMessageFont(Font messageFont) {
+//        this.messageFont = messageFont;
+//    }
 
     public int getMessageId() {
         return messageId;
@@ -77,6 +78,14 @@ public class GroupMessage implements Serializable {
 
     public void setGroupImage(byte[] groupImage) {
         this.groupImage = groupImage;
+    }
+
+    public String getGroupMessageColor() {
+        return groupMessageColor;
+    }
+
+    public void setGroupMessageColor(String groupMessageColor) {
+        this.groupMessageColor = groupMessageColor;
     }
 
     @Override
