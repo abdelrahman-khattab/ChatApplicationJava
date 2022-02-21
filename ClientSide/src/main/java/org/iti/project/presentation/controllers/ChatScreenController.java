@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import org.iti.project.models.GroupMessage;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.Group;
@@ -257,7 +258,11 @@ public class ChatScreenController implements Initializable {
     public void onSendButtonClicked(ActionEvent actionEvent) {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
-            RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(messageBody , 111);
+            try {
+                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( new GroupMessage(), 111);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
             renderMessage(messageBody);
         }
     }

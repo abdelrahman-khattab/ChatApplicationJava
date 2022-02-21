@@ -1,5 +1,6 @@
 package org.iti.project.services.impls;
 
+import org.iti.project.models.GroupMessage;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.services.interfaces.ChatServiceInt;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -22,7 +23,7 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
     }
 
     @Override
-    public void sendGroupMessage(String message, int groupId) throws RemoteException {
+    public void sendGroupMessage(GroupMessage groupMessage, int groupId) throws RemoteException {
         System.out.println("your message received from server");
         List<String> userPhones = new ArrayList<>();
         try {
@@ -43,7 +44,7 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
                 System.out.println("no problem here");
                 System.out.println(clientCallBack);
                 if (clientCallBack != null ){
-                    clientCallBack.receiveGroupMessage(message);
+                    clientCallBack.receiveGroupMessage(groupMessage);
                     System.out.println("we processed the sending for your friends");
                 }
             }

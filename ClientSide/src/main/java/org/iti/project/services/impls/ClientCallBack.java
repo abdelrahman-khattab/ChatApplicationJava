@@ -1,5 +1,6 @@
 package org.iti.project.services.impls;
 
+import org.iti.project.models.GroupMessage;
 import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -26,7 +27,7 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
         return instance;
     }
     @Override
-    public void receiveGroupMessage(String message) {
-        System.out.println(message+" ana gowa el clientcallback");
+    public void receiveGroupMessage(GroupMessage groupMessage) {
+        System.out.println(groupMessage+" ana gowa el clientcallback");
     }
 }

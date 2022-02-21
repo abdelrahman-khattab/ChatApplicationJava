@@ -15,6 +15,8 @@ public class GroupMessage implements Serializable {
     private byte[] groupImage;
     private Font messageFont;
 
+    public GroupMessage(){}
+
     public Font getMessageFont() {
         return messageFont;
     }

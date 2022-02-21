@@ -1,5 +1,7 @@
 package org.iti.project.models;
 
+import javafx.scene.text.Font;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -7,14 +9,25 @@ import java.util.Objects;
 public class GroupMessage implements Serializable {
     private int messageId;
     private String groupMessageContent;
-    private String senderPhoneNumber;
+    private User sender;
     private int groupId;
     private LocalDateTime messageCreationTime;
     private byte[] groupImage;
+    private Font messageFont;
 
-    public GroupMessage(String groupMessageContent, String senderPhoneNumber, int groupId) {
+    public GroupMessage(){}
+
+    public Font getMessageFont() {
+        return messageFont;
+    }
+
+    public void setMessageFont(Font messageFont) {
+        this.messageFont = messageFont;
+    }
+
+    public GroupMessage(String groupMessageContent, User sender, int groupId) {
         this.groupMessageContent = groupMessageContent;
-        this.senderPhoneNumber = senderPhoneNumber;
+        this.sender = sender;
         this.groupId = groupId;
     }
 
@@ -26,20 +39,20 @@ public class GroupMessage implements Serializable {
         this.messageId = messageId;
     }
 
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
     public String getGroupMessageContent() {
         return groupMessageContent;
     }
 
     public void setGroupMessageContent(String groupMessageContent) {
         this.groupMessageContent = groupMessageContent;
-    }
-
-    public String getSenderPhoneNumber() {
-        return senderPhoneNumber;
-    }
-
-    public void setSenderPhoneNumber(String senderPhoneNumber) {
-        this.senderPhoneNumber = senderPhoneNumber;
     }
 
     public int getGroupId() {
@@ -71,7 +84,7 @@ public class GroupMessage implements Serializable {
         return "GroupMessage{" +
                 "messageId=" + messageId +
                 ", groupMessageContent='" + groupMessageContent + '\'' +
-                ", senderPhoneNumber='" + senderPhoneNumber + '\'' +
+                ", senderPhoneNumber='" + sender.getUserPhone() + '\'' +
                 ", groupId=" + groupId +
                 ", messageCreationTime=" + messageCreationTime +
                 '}';
