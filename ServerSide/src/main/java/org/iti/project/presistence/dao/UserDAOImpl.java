@@ -64,7 +64,8 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserCountry(rs.getString(6));
                 user.setUserDOB(rs.getString(7));
                 user.setUserBio(rs.getString(8));
-                user.setImage(rs.getBytes(9));
+                Blob userBlopImage = rs.getBlob(9);
+                user.setImage(ImageConverter.fromBlobToBytes(userBlopImage));
 
                 System.out.println("Employee number = " + user.getUserName() +
                         "Phone number = " + user.getUserPhone());
@@ -74,6 +75,15 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             System.out.println("enter problem");
             e.printStackTrace();
+        }
+        finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getErrorCode() + e.getMessage());
+                }
+            }
         }
         // Create a PreparedStatement object    1
         System.out.println(user.toString());

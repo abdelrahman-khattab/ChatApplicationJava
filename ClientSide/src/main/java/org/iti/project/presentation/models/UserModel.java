@@ -11,9 +11,34 @@ public class UserModel {
     private StringProperty userUserName = new SimpleStringProperty();
     private StringProperty userPassword = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
-    private StringProperty address = new SimpleStringProperty();
-    private StringProperty age = new SimpleStringProperty();
     private StringProperty phoneNo = new SimpleStringProperty();
+    private StringProperty userCountry = new SimpleStringProperty();
+    private StringProperty userGender = new SimpleStringProperty();
+    private ObjectProperty<Image> userImage = new SimpleObjectProperty(new Image("/images/R.png"));
+
+    public String getUserCountry() {
+        return userCountry.get();
+    }
+
+    public StringProperty userCountryProperty() {
+        return userCountry;
+    }
+
+    public void setUserCountry(String userCountry) {
+        this.userCountry.set(userCountry);
+    }
+
+    public String getUserGender() {
+        return userGender.get();
+    }
+
+    public StringProperty userGenderProperty() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender.set(userGender);
+    }
 
     public Image getUserImage() {
         return userImage.get();
@@ -27,8 +52,6 @@ public class UserModel {
         this.userImage.set(userImage);
     }
 
-    private ObjectProperty<Image> userImage = new SimpleObjectProperty(new Image("/images/R.png"));
-
 
     public String getPhoneNo() {
         return phoneNo.get();
@@ -41,34 +64,6 @@ public class UserModel {
     public void setPhoneNo(String phoneNo) {
         this.phoneNo.set(phoneNo);
     }
-
-
-
-
-    public String getAddress() {
-        return address.get();
-    }
-
-    public StringProperty addressProperty() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address.set(address);
-    }
-
-    public String getAge() {
-        return age.get();
-    }
-
-    public StringProperty ageProperty() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age.set(age);
-    }
-
 
     public String getUserUserName() {
         return userUserName.get();

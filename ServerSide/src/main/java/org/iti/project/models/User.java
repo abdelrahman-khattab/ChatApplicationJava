@@ -22,6 +22,7 @@ public class User implements Serializable {
 
 
 
+
     public User(String userName, byte[] image, String status, int unsavedMessageCount) {
         this.userName = userName;
         this.image = image;

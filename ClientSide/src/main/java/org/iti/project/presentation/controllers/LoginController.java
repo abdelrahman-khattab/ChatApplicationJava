@@ -4,6 +4,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import org.iti.project.models.User;
@@ -21,6 +22,8 @@ import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.impls.ClientCallBack;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.presentation.util.Validator;
+import org.iti.project.util.ImageConverter;
+
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -29,7 +32,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
-    UserModel userModel;
+    private final UserModel userModel = modelFactory.getUserModel();
     @FXML
     private PasswordField password;
 
@@ -133,6 +136,7 @@ public class LoginController implements Initializable {
         if(returnedUser!=null)
         {
             StageCoordinator.getStageCoordinator().currentUser = returnedUser;
+            updateUserModel(returnedUser);
             StageCoordinator.getStageCoordinator().switchToChatScreen();
 
         }
@@ -145,7 +149,6 @@ public class LoginController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userModel = modelFactory.getUserModel();
         userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
         password.textProperty().bindBidirectional(userModel.userPasswordProperty());
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
@@ -154,5 +157,16 @@ public class LoginController implements Initializable {
     }
 
     public void onLoginBtnClicked(ActionEvent actionEvent) {
+    }
+
+    private void updateUserModel(User user){
+        userModel.setUserUserName(user.getUserName());
+        userModel.setEmail(user.getUserEmail());
+        userModel.setPhoneNo(user.getUserPhone());
+        userModel.setUserGender(user.getGender());
+        userModel.setUserCountry(user.getUserCountry());
+        userModel.setUserPassword(user.getUserPassword());
+        Image convertedimg = ImageConverter.fromBytesToImage(user.getImage());
+        userModel.setUserImage(convertedimg);
     }
 }

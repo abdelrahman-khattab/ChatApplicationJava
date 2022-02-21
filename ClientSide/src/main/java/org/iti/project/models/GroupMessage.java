@@ -11,23 +11,40 @@ public class GroupMessage implements Serializable {
     private String groupMessageContent;
     private User sender;
     private int groupId;
+    private String groupMessageColor;
     private LocalDateTime messageCreationTime;
     private byte[] groupImage;
-    private Font messageFont;
+    private String fontFamily;
+    private String fontWeight;
+    private String fontPosture;
+    private boolean fontUnderLine;
+    private int fontSize;
+//    private Font messageFont;
 
-    public Font getMessageFont() {
-        return messageFont;
-    }
-
-    public void setMessageFont(Font messageFont) {
-        this.messageFont = messageFont;
-    }
+    public GroupMessage(){}
 
     public GroupMessage(String groupMessageContent, User sender, int groupId) {
         this.groupMessageContent = groupMessageContent;
         this.sender = sender;
         this.groupId = groupId;
     }
+
+    public boolean isFontUnderLine() {
+        return fontUnderLine;
+    }
+
+    public void setFontUnderLine(boolean fontUnderLine) {
+        this.fontUnderLine = fontUnderLine;
+    }
+
+    //
+//    public Font getMessageFont() {
+//        return messageFont;
+//    }
+//
+//    public void setMessageFont(Font messageFont) {
+//        this.messageFont = messageFont;
+//    }
 
     public int getMessageId() {
         return messageId;
@@ -76,6 +93,48 @@ public class GroupMessage implements Serializable {
     public void setGroupImage(byte[] groupImage) {
         this.groupImage = groupImage;
     }
+
+    public String getGroupMessageColor() {
+        return groupMessageColor;
+    }
+
+    public void setGroupMessageColor(String groupMessageColor) {
+        this.groupMessageColor = groupMessageColor;
+    }
+
+
+    public String getFontFamily() {
+        return fontFamily;
+    }
+
+    public void setFontFamily(String fontFamily) {
+        this.fontFamily = fontFamily;
+    }
+
+    public String getFontWeight() {
+        return fontWeight;
+    }
+
+    public void setFontWeight(String fontWeight) {
+        this.fontWeight = fontWeight;
+    }
+
+    public String getFontPosture() {
+        return fontPosture;
+    }
+
+    public void setFontPosture(String fontPosture) {
+        this.fontPosture = fontPosture;
+    }
+
+    public int getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(int fontSize) {
+        this.fontSize = fontSize;
+    }
+
 
     @Override
     public String toString() {

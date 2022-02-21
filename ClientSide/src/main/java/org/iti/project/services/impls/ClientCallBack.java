@@ -1,14 +1,18 @@
 package org.iti.project.services.impls;
 
+import javafx.application.Platform;
+import org.iti.project.models.GroupMessage;
 import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
+import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class ClientCallBack extends UnicastRemoteObject implements ClientCallBackInt {
-    private final ChatScreenController chatScreenController =  ChatScreenController.getInstance(); //this is would be null if used before creating the chat screen.
+    private ChatScreenController chatScreenController;
+    private final StageCoordinator stageCoordinator =  StageCoordinator.getStageCoordinator(); //this is would be null if used before creating the chat screen.
 
     private ClientCallBack() throws RemoteException {
     }
@@ -26,7 +30,11 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
         return instance;
     }
     @Override
-    public void receiveGroupMessage(String message) {
-        System.out.println(message+" ana gowa el clientcallback");
+    public void receiveGroupMessage(GroupMessage groupMessage) {
+//        System.out.println(groupMessage+" ana gowa el clientcallback");
+        Platform.runLater(()-> {
+            stageCoordinator.getChatScreenController().renderMessage(groupMessage);
+        });
+
     }
 }

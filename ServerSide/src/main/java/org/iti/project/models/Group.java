@@ -1,10 +1,7 @@
-package org.iti.project.presentation.models;
-
-import org.iti.project.models.User;
+package org.iti.project.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Group implements Serializable {

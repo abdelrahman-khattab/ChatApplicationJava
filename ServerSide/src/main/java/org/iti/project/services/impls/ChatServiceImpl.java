@@ -1,5 +1,6 @@
 package org.iti.project.services.impls;
 
+import org.iti.project.models.GroupMessage;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.services.interfaces.ChatServiceInt;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -16,13 +17,15 @@ import java.util.List;
 
 public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceInt {
     Connection con = DBConnector.getConnection().connect();
-    private HashMap<String, ClientCallBackInt> onlineClients;
+    private final HashMap<String, ClientCallBackInt> onlineClients;
     public ChatServiceImpl() throws RemoteException { // it was protected modifier , return it as it was and test
-        onlineClients = LogInImpl.getOnlineClients();
+        onlineClients = SignInImpl.getOnlineClients();
     }
 
     @Override
-    public void sendGroupMessage(String message, int groupId) throws RemoteException {
+    public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException {
+        System.out.println("your message received from server");
+        int groupId = groupMessage.getGroupId();
         List<String> userPhones = new ArrayList<>();
         try {
             PreparedStatement psttmnt = con.prepareStatement("select user_id from user_group where group_id = ?");
@@ -31,15 +34,19 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
             while (res.next()){
                 String userPhoneNumber = res.getString(1);
                 userPhones.add(userPhoneNumber);
+                System.out.println("we found friends for you to send them your message with phone: "+ userPhoneNumber + groupId);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(userPhones != null){
+        if(userPhones != null && userPhones.size()>0){
             for (String userPhone : userPhones){
                 ClientCallBackInt clientCallBack =  onlineClients.get(userPhone);
+                System.out.println("no problem here");
+                System.out.println(clientCallBack);
                 if (clientCallBack != null ){
-                    clientCallBack.receiveGroupMessage(message);
+                    clientCallBack.receiveGroupMessage(groupMessage);
+                    System.out.println("we processed the sending for your friends");
                 }
             }
         }

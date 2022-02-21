@@ -70,6 +70,10 @@
 .text-formates-button:hover {
   -fx-background-color:#CBCF92;
 }
+.text-formates-button:selected {
+  -fx-background-color: #CBCF92; 
+  -fx-effect: dropshadow(three-pass-box, black, 10, 0.0, 1, 5);
+}
 .input-text
 {
 -fx-text-fill:white;

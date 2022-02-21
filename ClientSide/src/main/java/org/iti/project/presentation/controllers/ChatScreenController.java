@@ -4,27 +4,34 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.text.*;
 import javafx.stage.FileChooser;
+import org.iti.project.models.GroupMessage;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
-import org.iti.project.presentation.models.Group;
+import org.iti.project.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.StageCoordinator;
+import org.iti.project.util.ImageConverter;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.sql.SQLOutput;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -130,8 +137,8 @@ public class ChatScreenController implements Initializable {
     private SideContactListController sideContactListController;
 
     private static volatile boolean isGroup = false;
-    private static Group currentContactedGroup;
-    private static User currentContactedUser;
+    private Group currentContactedGroup;
+    private User currentContactedUser;
 
     private final UserModel userModel = new UserModel();
 
@@ -144,6 +151,22 @@ public class ChatScreenController implements Initializable {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    public Group getCurrentContactedGroup() {
+        return currentContactedGroup;
+    }
+
+    public void setCurrentContactedGroup(Group currentContactedGroup) {
+        this.currentContactedGroup = currentContactedGroup;
+    }
+
+    public User getCurrentContactedUser() {
+        return currentContactedUser;
+    }
+
+    public void setCurrentContactedUser(User currentContactedUser) {
+        this.currentContactedUser = currentContactedUser;
+    }
 
     public void setIsGroup(boolean boolean_value) {
         ChatScreenController.isGroup = boolean_value;
@@ -257,22 +280,33 @@ public class ChatScreenController implements Initializable {
     public void onSendButtonClicked(ActionEvent actionEvent) {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
-            RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(messageBody , 111);
-            renderMessage(messageBody);
+            try {
+                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( createGroupMessage());
+                messageTextField.clear();
+            } catch (RemoteException e) {
+                messageTextField.clear();
+                e.printStackTrace();
+                System.out.println(e.getMessage()+" your message not sent");
+            }
+//            renderMessage();
         }
     }
 
-    private void renderMessage(String messageBody) {
+    public void renderMessage(GroupMessage groupMessage) {
         MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
+        if(groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
+            fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
+        }
+        else {
+            fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
+        }
         try {
             HBox messageHBox = fxmlLoader.load();
             ContactMessageController messageController = fxmlLoader.getController();
-            messageModel.setMessageBody(messageBody);
-            messageController.setMessage(messageModel);
+//            System.out.println(groupMessage.getSender().getImage()+" image coming from server as bytes");
+            messageController.setMessage(groupMessage);
             chatVBox.getChildren().add(messageHBox);
-            messageTextField.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -314,12 +348,13 @@ public class ChatScreenController implements Initializable {
         fontFamilyButton.getItems().addAll(Font.getFamilies());
         fontFamilyButton.setValue("Berlin Sans FB");
 
+
         try {
             FXMLLoader sideContactListLoader = new FXMLLoader(getClass().getResource("/view/sideContactList.fxml"));
             sideContactListPane = sideContactListLoader.load();
             SideContactListController.setController(sideContactListLoader.getController());
             sideContactListController = SideContactListController.getInstance();
-            System.out.println("sideContactListPane created");
+//            System.out.println("sideContactListPane created");
             paneMap.put("sideContactListPane",sideContactListPane);
             sideNavigationStackPane.getChildren().add(sideContactListPane);
 
@@ -327,7 +362,7 @@ public class ChatScreenController implements Initializable {
             sideProfilePane = profilePaneLoader.load();
             ProfileController.setController(profilePaneLoader.getController());
             profileController = ProfileController.getInstance();
-            System.out.println("sideProfilePane created");
+//            System.out.println("sideProfilePane created");
             paneMap.put("sideProfilePane",sideProfilePane);
             sideNavigationStackPane.getChildren().add(sideProfilePane);
 
@@ -335,7 +370,7 @@ public class ChatScreenController implements Initializable {
             sideGroupPane = sideGroupListLoader.load();
             SideGroupListController.setController(sideGroupListLoader.getController());
             sideGroupListController = SideGroupListController.getInstance();
-            System.out.println("sideGroupPane created");
+//            System.out.println("sideGroupPane created");
             paneMap.put("sideGroupPane",sideGroupPane);
             sideNavigationStackPane.getChildren().add(sideGroupPane);
 
@@ -343,7 +378,7 @@ public class ChatScreenController implements Initializable {
             chatListPane = chatLoader.load();
             SideChatListController.setController(chatLoader.getController());
             sideChatListController = SideChatListController.getInstance();
-            System.out.println("chatPane created");
+//            System.out.println("chatPane created");
             paneMap.put("chatListPane",chatListPane);
             sideNavigationStackPane.getChildren().add(chatListPane);
 
@@ -353,5 +388,33 @@ public class ChatScreenController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+    private GroupMessage createGroupMessage(){
+        GroupMessage groupMessage = new GroupMessage(messageTextField.getText().trim(),
+                stageCoordinator.currentUser, currentContactedGroup.getGroupId());
+//        System.out.println(stageCoordinator.currentUser.getImage()+" image should be sent to server as bytes");
+        String msgColor = toRGBCode(messageColorPickerButton.getValue());
+        groupMessage.setFontFamily(fontFamilyButton.getValue());
+        groupMessage.setFontSize(fontSizeButton.getValue());
+        groupMessage.setFontPosture(italicButton.isSelected()? "ITALIC" : "REGULAR");
+        groupMessage.setFontWeight(boldButton.isSelected()? "BOLD":"NORMAL");
+        groupMessage.setFontUnderLine(underlineButton.isSelected());
+        LocalDateTime msgCreationTime = LocalDateTime.now();
+        groupMessage.setGroupMessageColor(msgColor);
+        groupMessage.setMessageCreationTime(msgCreationTime);
+//        groupMessage.setMessageFont(msgFont);
+
+        return groupMessage;
+    }
+    public static String toRGBCode(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
+    }
+    public void updateChatScene(Image image , String name){
+        contactImageCircle.setFill(new ImagePattern(image));
+        contactImageLabel.setText(name);
+        chatVBox.getChildren().clear();
     }
 }

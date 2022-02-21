@@ -4,7 +4,7 @@ package org.iti.project.models;
 import java.io.Serializable;
 import java.util.List;
 
-public class User  implements Serializable {
+public class User implements Serializable {
     long serialVersionUID = 8909363310171168522L;
     private String userName;
     private String userPassword;
@@ -19,6 +19,7 @@ public class User  implements Serializable {
     private String status;
     private int unsavedMessageCount;
     //List<GroupMessage> unseenmessgaeslist;
+
 
 
 
