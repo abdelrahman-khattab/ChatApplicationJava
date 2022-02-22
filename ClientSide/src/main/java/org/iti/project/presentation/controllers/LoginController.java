@@ -27,6 +27,7 @@ import org.iti.project.util.ImageConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -129,6 +130,14 @@ public class LoginController implements Initializable {
         ClientCallBackInt clientCallBackInt=null;
         try {
             returnedUser = RMIConnector.getRmiConnector().getSignInService().loginMe(mainUser ,ClientCallBack.getInstance() );
+            ArrayList<User> contactList= new ArrayList<>();
+            contactList = RMIConnector.getRmiConnector().getContactService().getContact(mainUser);
+            for (User cont:contactList) {
+                System.out.println(cont.getUserPhone()+"walahii wasal"+cont.getUserName());
+            }
+            //SideContactListController.getInstance().contactObservableList.addAll(contactList);
+            System.out.println(SideContactListController.getInstance() == null);
+            //retrive contact list arrayList<user>
        //     System.out.println(user.toString());
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -137,6 +146,7 @@ public class LoginController implements Initializable {
         {
             StageCoordinator.getStageCoordinator().currentUser = returnedUser;
             updateUserModel(returnedUser);
+
             StageCoordinator.getStageCoordinator().switchToChatScreen();
 
         }

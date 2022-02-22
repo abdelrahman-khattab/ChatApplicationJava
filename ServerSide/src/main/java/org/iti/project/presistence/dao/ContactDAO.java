@@ -1,14 +1,12 @@
 package org.iti.project.presistence.dao;
 
-import org.iti.project.models.Contact;
+import org.iti.project.models.User;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface ContactDAO {
-    void insertUser(Contact contact);
-    List<String> selectUser(Contact contact);
-    boolean updateUser(Contact contact);
-    boolean deleteUser(Contact contact);
+    ArrayList<User> selectUser(String userPhone);
+
 
 
 }
