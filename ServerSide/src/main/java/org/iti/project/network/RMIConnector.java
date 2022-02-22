@@ -1,15 +1,8 @@
 package org.iti.project.network;
 
-import org.iti.project.services.impls.ChatServiceImpl;
-import org.iti.project.services.impls.LogInImpl;
-import org.iti.project.services.impls.SignUpImpl;
-import org.iti.project.services.interfaces.ChatServiceInt;
-import org.iti.project.services.interfaces.LogInInt;
-import org.iti.project.services.impls.SignInImpl;
-import org.iti.project.services.impls.SignOutImpl;
-import org.iti.project.services.interfaces.SignInInt;
-import org.iti.project.services.interfaces.SignOutInt;
-import org.iti.project.services.interfaces.SignUpInt;
+import org.iti.project.services.impls.*;
+import org.iti.project.services.interfaces.*;
+
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -32,6 +25,7 @@ public class RMIConnector {
             SignOutInt signOutObj = new SignOutImpl();
 
 //>>>>>>> 3d670fcfaf68ca90f7d9cd3e7567c4793bfe4e0d
+            ContactInt contactObj = new ContactImpl();
 
             Naming.rebind(signUpObj.lookupName, signUpObj);
             System.out.println(" SignUp Bounded! ");
@@ -43,6 +37,9 @@ public class RMIConnector {
             System.out.println(" signinservice Bounded! ");
             Naming.rebind(signOutObj.lookupName, signOutObj);
             System.out.println(" chatsignout Service Bounded! ");
+            Naming.rebind(contactObj.lookupName,contactObj);
+            System.out.println(" contact Service Bounded! ");
+
 
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();

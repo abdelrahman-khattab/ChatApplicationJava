@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -21,7 +22,7 @@ import java.io.IOException;
 public class SideContactListController {
 
     @FXML
-    private Button addContact;
+    private Button addContactBtn;
 
     @FXML
     private ListView<User> contactsLV;
@@ -45,6 +46,11 @@ public class SideContactListController {
         return sideContactListController;
     }
 
+    @FXML
+    void addContact(ActionEvent event) {
+
+
+    }
 
     @FXML
     void test(MouseEvent event) {
