@@ -130,23 +130,13 @@ public class LoginController implements Initializable {
         ClientCallBackInt clientCallBackInt=null;
         try {
             returnedUser = RMIConnector.getRmiConnector().getSignInService().loginMe(mainUser ,ClientCallBack.getInstance() );
-            ArrayList<User> contactList= new ArrayList<>();
-            contactList = RMIConnector.getRmiConnector().getContactService().getContact(mainUser);
-            for (User cont:contactList) {
-                System.out.println(cont.getUserPhone()+"walahii wasal"+cont.getUserName());
-            }
-            //SideContactListController.getInstance().contactObservableList.addAll(contactList);
-            System.out.println(SideContactListController.getInstance() == null);
-            //retrive contact list arrayList<user>
-       //     System.out.println(user.toString());
-        } catch (RemoteException e) {
+                  } catch (RemoteException e) {
             e.printStackTrace();
         }
         if(returnedUser!=null)
         {
             StageCoordinator.getStageCoordinator().currentUser = returnedUser;
             updateUserModel(returnedUser);
-
             StageCoordinator.getStageCoordinator().switchToChatScreen();
 
         }
