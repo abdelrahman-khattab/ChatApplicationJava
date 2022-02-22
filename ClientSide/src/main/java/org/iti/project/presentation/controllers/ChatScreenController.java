@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
 import javafx.stage.FileChooser;
 import org.iti.project.models.GroupMessage;
+import org.iti.project.models.SingleMessage;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.models.Group;
@@ -271,9 +272,9 @@ public class ChatScreenController implements Initializable {
 
 
     public void onFileAttachingButtonClicked(ActionEvent actionEvent) {
+
         fileChooser = new FileChooser();
         File chosenFile = fileChooser.showOpenDialog(stageCoordinator.getPrimaryStage());
-
 
     }
 
@@ -281,7 +282,12 @@ public class ChatScreenController implements Initializable {
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
             try {
-                RMIConnector.getRmiConnector().getChattingService().sendGroupMessage( createGroupMessage());
+                if(isGroup) {
+                    RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(createGroupMessage());
+                }
+                else {
+                    RMIConnector.getRmiConnector().getChattingService().sendSingleMessage(createSingleMessage());
+                }
                 messageTextField.clear();
             } catch (RemoteException e) {
                 messageTextField.clear();
@@ -292,7 +298,8 @@ public class ChatScreenController implements Initializable {
         }
     }
 
-    public void renderMessage(GroupMessage groupMessage) {
+
+    public void renderGroupMessage(GroupMessage groupMessage) {
         MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
         if(groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
@@ -305,7 +312,28 @@ public class ChatScreenController implements Initializable {
             HBox messageHBox = fxmlLoader.load();
             ContactMessageController messageController = fxmlLoader.getController();
 //            System.out.println(groupMessage.getSender().getImage()+" image coming from server as bytes");
-            messageController.setMessage(groupMessage);
+            messageController.setGroupMessage(groupMessage);
+            chatVBox.getChildren().add(messageHBox);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void renderSingleMessage(SingleMessage singleMessage) {
+        MessageModel messageModel = new MessageModel();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        if(singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
+            fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
+        }
+        else {
+            fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
+        }
+        try {
+            HBox messageHBox = fxmlLoader.load();
+            ContactMessageController messageController = fxmlLoader.getController();
+            messageController.setSingleMessage(singleMessage);
             chatVBox.getChildren().add(messageHBox);
         } catch (IOException e) {
             e.printStackTrace();
@@ -405,6 +433,23 @@ public class ChatScreenController implements Initializable {
 //        groupMessage.setMessageFont(msgFont);
 
         return groupMessage;
+    }
+
+    private SingleMessage createSingleMessage(){
+        SingleMessage singleMessage = new SingleMessage(messageTextField.getText().trim(),
+                stageCoordinator.currentUser, currentContactedUser.getUserPhone());
+        System.out.println(currentContactedUser.getUserPhone()+" from createSingleMessage I am the phone number");
+        String msgColor = toRGBCode(messageColorPickerButton.getValue());
+        singleMessage.setFontFamily(fontFamilyButton.getValue());
+        singleMessage.setFontSize(fontSizeButton.getValue());
+        singleMessage.setFontPosture(italicButton.isSelected()? "ITALIC" : "REGULAR");
+        singleMessage.setFontWeight(boldButton.isSelected()? "BOLD":"NORMAL");
+        singleMessage.setFontUnderLine(underlineButton.isSelected());
+        LocalDateTime msgCreationTime = LocalDateTime.now();
+        singleMessage.setSingleMessageColor(msgColor);
+        singleMessage.setMessageCreationTime(msgCreationTime);
+
+        return singleMessage;
     }
     public static String toRGBCode(Color color) {
         return String.format("#%02X%02X%02X",

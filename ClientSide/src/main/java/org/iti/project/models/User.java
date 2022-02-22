@@ -22,8 +22,9 @@ public class User  implements Serializable {
 
 
 
-    public User(String userName, byte[] image, String status, int unsavedMessageCount) {
+    public User(String userName, byte[] image, String status, int unsavedMessageCount, String userPhone) {
         this.userName = userName;
+        this.userPhone = userPhone;
         this.image = image;
         this.status = status;
         this.unsavedMessageCount = unsavedMessageCount;

@@ -1,6 +1,9 @@
 package org.iti.project.services.impls;
 
 import org.iti.project.models.GroupMessage;
+import org.iti.project.models.SingleMessage;
+import org.iti.project.presistence.dao.GroupDAO;
+import org.iti.project.presistence.dao.GroupDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.services.interfaces.ChatServiceInt;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -18,37 +21,57 @@ import java.util.List;
 public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceInt {
     Connection con = DBConnector.getConnection().connect();
     private final HashMap<String, ClientCallBackInt> onlineClients;
+    private GroupDAO groupDAO = new GroupDAOImpl();
     public ChatServiceImpl() throws RemoteException { // it was protected modifier , return it as it was and test
         onlineClients = SignInImpl.getOnlineClients();
     }
 
     @Override
     public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException {
-        System.out.println("your message received from server");
+        System.out.println("your groupMessage received from server");
         int groupId = groupMessage.getGroupId();
         List<String> userPhones = new ArrayList<>();
-        try {
-            PreparedStatement psttmnt = con.prepareStatement("select user_id from user_group where group_id = ?");
-            psttmnt.setInt(1,groupId);
-            ResultSet res = psttmnt.executeQuery();
-            while (res.next()){
-                String userPhoneNumber = res.getString(1);
-                userPhones.add(userPhoneNumber);
-                System.out.println("we found friends for you to send them your message with phone: "+ userPhoneNumber + groupId);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+             userPhones = groupDAO.findUsersPhoneByGroupId(groupId);
+//        try {
+//            PreparedStatement psttmnt = con.prepareStatement("select user_id from user_group where group_id = ?");
+//            psttmnt.setInt(1,groupId);
+//            ResultSet res = psttmnt.executeQuery();
+//            while (res.next()){
+//                String userPhoneNumber = res.getString(1);
+//                userPhones.add(userPhoneNumber);
+//                System.out.println("we found friends for you to send them your message with phone: "+ userPhoneNumber + groupId);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         if(userPhones != null && userPhones.size()>0){
             for (String userPhone : userPhones){
                 ClientCallBackInt clientCallBack =  onlineClients.get(userPhone);
-                System.out.println("no problem here");
-                System.out.println(clientCallBack);
                 if (clientCallBack != null ){
                     clientCallBack.receiveGroupMessage(groupMessage);
-                    System.out.println("we processed the sending for your friends");
                 }
             }
         }
     }
+
+    @Override
+    public void sendSingleMessage(SingleMessage singleMessage) throws RemoteException {
+        System.out.println("your groupMessage received from server");
+        String receiverPhoneNumber = singleMessage.getReceiverPhoneNumber();
+        System.out.println(receiverPhoneNumber + "this is receiver number from server");
+        String senderPhoneNumber = singleMessage.getSender().getUserPhone();
+        System.out.println(senderPhoneNumber + "this is sender number from server");
+        ClientCallBackInt clientCallBack = onlineClients.get(receiverPhoneNumber);
+        System.out.println(clientCallBack + "clientcall back of receiver");
+        if (clientCallBack != null ){
+            clientCallBack.receiveSingleMessage(singleMessage);
+        }
+        clientCallBack = onlineClients.get(senderPhoneNumber);
+        if (clientCallBack != null ){
+            clientCallBack.receiveSingleMessage(singleMessage);
+        }
+
+    }
+
+
 }

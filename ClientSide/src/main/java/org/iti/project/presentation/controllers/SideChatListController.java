@@ -8,11 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
+import org.iti.project.models.Group;
 import org.iti.project.models.User;
+import org.iti.project.presentation.util.StageCoordinator;
+import org.iti.project.services.interfaces.SignOutInt;
 import org.iti.project.util.ImageConverter;
 
 import java.io.File;
@@ -65,6 +69,8 @@ public class SideChatListController {
     private Circle userStatusStatusBar;
 
     public ObservableList<User> contactChatObservableList;
+    private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
+
     byte[] user1;
 
     public static SideChatListController getInstance() {
@@ -85,8 +91,8 @@ public class SideChatListController {
         user1=ImageConverter.fromImageToBytes(file.getPath());
 
         contactChatObservableList.addAll(
-                new User("Eima Ross",user1 ,"online",2),
-                new User("Terabithia ",user1,"offine",4)
+                new User("Mohamed Alaa",user1 ,"online",2 , "01111111111"),
+                new User("saly ",user1,"offine",4,"01111111113")
         );
 
         contactinfoLV.setItems(contactChatObservableList);
@@ -96,6 +102,17 @@ public class SideChatListController {
             @Override
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
                 System.out.println("Selected item1: " + newValue.getUserName());
+                stageCoordinator.getChatScreenController().setIsGroup(false);
+                System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
+                User selectedUser = contactinfoLV.getSelectionModel().getSelectedItem();
+                System.out.println(selectedUser.getUserPhone());
+                stageCoordinator.getChatScreenController().setCurrentContactedUser(selectedUser);
+                Image selectedUserImage = ImageConverter.fromBytesToImage(selectedUser.getImage());
+                stageCoordinator.getChatScreenController().updateChatScene(selectedUserImage , selectedUser.getUserName());
+                System.out.println(stageCoordinator.getChatScreenController().getCurrentContactedUser().getUserPhone()+
+                        " from sideChatListview I am the phone number");
+
+
 
 
             }

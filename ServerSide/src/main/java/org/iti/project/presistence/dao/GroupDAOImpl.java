@@ -1,24 +1,16 @@
 package org.iti.project.presistence.dao;
 import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.iti.project.util.ImageConverter;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GroupDAOImpl implements  GroupDAO{
-    private List<String> clientsPhones = null;
-    private List<User> users = null;
-    private Connection con = null;
 
     // instantiate connection and lists
     public GroupDAOImpl(){
-
-        clientsPhones = new ArrayList<>();
-        users = new ArrayList<>();
-        con =  DBConnector.getConnection().connect();
 
     }
 
@@ -26,10 +18,11 @@ public class GroupDAOImpl implements  GroupDAO{
     @Override
     public List<String> findUsersPhoneByGroupId(int groupId) {
 //
+        List<String> clientsPhones = new ArrayList<>();
         PreparedStatement pstmt = null;
         ResultSet rs;
 
-        try {
+        try (Connection con =  DBConnector.getConnection().connect()){
             pstmt = con.prepareStatement("SELECT user_id from user_group WHERE group_id = ?");
             pstmt.setInt(1,groupId);
             rs = pstmt.executeQuery();
@@ -41,18 +34,17 @@ public class GroupDAOImpl implements  GroupDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return clientsPhones;
     }
 
     @Override
     public List<User> getUsersByGroupId(int groupId) {
 
-//
+        List<User> users = new ArrayList<>();
         PreparedStatement pstmt = null;
         ResultSet rs;
 
-        try {
+        try (Connection con =  DBConnector.getConnection().connect()){
             pstmt = con.prepareStatement(
                     "select PHONE_NUMBER, USER_NAME, EMAIL, PASSWORD, GENDER, COUNTRY, BIRTH_DATE, IMAGE, BIO from user,user_group \n" +
                             "where PHONE_NUMBER = user_id and group_id = ? ");
@@ -70,7 +62,8 @@ public class GroupDAOImpl implements  GroupDAO{
                 user.setUserCountry(rs.getString(6));
                 user.setUserDOB(rs.getString(7));
                 user.setUserBio(rs.getString(8));
-                user.setImage(rs.getBytes(9));
+                Blob userBlopImage = rs.getBlob(9);
+                user.setImage(ImageConverter.fromBlobToBytes(userBlopImage));
 
                 users.add(user);
 
@@ -78,6 +71,7 @@ public class GroupDAOImpl implements  GroupDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 
 
         return users;

@@ -2,6 +2,7 @@ package org.iti.project.services.impls;
 
 import javafx.application.Platform;
 import org.iti.project.models.GroupMessage;
+import org.iti.project.models.SingleMessage;
 import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -33,7 +34,16 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
     public void receiveGroupMessage(GroupMessage groupMessage) {
 //        System.out.println(groupMessage+" ana gowa el clientcallback");
         Platform.runLater(()-> {
-            stageCoordinator.getChatScreenController().renderMessage(groupMessage);
+            stageCoordinator.getChatScreenController().renderGroupMessage(groupMessage);
+        });
+
+    }
+
+    @Override
+    public void receiveSingleMessage(SingleMessage singleMessage) {
+//        System.out.println(groupMessage+" ana gowa el clientcallback");
+        Platform.runLater(()-> {
+            stageCoordinator.getChatScreenController().renderSingleMessage(singleMessage);
         });
 
     }

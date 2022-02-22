@@ -1,6 +1,8 @@
 package org.iti.project.models;
 
+
 import java.io.Serializable;
+import java.util.List;
 
 public class User  implements Serializable {
     private String userName;
@@ -19,7 +21,7 @@ public class User  implements Serializable {
 
 
 
-    public User(String userName, byte[] image, String status, int unsavedMessageCount) {
+    public User(String userName, byte[] image, String status, int unsavedMessageCount, String userPhone) {
         this.userName = userName;
         this.image = image;
         this.status = status;

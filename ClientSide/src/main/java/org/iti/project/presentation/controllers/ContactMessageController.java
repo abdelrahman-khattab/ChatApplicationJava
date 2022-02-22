@@ -9,6 +9,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
 import org.iti.project.models.GroupMessage;
+import org.iti.project.models.SingleMessage;
 import org.iti.project.presentation.models.*;
 import org.iti.project.util.ImageConverter;
 
@@ -35,7 +36,7 @@ public class ContactMessageController implements Initializable {
 
 
 
-    public void setMessage(GroupMessage groupMessage){
+    public void setGroupMessage(GroupMessage groupMessage){
         Image senderImage = ImageConverter.fromBytesToImage(groupMessage.getSender().getImage());
 //        System.out.println(senderImage+ "image coming from server after converting");
         messageModel.setImageObjectProperty(senderImage);
@@ -52,6 +53,29 @@ public class ContactMessageController implements Initializable {
         messageBodyText.setFont(msgFont);
         messageBodyText.setFill(Color.valueOf(groupMessage.getGroupMessageColor()));
         messageBodyText.setUnderline(groupMessage.isFontUnderLine());
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedDate = myDateObj.format(myFormatObj);
+        messageTimeLabel.setText(formattedDate);
+
+    }
+    public void setSingleMessage(SingleMessage singleMessage){
+        Image senderImage = ImageConverter.fromBytesToImage(singleMessage.getSender().getImage());
+//        System.out.println(senderImage+ "image coming from server after converting");
+        messageModel.setImageObjectProperty(senderImage);
+        imageCircle.setFill(new ImagePattern(senderImage));
+        messageBodyText.setText(singleMessage.getSingleMessageContent());
+        int fontSize = singleMessage.getFontSize();
+        String fontFamily = singleMessage.getFontFamily();
+        String fontWeight = singleMessage.getFontWeight();
+        String fontPosture = singleMessage.getFontPosture();
+        Font msgFont = Font.font(fontFamily,
+                fontWeight.equalsIgnoreCase("bold")? FontWeight.BOLD : FontWeight.NORMAL,
+                fontPosture.equalsIgnoreCase("italic")? FontPosture.ITALIC:FontPosture.REGULAR,
+                fontSize);
+        messageBodyText.setFont(msgFont);
+        messageBodyText.setFill(Color.valueOf(singleMessage.getSingleMessageColor()));
+        messageBodyText.setUnderline(singleMessage.isFontUnderLine());
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         String formattedDate = myDateObj.format(myFormatObj);
