@@ -23,9 +23,9 @@ public class RMIConnector {
             LogInInt logInObj = new LogInImpl();
             ChatServiceInt chatServiceObj = new ChatServiceImpl();
             SignOutInt signOutObj = new SignOutImpl();
+            ContactInt contactObj=new ContactImpl();
 
 //>>>>>>> 3d670fcfaf68ca90f7d9cd3e7567c4793bfe4e0d
-            ContactInt contactObj = new ContactImpl();
 
             Naming.rebind(signUpObj.lookupName, signUpObj);
             System.out.println(" SignUp Bounded! ");
@@ -38,8 +38,7 @@ public class RMIConnector {
             Naming.rebind(signOutObj.lookupName, signOutObj);
             System.out.println(" chatsignout Service Bounded! ");
             Naming.rebind(contactObj.lookupName,contactObj);
-            System.out.println(" contact Service Bounded! ");
-
+            System.out.println("ContactService Bounded");
 
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();

@@ -1,7 +1,6 @@
 package org.iti.project.presistence.dao;
 
 import org.iti.project.models.Contact;
-import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
 
 import java.sql.Connection;

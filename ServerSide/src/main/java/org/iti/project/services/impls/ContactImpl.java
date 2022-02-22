@@ -15,7 +15,7 @@ public class ContactImpl extends UnicastRemoteObject implements ContactInt {
     @Override
     public void addContact(Contact contact) throws RemoteException {
         ContactDAOImpl contactDAO=new ContactDAOImpl();
-        List<String> contacts= (List<String>) contactDAO.selectUser(contact);
+        List<String> contacts=contactDAO.selectUser(contact);
         for (String contactNum:contacts) {
             if(contactNum!=null && contactNum!=contact.getFriend_Id()){
                 contactDAO.insertUser(contact);

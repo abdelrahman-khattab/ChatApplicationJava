@@ -79,16 +79,13 @@ public class RMIConnector {
 
     }
     public ContactInt getContactService(){
-        try{
-            contactService=(ContactInt) reg.lookup(contactService.lookupName);
-            System.out.println(contactService.lookupName + " contact found!");
-
-        }catch (RemoteException | NotBoundException e){
+        try {
+            contactService = (ContactInt) reg.lookup(contactService.lookupName);
+            System.out.println(chatService.lookupName + " service found!");
+        } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
-
         }
         return contactService;
-
     }
 
 
