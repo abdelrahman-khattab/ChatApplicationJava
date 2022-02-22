@@ -6,6 +6,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.iti.project.presistence.dao.RequestDAOImpl;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
 
@@ -35,6 +36,12 @@ public class App extends Application {
 
     public static void main(String[] args)  {
             Connection conn = DBConnector.getConnection().connect();
+        RequestDAOImpl requestDAO = new RequestDAOImpl();
+        User user1 = new User();
+        user1.setUserPhone("122j");
+        User user2 = new User();
+        user2.setUserPhone("0165457");
+        System.out.println(requestDAO.insertRequest(user1,user2));
             launch();
     }
 

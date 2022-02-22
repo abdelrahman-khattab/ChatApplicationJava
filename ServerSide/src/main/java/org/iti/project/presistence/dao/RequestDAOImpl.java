@@ -15,7 +15,7 @@ public class RequestDAOImpl implements RequestDAO{
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO request_friend (requester_id, responder_id) VALUES (?, ?)");
             preparedStatement.setString(1, user1.getUserPhone());
             preparedStatement.setString(1, user2.getUserPhone());
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,12 +37,10 @@ public class RequestDAOImpl implements RequestDAO{
             preparedStatement.setString(3,user2.getUserPhone());
             preparedStatement.setString(4,user1.getUserPhone());
             resultSet=preparedStatement.executeQuery();
-            if (resultSet==null)
+            System.out.println(resultSet == null);
+            if (resultSet!=null)
             {
                 return true;
-            }
-            else{
-                return false;
             }
 
         } catch (SQLException e) {
