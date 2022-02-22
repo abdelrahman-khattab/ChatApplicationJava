@@ -54,7 +54,7 @@
                <children>
                   <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="165.0" spacing="7.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="137.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="clientimageView" fitHeight="137.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/profile.jpg" />
                            </image>

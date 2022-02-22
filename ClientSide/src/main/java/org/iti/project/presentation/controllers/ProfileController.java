@@ -8,7 +8,11 @@ import java.util.ResourceBundle;
 //import gov.iti.jets.presentation.util.ModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
+import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +27,9 @@ public class ProfileController implements Initializable {
     // private final ModelFactory modelFactory = ModelFactory.getInstance();
     @FXML
     private ScrollPane secondPane;
+
+    @FXML
+    private ImageView clientimageView;
 
     @FXML
     private VBox vboxContainer;
@@ -51,6 +58,9 @@ public class ProfileController implements Initializable {
     @FXML
     private Label infoClientNameLabel;
 
+    private ModelFactory modelfactory = ModelFactory.getModelFactory();
+    private UserModel userModel = modelfactory.getUserModel();
+
     private static ProfileController profileController;
 
     public static void setController(ProfileController profileController) {
@@ -63,7 +73,17 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // UserModel userModel = modelFactory.getUserModel();
+        clientNameLabel.textProperty().bindBidirectional(userModel.userUserNameProperty());
+        infoClientCountryLabel.textProperty().bindBidirectional(userModel.userCountryProperty());
+        infoClientEmailLabel.textProperty().bindBidirectional(userModel.emailProperty());
+        infoClientGenderLabel.textProperty().bindBidirectional(userModel.userGenderProperty());
+        infoClientNameLabel.textProperty().bindBidirectional(userModel.userUserNameProperty());
+        clientimageView.imageProperty().bindBidirectional(userModel.userImageProperty());
+        // set border radius of image view
+        Rectangle clip = new Rectangle(70, 70);
+        clip.setArcWidth(70);
+        clip.setArcHeight(70);
+        clientimageView.setClip(clip);
     }
 
     @FXML

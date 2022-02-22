@@ -48,6 +48,7 @@ public class RegisterController implements Initializable {
     private boolean confirmPasswordValidation = false;
     private boolean mobileValidation = false;
     private boolean birthDateValidation = false;
+    private boolean imageValidation = false;
 
 
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
@@ -119,9 +120,8 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Label dateValidation;
-    private final Image DEFAULT_IMAGE = new Image("/images/R.png");
-    private File file = new File("/images/R.png");
-    ;
+    private File file;
+
 
     @FXML
     void onGetImageButtonClick(ActionEvent event) {
@@ -137,10 +137,11 @@ public class RegisterController implements Initializable {
         //imageView = new ImageView(image);
 
         if (file != null) {
-
             image = new Image(file.getPath());
             profileImage.setImage(image);
-
+            imageValidation = true;
+        }else{
+            imageValidation = false;
         }
     }
 
@@ -255,7 +256,7 @@ public class RegisterController implements Initializable {
     void onRegisterButtonClicked(ActionEvent event) {
 
 
-        if(nameValidation && emailValidation && mobileValidation && birthDateValidation && passwordValidation && confirmPasswordValidation){
+        if(nameValidation && emailValidation && mobileValidation && birthDateValidation && passwordValidation && confirmPasswordValidation && imageValidation){
 
             User user = new User();
 
