@@ -1,15 +1,13 @@
 package org.iti.project.services.interfaces;
 
-import org.iti.project.models.Contact;
+import org.iti.project.models.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface ContactInt extends Remote {
     public String lookupName = "ContactService";
-    public void addContact(Contact contact) throws RemoteException;
-    public Contact selectContact(Contact contact) throws RemoteException;
-    //ASK for how to update contact...
-//    public boolean updateContact(Contact contact);
-    public boolean deleteContact(Contact contact) throws RemoteException;
+    public ArrayList<User> getContact(User user) throws RemoteException;
+
 }
