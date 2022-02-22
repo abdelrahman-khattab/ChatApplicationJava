@@ -9,5 +9,7 @@ import java.util.ArrayList;
 public interface ContactInt extends Remote {
     public String lookupName = "ContactService";
     public ArrayList<User> getContact(User user) throws RemoteException;
+    public boolean addContact(User user) throws RemoteException;
+
 
 }
