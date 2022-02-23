@@ -27,6 +27,7 @@ import org.iti.project.util.ImageConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -129,8 +130,7 @@ public class LoginController implements Initializable {
         ClientCallBackInt clientCallBackInt=null;
         try {
             returnedUser = RMIConnector.getRmiConnector().getSignInService().loginMe(mainUser ,ClientCallBack.getInstance() );
-       //     System.out.println(user.toString());
-        } catch (RemoteException e) {
+                  } catch (RemoteException e) {
             e.printStackTrace();
         }
         if(returnedUser!=null)

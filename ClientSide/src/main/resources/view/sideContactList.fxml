@@ -20,7 +20,7 @@
             <HBox alignment="CENTER_LEFT">
                <children>
                   <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Contact List" textFill="#181d31" />
-                  <Button fx:id="addContact" mnemonicParsing="false" style="-fx-background-color: #00000000;">
+                  <Button fx:id="addContactBtn" mnemonicParsing="false" style="-fx-background-color: #00000000;" onAction="#addContact" styleClass="mouse-hand" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>

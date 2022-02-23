@@ -486,7 +486,6 @@ public class ChatScreenController implements Initializable {
     private SingleMessage createSingleMessage(){
         SingleMessage singleMessage = new SingleMessage(messageTextField.getText().trim(),
                 stageCoordinator.currentUser, currentContactedUser.getUserPhone());
-        System.out.println(currentContactedUser.getUserPhone()+" from createSingleMessage I am the phone number");
         String msgColor = toRGBCode(messageColorPickerButton.getValue());
         singleMessage.setFontFamily(fontFamilyButton.getValue());
         singleMessage.setFontSize(fontSizeButton.getValue());
