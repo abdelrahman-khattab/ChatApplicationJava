@@ -79,6 +79,14 @@
     -fx-font-size: 14px;
     -fx-font-weight:bold;
 }
+.btnRev{
+    -fx-font-family: Public Sans,sans-serif;
+    -fx-background-color: -whitecolor;
+    -fx-text-fill:-secondarycolor;
+    -fx-font-size: 14px;
+    -fx-font-weight:bold;
+}
+
 .annocunment{
     -fx-fill: -secondarycolor;
     -fx-font-weight:bold;

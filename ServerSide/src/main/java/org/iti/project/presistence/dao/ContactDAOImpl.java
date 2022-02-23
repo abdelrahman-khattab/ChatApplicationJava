@@ -1,17 +1,19 @@
 package org.iti.project.presistence.dao;
 
 import org.iti.project.models.Contact;
+import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
+import org.iti.project.util.ImageConverter;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDAOImpl implements ContactDAO{
+
     Connection con = DBConnector.getConnection().connect();
+    private PreparedStatement preparedStatement;
+
     @Override
     public void insertUser(Contact contact) {
         try {
@@ -28,22 +30,7 @@ public class ContactDAOImpl implements ContactDAO{
 
     @Override
     public List<String> selectUser(Contact contact) {
-            List<String> contacts=new ArrayList<String>();
-
-        try {
-            PreparedStatement preparedStatement = con.prepareStatement("select (FRIEND_ID) from contacts where USER_ID=? ");
-            preparedStatement.setString(1,contact.getUser_Id());
-            ResultSet resultSet=preparedStatement.executeQuery();
-            while (resultSet.next()){
-                contacts.add(resultSet.getString(2));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return  contacts;
-
-
+        return null;
     }
 
     @Override
@@ -54,5 +41,27 @@ public class ContactDAOImpl implements ContactDAO{
     @Override
     public boolean deleteUser(Contact contact) {
         return false;
+    }
+
+    @Override
+    public ArrayList<User> selectUser(String userPhone) {
+            ArrayList<User> contacts=new ArrayList<>();
+            ResultSet resultSet;
+
+        try(Connection con = DBConnector.getConnection().connect()) {
+            PreparedStatement preparedStatement = con.prepareStatement("select distinct phone_number , USER_NAME , IMAGE from user , contacts where PHONE_NUMBER IN (select friend_id from contacts where user_id = ?) ");
+            preparedStatement.setString(1,userPhone);
+            resultSet =preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Blob userBlopImage = resultSet.getBlob(3);
+                contacts.add(new User(resultSet.getString(2), resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return    contacts;
+
+
     }
 }

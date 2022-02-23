@@ -50,6 +50,8 @@ public class RMIConnector {
         //getRmiConnector(); //
         try {
             signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
+
+          System.out.println(signUpService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -77,6 +79,9 @@ public class RMIConnector {
     public ContactInt getContactService(){
         try {
             contactService = (ContactInt) reg.lookup(contactService.lookupName);
+
+            System.out.println(contactService.lookupName + " service found!");
+
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
