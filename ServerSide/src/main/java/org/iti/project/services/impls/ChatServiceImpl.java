@@ -4,6 +4,8 @@ import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
 import org.iti.project.presistence.dao.GroupDAO;
 import org.iti.project.presistence.dao.GroupDAOImpl;
+import org.iti.project.presistence.dao.MessageDAO;
+import org.iti.project.presistence.dao.MessageDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.services.interfaces.ChatServiceInt;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -22,6 +24,7 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
     Connection con = DBConnector.getConnection().connect();
     private final HashMap<String, ClientCallBackInt> onlineClients;
     private GroupDAO groupDAO = new GroupDAOImpl();
+    private MessageDAO messageDAO = new MessageDAOImpl();
     public ChatServiceImpl() throws RemoteException { // it was protected modifier , return it as it was and test
         onlineClients = SignInImpl.getOnlineClients();
     }
@@ -71,6 +74,13 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
             clientCallBack.receiveSingleMessage(singleMessage);
         }
 
+    }
+
+    @Override
+    public List<SingleMessage> fetchSingleMessageHistory(String senderPhone, String receiverPhone){
+        List<SingleMessage> singleMessageHistory = new ArrayList<>();
+
+        return singleMessageHistory;
     }
 
 

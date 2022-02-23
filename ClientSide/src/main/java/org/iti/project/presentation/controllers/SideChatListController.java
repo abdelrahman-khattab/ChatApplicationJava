@@ -107,8 +107,7 @@ public class SideChatListController {
                 User selectedUser = contactinfoLV.getSelectionModel().getSelectedItem();
                 System.out.println(selectedUser.getUserPhone());
                 stageCoordinator.getChatScreenController().setCurrentContactedUser(selectedUser);
-                Image selectedUserImage = ImageConverter.fromBytesToImage(selectedUser.getImage());
-                stageCoordinator.getChatScreenController().updateChatScene(selectedUserImage , selectedUser.getUserName());
+                stageCoordinator.getChatScreenController().updateSingleChatScene(selectedUser);
                 System.out.println(stageCoordinator.getChatScreenController().getCurrentContactedUser().getUserPhone()+
                         " from sideChatListview I am the phone number");
 

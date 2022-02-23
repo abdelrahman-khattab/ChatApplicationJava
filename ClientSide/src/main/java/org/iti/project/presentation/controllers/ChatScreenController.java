@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -16,6 +15,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
 import javafx.stage.FileChooser;
+import org.controlsfx.control.Notifications;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
 import org.iti.project.models.User;
@@ -30,8 +30,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
-import java.sql.SQLOutput;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -283,10 +281,14 @@ public class ChatScreenController implements Initializable {
             String messageBody = messageTextField.getText().trim();
             try {
                 if(isGroup) {
+                    GroupMessage sentMessage = createGroupMessage();
+                    displayMySentGroupMessage(sentMessage);
                     RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(createGroupMessage());
                 }
                 else {
-                    RMIConnector.getRmiConnector().getChattingService().sendSingleMessage(createSingleMessage());
+                    SingleMessage sentMessage = createSingleMessage();
+                    displayMySentSingleMessage(sentMessage);
+                    RMIConnector.getRmiConnector().getChattingService().sendSingleMessage(sentMessage);
                 }
                 messageTextField.clear();
             } catch (RemoteException e) {
@@ -294,20 +296,70 @@ public class ChatScreenController implements Initializable {
                 e.printStackTrace();
                 System.out.println(e.getMessage()+" your message not sent");
             }
-//            renderMessage();
         }
     }
 
+    public void handleSingleMessage(SingleMessage singleMessage){
+        if (!isGroup && singleMessage.getSender().getUserPhone().equals(currentContactedUser.getUserPhone())){
+            renderSingleMessage(singleMessage);
+        }
+        else if(!singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
+            System.out.println(singleMessage.getSingleMessageContent() + "ana geet bs msh httb3 3ashan ana gaya mn " +
+                    singleMessage.getSender().getUserName() +
+                    "wnta btklm " + currentContactedUser.getUserName());
+            Notifications.create().position(Pos.TOP_CENTER).text(singleMessage.getSingleMessageContent() + " from "+
+                    singleMessage.getSender().getUserName())
+                    .showInformation();
+        }
+
+    }
+
+    public void handleGroupMessage(GroupMessage groupMessage){
+        if (isGroup && groupMessage.getGroupId()== currentContactedGroup.getGroupId()){
+            renderGroupMessage(groupMessage);
+        }
+        else if(!groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
+            System.out.println(groupMessage.getGroupMessageContent() + " ana geet bs msh httb3 3ashan ana gaya mn " + groupMessage.getSender().getUserName() +
+                    "wnta btklm" + currentContactedUser.getUserName());
+            Notifications.create().position(Pos.TOP_CENTER).text(groupMessage.getGroupMessageContent() + " from "+
+                            groupMessage.getSender().getUserName())
+                    .showInformation();
+        }
+
+    }
+
+    private void displayMySentSingleMessage(SingleMessage singleMessage){
+        MessageModel messageModel = new MessageModel();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
+        try {
+            HBox messageHBox = fxmlLoader.load();
+            ContactMessageController messageController = fxmlLoader.getController();
+            messageController.setSingleMessage(singleMessage);
+            chatVBox.getChildren().add(messageHBox);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void displayMySentGroupMessage(GroupMessage groupMessage){
+        MessageModel messageModel = new MessageModel();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
+        try {
+            HBox messageHBox = fxmlLoader.load();
+            ContactMessageController messageController = fxmlLoader.getController();
+            messageController.setGroupMessage(groupMessage);
+            chatVBox.getChildren().add(messageHBox);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void renderGroupMessage(GroupMessage groupMessage) {
         MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        if(groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
-            fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
-        }
-        else {
-            fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
-        }
+        fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
         try {
             HBox messageHBox = fxmlLoader.load();
             ContactMessageController messageController = fxmlLoader.getController();
@@ -324,12 +376,7 @@ public class ChatScreenController implements Initializable {
     public void renderSingleMessage(SingleMessage singleMessage) {
         MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        if(singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
-            fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
-        }
-        else {
-            fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
-        }
+        fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
         try {
             HBox messageHBox = fxmlLoader.load();
             ContactMessageController messageController = fxmlLoader.getController();
@@ -338,8 +385,6 @@ public class ChatScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void onGroupChatButtonClicked(ActionEvent actionEvent) {
@@ -375,6 +420,9 @@ public class ChatScreenController implements Initializable {
 
         fontFamilyButton.getItems().addAll(Font.getFamilies());
         fontFamilyButton.setValue("Berlin Sans FB");
+
+        currentContactedUser = new User("#","#",null);
+        currentContactedGroup= new Group("#","#",null,-1);
 
 
         try {
@@ -457,9 +505,21 @@ public class ChatScreenController implements Initializable {
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
     }
-    public void updateChatScene(Image image , String name){
-        contactImageCircle.setFill(new ImagePattern(image));
+    public void updateGroupChatScene(Group currentContactedGroup, String name){
+        Image newGroupImage = ImageConverter.fromBytesToImage(currentContactedGroup.getGroupImageBytes());
+        contactImageCircle.setFill(new ImagePattern(newGroupImage));
         contactImageLabel.setText(name);
         chatVBox.getChildren().clear();
+        //RMIConnector.getRmiConnector().getChattingService().fetchMessagesHistory(String senderPhone , int group_id);
+        currentContactedUser = new User("#","#",null);
+
+    }
+    public void updateSingleChatScene(User currentContactedUser){
+        Image selectedUserImage = ImageConverter.fromBytesToImage(currentContactedUser.getImage());
+        contactImageCircle.setFill(new ImagePattern(selectedUserImage));
+        contactImageLabel.setText(currentContactedUser.getUserName());
+        chatVBox.getChildren().clear();
+        //RMIConnector.getRmiConnector().getChattingService().fetchSingleMessagesHistory(String senderPhone , String receiverPhone);
+        currentContactedGroup= new Group("#","#",null,-1);
     }
 }

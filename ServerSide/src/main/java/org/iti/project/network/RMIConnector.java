@@ -25,6 +25,7 @@ public class RMIConnector {
 //            LogInInt logInObj = new LogInImpl();
 //            ChatServiceInt chatServiceObj = new ChatServiceImpl();
 //=======
+            Registry registry = LocateRegistry.createRegistry(1099);
             SignUpInt signUpObj = new SignUpImpl();
             SignInInt signInObj = new SignInImpl();
             LogInInt logInObj = new LogInImpl();

@@ -32,19 +32,15 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
     }
     @Override
     public void receiveGroupMessage(GroupMessage groupMessage) {
-//        System.out.println(groupMessage+" ana gowa el clientcallback");
         Platform.runLater(()-> {
-            stageCoordinator.getChatScreenController().renderGroupMessage(groupMessage);
+            stageCoordinator.getChatScreenController().handleGroupMessage(groupMessage);
         });
-
     }
 
     @Override
     public void receiveSingleMessage(SingleMessage singleMessage) {
-//        System.out.println(groupMessage+" ana gowa el clientcallback");
         Platform.runLater(()-> {
-            stageCoordinator.getChatScreenController().renderSingleMessage(singleMessage);
+            stageCoordinator.getChatScreenController().handleSingleMessage(singleMessage);
         });
-
     }
 }

@@ -73,8 +73,7 @@ public class SideGroupListController implements Initializable {
 //                stageCoordinator.getChatScreenController().setCurrentContactedGroup(groupListView.getSelectionModel().getSelectedItem());
                 Group newGroup = groupListView.getSelectionModel().getSelectedItem();
                 stageCoordinator.getChatScreenController().setCurrentContactedGroup(newGroup);
-                Image newGroupImage = ImageConverter.fromBytesToImage(newGroup.getGroupImageBytes());
-                stageCoordinator.getChatScreenController().updateChatScene(newGroupImage , newGroup.getGroupName());
+                stageCoordinator.getChatScreenController().updateGroupChatScene(newGroup , newGroup.getGroupName());
 
 
 

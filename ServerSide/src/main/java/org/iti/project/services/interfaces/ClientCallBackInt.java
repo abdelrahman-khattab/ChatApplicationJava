@@ -2,7 +2,6 @@ package org.iti.project.services.interfaces;
 
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
-import org.iti.project.models.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
