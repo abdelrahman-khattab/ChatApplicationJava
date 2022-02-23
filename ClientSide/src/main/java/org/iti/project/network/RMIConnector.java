@@ -1,11 +1,7 @@
 package org.iti.project.network;
 
 
-import org.iti.project.services.interfaces.ChatServiceInt;
-import org.iti.project.services.interfaces.LogInInt;
-import org.iti.project.services.interfaces.SignInInt;
-import org.iti.project.services.interfaces.SignOutInt;
-import org.iti.project.services.interfaces.SignUpInt;
+import org.iti.project.services.interfaces.*;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -18,6 +14,7 @@ public class RMIConnector {
     private ChatServiceInt chatService;
     private SignInInt signInService;
     private SignOutInt signOutService;
+    private ContactInt contactService;
     private Registry reg;
     private static  RMIConnector rmiConnector = new RMIConnector();
 
@@ -54,7 +51,7 @@ public class RMIConnector {
         //getRmiConnector(); //
         try {
             signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
-            System.out.println(signUpService.lookupName + " service found!");
+          System.out.println(signUpService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -80,6 +77,15 @@ public class RMIConnector {
         }
         return chatService;
 
+    }
+    public ContactInt getContactService(){
+        try {
+            contactService = (ContactInt) reg.lookup(contactService.lookupName);
+            System.out.println(contactService.lookupName + " service found!");
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
+        }
+        return contactService;
     }
 
 
