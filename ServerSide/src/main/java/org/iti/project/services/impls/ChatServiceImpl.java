@@ -19,10 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceInt {
-    Connection con = DBConnector.getConnection().connect();
     private final HashMap<String, ClientCallBackInt> onlineClients;
     private GroupDAO groupDAO = new GroupDAOImpl();
-    public ChatServiceImpl() throws RemoteException { // it was protected modifier , return it as it was and test
+    public ChatServiceImpl() throws RemoteException {
         onlineClients = SignInImpl.getOnlineClients();
     }
 

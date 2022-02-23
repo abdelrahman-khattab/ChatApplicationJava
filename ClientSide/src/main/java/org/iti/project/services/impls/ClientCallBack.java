@@ -10,6 +10,7 @@ import org.iti.project.services.interfaces.ClientCallBackInt;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class ClientCallBack extends UnicastRemoteObject implements ClientCallBackInt {
     private ChatScreenController chatScreenController;
@@ -46,5 +47,11 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
             stageCoordinator.getChatScreenController().renderSingleMessage(singleMessage);
         });
 
+    }
+
+    @Override
+    public void getRequestListOfFriends(ArrayList<User> requestList) throws RemoteException
+    {
+        //assign This array with the contact list array
     }
 }

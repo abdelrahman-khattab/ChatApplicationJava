@@ -1,58 +1,72 @@
 package org.iti.project.services.impls;
 
 import org.iti.project.models.User;
-import org.iti.project.presistence.dao.ContactDAOImpl;
-import org.iti.project.presistence.dao.UserDAOImpl;
+import org.iti.project.presistence.dao.*;
+import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.services.interfaces.ContactInt;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ContactImpl extends UnicastRemoteObject implements ContactInt {
+    private final HashMap<String, ClientCallBackInt> onlineClients;
+
     public ContactImpl() throws RemoteException {
+        onlineClients = SignInImpl.getOnlineClients();
     }
 
     @Override
     public ArrayList<User> getContact(User user) throws RemoteException {
         ContactDAOImpl contactDAO=new ContactDAOImpl();
-        ArrayList<User> contacts=contactDAO.selectUser(user.getUserPhone());
+        ArrayList<User> contacts=contactDAO.selectContacts(user.getUserPhone());
 
         return  contacts;
     }
 
     @Override
-    public boolean addContact(User user) throws RemoteException {
-        if (LogInImpl.getOnlineClients().containsKey(user.getUserPhone()))
-        {
-            //callbackcleint call Method send invitation
+    public boolean addContact(User requesterUser , User responserUser ) throws RemoteException {
 
-            //after the response if true(that add the two users in friend tables) false (mat3melsh 7aga wa fokak)
-            //////
-            //
-            return true;
-        }
-        else if(!LogInImpl.getOnlineClients().containsKey(user.getUserPhone()))
-        {
-            //check in the database if the user is exist or not
             UserDAOImpl returnUser = new UserDAOImpl();
             User getUser = new User();
-            getUser = returnUser.selectUser(user);
-            if(getUser==null)
+            getUser = returnUser.selectUser(responserUser);
+
+            if(getUser!=null)
             {
-                return false;
+                RequestDAO requestDAO = new RequestDAOImpl();
+                requestDAO.insertRequest(requesterUser , responserUser);
+                ClientCallBackInt clientCallBack = onlineClients.get(responserUser.getUserPhone());
+                if (clientCallBack != null)
+                {
+                    ArrayList <User> requestList = new ArrayList<>();
+                    requestList = requestDAO.selectListRequestUser(responserUser);
+                    clientCallBack.getRequestListOfFriends(requestList);
+                }
+
+                return true;
             }
-            else if (getUser!=null)
+            else
             {
-                //save to request /// create request DAO and Implements it
-                return  true;
+                return  false;
             }
-            //if true save the request in request table
-            //if false return false to the user side
-        }
-        //check it again
-        return true;
+
     }
 
+    @Override
+    public void rejectContact(User mainUser, User secoundryUser) throws RemoteException {
+        RequestDAO requestDAO = new RequestDAOImpl();
+        requestDAO.deleteUser(mainUser , secoundryUser);
+    }
+
+    @Override
+    public ArrayList<User> acceptContact(User mainUser, User secoundryUser) throws RemoteException {
+       RequestDAO requestDAO = new RequestDAOImpl();
+       ContactDAO contactDAO = new ContactDAOImpl();
+       requestDAO.deleteUser(mainUser , secoundryUser);
+       contactDAO.insertContact(mainUser,secoundryUser);
+       contactDAO.insertContact(secoundryUser,mainUser);
+        return contactDAO.selectContacts(mainUser.getUserPhone());
+    }
 
 }

@@ -1,5 +1,9 @@
 package org.iti.project.network;
 
+import org.iti.project.presistence.dao.ContactDAO;
+import org.iti.project.presistence.dao.ContactDAOImpl;
+import org.iti.project.presistence.dao.RequestDAO;
+import org.iti.project.presistence.dao.RequestDAOImpl;
 import org.iti.project.services.impls.*;
 import org.iti.project.services.interfaces.*;
 
@@ -24,6 +28,7 @@ public class RMIConnector {
             ChatServiceInt chatServiceObj = new ChatServiceImpl();
             SignOutInt signOutObj = new SignOutImpl();
             ContactInt contactObj=new ContactImpl();
+
 
 //>>>>>>> 3d670fcfaf68ca90f7d9cd3e7567c4793bfe4e0d
 
