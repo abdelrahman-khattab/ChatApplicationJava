@@ -1,7 +1,11 @@
 package org.iti.project.presentation.controllers;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 import org.iti.project.presentation.util.StageCoordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -125,7 +129,11 @@ public class ChatScreenController implements Initializable {
         //Tooltip exitTip = new Tooltip("Exit");
         //exitTip.show(stageCoordinator.getPrimaryStage());
         Tooltip.install(unknownFunctionaityButton, exitTip);
-
+        stageCoordinator.getPrimaryStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }});
 
     }
 
