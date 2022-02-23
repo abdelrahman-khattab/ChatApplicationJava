@@ -25,6 +25,7 @@ public class ProfileController implements Initializable {
     // private final StageCoordinator stageCoordinator =
     // StageCoordinator.getStageCoordinator();
     // private final ModelFactory modelFactory = ModelFactory.getInstance();
+
     @FXML
     private ScrollPane secondPane;
 

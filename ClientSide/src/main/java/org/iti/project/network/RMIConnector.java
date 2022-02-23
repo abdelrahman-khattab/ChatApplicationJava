@@ -36,7 +36,6 @@ public class RMIConnector {
             signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
             signInService = (SignInInt) reg.lookup(signInService.lookupName);
             signOutService = (SignOutInt) reg.lookup(signOutService.lookupName);
-            System.out.println(signUpService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -51,7 +50,6 @@ public class RMIConnector {
         //getRmiConnector(); //
         try {
             signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
-            System.out.println(signUpService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -61,7 +59,6 @@ public class RMIConnector {
     public LogInInt getLoginService(){
         try {
             loginService = (LogInInt) reg.lookup(LogInInt.lookupName);
-            System.out.println(loginService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -71,7 +68,6 @@ public class RMIConnector {
     public ChatServiceInt getChattingService() {
         try {
             chatService = (ChatServiceInt) reg.lookup(chatService.lookupName);
-            System.out.println(chatService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -81,7 +77,6 @@ public class RMIConnector {
     public ContactInt getContactService(){
         try {
             contactService = (ContactInt) reg.lookup(contactService.lookupName);
-            System.out.println(chatService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }

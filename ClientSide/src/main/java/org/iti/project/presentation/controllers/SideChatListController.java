@@ -101,19 +101,11 @@ public class SideChatListController {
 
             @Override
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
-                System.out.println("Selected item1: " + newValue.getUserName());
                 stageCoordinator.getChatScreenController().setIsGroup(false);
-                System.out.println(stageCoordinator.getChatScreenController().isIsGroup());
                 User selectedUser = contactinfoLV.getSelectionModel().getSelectedItem();
-                System.out.println(selectedUser.getUserPhone());
                 stageCoordinator.getChatScreenController().setCurrentContactedUser(selectedUser);
                 Image selectedUserImage = ImageConverter.fromBytesToImage(selectedUser.getImage());
                 stageCoordinator.getChatScreenController().updateChatScene(selectedUserImage , selectedUser.getUserName());
-                System.out.println(stageCoordinator.getChatScreenController().getCurrentContactedUser().getUserPhone()+
-                        " from sideChatListview I am the phone number");
-
-
-
 
             }
 

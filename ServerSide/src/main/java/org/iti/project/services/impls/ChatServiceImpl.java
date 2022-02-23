@@ -4,6 +4,7 @@ import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
 import org.iti.project.presistence.dao.GroupDAO;
 import org.iti.project.presistence.dao.GroupDAOImpl;
+import org.iti.project.presistence.dao.MessageDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.services.interfaces.ChatServiceInt;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceInt {
+    private MessageDAOImpl messageDAO = MessageDAOImpl.getInstance();
     Connection con = DBConnector.getConnection().connect();
     private final HashMap<String, ClientCallBackInt> onlineClients;
     private GroupDAO groupDAO = new GroupDAOImpl();
@@ -28,6 +30,7 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
 
     @Override
     public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException {
+
         System.out.println("your groupMessage received from server");
         int groupId = groupMessage.getGroupId();
         List<String> userPhones = new ArrayList<>();
@@ -52,24 +55,36 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
                 }
             }
         }
+    //send single message to Database
+
+        messageDAO.storeGroupMessage(groupMessage);
+
+
+    //
+
     }
 
     @Override
     public void sendSingleMessage(SingleMessage singleMessage) throws RemoteException {
-        System.out.println("your groupMessage received from server");
         String receiverPhoneNumber = singleMessage.getReceiverPhoneNumber();
-        System.out.println(receiverPhoneNumber + "this is receiver number from server");
         String senderPhoneNumber = singleMessage.getSender().getUserPhone();
-        System.out.println(senderPhoneNumber + "this is sender number from server");
         ClientCallBackInt clientCallBack = onlineClients.get(receiverPhoneNumber);
-        System.out.println(clientCallBack + "clientcall back of receiver");
+
         if (clientCallBack != null ){
             clientCallBack.receiveSingleMessage(singleMessage);
+        }else{
+            System.out.println("receiver cant receive");
         }
         clientCallBack = onlineClients.get(senderPhoneNumber);
         if (clientCallBack != null ){
             clientCallBack.receiveSingleMessage(singleMessage);
+        }else{
+            System.out.println("sender cant receive");
         }
+
+//        send single message to Database
+        messageDAO.storeSingleMessage(singleMessage);
+
 
     }
 

@@ -32,6 +32,4 @@ public class Contact implements Serializable {
         this.friend_Id = friend_Id;
     }
 
-
-
 }

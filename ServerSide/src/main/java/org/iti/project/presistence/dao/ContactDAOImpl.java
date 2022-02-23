@@ -20,6 +20,7 @@ public class ContactDAOImpl implements ContactDAO{
             preparedStatement.setString(2, contact.getFriend_Id());
             preparedStatement.setString(3, contact.getStatus());
             preparedStatement.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
