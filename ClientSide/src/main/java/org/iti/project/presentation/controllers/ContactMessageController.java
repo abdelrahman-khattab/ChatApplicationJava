@@ -39,7 +39,7 @@ public class ContactMessageController implements Initializable {
     public void setGroupMessage(GroupMessage groupMessage){
         Image senderImage = ImageConverter.fromBytesToImage(groupMessage.getSender().getImage());
 //        System.out.println(senderImage+ "image coming from server after converting");
-        messageModel.setImageObjectProperty(senderImage);
+//        messageModel.setImageObjectProperty(senderImage);
         imageCircle.setFill(new ImagePattern(senderImage));
         messageBodyText.setText(groupMessage.getGroupMessageContent());
         int fontSize = groupMessage.getFontSize();
@@ -62,7 +62,7 @@ public class ContactMessageController implements Initializable {
     public void setSingleMessage(SingleMessage singleMessage){
         Image senderImage = ImageConverter.fromBytesToImage(singleMessage.getSender().getImage());
 //        System.out.println(senderImage+ "image coming from server after converting");
-        messageModel.setImageObjectProperty(senderImage);
+//        messageModel.setImageObjectProperty(senderImage);
         imageCircle.setFill(new ImagePattern(senderImage));
         messageBodyText.setText(singleMessage.getSingleMessageContent());
         int fontSize = singleMessage.getFontSize();
@@ -76,7 +76,8 @@ public class ContactMessageController implements Initializable {
         messageBodyText.setFont(msgFont);
         messageBodyText.setFill(Color.valueOf(singleMessage.getSingleMessageColor()));
         messageBodyText.setUnderline(singleMessage.isFontUnderLine());
-        LocalDateTime myDateObj = LocalDateTime.now();
+//        LocalDateTime myDateObj = LocalDateTime.now();
+        LocalDateTime myDateObj = singleMessage.getMessageCreationTime();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         String formattedDate = myDateObj.format(myFormatObj);
         messageTimeLabel.setText(formattedDate);

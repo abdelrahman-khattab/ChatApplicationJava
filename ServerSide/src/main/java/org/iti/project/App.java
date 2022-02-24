@@ -6,6 +6,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.iti.project.presistence.dao.MessageDAO;
 import org.iti.project.presistence.dao.MessageDAOImpl;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
@@ -29,6 +30,7 @@ public class App extends Application {
         RMIConnector rmiConnector = new RMIConnector();
         rmiConnector.connectRMI();
         stage.show();
+
     }
 
 

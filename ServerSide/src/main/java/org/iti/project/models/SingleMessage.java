@@ -140,7 +140,8 @@ public class SingleMessage implements Serializable {
         return "SingleMessage{" +
                 "messageId=" + messageId +
                 ", singleMessageContent='" + singleMessageContent + '\'' +
+                ", senderPhone='" + sender.getUserPhone() + '\'' +
                 ", receiverPhoneNumber='" + receiverPhoneNumber + '\'' +
-                '}';
+                '}'+"\n";
     }
 }

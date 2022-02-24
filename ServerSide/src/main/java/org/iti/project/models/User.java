@@ -3,6 +3,7 @@ package org.iti.project.models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class User  implements Serializable {
     private String userName;

@@ -138,6 +138,7 @@ public class ChatScreenController implements Initializable {
     private User currentContactedUser;
 
     private final UserModel userModel = new UserModel();
+    MessageModel messageModel = new MessageModel();
 
     public static void setController(ChatScreenController chatScreenController) {
         ChatScreenController.chatScreenController = chatScreenController;
@@ -336,7 +337,7 @@ public class ChatScreenController implements Initializable {
     }
 
     private void displayMySentSingleMessage(SingleMessage singleMessage){
-        MessageModel messageModel = new MessageModel();
+//        MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
         try {
@@ -350,7 +351,7 @@ public class ChatScreenController implements Initializable {
     }
 
     private void displayMySentGroupMessage(GroupMessage groupMessage){
-        MessageModel messageModel = new MessageModel();
+//        MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/userMessage.fxml"));
         try {
@@ -364,7 +365,7 @@ public class ChatScreenController implements Initializable {
     }
 
     public void renderGroupMessage(GroupMessage groupMessage) {
-        MessageModel messageModel = new MessageModel();
+//        MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
         try {
@@ -381,7 +382,6 @@ public class ChatScreenController implements Initializable {
     }
 
     public void renderSingleMessage(SingleMessage singleMessage) {
-        MessageModel messageModel = new MessageModel();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/contactMessage.fxml"));
         try {
@@ -522,11 +522,17 @@ public class ChatScreenController implements Initializable {
 
     }
     public void updateSingleChatScene(User currentContactedUser){
-        List<SingleMessage> singleMessageHistory = new ArrayList<>();
         Image selectedUserImage = ImageConverter.fromBytesToImage(currentContactedUser.getImage());
+        messageModel.setImageObjectProperty(selectedUserImage);
         contactImageCircle.setFill(new ImagePattern(selectedUserImage));
         contactImageLabel.setText(currentContactedUser.getUserName());
         chatVBox.getChildren().clear();
+        currentContactedGroup= new Group("#","#",null,-1);
+        previewChatHistory();
+
+    }
+    private void previewChatHistory(){
+        List<SingleMessage> singleMessageHistory = new ArrayList<>();
         try {
 
             singleMessageHistory = RMIConnector.getRmiConnector().getChattingService().fetchSingleMessageHistory(stageCoordinator.currentUser.getUserPhone(), currentContactedUser.getUserPhone());
@@ -535,7 +541,20 @@ public class ChatScreenController implements Initializable {
 
             e.printStackTrace();
         }
+        for (SingleMessage singleMessage : singleMessageHistory){
+            if (singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())
+            && currentContactedUser.getUserPhone().equals(singleMessage.getReceiverPhoneNumber())){
+                singleMessage.getSender().setImage(stageCoordinator.currentUser.getImage());
+                displayMySentSingleMessage(singleMessage);
+            }
+            else if (singleMessage.getSender().getUserPhone().equals(currentContactedUser.getUserPhone())){
+//                byte[] friend_image = ImageConverter.fromImageToBytes(messageModel.getImageObjectProperty().getUrl());
+//                singleMessage.getSender().setImage(friend_image);
+                singleMessage.getSender().setImage(currentContactedUser.getImage());
+                renderSingleMessage(singleMessage);
 
-        currentContactedGroup= new Group("#","#",null,-1);
+            }
+
+        }
     }
 }

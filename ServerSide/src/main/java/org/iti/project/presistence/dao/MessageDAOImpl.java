@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class MessageDAOImpl implements MessageDAO {
@@ -90,15 +91,16 @@ public class MessageDAOImpl implements MessageDAO {
         PreparedStatement pstmt = null;
         ResultSet resultSet = null;
         try(Connection con = DBConnector.getConnection().connect()) {
-            pstmt = con.prepareStatement("select * from message where (CREATOR_ID = ? and RECEIPENT_ID = ?) || (CREATOR_ID = ? and RECEIPENT_ID = ? ) order by MESSAGE_ID DESC   limit 5;");
+            pstmt = con.prepareStatement("select * from message where (CREATOR_ID = ? and RECEIPENT_ID = ?) || (CREATOR_ID = ? and RECEIPENT_ID = ? ) order by MESSAGE_ID DESC   limit 15;");
             pstmt.setString(1,senderPhone);
             pstmt.setString(2,receiverPhone);
             pstmt.setString(3,receiverPhone);
             pstmt.setString(4,senderPhone);
 
             resultSet = pstmt.executeQuery();
-            User sender = new User();
+
             while(resultSet.next()){
+                User sender = new User();
                 SingleMessage singleMessage = new SingleMessage();
                 singleMessage.setMessageId(resultSet.getInt(1));
                 singleMessage.setSingleMessageContent(resultSet.getString(2));
@@ -118,9 +120,11 @@ public class MessageDAOImpl implements MessageDAO {
 
             }
 
-        singleMessageHistory.sort((a,b)->{
-             return a.getMessageId() - b.getMessageId();
+
+            singleMessageHistory.sort((a,b)->{
+             return a.getMessageId()-b.getMessageId();
         });
+
 
 
 
