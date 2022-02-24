@@ -1,46 +1,50 @@
 package org.iti.project.presentation.controllers;
 
-import javafx.event.ActionEvent;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
+import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
+import org.iti.project.models.User;
+import org.iti.project.util.ImageConverter;
+
+import java.io.File;
+import java.io.IOException;
 
 public class FriendRequestNotificationController {
 
     @FXML
-    private Button accept;
+    private ListView<User> requestLV;
+    public ObservableList<User> contactObservableList;
+    byte[] user1;
+    public void initialize() throws IOException {
 
-    @FXML
-    private Circle contactImage;
+        contactObservableList = FXCollections.observableArrayList();
+        //get Image
 
-    @FXML
-    private HBox contactInfoHBox;
+        File file=new FileChooser().showOpenDialog(null);
+        user1= ImageConverter.fromImageToBytes(file.getPath());
 
-    @FXML
-    private Label contactName;
+        contactObservableList.addAll(
+                new User("Eima Ross","01014607733",user1),
+                new User("Terabithia ","0100040613",user1)
+        );
 
-    @FXML
-    private Label contactName1;
 
-    @FXML
-    private Label contactNumber;
+        requestLV.setItems(contactObservableList);
+        requestLV.setCellFactory(groupListView -> new ContactRequestListCell());
+        requestLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
 
-    @FXML
-    private Label errorsLbl;
+            @Override
+            public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
 
-    @FXML
-    private Button reject;
 
-    @FXML
-    void acceptFriendRequest(ActionEvent event) {
+            }
 
-    }
-
-    @FXML
-    void rejectFriendRequest(ActionEvent event) {
+        });
 
     }
-
 }

@@ -20,11 +20,20 @@
             <HBox alignment="CENTER_LEFT">
                <children>
                   <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Contact List" textFill="#181d31" />
-                  <Button fx:id="addContactBtn" mnemonicParsing="false" style="-fx-background-color: #00000000;" onAction="#addContact" styleClass="mouse-hand" stylesheets="@Styles/mainscreen.css">
+                  <Button fx:id="showRequestsBtn" mnemonicParsing="false" onAction="#showRequests" style="-fx-background-color: #00000000;" styleClass="mouse-hand" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/add.png" />
+                              <Image url="@images/notification%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="addContactBtn" mnemonicParsing="false" onAction="#addContact" style="-fx-background-color: #00000000;" styleClass="mouse-hand" stylesheets="@Styles/mainscreen.css">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/add-friend%20(3).png" />
                            </image>
                         </ImageView>
                      </graphic>

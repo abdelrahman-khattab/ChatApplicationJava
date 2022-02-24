@@ -7,14 +7,17 @@
     -blackcolor: #000000;
     -whitecolor: #ffffff;
     -whiteColorTransparent:#E1E9F1;
-    -transparnt-bg:#e6ebf5;
+
     -fontColor:#495057;
     -iconColor:#a6b0cf;
     -test:#57837B;
     -primaryBgColor:#303841;
     -secondBgColor:#36404A;
     -purpleColor:#7269EF;
+    -transparnt-bg:#e6ebf5;
+    -notificationColorBg:#F5F7FB;
     -fx-font-family: Public Sans,sans-serif;
+
 }
 .vBox{
     -fx-background-color:-primaryBgColor;
@@ -24,6 +27,29 @@
 }
 .fontColor{
     -fx-text-fill: -whiteColorTransparent;
+}
+.notificationBg{
+-fx-background-color:-notificationColorBg;
+}
+
+.notificationText{
+ -fx-text-fill: #495057;
+ -fx-font-weight:bold;
+  -fx-font-size: 18px;
+}
+
+
+
+.notificationHeader{
+-fx-text-fill: #495057;
+    -fx-font-weight:bold;
+    -fx-font-size: 15px;
+    -fx-font-style:italic;
+}
+
+.secondNotificationHeader{
+-fx-text-fill: #7a7f9a;
+    -fx-font-size: 14px;
 }
 
 
@@ -74,15 +100,15 @@
 }
 .btn{
     -fx-font-family: Public Sans,sans-serif;
-    -fx-background-color: -secondarycolor;
-    -fx-text-fill:-whitecolor;
+    -fx-background-color: -primaryBgColor;
+    -fx-text-fill:-whiteColorTransparent;
     -fx-font-size: 14px;
     -fx-font-weight:bold;
 }
 .btnRev{
     -fx-font-family: Public Sans,sans-serif;
-    -fx-background-color: -whitecolor;
-    -fx-text-fill:-secondarycolor;
+    -fx-background-color: -whiteColorTransparent;
+    -fx-text-fill:-secondBgColor;
     -fx-font-size: 14px;
     -fx-font-weight:bold;
 }
@@ -101,6 +127,15 @@
 .hBox:hover{
  -fx-background-color: -secondBgColor
 }
+
+.hBoxWhite:hover{
+-fx-background-color: #495057;
+}
+
+
+
+
+
 .searchFontColor{
 -fx-fill: -secondarycolor;
 }
@@ -114,6 +149,14 @@
 .list-cell:odd { -fx-background-color: #00000000; }
 .list-cell:even { -fx-background-color: #00000000;}
 .list-cell:selected{
+    -fx-background-color: -whiteColorTransparent;
+    -fx-text-fill: -primaryBgColor;
+}
+
+.list-cell-white { -fx-background-color: #00000000;}
+.list-cell-white:odd { -fx-background-color: #00000000; }
+.list-cell-white:even { -fx-background-color: #00000000;}
+.list-cell-white:selected{
     -fx-background-color: -whiteColorTransparent;
     -fx-text-fill: -primaryBgColor;
 }
