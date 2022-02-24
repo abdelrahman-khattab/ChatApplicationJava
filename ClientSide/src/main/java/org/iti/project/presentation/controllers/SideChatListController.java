@@ -70,6 +70,7 @@ public class SideChatListController {
 
     public ObservableList<User> contactChatObservableList;
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
+    private final SideContactListController sideContactListController = SideContactListController.getInstance();
 
     byte[] user1;
 
@@ -85,17 +86,17 @@ public class SideChatListController {
 
     public void initialize() throws IOException {
 
-        contactChatObservableList = FXCollections.observableArrayList();
-        //get Image
-        File file=new FileChooser().showOpenDialog(null);
-        user1=ImageConverter.fromImageToBytes(file.getPath());
+//        contactChatObservableList = FXCollections.observableArrayList();
+//        //get Image
+//        File file=new FileChooser().showOpenDialog(null);
+//        user1=ImageConverter.fromImageToBytes(file.getPath());
+//
+//        contactChatObservableList.addAll(
+//                new User("Mohamed Alaa",user1 ,"online",2 , "01111111111"),
+//                new User("saly ",user1,"offine",4,"01111111113")
+//        );
 
-        contactChatObservableList.addAll(
-                new User("Mohamed Alaa",user1 ,"online",2 , "01111111111"),
-                new User("saly ",user1,"offine",4,"01111111113")
-        );
-
-        contactinfoLV.setItems(contactChatObservableList);
+        contactinfoLV.setItems(sideContactListController.contactObservableList);
         contactinfoLV.setCellFactory(groupListView -> new ContactsChatInfoListCellController());
         contactinfoLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
 

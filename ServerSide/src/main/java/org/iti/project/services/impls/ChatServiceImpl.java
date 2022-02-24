@@ -13,9 +13,6 @@ import org.iti.project.services.interfaces.ClientCallBackInt;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,11 +48,12 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
         if(userPhones != null && userPhones.size()>0){
             for (String userPhone : userPhones){
                 ClientCallBackInt clientCallBack =  onlineClients.get(userPhone);
-                if (clientCallBack != null ){
+                if (clientCallBack != null && !userPhone.equals(groupMessage.getSender().getUserPhone())){
                     clientCallBack.receiveGroupMessage(groupMessage);
                 }
             }
         }
+        messageDAO.storeGroupMessage(groupMessage);
     }
 
     @Override
@@ -70,16 +68,18 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
         if (clientCallBack != null ){
             clientCallBack.receiveSingleMessage(singleMessage);
         }
-        clientCallBack = onlineClients.get(senderPhoneNumber);
-        if (clientCallBack != null ){
-            clientCallBack.receiveSingleMessage(singleMessage);
-        }
+//        clientCallBack = onlineClients.get(senderPhoneNumber);
+//        if (clientCallBack != null ){
+//            clientCallBack.receiveSingleMessage(singleMessage);
+//        }
+        messageDAO.storeSingleMessage(singleMessage);
 
     }
 
     @Override
     public List<SingleMessage> fetchSingleMessageHistory(String senderPhone, String receiverPhone){
         List<SingleMessage> singleMessageHistory = new ArrayList<>();
+        messageDAO.restoreSingleMessages(senderPhone,receiverPhone);
 
         return singleMessageHistory;
     }

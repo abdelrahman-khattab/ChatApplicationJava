@@ -22,6 +22,7 @@ import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
+import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.util.ImageConverter;
 
 import java.io.File;
@@ -46,6 +47,7 @@ public class SideContactListController {
     private ScrollPane secondPane;
 
     private static SideContactListController sideContactListController;
+    private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
 
     public static void setController(SideContactListController sideContactListController){
         SideContactListController.sideContactListController = sideContactListController;
@@ -78,22 +80,22 @@ public class SideContactListController {
 
     }
 
-    public static ObservableList<User> contactObservableList;
-    byte[] user1;
-    byte[] user2;
+    public ObservableList<User> contactObservableList;
+//    byte[] user1;
+//    byte[] user2;
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     private final UserModel userModel = modelFactory.getUserModel();
     public void initialize() throws IOException {
 
         contactObservableList = FXCollections.observableArrayList();
         //get Image
-        File file=new FileChooser().showOpenDialog(null);
-        user1= ImageConverter.fromImageToBytes(file.getPath());
+//        File file=new FileChooser().showOpenDialog(null);
+//        user1= ImageConverter.fromImageToBytes(file.getPath());
        // userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
 
-        User currentUrs = new User();
-        currentUrs.setUserPhone(userModel.getPhoneNo());
-        contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
+        User currentUser = new User();
+        currentUser.setUserPhone(stageCoordinator.currentUser.getUserPhone());
+        contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUser));
         contactsLV.setItems(contactObservableList);
         contactsLV.setCellFactory(groupListView -> new ContactsInfoListCellController());
         contactsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {

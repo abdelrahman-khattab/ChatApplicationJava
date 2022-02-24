@@ -81,7 +81,7 @@ public class MessageDAOImpl implements MessageDAO {
 
 
     @Override
-    public List<SingleMessage> restoreSingleMessages() {
+    public List<SingleMessage> restoreSingleMessages(String senderPhone , String receiverPhone) {
         List<SingleMessage> singleMessageHistory = new ArrayList<>();
         PreparedStatement psttmnt = null;
         try(Connection con = DBConnector.getConnection().connect()) {

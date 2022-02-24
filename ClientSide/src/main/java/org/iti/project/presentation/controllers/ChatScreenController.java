@@ -283,7 +283,7 @@ public class ChatScreenController implements Initializable {
                 if(isGroup) {
                     GroupMessage sentMessage = createGroupMessage();
                     displayMySentGroupMessage(sentMessage);
-                    RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(createGroupMessage());
+                    RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(sentMessage);
                 }
                 else {
                     SingleMessage sentMessage = createSingleMessage();
@@ -303,12 +303,16 @@ public class ChatScreenController implements Initializable {
         if (!isGroup && singleMessage.getSender().getUserPhone().equals(currentContactedUser.getUserPhone())){
             renderSingleMessage(singleMessage);
         }
-        else if(!singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
+//        else if(!singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
+        else{
             System.out.println(singleMessage.getSingleMessageContent() + "ana geet bs msh httb3 3ashan ana gaya mn " +
                     singleMessage.getSender().getUserName() +
                     "wnta btklm " + currentContactedUser.getUserName());
-            Notifications.create().position(Pos.TOP_CENTER).text(singleMessage.getSingleMessageContent() + " from "+
+            Notifications.create().position(Pos.TOP_CENTER)
+                    .text(singleMessage.getSingleMessageContent() + " from "+
                     singleMessage.getSender().getUserName())
+                    .title("Single Message Notification")
+                    .darkStyle()
                     .showInformation();
         }
 
@@ -319,10 +323,15 @@ public class ChatScreenController implements Initializable {
             renderGroupMessage(groupMessage);
         }
         else if(!groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
-            System.out.println(groupMessage.getGroupMessageContent() + " ana geet bs msh httb3 3ashan ana gaya mn " + groupMessage.getSender().getUserName() +
+            System.out.println(groupMessage.getGroupMessageContent() +
+                    " ana geet bs msh httb3 3ashan ana gaya mn " + groupMessage.getSender().getUserName() +
                     "wnta btklm" + currentContactedUser.getUserName());
-            Notifications.create().position(Pos.TOP_CENTER).text(groupMessage.getGroupMessageContent() + " from "+
+            Notifications.create()
+                    .position(Pos.TOP_CENTER)
+                    .text(groupMessage.getGroupMessageContent() + " from "+
                             groupMessage.getSender().getUserName())
+                    .title("Group Message Notification")
+                    .darkStyle()
                     .showInformation();
         }
 

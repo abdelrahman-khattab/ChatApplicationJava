@@ -63,11 +63,11 @@ public class ContactsChatInfoListCellController extends ListCell<User> {
             contactImageContactBar.setFill(new ImagePattern(userImage));
             mesaageNumbersContactBar.setText(String.valueOf(user.getUnsavedMessageCount()));
             userStatus=user.getStatus();
-            if(userStatus.equalsIgnoreCase("online"))
-                contactStatusContactBar.setFill(Color.rgb(39,93,16));
-            if(userStatus.equalsIgnoreCase("offline"))
-                contactStatusContactBar.setFill(Color.rgb(128,125,125));
-
+//            if(userStatus.equalsIgnoreCase("online"))
+//                contactStatusContactBar.setFill(Color.rgb(39,93,16));
+//            if(userStatus.equalsIgnoreCase("offline"))
+//                contactStatusContactBar.setFill(Color.rgb(128,125,125));
+//
 
 
             setGraphic(contactInfoHBox);
