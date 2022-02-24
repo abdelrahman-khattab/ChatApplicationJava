@@ -40,6 +40,10 @@ public class Group implements Serializable {
         this.description = description;
     }
 
+    public Group(String groupName) {
+        this.groupName = groupName;
+    }
+
     public int getGroupId() {
         return groupId;
     }
