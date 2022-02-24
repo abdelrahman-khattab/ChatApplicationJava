@@ -135,4 +135,12 @@ public class SingleMessage implements Serializable {
         return Objects.hash(messageId);
     }
 
+    @Override
+    public String toString() {
+        return "SingleMessage{" +
+                "messageId=" + messageId +
+                ", singleMessageContent='" + singleMessageContent + '\'' +
+                ", receiverPhoneNumber='" + receiverPhoneNumber + '\'' +
+                '}';
+    }
 }

@@ -113,8 +113,6 @@ public class SideChatListController {
                         " from sideChatListview I am the phone number");
 
 
-
-
             }
 
         });

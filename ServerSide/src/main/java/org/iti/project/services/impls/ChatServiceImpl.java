@@ -78,8 +78,11 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
 
     @Override
     public List<SingleMessage> fetchSingleMessageHistory(String senderPhone, String receiverPhone){
+
         List<SingleMessage> singleMessageHistory = new ArrayList<>();
-        messageDAO.restoreSingleMessages(senderPhone,receiverPhone);
+
+        // Get All Messages between sender and receiver and vice versa
+        singleMessageHistory = messageDAO.restoreSingleMessages(senderPhone,receiverPhone);
 
         return singleMessageHistory;
     }

@@ -31,9 +31,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ChatScreenController implements Initializable {
 
@@ -519,16 +517,25 @@ public class ChatScreenController implements Initializable {
         contactImageCircle.setFill(new ImagePattern(newGroupImage));
         contactImageLabel.setText(name);
         chatVBox.getChildren().clear();
-        //RMIConnector.getRmiConnector().getChattingService().fetchMessagesHistory(String senderPhone , int group_id);
+//        RMIConnector.getRmiConnector().getChattingService().fetchMessagesHistory(String senderPhone , int group_id);
         currentContactedUser = new User("#","#",null);
 
     }
     public void updateSingleChatScene(User currentContactedUser){
+        List<SingleMessage> singleMessageHistory = new ArrayList<>();
         Image selectedUserImage = ImageConverter.fromBytesToImage(currentContactedUser.getImage());
         contactImageCircle.setFill(new ImagePattern(selectedUserImage));
         contactImageLabel.setText(currentContactedUser.getUserName());
         chatVBox.getChildren().clear();
-        //RMIConnector.getRmiConnector().getChattingService().fetchSingleMessagesHistory(String senderPhone , String receiverPhone);
+        try {
+
+            singleMessageHistory = RMIConnector.getRmiConnector().getChattingService().fetchSingleMessageHistory(stageCoordinator.currentUser.getUserPhone(), currentContactedUser.getUserPhone());
+            System.out.println(" All Old messages  : "+ singleMessageHistory);
+        } catch (RemoteException e) {
+
+            e.printStackTrace();
+        }
+
         currentContactedGroup= new Group("#","#",null,-1);
     }
 }

@@ -2,10 +2,13 @@ package org.iti.project.presistence.dao;
 import org.iti.project.models.GroupMessage;
 
 import org.iti.project.models.SingleMessage;
+import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +33,6 @@ public class MessageDAOImpl implements MessageDAO {
             if(message.isFontUnderLine()){
                 is_underline = 1;
             }
-
             pstmt = con.prepareStatement("insert into message(BODY,CREATOR_ID,RECEIPENT_ID,message_color,font_familly,font_posture,font_weight,font_size,font_underline) values(?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1,message.getSingleMessageContent());
             pstmt.setString(2,message.getSender().getUserPhone());
@@ -42,8 +44,10 @@ public class MessageDAOImpl implements MessageDAO {
             pstmt.setInt(8,message.getFontSize());
             pstmt.setInt(9,is_underline);
             boolean executed = pstmt.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 
@@ -83,13 +87,50 @@ public class MessageDAOImpl implements MessageDAO {
     @Override
     public List<SingleMessage> restoreSingleMessages(String senderPhone , String receiverPhone) {
         List<SingleMessage> singleMessageHistory = new ArrayList<>();
-        PreparedStatement psttmnt = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
         try(Connection con = DBConnector.getConnection().connect()) {
-            psttmnt = con.prepareStatement("select ");
+            pstmt = con.prepareStatement("select * from message where (CREATOR_ID = ? and RECEIPENT_ID = ?) || (CREATOR_ID = ? and RECEIPENT_ID = ? ) order by MESSAGE_ID DESC   limit 5;");
+            pstmt.setString(1,senderPhone);
+            pstmt.setString(2,receiverPhone);
+            pstmt.setString(3,receiverPhone);
+            pstmt.setString(4,senderPhone);
+
+            resultSet = pstmt.executeQuery();
+            User sender = new User();
+            while(resultSet.next()){
+                SingleMessage singleMessage = new SingleMessage();
+                singleMessage.setMessageId(resultSet.getInt(1));
+                singleMessage.setSingleMessageContent(resultSet.getString(2));
+                singleMessage.setMessageCreationTime(resultSet.getTimestamp(3).toLocalDateTime());
+                sender.setUserPhone(resultSet.getString(4));
+                singleMessage.setSender(sender);
+                singleMessage.setReceiverPhoneNumber(resultSet.getString(5));
+                singleMessage.setSingleMessageColor(resultSet.getString(7));
+                singleMessage.setFontFamily(resultSet.getString(8));
+                singleMessage.setFontPosture(resultSet.getString(9));
+                singleMessage.setFontWeight(resultSet.getString(10));
+                singleMessage.setFontSize(resultSet.getInt(11));
+                singleMessage.setFontUnderLine(resultSet.getBoolean(12));
+
+                // adding all Single Message Chat to List
+                singleMessageHistory.add(singleMessage);
+
+            }
+
+        singleMessageHistory.sort((a,b)->{
+             return a.getMessageId() - b.getMessageId();
+        });
+
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // to return all messages with descending order
         return singleMessageHistory;
+
     }
 
 }
