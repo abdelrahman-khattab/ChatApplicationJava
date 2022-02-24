@@ -35,6 +35,7 @@ public class RequestDAOImpl implements RequestDAO{
     @Override
     public boolean selectUser(User user1 , User user2) {
         ResultSet resultSet;
+        System.out.println("inside Select user in RequestDAO");
         try(Connection con = DBConnector.getConnection().connect()) {
             PreparedStatement preparedStatement = con.prepareStatement("SELECT requester_id , responder_id FROM request_friend where (requester_id = ? AND responder_id = ?) OR (requester_id = ? AND responder_id = ?)");
             preparedStatement.setString(1,user1.getUserPhone());
