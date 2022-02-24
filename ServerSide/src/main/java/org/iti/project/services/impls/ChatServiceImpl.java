@@ -33,6 +33,7 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
     public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException {
         System.out.println("your groupMessage received from server");
         int groupId = groupMessage.getGroupId();
+        
         List<String> userPhones = new ArrayList<>();
              userPhones = groupDAO.findUsersPhoneByGroupId(groupId);
 //        try {
