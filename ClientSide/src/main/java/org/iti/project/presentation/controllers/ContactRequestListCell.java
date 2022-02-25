@@ -14,10 +14,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import org.iti.project.models.User;
+import org.iti.project.network.RMIConnector;
+import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.util.ImageConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class ContactRequestListCell extends ListCell<User>  implements Initializable {
@@ -42,14 +46,27 @@ public class ContactRequestListCell extends ListCell<User>  implements Initializ
 
     public FXMLLoader fxmlLoader;
     Image userImage;
-
+    private final ModelFactory modelFactory = ModelFactory.getModelFactory();
+    private final UserModel userModel = modelFactory.getUserModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accept.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("accept");
+                User secUser = new User();
+                User mainUser = new User();
+                mainUser.setUserPhone(userModel.getPhoneNo());
+                secUser.setUserPhone(contactNumber.getText());
+
+
+                try {
+                    RMIConnector.getRmiConnector().getContactService().acceptContact(mainUser,secUser);
+                    System.out.println("accepted");
+
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
         });
         reject.setOnAction(new EventHandler<ActionEvent>() {
