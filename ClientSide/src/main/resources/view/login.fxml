@@ -30,7 +30,7 @@
       <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="12.0" prefWidth="470.0" />
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <TextField fx:id="userPhone" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#enterPhoneNumber" promptText="Phone Number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
+            <TextField fx:id="userPhone" alignment="CENTER" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#enterPhoneNumber" promptText="Phone Number" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="The Number Should conatain 11 Digits " />
                </tooltip></TextField>
@@ -42,7 +42,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="217.0" prefHeight="50.0" prefWidth="470.0" styleClass="tfBox" stylesheets="@Styles/formStyle.css">
          <children>
-            <PasswordField fx:id="password" alignment="CENTER" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
+            <PasswordField fx:id="password" alignment="CENTER" focusTraversable="false" onKeyTyped="#enterPassword" promptText="Password" styleClass="tfinput" stylesheets="@Styles/formStyle.css" HBox.hgrow="ALWAYS" />
             <FontAwesomeIconView fx:id="passwordIcon" glyphName="LOCK" size="1.7em" styleClass="icon" />
          </children>
          <VBox.margin>

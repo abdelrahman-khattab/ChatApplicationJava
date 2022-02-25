@@ -10,39 +10,45 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class RMIConnector {
+    private Registry reg;
     public void connectRMI(){
         try {
 
-//<<<<<<< HEAD
-//            SignUpInt signUpObj = new SignUpImpl();
-//            LogInInt logInObj = new LogInImpl();
-//            ChatServiceInt chatServiceObj = new ChatServiceImpl();
-//=======
-//            Registry registry = LocateRegistry.createRegistry(1099);
-            SignUpInt signUpObj = new SignUpImpl();
-            SignInInt signInObj = new SignInImpl();
-            LogInInt logInObj = new LogInImpl();
-            ChatServiceInt chatServiceObj = new ChatServiceImpl();
-            SignOutInt signOutObj = new SignOutImpl();
-            ContactInt contactObj=new ContactImpl();
 
-//>>>>>>> 3d670fcfaf68ca90f7d9cd3e7567c4793bfe4e0d
+            reg = LocateRegistry.createRegistry(1099);
+        } catch (RemoteException e) {
+            try {
+                reg = LocateRegistry.getRegistry(1099);
+            } catch (RemoteException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try{
 
-            Naming.rebind(signUpObj.lookupName, signUpObj);
-            System.out.println(" SignUp Bounded! ");
-            Naming.rebind(logInObj.lookupName, logInObj);
-            System.out.println(" loginUp Bounded! ");
-            Naming.rebind(chatServiceObj.lookupName, chatServiceObj);
-            System.out.println(" chatService Bounded! ");
-            Naming.rebind(signInObj.lookupName, signInObj);
-            System.out.println(" signinservice Bounded! ");
-            Naming.rebind(signOutObj.lookupName, signOutObj);
-            System.out.println(" chatsignout Service Bounded! ");
-            Naming.rebind(contactObj.lookupName,contactObj);
-            System.out.println("ContactService Bounded");
+                SignUpInt signUpObj = new SignUpImpl();
+                SignInInt signInObj = new SignInImpl();
+                LogInInt logInObj = new LogInImpl();
+                ChatServiceInt chatServiceObj = new ChatServiceImpl();
+                SignOutInt signOutObj = new SignOutImpl();
+                ContactInt contactObj=new ContactImpl();
 
-        } catch (RemoteException | MalformedURLException e) {
-            e.printStackTrace();
+                reg.rebind(signUpObj.lookupName, signUpObj);
+                System.out.println(" SignUp Bounded! ");
+                reg.rebind(logInObj.lookupName, logInObj);
+                System.out.println(" loginUp Bounded! ");
+                reg.rebind(chatServiceObj.lookupName, chatServiceObj);
+                System.out.println(" chatService Bounded! ");
+                reg.rebind(signInObj.lookupName, signInObj);
+                System.out.println(" signinservice Bounded! ");
+                reg.rebind(signOutObj.lookupName, signOutObj);
+                System.out.println(" chatsignout Service Bounded! ");
+                reg.rebind(contactObj.lookupName,contactObj);
+                System.out.println("ContactService Bounded");
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
+
+
     }
 }

@@ -3,6 +3,9 @@ package org.iti.project.presentation.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.stage.WindowEvent;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -37,6 +40,11 @@ public class LoginController implements Initializable {
         UserModel userModel = modelFactory.getUserModel();
         userNameTextField.textProperty().bindBidirectional(userModel.userUserNameProperty());
         passwordPasswordField.textProperty().bindBidirectional(userModel.userPasswordProperty());
+        stageCoordinator.getPrimaryStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }});
 
 
     }
