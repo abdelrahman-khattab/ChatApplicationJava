@@ -52,6 +52,19 @@
     -fx-font-size: 14px;
 }
 
+.specialNotificationHeader{
+-fx-text-fill:#495057;
+     -fx-font-weight:bold;
+        -fx-font-size: 13px;
+        -fx-font-style:italic;
+}
+
+.specialsNotificationHeader{
+-fx-text-fill:#495057;
+     -fx-font-weight:bold;
+        -fx-font-size: 12px;
+        -fx-font-style:italic;
+}
 
 .headerFont{
     -fx-text-fill: -whiteColorTransparent;
@@ -99,10 +112,11 @@
     
 }
 .btn{
+    -fx-font-size: 14px;
     -fx-font-family: Public Sans,sans-serif;
     -fx-background-color: -primaryBgColor;
     -fx-text-fill:-whiteColorTransparent;
-    -fx-font-size: 14px;
+
     -fx-font-weight:bold;
 }
 .btnRev{
@@ -157,6 +171,50 @@
 .list-cell-white:odd { -fx-background-color: #00000000; }
 .list-cell-white:even { -fx-background-color: #00000000;}
 .list-cell-white:selected{
-    -fx-background-color: -whiteColorTransparent;
+    -fx-background-color: -primaryBgColor;
     -fx-text-fill: -primaryBgColor;
 }
+
+.check-box {
+    /* default properties */
+    selected-box-color: #7269EF;
+    box-color: #E1E9F1;
+    mark-color: #E1E9F1;
+}
+
+.check-box:selected > .box {
+    /* background color for selected checkbox */
+    -fx-background-color: selected-box-color;
+}
+
+.check-box > .box {
+    /* background color of unselected checkbox */
+    -fx-background-color: box-color;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: mark-color;
+}
+.btnNotification{
+-fx-font-weight:bold;
+-fx-background-color:#7269EF;
+-fx-border-radius:5;
+-fx-font-size: 14px;
+ -fx-font-family: Public Sans,sans-serif;
+-fx-text-fill:#E1E9F1;
+-fx-background-radius:7;
+          -fx-border-radius:7;
+}
+.btnNotification:hover{
+          -fx-font-weight:bold;
+          -fx-background-color:#E1E9F1;
+          -fx-background-radius:7;
+          -fx-border-radius:7;
+          -fx-font-size: 14px;
+          -fx-font-family: Public Sans,sans-serif;
+          -fx-text-fill:#7269EF;
+          -fx-border-width:2;
+          -fx-border-color:#7269EF;
+ }
