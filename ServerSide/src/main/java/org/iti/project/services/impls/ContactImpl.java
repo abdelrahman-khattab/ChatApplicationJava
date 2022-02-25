@@ -30,7 +30,7 @@ public class ContactImpl extends UnicastRemoteObject implements ContactInt {
 
             UserDAOImpl returnUser = new UserDAOImpl();
             User getUser = new User();
-            getUser = returnUser.selectRowUser(responserUser);
+            getUser = returnUser.checkUser(responserUser);
 
             if(getUser!=null)
             {
@@ -43,6 +43,7 @@ public class ContactImpl extends UnicastRemoteObject implements ContactInt {
                     requestList = requestDAO.selectListRequestUser(responserUser);
                     clientCallBack.getRequestListOfFriends(requestList);
                 }
+
                 return true;
             }
             else

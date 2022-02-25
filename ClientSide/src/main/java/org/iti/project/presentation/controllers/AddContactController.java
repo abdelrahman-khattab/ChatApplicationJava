@@ -9,7 +9,6 @@ import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
-import org.iti.project.presentation.util.StageCoordinator;
 
 import java.rmi.RemoteException;
 
@@ -36,7 +35,7 @@ public class AddContactController {
             errorsLbl.setText("You can't add yourself !!!!!");
 
         }
-        else {
+        else if (SideContactListController.contactObservableList.size()>0){
             for (User usr:SideContactListController.contactObservableList) {
 
                 if(usr.getUserPhone().equals(userPhoneCheck))
@@ -60,7 +59,24 @@ public class AddContactController {
                 }
             }
         }
+
+        else {
+                User secUser = new User();
+                User mainUser = new User();
+                mainUser.setUserPhone(userModel.getPhoneNo());
+                secUser.setUserPhone(phoneNumberTf.getText());
+                try {
+                    System.out.println("ana gowa add");
+                    RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
+                } catch (RemoteException e) {
+                    System.out.println("fy moshkela");
+                    e.printStackTrace();
+                }
+                errorsLbl.setText("the request send");
+
+            }
+        }
     }
 
 
-}
+
