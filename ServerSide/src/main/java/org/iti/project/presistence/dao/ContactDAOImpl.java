@@ -19,7 +19,6 @@ public class ContactDAOImpl implements ContactDAO{
         try(Connection con = DBConnector.getConnection().connect()) {
             PreparedStatement preparedStatement = con.prepareStatement("select distinct phone_number , USER_NAME , IMAGE from user , contacts where PHONE_NUMBER IN (select friend_id from contacts where user_id = ? ) ");
             preparedStatement.setString(1,userPhone);
-            preparedStatement.setString(2,userPhone);
             resultSet=preparedStatement.executeQuery();
             while (resultSet.next()){
                 Blob userBlopImage = resultSet.getBlob(3);

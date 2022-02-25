@@ -35,6 +35,7 @@ public class RequestDAOImpl implements RequestDAO{
     @Override
     public boolean selectUser(User user1 , User user2) {
         ResultSet resultSet;
+        System.out.println("inside Select user in RequestDAO");
         try(Connection con = DBConnector.getConnection().connect()) {
             PreparedStatement preparedStatement = con.prepareStatement("SELECT requester_id , responder_id FROM request_friend where (requester_id = ? AND responder_id = ?) OR (requester_id = ? AND responder_id = ?)");
             preparedStatement.setString(1,user1.getUserPhone());
@@ -91,9 +92,15 @@ public class RequestDAOImpl implements RequestDAO{
                 while (resultSet.next())
                 {
                     Blob userBlopImage = resultSet.getBlob(3);
-                    returnRequestList.get(iterator).setUserPhone(resultSet.getString(1));
-                    returnRequestList.get(iterator).setUserName(resultSet.getString(2));
-                    returnRequestList.get(iterator).setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+                    //adding directly in list by using new user with constructor of 3 parameteres
+                    returnRequestList.add(new User(resultSet.getString(2),resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
+
+                    //returnRequestList.get(iterator).setUserPhone(resultSet.getString(1));
+                    //returnRequestList.get(iterator).setUserName(resultSet.getString(2));
+                    //returnRequestList.get(iterator).setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+
+                    //out of bound exception due to increasing iterator
+                    //iterator++;
                 }
                 return  returnRequestList;
             }

@@ -12,5 +12,7 @@ public interface ContactInt extends Remote {
     public boolean addContact(User requesterUser , User responserUser ) throws RemoteException;
     public void rejectContact(User mainUser , User secoundryUser) throws RemoteException;
     public ArrayList<User> acceptContact(User mainUser , User secoundryUser) throws RemoteException;
+    public ArrayList<User> requestListFriends(User mainUser) throws RemoteException;
+
 
 }
