@@ -94,6 +94,7 @@ public class RequestDAOImpl implements RequestDAO{
                     returnRequestList.get(iterator).setUserPhone(resultSet.getString(1));
                     returnRequestList.get(iterator).setUserName(resultSet.getString(2));
                     returnRequestList.get(iterator).setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+                    iterator++;
                 }
                 return  returnRequestList;
             }

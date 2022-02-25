@@ -93,7 +93,7 @@ public class SideContactListController {
 
 User currentUrs = new User();
 currentUrs.setUserPhone(userModel.getPhoneNo());
-  //      contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
+       contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
         contactObservableList.addAll(new User("1234","1234",user1));
         contactsLV.setItems(contactObservableList);
         contactsLV.setCellFactory(groupListView -> new ContactsInfoListCellController());

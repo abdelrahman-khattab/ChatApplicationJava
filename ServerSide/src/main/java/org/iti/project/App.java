@@ -38,10 +38,8 @@ public class App extends Application {
         Connection conn = DBConnector.getConnection().connect();
         RequestDAOImpl requestDAO = new RequestDAOImpl();
         User user1 = new User();
-        user1.setUserPhone("122j");
-        User user2 = new User();
-        user2.setUserPhone("0165457");
-        System.out.println("insert result : "+requestDAO.insertRequest(user1,user2));
+        user1.setUserPhone("01157665457");
+        requestDAO.selectListRequestUser(user1);
         launch();
     }
 

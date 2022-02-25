@@ -17,11 +17,6 @@ public class RMIConnector {
     public void connectRMI(){
         try {
 
-//<<<<<<< HEAD
-//            SignUpInt signUpObj = new SignUpImpl();
-//            LogInInt logInObj = new LogInImpl();
-//            ChatServiceInt chatServiceObj = new ChatServiceImpl();
-//=======
             SignUpInt signUpObj = new SignUpImpl();
             SignInInt signInObj = new SignInImpl();
             LogInInt logInObj = new LogInImpl();
@@ -30,7 +25,6 @@ public class RMIConnector {
             ContactInt contactObj=new ContactImpl();
 
 
-//>>>>>>> 3d670fcfaf68ca90f7d9cd3e7567c4793bfe4e0d
 
             Naming.rebind(signUpObj.lookupName, signUpObj);
             System.out.println(" SignUp Bounded! ");

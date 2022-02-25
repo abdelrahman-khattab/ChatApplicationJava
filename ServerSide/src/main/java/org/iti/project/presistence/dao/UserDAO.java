@@ -8,4 +8,5 @@ public interface UserDAO extends DAO
     User selectUser(User user);
     boolean updateUser(User user);
     boolean deleteUser(User user);
+    public User selectRowUser(User user);
 }

@@ -6,9 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.iti.project.models.User;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
+
+import java.rmi.RemoteException;
 
 public class AddContactController {
 
@@ -41,6 +44,17 @@ public class AddContactController {
                     errorsLbl.setText("this is already friend !!");
                 }
                 else {
+                    User secUser = new User();
+                    User mainUser = new User();
+                    mainUser.setUserPhone(userModel.getPhoneNo());
+                    secUser.setUserPhone(phoneNumberTf.getText());
+                    try {
+                        System.out.println("ana gowa add");
+                        RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
+                    } catch (RemoteException e) {
+                        System.out.println("fy moshkela");
+                        e.printStackTrace();
+                    }
                     errorsLbl.setText("the request send");
 
                 }
