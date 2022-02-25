@@ -30,12 +30,13 @@ public class AddContactController {
     void handleAddContactBtn(ActionEvent event) {
         String userPhoneCheck = phoneNumberTf.getText();
         System.out.println("outside");
+        System.out.println(SideContactListController.contactObservableList);
         if (userModel.getPhoneNo().equals(phoneNumberTf.getText()))
         {
             errorsLbl.setText("You can't add yourself !!!!!");
 
         }
-        else if (SideContactListController.contactObservableList.size()>0){
+        else if (!SideContactListController.contactObservableList.isEmpty()){
             for (User usr:SideContactListController.contactObservableList) {
 
                 if(usr.getUserPhone().equals(userPhoneCheck))

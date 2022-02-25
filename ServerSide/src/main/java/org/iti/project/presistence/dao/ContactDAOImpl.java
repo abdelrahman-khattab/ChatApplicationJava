@@ -25,7 +25,8 @@ public class ContactDAOImpl implements ContactDAO{
                 contacts.add(new User(resultSet.getString(2),resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
             }
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
         return    contacts;
