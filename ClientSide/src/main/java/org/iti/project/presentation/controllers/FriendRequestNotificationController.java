@@ -31,16 +31,19 @@ public class FriendRequestNotificationController {
 
         contactObservableList = FXCollections.observableArrayList();
         //get Image
-
-       // File file=new FileChooser().showOpenDialog(null);
-       // user1= ImageConverter.fromImageToBytes(file.getPath());
+        //System.out.println("before requestList");
+        File file=new FileChooser().showOpenDialog(null);
+        user1= ImageConverter.fromImageToBytes(file.getPath());
         ArrayList<User> requestList = new ArrayList<>();
         User currentUser = new User();
         currentUser.setUserPhone(userModel.getPhoneNo());
+        //System.out.println("before requestList");
+      requestList = RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser);
+        //System.out.println("after requestList");
+       System.out.println(requestList);
+       contactObservableList.addAll(requestList);
 
-        requestList = RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser);
-        System.out.println(requestList);
-        contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser));
+       // contactObservableList.addAll(new User("Hala","01147853220",user1),new User("Hala","01147853220",user1) );
 
 
         requestLV.setItems(contactObservableList);

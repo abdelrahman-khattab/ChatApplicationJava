@@ -92,9 +92,15 @@ public class RequestDAOImpl implements RequestDAO{
                 while (resultSet.next())
                 {
                     Blob userBlopImage = resultSet.getBlob(3);
-                    returnRequestList.get(iterator).setUserPhone(resultSet.getString(1));
-                    returnRequestList.get(iterator).setUserName(resultSet.getString(2));
-                    returnRequestList.get(iterator).setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+                    //adding directly in list by using new user with constructor of 3 parameteres
+                    returnRequestList.add(new User(resultSet.getString(2),resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
+
+                    //returnRequestList.get(iterator).setUserPhone(resultSet.getString(1));
+                    //returnRequestList.get(iterator).setUserName(resultSet.getString(2));
+                    //returnRequestList.get(iterator).setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+
+                    //out of bound exception due to increasing iterator
+                    //iterator++;
                 }
                 return  returnRequestList;
             }

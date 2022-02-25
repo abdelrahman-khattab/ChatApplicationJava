@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="contactInfoHBox" accessibleRole="BUTTON" alignment="CENTER_LEFT" spacing="10.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="org.iti.project.presentation.controllers.ContactRequestListCell">
+<HBox fx:id="contactInfoHBox" accessibleRole="BUTTON" alignment="CENTER_LEFT" spacing="10.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0">
          <children>
