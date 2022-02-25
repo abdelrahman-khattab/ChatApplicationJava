@@ -1,6 +1,9 @@
 package org.iti.project.presentation.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,39 +39,58 @@ public class AddGroupAndGroupMembers implements Initializable {
     @FXML
     private TextField newGroupName;
 
-    List<Group> groupObservableList;
-    byte[] user1Img;
+
+    public ObservableList<User> contactsObservableList;
+    public ObservableList<Group> groupsObservableList;
+    byte[] userImg;
+
+    //Add group name here...............................
     @FXML
     void addGroup(ActionEvent event) {
 
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        groupsLv.setCellFactory(listViewListCellCallback ->new ListCell<>(){
+        contactsObservableList = FXCollections.observableArrayList();
+        groupsObservableList = FXCollections.observableArrayList();
+
+        File file=new FileChooser().showOpenDialog(null);
+        userImg= ImageConverter.fromImageToBytes(file.getPath());
+
+        contactsObservableList.addAll(
+                new User("Eima Ross",userImg),
+                new User("Terabithia ",userImg)
+        );
+
+        groupsObservableList.addAll(
+                new Group("Eima Ross",userImg),
+                new Group("Terabithia ",userImg)
+        );
+
+        memberLV.setItems(contactsObservableList);
+        memberLV.setCellFactory(groupListView -> new AddContactsWithGroupListCell());
+        memberLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
+
             @Override
-            protected void updateItem(Group group, boolean empty) {
-                super.updateItem(group, empty);
-                if (group != null) {
-                    setText(group.getGroupName());
-                } else {
-                    setText(null);
-                    setGraphic(null);
-                }
+            public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
+
+
             }
+
         });
-        groupObservableList = FXCollections.observableArrayList();
-        //get Image
 
-//
-//        groupObservableList.addAll(
-//                new Group("Iti Group"),
-//                new Group("Dark Life")
-//        );
+        groupsLv.setItems(groupsObservableList);
+        groupsLv.setCellFactory(groupListView -> new AddGroupWithContactListCell());
+        groupsLv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
 
 
-        if (groupObservableList != null) {
-            groupsLv.setItems(FXCollections.observableList(groupObservableList));
-        }
+            }
+
+        });
+
 
 
     }
