@@ -86,6 +86,15 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
 
         return singleMessageHistory;
     }
+    @Override
+    public List<GroupMessage> fetchGroupMessageHistory(int groupReceipentId){
 
+        List<GroupMessage> groupMessageHistory = new ArrayList<>();
+
+        // Get All Messages From Groups between sender and receiver and vice versa
+        groupMessageHistory = messageDAO.restoreGroupMessages(groupReceipentId);
+
+        return groupMessageHistory;
+    }
 
 }

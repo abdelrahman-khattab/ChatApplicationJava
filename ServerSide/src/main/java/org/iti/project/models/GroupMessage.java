@@ -138,13 +138,15 @@ public class GroupMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "GroupMessage{" +
-                "messageId=" + messageId +
+        System.out.println("ABDALLAH");
+        return "GroupMessage { " +
+                "Sender Name : " + sender.getUserName()+
+                ", messageId= '" + messageId + "'"+
                 ", groupMessageContent='" + groupMessageContent + '\'' +
                 ", senderPhoneNumber='" + sender.getUserPhone() + '\'' +
                 ", groupId=" + groupId +
                 ", messageCreationTime=" + messageCreationTime +
-                '}';
+                '}' + "\n";
     }
 
     @Override

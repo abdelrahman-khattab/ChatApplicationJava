@@ -7,6 +7,7 @@ import java.util.List;
 public interface MessageDAO extends DAO{
     void storeSingleMessage(SingleMessage message);
     void storeGroupMessage(GroupMessage message);
-    List<SingleMessage> restoreSingleMessages(String senderPhone , String receiverPhone);
+     List<SingleMessage> restoreSingleMessages(String senderPhone , String receiverPhone);
+     List<GroupMessage> restoreGroupMessages(int groupReceipentId);
 
 }
