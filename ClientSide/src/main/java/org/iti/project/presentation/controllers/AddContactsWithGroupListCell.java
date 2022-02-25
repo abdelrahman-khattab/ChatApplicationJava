@@ -53,7 +53,7 @@ public class AddContactsWithGroupListCell extends ListCell<User> {
             userImage= ImageConverter.fromBytesToImage(user.getImage());
             contactName.setText(user.getUserName());
             contactImage.setFill(new ImagePattern(userImage));
-            checkbtn.setSelected(true);
+            checkbtn.setSelected(false);
             setGraphic(contactInfoHBox);
         }
     }

@@ -12,7 +12,13 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.iti.project.models.Group;
 import org.iti.project.models.User;
 import org.iti.project.util.ImageConverter;
@@ -38,11 +44,38 @@ public class AddGroupAndGroupMembers implements Initializable {
 
     @FXML
     private TextField newGroupName;
-
+    @FXML
+    private Button uploadImageBtn;
+    @FXML
+    private Circle groupImage;
+    @FXML
+    private VBox vBoxView;
 
     public ObservableList<User> contactsObservableList;
     public ObservableList<Group> groupsObservableList;
     byte[] userImg;
+    private File file;
+
+
+    @FXML
+    void uploadImage(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg", "*.png");
+        fc.getExtensionFilters().add(extFilter);
+        file = fc.showOpenDialog((Stage) vBoxView.getScene().getWindow());
+
+//        Image image = profileImage.getImage();
+
+
+        //
+
+        if (file != null) {
+            groupImage.setFill(new ImagePattern(new Image(file.getPath())));
+        }else{
+            groupImage.setFill(new ImagePattern(new Image("/images/R.png")));
+        }
+    }
 
     //Add group name here...............................
     @FXML
@@ -93,6 +126,49 @@ public class AddGroupAndGroupMembers implements Initializable {
 
 
 
+
+
+
+        if(groupsLv.getSelectionModel().selectedItemProperty()==null || memberLV.getSelectionModel().selectedItemProperty()==null){
+            System.out.println("two list...");
+            addMembers.setDisable(false);
+        }
+        else{
+            System.out.println("twolist ...");
+            addMembers.setDisable(true);
+        }
+
+
+
+
+
+    }
+    @FXML
+    void validateGroupName(KeyEvent event) {
+        if(newGroupName.getText()==null ||newGroupName.getText().trim().isEmpty() ){
+            addGroupBtn.setDisable(true);
+        }else{
+            addGroupBtn.setDisable(false);
+        }
+
+    }
+    @FXML
+    void listviewLisner(MouseEvent event) {
+        if(groupsLv.getSelectionModel().selectedItemProperty()==null){
+            memberLV.setDisable(true);
+        }
+        else{
+            memberLV.setDisable(false);
+        }
+    }
+    @FXML
+    void contactListValidate(MouseEvent event) {
+        if(memberLV.getSelectionModel().selectedItemProperty()==null){
+            addMembers.setDisable(true);
+        }
+        else{
+            addMembers.setDisable(false);
+        }
     }
 
 }

@@ -32,7 +32,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="accept" mnemonicParsing="false" onAction="#acceptFriendRequest" style="-fx-background-color: #00000000;">
+                  <Button fx:id="accept" mnemonicParsing="false" style="-fx-background-color: #00000000;">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -41,7 +41,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="reject" mnemonicParsing="false" onAction="#rejectFriendRequest" style="-fx-background-color: #00000000;">
+                  <Button fx:id="reject" mnemonicParsing="false" style="-fx-background-color: #00000000;">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
