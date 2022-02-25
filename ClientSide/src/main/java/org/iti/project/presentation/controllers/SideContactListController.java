@@ -117,7 +117,9 @@ currentUrs.setUserPhone(userModel.getPhoneNo());
     @FXML
     void showRequests(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/friendRequestNotification.fxml"));
+        System.out.println("hi");
         Parent parent= fxmlLoader.load();
+        System.out.println("hiii");
         Scene scene = new Scene(parent, 400, 400);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

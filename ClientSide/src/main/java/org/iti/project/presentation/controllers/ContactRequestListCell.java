@@ -1,8 +1,10 @@
 package org.iti.project.presentation.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -15,8 +17,10 @@ import org.iti.project.models.User;
 import org.iti.project.util.ImageConverter;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ContactRequestListCell extends ListCell<User> {
+public class ContactRequestListCell extends ListCell<User>  implements Initializable {
 
     @FXML
     private Button accept;
@@ -36,18 +40,26 @@ public class ContactRequestListCell extends ListCell<User> {
     @FXML
     private Button reject;
 
-    @FXML
-    void acceptFriendRequest(ActionEvent event) {
-
-    }
-
-    @FXML
-    void rejectFriendRequest(ActionEvent event) {
-
-    }
     public FXMLLoader fxmlLoader;
     Image userImage;
-    String userStatus;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        accept.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("accept");
+            }
+        });
+        reject.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("reject");
+            }
+        });
+
+    }
 
     @Override
     protected void updateItem(User user, boolean empty) {

@@ -40,10 +40,10 @@ public class FriendRequestNotificationController {
         //System.out.println("before requestList");
       requestList = RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser);
         //System.out.println("after requestList");
-       System.out.println(requestList);
+       System.out.println(requestList ==null);
        contactObservableList.addAll(requestList);
 
-       // contactObservableList.addAll(new User("Hala","01147853220",user1),new User("Hala","01147853220",user1) );
+//        contactObservableList.addAll(new User("Hala","01147853220",user1),new User("Hala","01147853220",user1) );
 
 
         requestLV.setItems(contactObservableList);
