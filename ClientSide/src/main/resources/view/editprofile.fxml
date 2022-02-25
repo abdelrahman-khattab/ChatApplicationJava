@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -14,6 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <ScrollPane fx:id="secondPan" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="220.0" pannable="true" prefWidth="300.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.EditProfileController">
    <content>
       <!-- <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black; -fx-border-color: #340D3E; -fx-border-radius: 3;">
@@ -33,12 +35,16 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="85.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="editInformationButton" mnemonicParsing="false" onAction="#editClientInformation" prefHeight="35.0" style="-fx-background-color: #00000000;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#switchtoProfile" prefHeight="25.0" prefWidth="26.0">
+                           <graphic>
+                              <FontAwesomeIconView fill="RED" glyphName="CLOSE" selectionFill="#282525" stroke="RED" wrappingWidth="10.428571701049805">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIconView>
+                           </graphic>
                         </Button>
                      </children>
                   </HBox>
@@ -46,9 +52,9 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="119.0" prefWidth="278.0" spacing="7.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" spacing="7.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fx:id="imageProfileView" fitHeight="94.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageProfileView" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/profile.jpg" />
                            </image>
@@ -74,6 +80,9 @@
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                </children>
                <VBox.margin>

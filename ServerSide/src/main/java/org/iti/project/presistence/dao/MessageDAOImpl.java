@@ -136,5 +136,55 @@ public class MessageDAOImpl implements MessageDAO {
         return singleMessageHistory;
 
     }
+     public List<GroupMessage> restoreGroupMessages(int groupReceipentId){
+        //start of group message implementation
+        List<GroupMessage> groupMessageHistory = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        try(Connection con = DBConnector.getConnection().connect()) {
+            pstmt = con.prepareStatement("SELECT USER.USER_NAME, MESSAGE.* FROM MESSAGE, USER WHERE MESSAGE.GROUP_RECEIPENT_ID = ? AND USER.PHONE_NUMBER = MESSAGE.CREATOR_ID ORDER BY  MESSAGE_ID DESC   limit 10;");
+            pstmt.setInt(1,groupReceipentId);
+            resultSet = pstmt.executeQuery();
+
+            while(resultSet.next()){
+                User sender = new User();
+                GroupMessage groupMessage = new GroupMessage();
+                sender.setUserName(resultSet.getString(1));
+                groupMessage.setMessageId(resultSet.getInt(2));
+                groupMessage.setGroupMessageContent(resultSet.getString(3));
+                groupMessage.setMessageCreationTime(resultSet.getTimestamp(4).toLocalDateTime());
+                sender.setUserPhone(resultSet.getString(5));
+                groupMessage.setSender(sender);
+                groupMessage.setGroupId(resultSet.getInt(7));
+                groupMessage.setGroupMessageColor(resultSet.getString(8));
+                groupMessage.setFontFamily(resultSet.getString(9));
+                groupMessage.setFontPosture(resultSet.getString(10));
+                groupMessage.setFontWeight(resultSet.getString(11));
+                groupMessage.setFontSize(resultSet.getInt(12));
+                groupMessage.setFontUnderLine(resultSet.getBoolean(13));
+
+                // adding all Single Message Chat to List
+                groupMessageHistory.add(groupMessage);
+
+            }
+
+
+
+            // sorting the message to display in descending order
+
+//            System.out.println(groupMessageHistory);
+            groupMessageHistory.sort((a,b)->{
+                return a.getMessageId() - b.getMessageId();
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // to return all messages with descending order
+        return groupMessageHistory;
+
+        // ending restore group messages
+    }
+
 
 }

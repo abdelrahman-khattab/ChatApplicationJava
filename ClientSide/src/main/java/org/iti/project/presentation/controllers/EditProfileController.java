@@ -1,6 +1,7 @@
 package org.iti.project.presentation.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -10,7 +11,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
+import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ModelFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,8 +56,12 @@ public class EditProfileController implements Initializable {
 
     @FXML
     private VBox vboxContainer;
+    @FXML
+    private Button closeButton;
 
     private static EditProfileController editProfileController;
+    private ModelFactory modelfactory = ModelFactory.getModelFactory();
+    private UserModel userModel = modelfactory.getUserModel();
 
     public static void setController(EditProfileController editProfileController) {
         EditProfileController.editProfileController = editProfileController;
@@ -63,6 +72,21 @@ public class EditProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Binding Information of client
+        clientNameTextField.textProperty().bindBidirectional(userModel.userUserNameProperty());
+        //countryCombobox.cellFactoryProperty().bindBidirectional();
+        clientEmail.textProperty().bindBidirectional(userModel.emailProperty());
+        //infoClientGenderLabel.textProperty().bindBidirectional(userModel.userGenderProperty());
+        //infoClientNameLabel.textProperty().bindBidirectional(userModel.userUserNameProperty());
+        imageProfileView.imageProperty().bindBidirectional(userModel.userImageProperty());
+        // set border radius of image view
+        Rectangle clip = new Rectangle(100, 100);
+        clip.setArcWidth(100);
+        clip.setArcHeight(100);
+        //imageProfileView.setClip(clip);
+
+        //
         countryCombobox.getItems().addAll("Egypt","Tunsia","Morocco");
         genderCombobox.getItems().addAll("Male","Female");
 
@@ -81,5 +105,15 @@ public class EditProfileController implements Initializable {
     void uploadImage(ActionEvent event) {
 
     }
-
+    @FXML
+    void switchtoProfile(ActionEvent event) {
+        try {
+            ScrollPane profile = FXMLLoader.load(getClass().getResource("/view/sideProfilePane.fxml"));
+            vboxContainer.getChildren().removeAll(vboxContainer.getChildren());
+            vboxContainer.getChildren().clear();
+            vboxContainer.getChildren().add(profile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

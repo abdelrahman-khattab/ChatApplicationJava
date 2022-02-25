@@ -1,5 +1,6 @@
 package org.iti.project;
 
+import org.iti.project.models.GroupMessage;
 import org.iti.project.models.User;
 import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.util.StageCoordinator;
@@ -10,8 +11,10 @@ import org.iti.project.presistence.dao.MessageDAO;
 import org.iti.project.presistence.dao.MessageDAOImpl;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
+import org.iti.project.services.impls.ChatServiceImpl;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 
 /**
@@ -35,9 +38,9 @@ public class App extends Application {
 
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws RemoteException {
         //    Connection conn = DBConnector.getConnection().connect();
-            Application.launch();
+        Application.launch();
     }
 
 

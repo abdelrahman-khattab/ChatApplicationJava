@@ -12,7 +12,7 @@ public interface ChatServiceInt extends Remote {
     public void sendGroupMessage(GroupMessage groupMessage) throws RemoteException;
     public void sendSingleMessage(SingleMessage singleMessage) throws RemoteException;
 
-//////////////ASHRAF////////////////////
     public List<SingleMessage> fetchSingleMessageHistory(String senderPhone, String receiverPhone) throws RemoteException;
-/////////END OF ASHRAF //////////////////////
+    public List<GroupMessage> fetchGroupMessageHistory(int groupReceipentId) throws RemoteException;
+
 }
