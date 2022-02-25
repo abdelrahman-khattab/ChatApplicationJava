@@ -1,6 +1,9 @@
 package org.iti.project.network;
 
-
+import org.iti.project.presistence.dao.ContactDAO;
+import org.iti.project.presistence.dao.ContactDAOImpl;
+import org.iti.project.presistence.dao.RequestDAO;
+import org.iti.project.presistence.dao.RequestDAOImpl;
 import org.iti.project.services.impls.*;
 import org.iti.project.services.interfaces.*;
 
@@ -36,7 +39,7 @@ public class RMIConnector {
             Naming.rebind(contactObj.lookupName,contactObj);
             System.out.println("ContactService Bounded");
             Naming.rebind(groupObj.lookupName, groupObj);
-            System.out.println("ContactService Bounded");
+            System.out.println("GroupService Bounded");
 
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();
