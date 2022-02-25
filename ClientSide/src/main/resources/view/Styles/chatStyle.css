@@ -159,22 +159,21 @@
     -fx-border-color: #e1e9f159;
 }
 
-.list-cell { -fx-background-color: #00000000;}
-.list-cell:odd { -fx-background-color: #00000000; }
-.list-cell:even { -fx-background-color: #00000000;}
-.list-cell:selected{
-    -fx-background-color: -whiteColorTransparent;
-    -fx-text-fill: -primaryBgColor;
-}
-
 .list-cell-white { -fx-background-color: #00000000;}
 .list-cell-white:odd { -fx-background-color: #00000000; }
 .list-cell-white:even { -fx-background-color: #00000000;}
 .list-cell-white:selected{
-    -fx-background-color: -primaryBgColor;
-    -fx-text-fill: -primaryBgColor;
+    -fx-background-color: -secondBgColor;
+    -fx-text-fill: -secondBgColor;
 }
 
+.list-cell { -fx-background-color: #00000000;}
+.list-cell:odd { -fx-background-color: #00000000; }
+.list-cell:even { -fx-background-color: #00000000;}
+.list-cell:selected{
+    -fx-background-color: -secondBgColor;
+    -fx-text-fill: -secondBgColor;
+}
 .check-box {
     /* default properties */
     selected-box-color: #7269EF;

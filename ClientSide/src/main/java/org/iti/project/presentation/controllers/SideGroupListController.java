@@ -101,7 +101,7 @@ public class SideGroupListController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/addGroupAndGroupMembers.fxml"));
         Parent parent= fxmlLoader.load();
 
-        Scene scene = new Scene(parent, 400, 400);
+        Scene scene = new Scene(parent, 500, 550);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
