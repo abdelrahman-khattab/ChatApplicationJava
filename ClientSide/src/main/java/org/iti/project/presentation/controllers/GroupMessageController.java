@@ -63,7 +63,7 @@ public class GroupMessageController implements Initializable {
         messageBodyText.setFont(msgFont);
         messageBodyText.setFill(Color.valueOf(groupMessage.getGroupMessageColor()));
         messageBodyText.setUnderline(groupMessage.isFontUnderLine());
-        LocalDateTime myDateObj = LocalDateTime.now();
+        LocalDateTime myDateObj = groupMessage.getMessageCreationTime();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         String formattedDate = myDateObj.format(myFormatObj);
         messageTimeLabel.setText(formattedDate);

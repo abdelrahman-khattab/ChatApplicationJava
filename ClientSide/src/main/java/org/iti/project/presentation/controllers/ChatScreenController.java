@@ -518,6 +518,7 @@ public class ChatScreenController implements Initializable {
         contactImageLabel.setText(name);
         chatVBox.getChildren().clear();
         currentContactedUser = new User("#","#",null);
+        previewGroupChatHistory();
 
     }
     public void updateSingleChatScene(User currentContactedUser){
@@ -557,26 +558,26 @@ public class ChatScreenController implements Initializable {
         }
     }
     private void previewGroupChatHistory(){
-//        List<GroupMessage> groupMessageHistory = new ArrayList<>();
-//        try {
-//
-//            groupMessageHistory = RMIConnector.getRmiConnector().getChattingService().fetchGroupMessagesHistory(int group_id);
-//
-//                    System.out.println(" All Old messages  : "+ groupMessageHistory);
-//        } catch (RemoteException e) {
-//
-//            e.printStackTrace();
-//        }
-//        for (GroupMessage groupMessage : groupMessageHistory){
-//            if (groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())
-//                    && groupMessage.getGroupId() == currentContactedGroup.getGroupId()){
-//                displayMySentGroupMessage(groupMessage);
-//            }
-//            else if (groupMessage.getGroupId()==currentContactedGroup.getGroupId()){
-//                renderGroupMessage(groupMessage);
-//
-//            }
-//
-//        }
+        List<GroupMessage> groupMessageHistory = new ArrayList<>();
+        try {
+
+            groupMessageHistory = RMIConnector.getRmiConnector().getChattingService().fetchGroupMessageHistory(currentContactedGroup.getGroupId());
+
+                    System.out.println(" All Old messages  : "+ groupMessageHistory);
+        } catch (RemoteException e) {
+
+            e.printStackTrace();
+        }
+        for (GroupMessage groupMessage : groupMessageHistory){
+            if (groupMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())
+                    && groupMessage.getGroupId() == currentContactedGroup.getGroupId()){
+                displayMySentGroupMessage(groupMessage);
+            }
+            else if (groupMessage.getGroupId()==currentContactedGroup.getGroupId()){
+                renderGroupMessage(groupMessage);
+
+            }
+
+        }
     }
 }
