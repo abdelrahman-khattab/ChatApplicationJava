@@ -37,9 +37,6 @@ public class App extends Application {
     public static void main(String[] args)  {
         Connection conn = DBConnector.getConnection().connect();
         RequestDAOImpl requestDAO = new RequestDAOImpl();
-        User user1 = new User();
-        user1.setUserPhone("01157665457");
-        requestDAO.selectListRequestUser(user1);
         launch();
     }
 

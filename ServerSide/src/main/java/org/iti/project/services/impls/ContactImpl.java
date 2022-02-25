@@ -68,4 +68,11 @@ public class ContactImpl extends UnicastRemoteObject implements ContactInt {
         return contactDAO.selectContacts(mainUser.getUserPhone());
     }
 
+    @Override
+    public ArrayList<User> requestListFriends(User mainUser) throws RemoteException {
+        RequestDAO requestDAO = new RequestDAOImpl();
+        return requestDAO.selectListRequestUser(mainUser);
+
+    }
+
 }

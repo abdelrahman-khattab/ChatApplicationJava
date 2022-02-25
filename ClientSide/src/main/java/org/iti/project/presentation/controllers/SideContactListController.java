@@ -45,6 +45,9 @@ public class SideContactListController {
     @FXML
     private ScrollPane secondPane;
 
+    @FXML
+    private Button showRequestsBtn;
+
     private static SideContactListController sideContactListController;
 
     public static void setController(SideContactListController sideContactListController){
@@ -93,8 +96,7 @@ public class SideContactListController {
 
 User currentUrs = new User();
 currentUrs.setUserPhone(userModel.getPhoneNo());
-       contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
-        contactObservableList.addAll(new User("1234","1234",user1));
+        contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
         contactsLV.setItems(contactObservableList);
         contactsLV.setCellFactory(groupListView -> new ContactsInfoListCellController());
         contactsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
@@ -109,5 +111,22 @@ currentUrs.setUserPhone(userModel.getPhoneNo());
         });
 
 
+    }
+
+
+    @FXML
+    void showRequests(ActionEvent event) throws IOException {
+        System.out.println("add");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/friendRequestNotification.fxml"));
+        Parent parent= fxmlLoader.load();
+
+        System.out.println("add1");
+
+
+        Scene scene = new Scene(parent, 400, 400);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
