@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ChatScreenController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ChatScreenController">
    <children>
       <AnchorPane minWidth="50.0" prefHeight="600.0" prefWidth="88.0" styleClass="sidebar-background" stylesheets="@Styles/mainscreen.css" HBox.hgrow="NEVER">
          <children>
@@ -81,16 +81,16 @@
             <Label layoutX="13.0" layoutY="24.0" text="Start Server" textFill="#faf8f8" />
          </children>
       </AnchorPane>
-      <StackPane fx:id="sideNavigationStackPane" HBox.hgrow="SOMETIMES">
+      <StackPane fx:id="sideNavigationStackPane" style="-fx-background-color: #00000000;" HBox.hgrow="SOMETIMES">
          <children>
-            <ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: red;">
+            <ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="400.0" prefWidth="200.0">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #DED6DD; -fx-border-color: #340D3E; -fx-border-radius: 3;" />
                </content>
             </ScrollPane>
-            <ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+            <ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0" styleClass="notificationBg">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #DED6DD; -fx-border-color: #340D3E; -fx-border-radius: 3;" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 3;" styleClass="notificationBg" />
                </content>
             </ScrollPane>
          </children>

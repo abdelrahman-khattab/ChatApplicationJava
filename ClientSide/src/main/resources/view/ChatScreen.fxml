@@ -31,7 +31,7 @@
                   <Image url="@../images/hello_48px.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER" fillWidth="false" layoutX="6.0" layoutY="119.0" prefHeight="332.0" prefWidth="31.0" spacing="15.0" AnchorPane.bottomAnchor="149.0" AnchorPane.topAnchor="119.0">
+            <VBox alignment="CENTER" layoutX="6.0" layoutY="119.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="profileButton" mnemonicParsing="false" onAction="#onProfileButtonClicked" prefHeight="35.0" prefWidth="10.0" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
                      <styleClass>
