@@ -1,6 +1,12 @@
 package org.iti.project.presentation.controllers;
 
+import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +21,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import org.apache.commons.io.FileUtils;
 import org.controlsfx.control.Notifications;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
@@ -29,6 +37,7 @@ import org.iti.project.util.ImageConverter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -271,8 +280,118 @@ public class ChatScreenController implements Initializable {
     public void onFileAttachingButtonClicked(ActionEvent actionEvent) {
 
         fileChooser = new FileChooser();
-        File chosenFile = fileChooser.showOpenDialog(stageCoordinator.getPrimaryStage());
+        fileChooser.setTitle("Choose File to Send");
+        fileChooser.getExtensionFilters().addAll( new ExtensionFilter("All Files",
+                        "*.txt","*.png","*.jpeg","*.jpg","*.doc","*.docx","*.pdf","*.java","*.css","*.html"),
+                     new ExtensionFilter("Videos","*.mp4"),
+                     new ExtensionFilter("Audios","*.mp3","*.wav")
+                     );
+        File chosenFileToSend = fileChooser.showOpenDialog(stageCoordinator.getPrimaryStage());
+        if (chosenFileToSend != null){
+            try {
+                String senderName = StageCoordinator.getStageCoordinator().currentUser.getUserName();
+                String receiverPhone = currentContactedUser.getUserPhone();
+                byte[] sentFileAsBytes = Files.readAllBytes(chosenFileToSend.toPath());
+                String fileName = chosenFileToSend.getName();
+                RMIConnector.getRmiConnector().getChattingService().sendFile( senderName , receiverPhone, sentFileAsBytes , fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
+
+    }
+
+    public void handleReceivedFile(String senderName, byte[] sentFile , String fileName){
+        Notifications.create().title("Receive a File")
+                .text(senderName+" wants to send you a file")
+                .position(Pos.TOP_CENTER)
+                .showInformation();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Do you want to receive file from "+ senderName + " ?");
+        alert.setTitle("File Download");
+        alert.getButtonTypes().remove(0,2);
+        alert.getButtonTypes().add(0,ButtonType.YES);
+        alert.getButtonTypes().add( 1,ButtonType.NO);
+        Optional<ButtonType> alertActionResult = alert.showAndWait();
+        if (alertActionResult.isPresent()){
+
+            if (alertActionResult.get() == ButtonType.YES){
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialFileName(fileName);
+
+                fileChooser.setTitle("Save file");
+                File chosenFile =  fileChooser.showSaveDialog(StageCoordinator.getStageCoordinator().getPrimaryStage());
+                FXMLLoader progressDialogLoader = new FXMLLoader(getClass().getResource("/view/progressDialog.fxml"));
+
+//                try {
+//                    Files.write(chosenFile.toPath(), sentFile );
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                if (chosenFile != null){
+//                    Platform.runLater(() -> {
+                        try {
+                            DialogPane progressDialogPane = progressDialogLoader.load();
+                            ProgressBarController progressBarController = progressDialogLoader.getController();
+                            ProgressBarController.setController(progressBarController);
+                            progressBarController = ProgressBarController.getInstance();
+                            Dialog<DialogPane> dialogPaneDialog = new Dialog<>();
+                            dialogPaneDialog.setDialogPane(progressDialogPane);
+                            DownloadTask downloadTask = new DownloadTask(sentFile , chosenFile);
+                            progressBarController.getDownloadProgressBar().progressProperty().bind(downloadTask.progressProperty());
+                            
+                            dialogPaneDialog.show();
+                            Thread thread = new Thread(downloadTask);
+                            thread.setDaemon(true);
+                            thread.start();
+//                            dialogPaneDialog.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//                    });
+                }
+            }
+        }
+    }
+
+    private class DownloadTask extends Task<Void>{
+        private byte[] sentFile;
+        private File chosenFile;
+
+
+        public DownloadTask(byte[] sentFile, File chosenFile){
+            this.sentFile = sentFile;
+            this.chosenFile = chosenFile;
+        }
+
+        @Override
+        protected Void call() throws Exception {
+            int mainArrayLength = sentFile.length;
+            int remainder = mainArrayLength % 100;
+            int numberOfArrays = (mainArrayLength / 100);
+            if (remainder != 0) {
+                numberOfArrays = (mainArrayLength / 100) + 1;
+            }
+            double counter = 0;
+            long progress;
+            for (int i = 0; i < numberOfArrays; i++) {
+                int x = 100;
+                if (i == (numberOfArrays - 1)) {
+                    x = mainArrayLength % 100;
+                }
+                byte[] byteArr = new byte[x];
+                System.out.println(counter + " " + i);
+                System.arraycopy(sentFile, i * 100, byteArr, 0, byteArr.length);
+                counter++;
+                updateProgress(counter ,numberOfArrays);
+//                ObservableValue<Double> progress = new SimpleDoubleProperty(Double.valueOf(i*100/numberOfArrays)).asObject();
+//                progressBarController.getDownloadProgressBar();
+                System.out.println(Arrays.toString(byteArr));
+                FileUtils.writeByteArrayToFile(chosenFile, byteArr, true);
+            }
+            return null;
+        }
     }
 
     public void onSendButtonClicked(ActionEvent actionEvent) {

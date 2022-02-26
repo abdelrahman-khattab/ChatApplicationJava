@@ -97,4 +97,23 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
         return groupMessageHistory;
     }
 
+    @Override
+    public void sendFile(String senderName, String receiverPhone, byte[] sentFileAsBytes, String fileName) {
+        if (isOnline(receiverPhone)){
+            ClientCallBackInt clientCallBack = onlineClients.get(receiverPhone);
+            try {
+                clientCallBack.receiveFile(senderName , sentFileAsBytes , fileName);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean isOnline(String phoneNumber){
+        ClientCallBackInt clientCallBack = onlineClients.get(phoneNumber);
+        if (clientCallBack == null) return false;
+
+        return true;
+    }
+
 }

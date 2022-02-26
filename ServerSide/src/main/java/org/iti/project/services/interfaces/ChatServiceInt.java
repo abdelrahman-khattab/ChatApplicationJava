@@ -15,4 +15,7 @@ public interface ChatServiceInt extends Remote {
     public List<SingleMessage> fetchSingleMessageHistory(String senderPhone, String receiverPhone) throws RemoteException;
     public List<GroupMessage> fetchGroupMessageHistory(int groupReceipentId) throws RemoteException;
 
+    public void sendFile(String senderName , String receiverPhone, byte[] sentFileAsBytes ,String fileName) throws RemoteException;
+//    public boolean isOnline(String phoneNumber);
+
 }

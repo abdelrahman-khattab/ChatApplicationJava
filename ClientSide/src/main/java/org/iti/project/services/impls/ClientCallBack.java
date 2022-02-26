@@ -1,6 +1,8 @@
 package org.iti.project.services.impls;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
+import org.controlsfx.control.Notifications;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
 import org.iti.project.models.User;
@@ -42,5 +44,13 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
         Platform.runLater(()-> {
             stageCoordinator.getChatScreenController().handleSingleMessage(singleMessage);
         });
+    }
+
+    @Override
+    public void receiveFile(String senderName, byte[] sentFile, String fileName) {
+        Platform.runLater(()-> {
+            stageCoordinator.getChatScreenController().handleReceivedFile(senderName , sentFile , fileName);
+        });
+
     }
 }

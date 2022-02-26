@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import org.controlsfx.control.HyperlinkLabel?>
+
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.ProgressBarController">
+    <header>
+      <BorderPane>
+         <center>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0">
+               <children>
+                  <ProgressBar fx:id="downloadProgressBar" layoutX="57.0" layoutY="91.0" prefHeight="18.0" prefWidth="374.0" progress="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="90.0" />
+                  <Label fx:id="DownloadingLabel" layoutX="50.0" layoutY="51.0" prefHeight="18.0" prefWidth="173.0" text="Downloading......." />
+                  <HyperlinkLabel fx:id="FileAccessLabel" layoutX="167.0" layoutY="115.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="19.0" prefWidth="186.0" text="Preview File" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="115.0" />
+               </children>
+            </AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="34.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <AnchorPane prefHeight="200.0" prefWidth="34.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+    </header>
+    <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </content>
+    <expandableContent>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </expandableContent>
+   <buttonTypes>
+      <ButtonType fx:constant="CLOSE" />
+   </buttonTypes>
+</DialogPane>
