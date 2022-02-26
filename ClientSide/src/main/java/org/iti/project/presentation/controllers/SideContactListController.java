@@ -94,8 +94,8 @@ public class SideContactListController {
         user1= ImageConverter.fromImageToBytes(file.getPath());
        // userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
 
-User currentUrs = new User();
-currentUrs.setUserPhone(userModel.getPhoneNo());
+        User currentUrs = new User();
+        currentUrs.setUserPhone(userModel.getPhoneNo());
         contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
         System.out.println("contact list from server : "+RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
         contactsLV.setItems(contactObservableList);

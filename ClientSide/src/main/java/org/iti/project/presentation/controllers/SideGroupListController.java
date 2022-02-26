@@ -19,6 +19,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.iti.project.models.Group;
+import org.iti.project.models.User;
+import org.iti.project.network.RMIConnector;
+import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.util.ImageConverter;
 
 import org.iti.project.presentation.util.StageCoordinator;
@@ -26,6 +30,7 @@ import org.iti.project.presentation.util.StageCoordinator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class SideGroupListController implements Initializable {
@@ -52,6 +57,8 @@ public class SideGroupListController implements Initializable {
     private static SideGroupListController sideGroupListController;
 
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
+    private final ModelFactory modelFactory = ModelFactory.getModelFactory();
+    private final UserModel userModel = modelFactory.getUserModel();
 
     public static void setController(SideGroupListController sideGroupListController) {
         SideGroupListController.sideGroupListController = sideGroupListController;
@@ -69,10 +76,13 @@ public class SideGroupListController implements Initializable {
         user1Img= ImageConverter.fromImageToBytes(file.getPath());
 
         //add user groups here
-        groupsObservableList.addAll(
-                new Group("Iti Group","welcome to the hell",user1Img,111),
-                new Group("Dark Life","hello every one ",user1Img,112)
-        );
+        User user = new User();
+        user.setUserPhone(userModel.getPhoneNo());
+        try {
+            groupsObservableList.addAll(RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         groupListView.setItems(groupsObservableList);
         groupListView.setCellFactory(groupListView -> new GroupsInfoListCellController());
         groupListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {

@@ -42,7 +42,7 @@ public class ContactDAOImpl implements ContactDAO{
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO contacts (user_id, friend_id) VALUES (?, ?)");
             preparedStatement.setString(1,mainUser.getUserPhone());
             preparedStatement.setString(2, secondaryUser.getUserPhone());
-            resultSet=preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
