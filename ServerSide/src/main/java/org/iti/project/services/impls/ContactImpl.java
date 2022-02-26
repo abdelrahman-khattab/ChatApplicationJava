@@ -20,8 +20,9 @@ public class ContactImpl extends UnicastRemoteObject implements ContactInt {
     @Override
     public ArrayList<User> getContact(User user) throws RemoteException {
         ContactDAOImpl contactDAO=new ContactDAOImpl();
+        System.out.println("User Phone : "+ user.getUserPhone());
         ArrayList<User> contacts=contactDAO.selectContacts(user.getUserPhone());
-
+        System.out.println("contact from server : "+contacts);
         return  contacts;
     }
 

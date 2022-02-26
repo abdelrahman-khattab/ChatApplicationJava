@@ -96,8 +96,8 @@ public class SideContactListController {
 
         User currentUrs = new User();
         currentUrs.setUserPhone(userModel.getPhoneNo());
+        System.out.println("enter the side Contacts");
         contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
-        System.out.println("contact list from server : "+RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
         contactsLV.setItems(contactObservableList);
         contactsLV.setCellFactory(groupListView -> new ContactsInfoListCellController());
         contactsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
@@ -117,7 +117,10 @@ public class SideContactListController {
 
     @FXML
     void showRequests(ActionEvent event) throws IOException {
+        User currentUser = new User();
+        currentUser.setUserPhone(userModel.getPhoneNo());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/friendRequestNotification.fxml"));
+        RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser);
         System.out.println("hi");
         Parent parent= fxmlLoader.load();
         System.out.println("hiii");
