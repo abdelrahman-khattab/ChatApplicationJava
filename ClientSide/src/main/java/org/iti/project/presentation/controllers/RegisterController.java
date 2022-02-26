@@ -33,6 +33,7 @@ import org.controlsfx.control.*;
 
 import org.iti.project.presentation.util.Validator;
 import org.iti.project.util.ImageConverter;
+import org.iti.project.util.PasswordEncryptor;
 
 import java.io.File;
 import java.io.IOException;
@@ -268,6 +269,8 @@ public class RegisterController implements Initializable {
 
             user.setUserEmail(eMail.getText());
             user.setUserName(userName.getText());
+//            String encryptedPass = PasswordEncryptor.encrypt(password.getText());
+//            user.setUserPassword(encryptedPass);
             user.setUserPassword(password.getText());
             user.setUserDOB(String.valueOf(birthDate.getValue()));
             user.setUserPhone(phoneNo.getText());
