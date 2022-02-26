@@ -79,7 +79,7 @@ public class GroupDAOImpl implements  GroupDAO{
     }
 
     @Override
-    public void createNewGroup(Group group) {
+    public void createNewGroup(Group group , User user) {
 
         System.out.println("inside the if group insert");
         try(Connection con = DBConnector.getConnection().connect()) {
@@ -93,6 +93,7 @@ public class GroupDAOImpl implements  GroupDAO{
             System.out.println("inside group the catch");
             e.printStackTrace();
         }
+        addCurrentUserToGroup(user ,group);
 
     }
 
@@ -148,6 +149,24 @@ public class GroupDAOImpl implements  GroupDAO{
 
 
         return null;
+    }
+
+
+    @Override
+    public void addCurrentUserToGroup(User user , Group group) {
+        System.out.println("inside the user to group insert");
+        try(Connection con = DBConnector.getConnection().connect()) {
+            System.out.println("inside the try user to group insert");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)");
+            preparedStatement.setString(1, user.getUserPhone());
+            preparedStatement.setInt(2, group.getGroupId());
+            preparedStatement.executeUpdate();
+            System.out.println("after the update insert group execute");
+
+        } catch (SQLException e) {
+            System.out.println("inside group the catch");
+            e.printStackTrace();
+        }
     }
 
 }

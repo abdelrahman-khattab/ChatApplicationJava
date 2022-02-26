@@ -15,9 +15,9 @@ public class GroupImpl extends UnicastRemoteObject implements GroupInt {
     }
 
     @Override
-    public void createNewGroup(Group group) throws RemoteException {
+    public void createNewGroup(Group group , User user) throws RemoteException {
         GroupDAO groupDAO = new GroupDAOImpl();
-        groupDAO.createNewGroup(group);
+        groupDAO.createNewGroup(group , user);
     }
 
     @Override

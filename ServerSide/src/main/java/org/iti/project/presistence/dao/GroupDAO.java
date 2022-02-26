@@ -9,7 +9,8 @@ import java.util.List;
 public interface GroupDAO {
     public List<String> findUsersPhoneByGroupId(int groupId);
     public List<User> getUsersByGroupId(int groupId);
-    public void createNewGroup(Group group);
+    public void createNewGroup(Group group , User user);
+    public void addCurrentUserToGroup(User user, Group group);
     public void addNewUserToGroup(Group group , ArrayList<User> userList);
     public ArrayList<Group> getListOfGroups(User user);
 }

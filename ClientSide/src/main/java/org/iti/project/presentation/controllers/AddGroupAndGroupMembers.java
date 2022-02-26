@@ -86,8 +86,10 @@ public class AddGroupAndGroupMembers implements Initializable {
     @FXML
     void addGroup(ActionEvent event) {
         Group group = new Group(newGroupName.getText());
+        User currentUser = new User();
+        currentUser.setUserPhone(userModel.getPhoneNo());
         try {
-            RMIConnector.getRmiConnector().getGroupServices().createNewGroup(group);
+            RMIConnector.getRmiConnector().getGroupServices().createNewGroup(group , currentUser);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
