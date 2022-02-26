@@ -117,6 +117,7 @@ public class GroupDAOImpl implements  GroupDAO{
         }
     }
 
+
     @Override
     public ArrayList<Group> getListOfGroups(User user) {
       ResultSet resultSet;
@@ -125,6 +126,7 @@ public class GroupDAOImpl implements  GroupDAO{
             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM groupchat where group_id IN (Select group_id from user_group where user_id = ? )");
             preparedStatement.setString(1,user.getUserPhone());
             resultSet=preparedStatement.executeQuery();
+
             System.out.println(resultSet == null);
             if (resultSet!=null)
             {
@@ -132,7 +134,7 @@ public class GroupDAOImpl implements  GroupDAO{
                 {
                     //Blob userBlopImage = resultSet.getBlob(3);
                     //adding directly in list by using new user with constructor of 3 parameteres
-                    Group newGroup =new Group(resultSet.getInt(1),resultSet.getString(2) );
+                    Group newGroup =new Group(resultSet.getString(2) );
                     groupList.add(newGroup);
 
                 }

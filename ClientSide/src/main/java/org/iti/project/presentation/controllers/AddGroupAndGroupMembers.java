@@ -29,6 +29,7 @@ import org.iti.project.util.ImageConverter;
 import java.io.File;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -111,7 +112,15 @@ public class AddGroupAndGroupMembers implements Initializable {
         }
 
         try {
+            ArrayList<Group> groupList = new ArrayList<>();
+            groupList = RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user);
+            for (Group group:groupList
+                 ) {
+                System.out.println(group.getGroupName());
+
+            }
             groupsObservableList.addAll(RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user));
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }

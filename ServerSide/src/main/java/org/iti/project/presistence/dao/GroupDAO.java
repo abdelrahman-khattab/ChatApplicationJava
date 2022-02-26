@@ -12,6 +12,4 @@ public interface GroupDAO {
     public void createNewGroup(Group group);
     public void addNewUserToGroup(Group group , ArrayList<User> userList);
     public ArrayList<Group> getListOfGroups(User user);
-
-
 }
