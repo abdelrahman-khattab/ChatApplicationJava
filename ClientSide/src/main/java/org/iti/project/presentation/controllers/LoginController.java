@@ -150,7 +150,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
-        password.textProperty().bindBidirectional(userModel.userPasswordProperty());
+//        password.textProperty().bindBidirectional(userModel.userPasswordProperty());
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
         btnLogin.setDisable(true);
         validationText.setVisible(false);

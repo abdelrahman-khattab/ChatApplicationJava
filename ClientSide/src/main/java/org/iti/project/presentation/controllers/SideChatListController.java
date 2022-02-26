@@ -74,6 +74,10 @@ public class SideChatListController {
 
     byte[] user1;
 
+    public ListView<User> getContactinfoLV() {
+        return contactinfoLV;
+    }
+
     public static SideChatListController getInstance() {
         return sideChatListController;
     }
