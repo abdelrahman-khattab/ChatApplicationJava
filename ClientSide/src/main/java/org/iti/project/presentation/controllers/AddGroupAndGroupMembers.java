@@ -163,13 +163,9 @@ public class AddGroupAndGroupMembers implements Initializable {
     }
     @FXML
     void contactListValidate(MouseEvent event) {
-        if(memberLV.getSelectionModel().selectedItemProperty()==null){
-            addMembers.setDisable(true);
-        }
-        else{
             addMembers.setDisable(false);
-        }
     }
+
 
 }
 
