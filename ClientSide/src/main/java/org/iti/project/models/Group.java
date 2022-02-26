@@ -46,8 +46,9 @@ public class Group implements Serializable {
     }
 
     public Group(String groupName) {
-        this.groupName = groupName;
+        this.groupName=groupName;
     }
+
 
     public int getGroupId() {
         return groupId;

@@ -21,10 +21,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.iti.project.models.Group;
 import org.iti.project.models.User;
+import org.iti.project.network.RMIConnector;
+import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.util.ImageConverter;
 
 import java.io.File;
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -80,8 +85,17 @@ public class AddGroupAndGroupMembers implements Initializable {
     //Add group name here...............................
     @FXML
     void addGroup(ActionEvent event) {
+        Group group = new Group(newGroupName.getText());
+        try {
+            RMIConnector.getRmiConnector().getGroupServices().createNewGroup(group);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
+    private final ModelFactory modelFactory = ModelFactory.getModelFactory();
+    private final UserModel userModel = modelFactory.getUserModel();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contactsObservableList = FXCollections.observableArrayList();
@@ -89,16 +103,27 @@ public class AddGroupAndGroupMembers implements Initializable {
 
         File file=new FileChooser().showOpenDialog(null);
         userImg= ImageConverter.fromImageToBytes(file.getPath());
+        User user = new User();
+        user.setUserPhone(userModel.getPhoneNo());
+        try {
+            contactsObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(user));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
-        contactsObservableList.addAll(
-                new User("Eima Ross",userImg),
-                new User("Terabithia ",userImg)
-        );
+        try {
+            ArrayList<Group> groupList = new ArrayList<>();
+            groupList = RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user);
+            for (Group group:groupList
+                 ) {
+                System.out.println(group.getGroupName());
 
-        groupsObservableList.addAll(
-                new Group("Eima Ross",userImg),
-                new Group("Terabithia ",userImg)
-        );
+            }
+            groupsObservableList.addAll(RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user));
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
         memberLV.setItems(contactsObservableList);
         memberLV.setCellFactory(groupListView -> new AddContactsWithGroupListCell());

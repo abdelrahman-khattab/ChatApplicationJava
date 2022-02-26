@@ -72,6 +72,15 @@ public class ContactRequestListCell extends ListCell<User>  implements Initializ
         reject.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                User mainUser = new User();
+                mainUser.setUserPhone(userModel.getPhoneNo());
+                User requesterUser = new User();
+                requesterUser.setUserPhone(contactNumber.getText());
+                try {
+                    RMIConnector.getRmiConnector().getContactService().rejectContact(requesterUser,mainUser);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("reject");
             }
         });

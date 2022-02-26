@@ -25,7 +25,8 @@ public class ContactDAOImpl implements ContactDAO{
                 contacts.add(new User(resultSet.getString(2),resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
             }
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
         return    contacts;
@@ -41,7 +42,7 @@ public class ContactDAOImpl implements ContactDAO{
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO contacts (user_id, friend_id) VALUES (?, ?)");
             preparedStatement.setString(1,mainUser.getUserPhone());
             preparedStatement.setString(2, secondaryUser.getUserPhone());
-            resultSet=preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -38,6 +38,10 @@ public class Group implements Serializable {
         this.groupImageBytes = groupImageBytes;
     }
 
+    public Group(String groupName) {
+        this.groupName=groupName;
+    }
+
 
     public int getGroupId() {
         return groupId;

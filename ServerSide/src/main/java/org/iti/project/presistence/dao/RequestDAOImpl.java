@@ -64,12 +64,14 @@ public class RequestDAOImpl implements RequestDAO{
     @Override
     public boolean deleteUser(User mainUser , User secondaryUser) {
         ResultSet resultSet;
+        System.out.println("enter Delete stm" + ""+ mainUser.getUserPhone() +"" +secondaryUser.getUserPhone());
         try(Connection con = DBConnector.getConnection().connect()) {
             PreparedStatement preparedStatement = con.prepareStatement("DELETE from request_friend where requester_id = ? AND responder_id = ?");
             preparedStatement.setString(1,mainUser.getUserPhone());
             preparedStatement.setString(2,secondaryUser.getUserPhone());
-            resultSet=preparedStatement.executeQuery();
-
+            preparedStatement.execute();
+            System.out.println("finish Delete stm");
+            return  true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,7 +82,6 @@ public class RequestDAOImpl implements RequestDAO{
     @Override
     public ArrayList<User> selectListRequestUser(User responderUser) {
         ResultSet resultSet;
-        int iterator = 0;
         ArrayList<User> returnRequestList = new ArrayList<>();
         try(Connection con = DBConnector.getConnection().connect()) {
             PreparedStatement preparedStatement = con.prepareStatement("SELECT PHONE_NUMBER , USER_NAME , IMAGE from user where PHONE_NUMBER IN (SELECT requester_id FROM chat_app_project.request_friend where responder_id = ?)");
@@ -92,16 +93,8 @@ public class RequestDAOImpl implements RequestDAO{
                 while (resultSet.next())
                 {
                     Blob userBlopImage = resultSet.getBlob(3);
-                    //adding directly in list by using new user with constructor of 3 parameteres
                     returnRequestList.add(new User(resultSet.getString(2),resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
-
-                    //returnRequestList.get(iterator).setUserPhone(resultSet.getString(1));
-                    //returnRequestList.get(iterator).setUserName(resultSet.getString(2));
-                    //returnRequestList.get(iterator).setImage(ImageConverter.fromBlobToBytes(userBlopImage));
-
-                    //out of bound exception due to increasing iterator
-                    //iterator++;
-                }
+               }
                 return  returnRequestList;
             }
             return null;
