@@ -34,6 +34,7 @@ public class Group implements Serializable {
         this.groupImageBytes = groupImageBytes;
         this.groupId = groupId;
     }
+    public  Group(){}
 
     public Group(String groupName, String description) {
         this.groupName = groupName;
