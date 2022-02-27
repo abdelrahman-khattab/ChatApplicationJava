@@ -12,14 +12,12 @@ public class RequestDAOImpl implements RequestDAO{
     public boolean insertRequest(User user1 , User user2) {
 
      if (selectUser(user1 , user2)){
-         System.out.println("inside the if insert");
         try(Connection con = DBConnector.getConnection().connect()) {
-            System.out.println("inside the try insert");
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO request_friend (requester_id, responder_id) VALUES (?, ?)");
             preparedStatement.setString(1, user1.getUserPhone());
             preparedStatement.setString(2, user2.getUserPhone());
             preparedStatement.executeUpdate();
-            System.out.println("after the update insert execute");
+            preparedStatement.close();
             return true;
         } catch (SQLException e) {
             System.out.println("inside the catch");
@@ -43,9 +41,11 @@ public class RequestDAOImpl implements RequestDAO{
             preparedStatement.setString(3,user2.getUserPhone());
             preparedStatement.setString(4,user1.getUserPhone());
             resultSet=preparedStatement.executeQuery();
+            preparedStatement.close();
             System.out.println(resultSet == null);
             if (resultSet!=null)
             {
+                resultSet.close();
                 return true;
             }
 
@@ -63,14 +63,14 @@ public class RequestDAOImpl implements RequestDAO{
 
     @Override
     public boolean deleteUser(User mainUser , User secondaryUser) {
-        ResultSet resultSet;
         System.out.println("enter Delete stm" + ""+ mainUser.getUserPhone() +"" +secondaryUser.getUserPhone());
         try(Connection con = DBConnector.getConnection().connect()) {
             PreparedStatement preparedStatement = con.prepareStatement("DELETE from request_friend where requester_id = ? AND responder_id = ?");
             preparedStatement.setString(1,mainUser.getUserPhone());
             preparedStatement.setString(2,secondaryUser.getUserPhone());
-            preparedStatement.execute();
-            System.out.println("finish Delete stm");
+            int numberOfRow = preparedStatement.executeUpdate();
+            System.out.println("finish Delete stm and num of row is : "+ numberOfRow);
+            preparedStatement.close();
             return  true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,6 +95,8 @@ public class RequestDAOImpl implements RequestDAO{
                     Blob userBlopImage = resultSet.getBlob(3);
                     returnRequestList.add(new User(resultSet.getString(2),resultSet.getString(1),ImageConverter.fromBlobToBytes(userBlopImage)));
                }
+                resultSet.close();
+                preparedStatement.close();
                 return  returnRequestList;
             }
             return null;

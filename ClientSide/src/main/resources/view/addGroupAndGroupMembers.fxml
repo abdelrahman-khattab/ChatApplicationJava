@@ -85,7 +85,7 @@
                         </Label>
                         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER">
                            <content>
-                              <ListView fx:id="memberLV" disable="true" onMouseClicked="#contactListValidate" styleClass="list-cell-white" stylesheets="@Styles/chatStyle.css" />
+                              <ListView fx:id="memberLV" disable="true" onMouseEntered="#contactListValidate" styleClass="list-cell-white" stylesheets="@Styles/chatStyle.css" />
                            </content>
                         </ScrollPane>
                      </children>

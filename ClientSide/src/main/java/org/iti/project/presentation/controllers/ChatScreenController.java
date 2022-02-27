@@ -23,6 +23,7 @@ import org.iti.project.network.RMIConnector;
 import org.iti.project.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.util.ImageConverter;
 
@@ -142,6 +143,8 @@ public class ChatScreenController implements Initializable {
     private User currentContactedUser;
 
     private final UserModel userModel = new UserModel();
+    private final ModelFactory modelFactory = ModelFactory.getModelFactory();
+    private final UserModel currentUserModel = modelFactory.getUserModel();
 
     public static void setController(ChatScreenController chatScreenController) {
         ChatScreenController.chatScreenController = chatScreenController;
@@ -207,7 +210,20 @@ public class ChatScreenController implements Initializable {
 
     @FXML
     void onContactListButtonClicked(ActionEvent event) {
+        User currentUrs = new User();
+        System.out.println("user Model : "+userModel.getPhoneNo());
+        currentUrs.setUserPhone(currentUserModel.getPhoneNo());
+        try {
+            System.out.println("current user for get contact : "+currentUrs.getUserPhone());
+            System.out.println("update contact list : "+RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
+            SideContactListController.contactObservableList.clear();
+            SideContactListController.contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
         switchToContactListPane();
+
     }
 
     private void switchToContactListPane() {
@@ -255,6 +271,11 @@ public class ChatScreenController implements Initializable {
     void onUnownButtonClicked(ActionEvent event) {
     //Tooltip.install(unknownFunctionaityButton,exitTip);
     //exitTip.show(null);
+        try {
+            RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+    }
     System.exit(0);
 
     }

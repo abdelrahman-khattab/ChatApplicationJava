@@ -61,22 +61,24 @@ public class AddContactController {
             }
         }
 
-        else {
-                User secUser = new User();
-                User mainUser = new User();
-                mainUser.setUserPhone(userModel.getPhoneNo());
-                secUser.setUserPhone(phoneNumberTf.getText());
-                try {
-                    System.out.println("ana gowa add");
-                    RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
-                } catch (RemoteException e) {
-                    System.out.println("fy moshkela");
-                    e.printStackTrace();
-                }
-                errorsLbl.setText("the request send");
+        else if (SideContactListController.contactObservableList.isEmpty()){
 
-            }
+                    User secUser = new User();
+                    User mainUser = new User();
+                    mainUser.setUserPhone(userModel.getPhoneNo());
+                    secUser.setUserPhone(phoneNumberTf.getText());
+                    try {
+                        System.out.println("ana gowa add");
+                        RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
+                    } catch (RemoteException e) {
+                        System.out.println("fy moshkela");
+                        e.printStackTrace();
+                    }
+                    errorsLbl.setText("the request send");
         }
+
+
+    }
     }
 
 

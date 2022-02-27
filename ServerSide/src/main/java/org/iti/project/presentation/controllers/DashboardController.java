@@ -14,6 +14,9 @@ import javafx.scene.text.Text;
 import org.iti.project.services.impls.AdminImpl;
 import org.iti.project.services.interfaces.AdminInt;
 
+import javafx.scene.text.Text;
+import org.iti.project.services.impls.ContactImpl;
+import org.iti.project.services.impls.SignInImpl;
 
 public class DashboardController implements Initializable {
 
@@ -34,15 +37,8 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         data();
-
     }
 
-   /* public static void updateStatus(int onlinCcounter)
-    {
-        System.out.println("number of online user : " + onlinCcounter);
-        onLiineUsers.setText(String.valueOf(onlinCcounter));
-       // offLineUsers
-    }*/
     public void data() {
        HashMap<String,Integer> gender =  new HashMap<>();
         HashMap<String,Integer> countries =  new HashMap<>();
@@ -92,3 +88,4 @@ public class DashboardController implements Initializable {
 
     }
 }
+

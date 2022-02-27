@@ -78,6 +78,9 @@ public class ContactRequestListCell extends ListCell<User>  implements Initializ
                 requesterUser.setUserPhone(contactNumber.getText());
                 try {
                     RMIConnector.getRmiConnector().getContactService().rejectContact(requesterUser,mainUser);
+                    User currentUser = new User();
+                    currentUser.setUserPhone(userModel.getPhoneNo());
+                   FriendRequestNotificationController.contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

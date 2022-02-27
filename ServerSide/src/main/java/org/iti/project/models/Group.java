@@ -21,6 +21,7 @@ public class Group implements Serializable {
         this.groupMembers = groupMembers;
     }
 
+    public  Group(){}
     public Group(String groupName, String description, byte[] groupImageBytes, int groupId) {
         this.groupName = groupName;
         this.description = description;

@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -73,8 +70,6 @@ public class AddGroupAndGroupMembers implements Initializable {
 //        Image image = profileImage.getImage();
 
 
-        //
-
         if (file != null) {
             groupImage.setFill(new ImagePattern(new Image(file.getPath())));
         }else{
@@ -86,8 +81,10 @@ public class AddGroupAndGroupMembers implements Initializable {
     @FXML
     void addGroup(ActionEvent event) {
         Group group = new Group(newGroupName.getText());
+        User currentUser = new User();
+        currentUser.setUserPhone(userModel.getPhoneNo());
         try {
-            RMIConnector.getRmiConnector().getGroupServices().createNewGroup(group);
+            RMIConnector.getRmiConnector().getGroupServices().createNewGroup(group , currentUser);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -131,7 +128,7 @@ public class AddGroupAndGroupMembers implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
-
+                System.out.println("Select user  values : " + newValue.getUserName());
 
             }
 
@@ -139,10 +136,12 @@ public class AddGroupAndGroupMembers implements Initializable {
 
         groupsLv.setItems(groupsObservableList);
         groupsLv.setCellFactory(groupListView -> new AddGroupWithContactListCell());
-        groupsLv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
+        groupsLv.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        groupsLv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
+                System.out.println("Select group  values : " + newValue.getGroupName());
 
 
             }
@@ -188,13 +187,9 @@ public class AddGroupAndGroupMembers implements Initializable {
     }
     @FXML
     void contactListValidate(MouseEvent event) {
-        if(memberLV.getSelectionModel().selectedItemProperty()==null){
-            addMembers.setDisable(true);
-        }
-        else{
             addMembers.setDisable(false);
-        }
     }
+
 
 }
 
