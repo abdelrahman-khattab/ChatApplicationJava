@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -153,6 +154,7 @@ public class MemberListController implements Initializable {
         file = fc.showOpenDialog((Stage) editVBox.getScene().getWindow());
         if (file != null) {
             memberImage.setFill(new ImagePattern(new Image(file.getPath())));
+//            System.out.println(memberImage.getFill());
         }else{
             memberImage.setFill(new ImagePattern(new Image("/images/R.png")));
         }
@@ -179,6 +181,8 @@ public class MemberListController implements Initializable {
             }
 
         });
+
+
 //        countryComboBox.getItems().addAll(countries);
 //        genderComboBox.getItems().addAll(genders);
 //

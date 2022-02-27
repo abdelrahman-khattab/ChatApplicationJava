@@ -154,6 +154,7 @@ public class RegisterController implements Initializable {
                 file = fc.showOpenDialog((Stage) editVBox.getScene().getWindow());
                 if (file != null) {
                     memberImage.setFill(new ImagePattern(new Image(file.getPath())));
+                    System.out.println(memberImage.getFill());
                 }else{
                     memberImage.setFill(new ImagePattern(new Image("/images/R.png")));
                 }
