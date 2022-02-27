@@ -64,7 +64,7 @@ public class ContactImpl extends UnicastRemoteObject implements ContactInt {
     public void acceptContact(User mainUser, User secoundryUser) throws RemoteException {
        RequestDAO requestDAO = new RequestDAOImpl();
        ContactDAO contactDAO = new ContactDAOImpl();
-       requestDAO.deleteUser(mainUser , secoundryUser);
+       requestDAO.deleteUser(secoundryUser,mainUser);
        contactDAO.insertContact(mainUser,secoundryUser);
        contactDAO.insertContact(secoundryUser,mainUser);
        // return contactDAO.selectContacts(mainUser.getUserPhone());

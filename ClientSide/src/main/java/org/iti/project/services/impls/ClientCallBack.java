@@ -6,6 +6,7 @@ import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
 import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
+import org.iti.project.presentation.controllers.FriendRequestNotificationController;
 import org.iti.project.presentation.controllers.SideContactListController;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.interfaces.ClientCallBackInt;
@@ -55,6 +56,7 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
     public void getRequestListOfFriends(ArrayList<User> requestList) throws RemoteException
     {
         //assign This array with the contact list array
+        FriendRequestNotificationController.contactObservableList.addAll(requestList);
 
     }
 }
