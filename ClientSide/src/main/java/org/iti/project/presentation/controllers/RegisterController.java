@@ -131,10 +131,7 @@ public class RegisterController implements Initializable {
         fc.getExtensionFilters().add(extFilter);
         file = fc.showOpenDialog((Stage) vboxReg.getScene().getWindow());
 
-        Image image = profileImage.getImage();
-        //
-
-        //imageView = new ImageView(image);
+        Image image;
 
         if (file != null) {
             image = new Image(file.getPath());
@@ -301,6 +298,8 @@ public class RegisterController implements Initializable {
                     .showError();
         }
     }
+
+
 
 }
 
