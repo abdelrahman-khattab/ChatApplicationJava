@@ -70,8 +70,6 @@ public class AddGroupAndGroupMembers implements Initializable {
 //        Image image = profileImage.getImage();
 
 
-        //
-
         if (file != null) {
             groupImage.setFill(new ImagePattern(new Image(file.getPath())));
         }else{
@@ -138,6 +136,7 @@ public class AddGroupAndGroupMembers implements Initializable {
                 for(int i=0; i < selected.size(); i++)
                     System.out.println(selected.get(i).getUserName());
 
+//                System.out.println("Select user  values : " + newValue.getUserName());
 
             }
 
@@ -145,10 +144,12 @@ public class AddGroupAndGroupMembers implements Initializable {
 
         groupsLv.setItems(groupsObservableList);
         groupsLv.setCellFactory(groupListView -> new AddGroupWithContactListCell());
-        groupsLv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
+        groupsLv.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        groupsLv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
+                System.out.println("Select group  values : " + newValue.getGroupName());
 
 
             }

@@ -216,7 +216,7 @@ public class ChatScreenController implements Initializable {
         try {
             System.out.println("current user for get contact : "+currentUrs.getUserPhone());
             System.out.println("update contact list : "+RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
-
+            SideContactListController.contactObservableList.clear();
             SideContactListController.contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUrs));
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -271,6 +271,11 @@ public class ChatScreenController implements Initializable {
     void onUnownButtonClicked(ActionEvent event) {
     //Tooltip.install(unknownFunctionaityButton,exitTip);
     //exitTip.show(null);
+        try {
+            RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+    }
     System.exit(0);
 
     }

@@ -136,7 +136,9 @@ public class GroupDAOImpl implements  GroupDAO{
                 {
                     //Blob userBlopImage = resultSet.getBlob(3);
                     //adding directly in list by using new user with constructor of 3 parameteres
-                    Group newGroup =new Group(resultSet.getString(2) );
+                    Group newGroup =new Group();
+                    newGroup.setGroupName(resultSet.getString(1) );
+                    newGroup.setGroupName(resultSet.getString(2) );
                     groupList.add(newGroup);
 
                 }

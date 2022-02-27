@@ -22,7 +22,7 @@ public class FriendRequestNotificationController {
 
     @FXML
     private ListView<User> requestLV;
-    public ObservableList<User> contactObservableList;
+    public static ObservableList<User> contactObservableList;
     byte[] user1;
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     private final UserModel userModel = modelFactory.getUserModel();
@@ -37,14 +37,8 @@ public class FriendRequestNotificationController {
         ArrayList<User> requestList = new ArrayList<>();
         User currentUser = new User();
         currentUser.setUserPhone(userModel.getPhoneNo());
-        //System.out.println("before requestList");
       requestList = RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser);
-        //System.out.println("after requestList");
-       System.out.println(requestList);
        contactObservableList.addAll(requestList);
-
-//        contactObservableList.addAll(new User("Hala","01147853220",user1),new User("Hala","01147853220",user1) );
-
 
         requestLV.setItems(contactObservableList);
         requestLV.setCellFactory(groupListView -> new ContactRequestListCell());

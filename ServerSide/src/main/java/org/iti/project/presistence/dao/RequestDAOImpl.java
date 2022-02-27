@@ -68,8 +68,8 @@ public class RequestDAOImpl implements RequestDAO{
             PreparedStatement preparedStatement = con.prepareStatement("DELETE from request_friend where requester_id = ? AND responder_id = ?");
             preparedStatement.setString(1,mainUser.getUserPhone());
             preparedStatement.setString(2,secondaryUser.getUserPhone());
-            preparedStatement.execute();
-            System.out.println("finish Delete stm");
+            int numberOfRow = preparedStatement.executeUpdate();
+            System.out.println("finish Delete stm and num of row is : "+ numberOfRow);
             preparedStatement.close();
             return  true;
         } catch (SQLException e) {
