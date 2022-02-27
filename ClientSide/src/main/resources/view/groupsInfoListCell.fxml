@@ -9,14 +9,14 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" spacing="5.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" prefHeight="70.0" spacing="6.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="46.0">
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="40.0">
          <children>
             <Circle fx:id="groupImage" fill="WHITE" layoutX="20.0" layoutY="34.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="groupName" prefHeight="20.0" stylesheets="@Styles/chatStyle.css" text="Group name" VBox.vgrow="ALWAYS">
                <font>

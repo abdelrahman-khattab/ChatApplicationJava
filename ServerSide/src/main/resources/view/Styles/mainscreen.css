@@ -93,7 +93,23 @@
     -fx-background-radius: 0em;
 }
 
+
 .scroll-bar:vertical .thumb {
     -fx-background-color: white;
     -fx-background-radius: 5em;
+}
+
+.icons {
+  -fx-background-color: transparent;
+  -fx-effect : dropShadow( three-pass-box, rgba(0,0,0,0.2) , 10.0, 0.0, 0.0, 10.0 );
+}
+.button-pressing:pressed {
+  -fx-background-color: #7269ef;
+  -fx-background-radius: 10;
+  -fx-border-color: transparent;
+}
+
+.side-bar-buttons:hover {
+  -fx-border-radius: 10;
+  -fx-border-color: #7269EF;
 }
