@@ -1,6 +1,7 @@
 package org.iti.project.services.impls;
 
 import org.iti.project.models.User;
+import org.iti.project.presentation.controllers.DashboardController;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.services.interfaces.SignInInt;
@@ -30,6 +31,8 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
         }
         else{
             onlineClients.put(user.getUserPhone(), clientCallBack);
+            //System.out.println("counter in map : "+ onlineClients.size());
+            //DashboardController.updateStatus(onlineClients.size());
             System.out.println("user is add"+onlineClients.toString());
             return user;
         }
