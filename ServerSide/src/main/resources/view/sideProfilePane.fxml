@@ -32,7 +32,7 @@
                                  </Text>
                               </children>
                            </HBox>
-                           <Text fill="WHITE" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="148" textAlignment="CENTER">
+                           <Text fill="WHITE" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="148" textAlignment="CENTER" fx:id="onLiineUsers">
                               <font>
                                  <Font name="System Bold" size="36.0" />
                               </font>
@@ -57,7 +57,7 @@
                                  </Text>
                               </children>
                            </HBox>
-                           <Text fill="WHITE" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="57" textAlignment="CENTER">
+                           <Text fill="WHITE" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="57" textAlignment="CENTER"  fx:id="offLineUsers">
                               <font>
                                  <Font name="System Bold" size="36.0" />
                               </font>

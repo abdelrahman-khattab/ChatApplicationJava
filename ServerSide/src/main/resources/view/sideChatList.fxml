@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.RegisterController">
+<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.RegisterController">
    <content>
 
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="500.0" style="-fx-background-color: #303841;" translateX="170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
@@ -37,7 +37,7 @@
             </HBox>
             <HBox>
                <children>
-                  <VBox alignment="CENTER" prefHeight="80.0" prefWidth="322.0" spacing="7.0" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="vImage" alignment="CENTER" prefHeight="80.0" prefWidth="322.0" spacing="7.0" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="89.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -61,7 +61,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="clientNameTextField" prefHeight="50.0" prefWidth="312.0" promptText="Client Name">
+                  <TextField fx:id="clientNameTextField" onKeyTyped="#enterName" prefHeight="50.0" prefWidth="312.0" promptText="Client Name">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
@@ -77,7 +77,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="clientMobileTextField" layoutX="10.0" layoutY="98.0" prefHeight="50.0" prefWidth="312.0" promptText="Client Mobile">
+                  <TextField fx:id="clientMobileTextField" layoutX="10.0" layoutY="98.0" onKeyTyped="#enterMobile" prefHeight="50.0" prefWidth="312.0" promptText="Client Mobile">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
@@ -93,7 +93,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="clientEmailTextField" prefHeight="50.0" promptText="Client Email">
+                  <TextField fx:id="clientEmailTextField" onKeyTyped="#enterEmail" prefHeight="50.0" promptText="Client Email">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
@@ -109,7 +109,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField fx:id="clientPasswordField" prefHeight="50.0" promptText="Client Password">
+                  <PasswordField fx:id="clientPasswordField" onKeyTyped="#enterPassword" prefHeight="50.0" promptText="Client Password">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
