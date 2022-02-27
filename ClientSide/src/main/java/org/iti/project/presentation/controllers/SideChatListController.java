@@ -5,13 +5,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import org.iti.project.models.Group;
 import org.iti.project.models.User;
@@ -94,7 +91,6 @@ public class SideChatListController {
                 new User("Mohamed Alaa",user1 ,"online",2 , "01111111111"),
                 new User("saly ",user1,"offine",4,"01111111113")
         );
-
         contactinfoLV.setItems(contactChatObservableList);
         contactinfoLV.setCellFactory(groupListView -> new ContactsChatInfoListCellController());
         contactinfoLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
@@ -111,6 +107,9 @@ public class SideChatListController {
                 stageCoordinator.getChatScreenController().updateChatScene(selectedUserImage , selectedUser.getUserName());
                 System.out.println(stageCoordinator.getChatScreenController().getCurrentContactedUser().getUserPhone()+
                         " from sideChatListview I am the phone number");
+
+
+
 
 
 
