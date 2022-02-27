@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -128,11 +125,18 @@ public class AddGroupAndGroupMembers implements Initializable {
         }
 
         memberLV.setItems(contactsObservableList);
+        memberLV.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         memberLV.setCellFactory(groupListView -> new AddContactsWithGroupListCell());
         memberLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
 
             @Override
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
+
+                //all select item
+                ObservableList<User> selected = memberLV.getSelectionModel().getSelectedItems();
+                // Display the selections.
+                for(int i=0; i < selected.size(); i++)
+                    System.out.println(selected.get(i).getUserName());
 
 
             }
