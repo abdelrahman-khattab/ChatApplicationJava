@@ -79,7 +79,7 @@ public class GroupDAOImpl implements  GroupDAO{
     }
 
     @Override
-    public void createNewGroup(Group group) {
+    public void createNewGroup(Group group , User user) {
 
         System.out.println("inside the if group insert");
         try(Connection con = DBConnector.getConnection().connect()) {
@@ -93,6 +93,8 @@ public class GroupDAOImpl implements  GroupDAO{
             System.out.println("inside group the catch");
             e.printStackTrace();
         }
+        int groupId = getSpecialGroup(group);
+        addCurrentUserToGroup(user ,groupId);
 
     }
 
@@ -150,4 +152,46 @@ public class GroupDAOImpl implements  GroupDAO{
         return null;
     }
 
+
+    @Override
+    public void addCurrentUserToGroup(User user , int groupId) {
+        System.out.println("user id : "+user.getUserPhone()+"  group id : "+groupId);
+        System.out.println("inside the user to group insert !1");
+        try(Connection con = DBConnector.getConnection().connect()) {
+            System.out.println("inside the try user to group insert");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)");
+            preparedStatement.setString(1, user.getUserPhone());
+            preparedStatement.setInt(2, groupId);
+            preparedStatement.executeUpdate();
+            System.out.println("after the update insert group execute");
+
+        } catch (SQLException e) {
+            System.out.println("inside group the catch");
+            e.printStackTrace();
+        }
+    }
+    //select group_id from groupchat where GROUP_NAME = 'Group 3ala Allah';
+
+
+    @Override
+    public int getSpecialGroup(Group group) {
+        ResultSet resultSet;
+        int returnGroupId = 0;
+        try(Connection con = DBConnector.getConnection().connect()) {
+            PreparedStatement preparedStatement = con.prepareStatement("select group_id from groupchat where GROUP_NAME = ?");
+            preparedStatement.setString(1,group.getGroupName());
+            resultSet=preparedStatement.executeQuery();
+            System.out.println(resultSet == null);
+            if (resultSet.next())
+            {
+                returnGroupId = resultSet.getInt(1);
+                System.out.println("group Id = " +returnGroupId);
+                return returnGroupId ;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

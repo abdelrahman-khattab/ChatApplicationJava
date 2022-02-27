@@ -8,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.text.Text;
+import org.iti.project.services.impls.ContactImpl;
+import org.iti.project.services.impls.SignInImpl;
 
 public class DashboardController implements Initializable {
 
@@ -16,13 +19,20 @@ public class DashboardController implements Initializable {
 
     @FXML
     private PieChart pieChart;
+    @FXML
+    private Text offLineUsers;
 
+    @FXML
+    private Text onLiineUsers;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         data();
+
     }
 
     public void data() {
+        int onlineUserCount = 0;
         // Line Chart
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("2014");
@@ -42,6 +52,11 @@ public class DashboardController implements Initializable {
         // clip.setArcHeight(100);
         // imageView.setClip(clip);
         // imageView.setEffect(new DropShadow(20, Color.BLACK));
+
+
+        onlineUserCount = SignInImpl.getOnlineClients().size();
+        onLiineUsers.setText(String.valueOf(onlineUserCount));
+
 
     }
 
