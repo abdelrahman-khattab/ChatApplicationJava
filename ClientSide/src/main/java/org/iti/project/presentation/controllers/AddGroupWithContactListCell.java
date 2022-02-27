@@ -45,9 +45,9 @@ public class AddGroupWithContactListCell extends ListCell<Group> {
                 }
             }
 
-           // userImage= ImageConverter.fromBytesToImage(group.getGroupImageBytes());
-            //groupName.setText(group.getGroupName());
-            //groupImage.setFill(new ImagePattern(userImage));
+            userImage= ImageConverter.fromBytesToImage(group.getGroupImageBytes());
+            groupName.setText(group.getGroupName());
+            groupImage.setFill(new ImagePattern(userImage));
 
             setGraphic(contactInfoHBox);
         }

@@ -96,6 +96,7 @@ public class AddGroupAndGroupMembers implements Initializable {
     }
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     private final UserModel userModel = modelFactory.getUserModel();
+    ArrayList<User>selectedUser = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -129,18 +130,22 @@ public class AddGroupAndGroupMembers implements Initializable {
         memberLV.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         memberLV.setCellFactory(groupListView -> new AddContactsWithGroupListCell());
         memberLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
-
             @Override
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
 
                 //all select item
                 ObservableList<User> selected = memberLV.getSelectionModel().getSelectedItems();
                 // Display the selections.
-                for(int i=0; i < selected.size(); i++)
+                for(int i=0; i < selected.size(); i++) {
+                    selectedUser.clear();
+                    User newUser = new User();
+                    newUser.setUserName(selected.get(i).getUserName());
+                    newUser.setUserPhone(selectedUser.get(i).getUserPhone());
+                    selectedUser.add(newUser);
                     System.out.println(selected.get(i).getUserName());
 
 //                System.out.println("Select user  values : " + newValue.getUserName());
-
+                }
             }
 
         });
@@ -153,16 +158,12 @@ public class AddGroupAndGroupMembers implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
                 System.out.println("Select group  values : " + newValue.getGroupName());
+                System.out.println("Select group  values : " + newValue.getGroupImageBytes());
 
 
             }
 
         });
-
-
-
-
-
 
         if(groupsLv.getSelectionModel().selectedItemProperty()==null || memberLV.getSelectionModel().selectedItemProperty()==null){
             System.out.println("two list...");
@@ -173,11 +174,8 @@ public class AddGroupAndGroupMembers implements Initializable {
             addMembers.setDisable(true);
         }
 
-
-
-
-
     }
+
     @FXML
     void validateGroupName(KeyEvent event) {
         if(newGroupName.getText()==null ||newGroupName.getText().trim().isEmpty() ){
