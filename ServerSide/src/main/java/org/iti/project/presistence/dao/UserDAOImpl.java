@@ -4,14 +4,12 @@ import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.util.ImageConverter;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashMap;
 
 public class UserDAOImpl implements UserDAO {
     Connection con = DBConnector.getConnection().connect();
+
 
     @Override
     public boolean insertUser(User user) {
@@ -206,6 +204,55 @@ public class UserDAOImpl implements UserDAO {
         return null;
     }
 
+    @Override
+    public  HashMap<String,Integer> selectGender() {
+      HashMap<String,Integer> gender = new HashMap<>();
+
+
+        Statement stmt = null;
+        ResultSet rs;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("Select Gender,Count(gender)  from user  group by gender");
+            System.out.println(rs==null);
+
+             while( rs.next() )
+             {
+                 gender.put(rs.getString(1),rs.getInt(2));
+
+
+             }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return gender;
+    }
+
+    @Override
+    public HashMap<String, Integer> selectUSerCountries() {
+        HashMap <String,Integer> countries = new HashMap<>();
+        Statement stmt = null;
+        ResultSet rs;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("Select COUNTRY,Count(COUNTRY) from user group by COUNTRY");
+            if(rs != null){
+                while (rs.next()){
+                    countries.put(rs.getString(1), rs.getInt(2));
+                }
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countries;
+    }
 
 
 }

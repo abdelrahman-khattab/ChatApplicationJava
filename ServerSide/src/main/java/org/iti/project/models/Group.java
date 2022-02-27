@@ -1,7 +1,14 @@
 package org.iti.project.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.iti.project.models.User;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group implements Serializable {
@@ -21,7 +28,6 @@ public class Group implements Serializable {
         this.groupMembers = groupMembers;
     }
 
-    public  Group(){}
     public Group(String groupName, String description, byte[] groupImageBytes, int groupId) {
         this.groupName = groupName;
         this.description = description;
@@ -42,6 +48,8 @@ public class Group implements Serializable {
     public Group(String groupName) {
         this.groupName=groupName;
     }
+    public  Group(){}
+
 
 
     public int getGroupId() {

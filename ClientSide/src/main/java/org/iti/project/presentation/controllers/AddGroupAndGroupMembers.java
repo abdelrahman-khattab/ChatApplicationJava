@@ -57,7 +57,7 @@ public class AddGroupAndGroupMembers implements Initializable {
     public ObservableList<Group> groupsObservableList;
     byte[] userImg;
     private File file;
-
+    Image groupImg ;
 
     @FXML
     void uploadImage(ActionEvent event) {
@@ -72,6 +72,7 @@ public class AddGroupAndGroupMembers implements Initializable {
 
         if (file != null) {
             groupImage.setFill(new ImagePattern(new Image(file.getPath())));
+            groupImg = new Image(file.getPath());
         }else{
             groupImage.setFill(new ImagePattern(new Image("/images/R.png")));
         }
@@ -80,7 +81,10 @@ public class AddGroupAndGroupMembers implements Initializable {
     //Add group name here...............................
     @FXML
     void addGroup(ActionEvent event) {
-        Group group = new Group(newGroupName.getText());
+        Group group = new Group();
+        byte[] fileContent = ImageConverter.fromImageToBytes(groupImg.getUrl());
+        group.setGroupName(newGroupName.getText());
+        group.setGroupImageBytes(fileContent);
         User currentUser = new User();
         currentUser.setUserPhone(userModel.getPhoneNo());
         try {
@@ -92,6 +96,7 @@ public class AddGroupAndGroupMembers implements Initializable {
     }
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     private final UserModel userModel = modelFactory.getUserModel();
+    ArrayList<User>selectedUser = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,8 +116,7 @@ public class AddGroupAndGroupMembers implements Initializable {
         try {
             ArrayList<Group> groupList = new ArrayList<>();
             groupList = RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user);
-            for (Group group:groupList
-                 ) {
+            for (Group group:groupList) {
                 System.out.println(group.getGroupName());
 
             }
@@ -122,22 +126,27 @@ public class AddGroupAndGroupMembers implements Initializable {
             e.printStackTrace();
         }
 
+
         memberLV.setItems(contactsObservableList);
         memberLV.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         memberLV.setCellFactory(groupListView -> new AddContactsWithGroupListCell());
         memberLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
-
             @Override
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
 
                 //all select item
                 ObservableList<User> selected = memberLV.getSelectionModel().getSelectedItems();
                 // Display the selections.
-                for(int i=0; i < selected.size(); i++)
+                for(int i=0; i < selected.size(); i++) {
+                    selectedUser.clear();
+                    User newUser = new User();
+                    newUser.setUserName(selected.get(i).getUserName());
+                    newUser.setUserPhone(selectedUser.get(i).getUserPhone());
+                    selectedUser.add(newUser);
                     System.out.println(selected.get(i).getUserName());
 
 //                System.out.println("Select user  values : " + newValue.getUserName());
-
+                }
             }
 
         });
@@ -150,16 +159,12 @@ public class AddGroupAndGroupMembers implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
                 System.out.println("Select group  values : " + newValue.getGroupName());
+                System.out.println("Select group  values : " + newValue.getGroupImageBytes());
 
 
             }
 
         });
-
-
-
-
-
 
         if(groupsLv.getSelectionModel().selectedItemProperty()==null || memberLV.getSelectionModel().selectedItemProperty()==null){
             System.out.println("two list...");
@@ -170,11 +175,8 @@ public class AddGroupAndGroupMembers implements Initializable {
             addMembers.setDisable(true);
         }
 
-
-
-
-
     }
+
     @FXML
     void validateGroupName(KeyEvent event) {
         if(newGroupName.getText()==null ||newGroupName.getText().trim().isEmpty() ){

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.RegisterController">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.AddNewUserController">
    <content>
       <HBox alignment="CENTER" styleClass="notificationBg">
          <children>
@@ -133,7 +133,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="birthDate1" editable="false" onAction="#enterBirthDate" />
+                        <DatePicker fx:id="birthDate1" editable="false" onAction="#enterBirthDate"/>
                         <Label layoutX="10.0" layoutY="286.0" styleClass="fieldHeader" text="BIO" textFill="#9aa1b9">
                            <font>
                               <Font name="Serif Bold" size="16.0" />
@@ -152,7 +152,7 @@
                         </TextArea>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="clientRegistrationButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" style="-fx-border-radius: 8;" styleClass="btnNotification" text="Add" textFill="#303841">
+                              <Button fx:id="clientRegistrationButton" mnemonicParsing="false" onAction="#addUser" prefHeight="38.0" prefWidth="86.0" style="-fx-border-radius: 8;" styleClass="btnNotification" text="Add" textFill="#303841">
                                  <font>
                                     <Font name="SansSerif Regular" size="16.0" />
                                  </font>

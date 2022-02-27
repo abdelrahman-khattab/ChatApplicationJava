@@ -57,11 +57,15 @@ public class GroupsInfoListCellController extends ListCell<Group> {
                 }
 
             }
-            //userImage= ImageConverter.fromBytesToImage(group.getGroupImageBytes());
-            //groupImage.setFill(new ImagePattern(userImage));
-            //groupName.setText(group.getGroupName());
-            //GroupDescription.setText(group.getDescription());
-            //setGraphic(contactInfoHBox);
+            userImage= ImageConverter.fromBytesToImage(group.getGroupImageBytes());
+            if(userImage==null){
+                groupImage.setFill(new ImagePattern(new Image("/images/R.png")));
+            }else{
+                groupImage.setFill(new ImagePattern(userImage));
+            }
+            groupName.setText(group.getGroupName());
+            GroupDescription.setText(group.getDescription());
+            setGraphic(contactInfoHBox);
         }
     }
 

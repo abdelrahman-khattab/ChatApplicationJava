@@ -48,8 +48,13 @@ public class ContactsInfoListCellController extends ListCell<User> {
             }
 
             userImage= ImageConverter.fromBytesToImage(user.getImage());
+            if(userImage==null){
+                contactImage.setFill(new ImagePattern(new Image("/images/R.png")));
+            }else{
+                contactImage.setFill(new ImagePattern(userImage));
+            }
             contactName.setText(user.getUserName());
-            contactImage.setFill(new ImagePattern(userImage));
+
             contactNumber.setText(user.getUserPhone());
 
             setGraphic(contactInfoHBox);

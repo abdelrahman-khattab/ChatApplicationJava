@@ -89,9 +89,7 @@ public class SideContactListController {
     public void initialize() throws IOException {
 
         contactObservableList = FXCollections.observableArrayList();
-        //get Image
-        File file=new FileChooser().showOpenDialog(null);
-        user1= ImageConverter.fromImageToBytes(file.getPath());
+
        // userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
 
         User currentUrs = new User();
@@ -110,7 +108,6 @@ public class SideContactListController {
             }
 
         });
-
 
     }
 
