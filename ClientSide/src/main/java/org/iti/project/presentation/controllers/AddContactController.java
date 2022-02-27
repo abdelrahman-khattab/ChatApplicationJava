@@ -31,54 +31,61 @@ public class AddContactController {
         String userPhoneCheck = phoneNumberTf.getText();
         System.out.println("outside");
         System.out.println(SideContactListController.contactObservableList);
-        if (userModel.getPhoneNo().equals(phoneNumberTf.getText()))
+        if (userPhoneCheck.length()==11)
         {
-            errorsLbl.setText("You can't add yourself !!!!!");
+            if (userModel.getPhoneNo().equals(phoneNumberTf.getText()))
+            {
+                errorsLbl.setText("You can't add yourself !!!!!");
 
-        }
-        else if (!SideContactListController.contactObservableList.isEmpty()){
-            for (User usr:SideContactListController.contactObservableList) {
+            }
+            else if (!SideContactListController.contactObservableList.isEmpty()){
+                for (User usr:SideContactListController.contactObservableList) {
 
-                if(usr.getUserPhone().equals(userPhoneCheck))
-                {
-                    errorsLbl.setText("this is already friend !!");
-                }
-                else {
-                    User secUser = new User();
-                    User mainUser = new User();
-                    mainUser.setUserPhone(userModel.getPhoneNo());
-                    secUser.setUserPhone(phoneNumberTf.getText());
-                    try {
-                        System.out.println("ana gowa add");
-                        RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
-                    } catch (RemoteException e) {
-                        System.out.println("fy moshkela");
-                        e.printStackTrace();
+                    if(usr.getUserPhone().equals(userPhoneCheck))
+                    {
+                        errorsLbl.setText("this is already friend !!");
                     }
-                    errorsLbl.setText("the request send");
+                    else {
+                        User secUser = new User();
+                        User mainUser = new User();
+                        mainUser.setUserPhone(userModel.getPhoneNo());
+                        secUser.setUserPhone(phoneNumberTf.getText());
+                        try {
+                            System.out.println("ana gowa add");
+                            RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
+                        } catch (RemoteException e) {
+                            System.out.println("fy moshkela");
+                            e.printStackTrace();
+                        }
+                        errorsLbl.setText("the request send");
 
+                    }
                 }
             }
+
+            else if (SideContactListController.contactObservableList.isEmpty()){
+
+                User secUser = new User();
+                User mainUser = new User();
+                mainUser.setUserPhone(userModel.getPhoneNo());
+                secUser.setUserPhone(phoneNumberTf.getText());
+                try {
+                    System.out.println("ana gowa add");
+                    RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
+                } catch (RemoteException e) {
+                    System.out.println("fy moshkela");
+                    e.printStackTrace();
+                }
+                errorsLbl.setText("the request send");
+            }
+
+
         }
-
-        else if (SideContactListController.contactObservableList.isEmpty()){
-
-                    User secUser = new User();
-                    User mainUser = new User();
-                    mainUser.setUserPhone(userModel.getPhoneNo());
-                    secUser.setUserPhone(phoneNumberTf.getText());
-                    try {
-                        System.out.println("ana gowa add");
-                        RMIConnector.getRmiConnector().getContactService().addContact(mainUser, secUser);
-                    } catch (RemoteException e) {
-                        System.out.println("fy moshkela");
-                        e.printStackTrace();
-                    }
-                    errorsLbl.setText("the request send");
+        else
+        {
+            errorsLbl.setText("Enter A correct Number");
         }
-
-
-    }
+        }
     }
 
 

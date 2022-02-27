@@ -82,10 +82,12 @@ public class GroupDAOImpl implements  GroupDAO{
     public void createNewGroup(Group group , User user) {
 
         System.out.println("inside the if group insert");
+        Blob groupImageAsBlop = ImageConverter.fromBytesToBlob(group.getGroupImageBytes());
         try(Connection con = DBConnector.getConnection().connect()) {
             System.out.println("inside the try group insert");
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO groupchat (GROUP_NAME) VALUES (?)");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO groupchat (GROUP_NAME , GROUP_IMAGE) VALUES (?,?)");
             preparedStatement.setString(1, group.getGroupName());
+            preparedStatement.setBlob(2,groupImageAsBlop);
             preparedStatement.executeUpdate();
             System.out.println("after the update insert group execute");
 
@@ -139,6 +141,8 @@ public class GroupDAOImpl implements  GroupDAO{
                     Group newGroup =new Group();
                     newGroup.setGroupName(resultSet.getString(1) );
                     newGroup.setGroupName(resultSet.getString(2) );
+                    Blob groupBlopImage = resultSet.getBlob(3);
+                    newGroup.setGroupImageBytes(ImageConverter.fromBlobToBytes(groupBlopImage));
                     groupList.add(newGroup);
 
                 }

@@ -57,9 +57,9 @@ public class GroupsInfoListCellController extends ListCell<Group> {
                 }
 
             }
-            //userImage= ImageConverter.fromBytesToImage(group.getGroupImageBytes());
-            //groupImage.setFill(new ImagePattern(userImage));
-            //groupName.setText(group.getGroupName());
+            userImage= ImageConverter.fromBytesToImage(group.getGroupImageBytes());
+            groupImage.setFill(new ImagePattern(userImage));
+            groupName.setText(group.getGroupName());
             //GroupDescription.setText(group.getDescription());
             //setGraphic(contactInfoHBox);
         }

@@ -57,7 +57,7 @@ public class AddGroupAndGroupMembers implements Initializable {
     public ObservableList<Group> groupsObservableList;
     byte[] userImg;
     private File file;
-
+    Image groupImg ;
 
     @FXML
     void uploadImage(ActionEvent event) {
@@ -72,6 +72,7 @@ public class AddGroupAndGroupMembers implements Initializable {
 
         if (file != null) {
             groupImage.setFill(new ImagePattern(new Image(file.getPath())));
+            groupImg = new Image(file.getPath());
         }else{
             groupImage.setFill(new ImagePattern(new Image("/images/R.png")));
         }
@@ -80,7 +81,10 @@ public class AddGroupAndGroupMembers implements Initializable {
     //Add group name here...............................
     @FXML
     void addGroup(ActionEvent event) {
-        Group group = new Group(newGroupName.getText());
+        Group group = new Group();
+        byte[] fileContent = ImageConverter.fromImageToBytes(groupImg.getUrl());
+        group.setGroupName(newGroupName.getText());
+        group.setGroupImageBytes(fileContent);
         User currentUser = new User();
         currentUser.setUserPhone(userModel.getPhoneNo());
         try {
@@ -111,8 +115,7 @@ public class AddGroupAndGroupMembers implements Initializable {
         try {
             ArrayList<Group> groupList = new ArrayList<>();
             groupList = RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(user);
-            for (Group group:groupList
-                 ) {
+            for (Group group:groupList) {
                 System.out.println(group.getGroupName());
 
             }
