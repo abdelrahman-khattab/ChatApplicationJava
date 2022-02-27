@@ -55,7 +55,7 @@ public class DashboardController implements Initializable {
 
 
         onlineUserCount = SignInImpl.getOnlineClients().size();
-        onLiineUsers.setText(String.valueOf(onlineUserCount));
+//        onLiineUsers.setText(String.valueOf(onlineUserCount));
 
 
     }

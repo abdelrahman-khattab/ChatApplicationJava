@@ -13,9 +13,7 @@
 .button-icon:hover {
   -fx-background-color: #6874cc;
 }
-.icons {
-  -fx-background-color: transparent;
-}
+
 .smooth-border {
   -fx-background-radius: 15px 15px 15px 15px;
 }
@@ -41,11 +39,7 @@
   -fx-background-color: transparent;
   -fx-background-radius: 20 0 20 20;
 }
-.button-pressing:pressed {
-  -fx-background-color: #CBCF92;
-  -fx-background-radius: 20;
-  -fx-border-color: transparent;
-}
+
 .send-btn-background {
   -fx-background-color: #fdfeff;
 }
@@ -57,10 +51,7 @@
   -fx-border-color: #ccd0d4;
    -fx-fill:white;
 }
-.side-bar-buttons:hover {
-  -fx-border-radius: 20;
-  -fx-border-color: #CBCF92;
-}
+
 .mouse-hand {
   -fx-cursor: hand;
 }
@@ -119,3 +110,18 @@
 	  -fx-border-color:#CBCF92
 }
 .color-picker > .label { -fx-text-fill: white; }
+
+.icons {
+  -fx-background-color: transparent;
+  -fx-effect : dropShadow( three-pass-box, rgba(0,0,0,0.2) , 10.0, 0.0, 0.0, 10.0 );
+}
+.button-pressing:pressed {
+  -fx-background-color: #7269ef;
+  -fx-background-radius: 10;
+  -fx-border-color: transparent;
+}
+
+.side-bar-buttons:hover {
+  -fx-border-radius: 10;
+  -fx-border-color: #7269EF;
+}

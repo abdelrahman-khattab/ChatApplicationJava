@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,6 +19,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,14 +29,26 @@
    <children>
       <AnchorPane minWidth="50.0" prefHeight="600.0" prefWidth="72.0" styleClass="sidebar-background" stylesheets="@Styles/mainscreen.css" HBox.hgrow="NEVER">
          <children>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/hello_48px.png" />
-               </image>
-            </ImageView>
+            <VBox alignment="CENTER" layoutX="-6.599999904632568" layoutY="15.0" AnchorPane.leftAnchor="-6.599999904632561" AnchorPane.rightAnchor="-0.6000000953674345">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
+                     <image>
+                        <Image url="@images/speech-bubble.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Jets" textAlignment="CENTER" wrappingWidth="64.00002441406241" x="4.0">
+                     <font>
+                        <Font name="Algerian" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
             <VBox alignment="CENTER" layoutX="6.0" layoutY="119.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="profileButton" mnemonicParsing="false" onAction="#onProfileButtonClicked" prefHeight="35.0" prefWidth="10.0" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
+                  <Button fx:id="profileButton" mnemonicParsing="false" onAction="#onProfileButtonClicked" prefHeight="35.0" prefWidth="12.0" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
                      <styleClass>
                         <String fx:value="mouse-hand" />
                         <String fx:value="icons" />
@@ -41,18 +56,21 @@
                         <String fx:value="side-bar-buttons" />
                      </styleClass>
                      <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icons8_user_32px.png" />
+                              <Image url="@images/user%20(4).png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
                   </Button>
                   <Button fx:id="chatListButton" mnemonicParsing="false" onAction="#onChatListButtonClicked" prefHeight="35.0" prefWidth="10.0" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
                            <image>
-                              <Image url="@../images/messaging_32px.png" />
+                              <Image url="@images/chat.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -62,12 +80,15 @@
                         <String fx:value="button-pressing" />
                         <String fx:value="side-bar-buttons" />
                      </styleClass>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
                   </Button>
                   <Button fx:id="groupChatButton" mnemonicParsing="false" onAction="#onGroupChatButtonClicked" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="33.0" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
                            <image>
-                              <Image url="@../images/people_32px.png" />
+                              <Image url="@images/multiple-users-silhouette.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -77,13 +98,23 @@
                         <String fx:value="side-bar-buttons" />
                         <String fx:value="button-pressing" />
                      </styleClass>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
                   </Button>
                   <Button fx:id="contactListButton" mnemonicParsing="false" onAction="#onContactListButtonClicked" prefHeight="35.0" prefWidth="10.0" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="34.0" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
                            <image>
-                              <Image url="@../images/call_list_32px.png" />
+                              <Image url="@images/contact.png" />
                            </image>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
                         </ImageView>
                      </graphic>
                      <styleClass>
@@ -92,16 +123,19 @@
                         <String fx:value="side-bar-buttons" />
                         <String fx:value="button-pressing" />
                      </styleClass>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" layoutX="5.0" layoutY="488.0" spacing="10.0" AnchorPane.bottomAnchor="12.0">
+            <VBox alignment="CENTER" layoutX="5.0" layoutY="488.0" spacing="10.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClicked" prefHeight="35.0" prefWidth="10.0" style="-fx-background-color: #00000000;" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
+                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClicked" prefHeight="35.0" prefWidth="10.0" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="28.0">
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
                            <image>
-                              <Image url="@../images/icons8_exit_24px.png" />
+                              <Image url="@images/logout.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -111,12 +145,15 @@
                         <String fx:value="button-pressing" />
                         <String fx:value="side-bar-buttons" />
                      </styleClass>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
                   </Button>
                   <Button fx:id="unknownFunctionaityButton" mnemonicParsing="false" onAction="#onUnownButtonClicked" prefHeight="35.0" prefWidth="10.0" stylesheets="@Styles/mainscreen.css" textFill="#690f0f" VBox.vgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="31.0">
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
                            <image>
-                              <Image url="@../images/closeWindow.png" />
+                              <Image url="@images/window-close.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -126,14 +163,12 @@
                         <String fx:value="side-bar-buttons" />
                         <String fx:value="button-pressing" />
                      </styleClass>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
                   </Button>
                </children>
             </VBox>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="-32.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jets" textAlignment="CENTER" wrappingWidth="102.00000697374344" x="4.0">
-               <font>
-                  <Font name="Impact" size="24.0" />
-               </font>
-            </Text>
          </children>
       </AnchorPane>
       <StackPane fx:id="sideNavigationStackPane" HBox.hgrow="SOMETIMES">
@@ -147,9 +182,9 @@
                   <String fx:value="list-chat-background" />
                </styleClass>
             </ScrollPane>
-            <ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" minWidth="188.0" prefHeight="600.0" prefWidth="188.0" stylesheets="@Styles/mainscreen.css">
+            <ScrollPane fx:id="secondPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" minWidth="240.0" prefHeight="600.0" prefWidth="320.0" stylesheets="@Styles/mainscreen.css">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="list-chat-background" stylesheets="@Styles/mainscreen.css" />
+                  <VBox styleClass="list-chat-background" stylesheets="@Styles/mainscreen.css" />
                </content>
                <styleClass>
                   <String fx:value="list-chat-background" />
@@ -162,27 +197,30 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="500.0" spacing="7.0" styleClass="top-chat" stylesheets="@Styles/mainscreen.css">
                <children>
-                  <Circle fx:id="contactImageCircle" fill="WHITE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Text fx:id="contactImageLabel" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textname" text="contact name" wrappingWidth="115.73675918579102">
+                  <Circle fx:id="contactImageCircle" fill="WHITE" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="icons" />
+                  <Text fx:id="contactImageLabel" fill="WHITE" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="contact name" wrappingWidth="195.7368278503418">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="25.0" />
+                     </font>
                   </Text>
                   <Pane prefHeight="34.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" style="-fx-background-color: #00000000;">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
                            <image>
-                              <Image url="@../images/icons8_search_48px_1.png" />
+                              <Image url="@images/search.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="callButton" layoutX="506.0" layoutY="22.0" mnemonicParsing="false" style="-fx-background-color: #00000000;">
                      <graphic>
-                        <ImageView fitHeight="27.0" fitWidth="25.0">
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
                            <image>
-                              <Image url="@../images/icons8_phone_100px.png" />
+                              <Image url="@images/call.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -292,9 +330,9 @@
                <children>
                   <Button fx:id="fileAttachementButton" mnemonicParsing="false" onAction="#onFileAttachingButtonClicked" prefHeight="30.0" prefWidth="40.0" stylesheets="@Styles/mainscreen.css">
                      <graphic>
-                        <ImageView>
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
                            <image>
-                              <Image url="@../images/icons8_attach_32px.png" />
+                              <Image url="@images/attachment.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -306,9 +344,9 @@
                   </Button>
                   <Button fx:id="emojiButton" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="27.0">
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
                            <image>
-                              <Image url="@../images/icons8_smiling_50px.png" />
+                              <Image url="@images/smile.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -323,11 +361,11 @@
                         <String fx:value="custom-text-field" />
                         <String fx:value="input-text" />
                      </styleClass></TextField>
-                  <Button fx:id="sendMessageButton" defaultButton="true" mnemonicParsing="false" onAction="#onSendButtonClicked" stylesheets="@Styles/mainscreen.css">
+                  <Button fx:id="sendMessageButton" defaultButton="true" mnemonicParsing="false" onAction="#onSendButtonClicked" style="-fx-background-color: #7269ef;">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="38.0" rotate="90.0">
+                        <ImageView fitHeight="28.0" fitWidth="28.0" rotate="360.0">
                            <image>
-                              <Image url="@../images/email_send_64px.png" />
+                              <Image url="@images/send.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -335,7 +373,13 @@
                         <String fx:value="send-btn-background" />
                         <String fx:value="send-btn-background-pressing" />
                         <String fx:value="mouse-hand" />
+                        <String fx:value="notificationBg" />
+                        <String fx:value="radius" />
                      </styleClass>
+                     <stylesheets>
+                        <URL value="@Styles/mainscreen.css" />
+                        <URL value="@Styles/chatStyle.css" />
+                     </stylesheets>
                   </Button>
                </children>
                <padding>
@@ -346,9 +390,9 @@
                <children>
                   <ToggleButton fx:id="boldButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
-                        <ImageView fitHeight="23.0" fitWidth="15.0">
+                        <ImageView fitHeight="15.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../images/icons8_bold_26px.png" />
+                              <Image url="@images/bold-text.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -362,9 +406,9 @@
                   </ToggleButton>
                   <ToggleButton fx:id="italicButton" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
-                        <ImageView fitHeight="23.0" fitWidth="15.0">
+                        <ImageView fitHeight="15.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../images/icons8_italic_26px.png" />
+                              <Image url="@images/bold-text%20(1).png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -378,9 +422,9 @@
                   </ToggleButton>
                   <ToggleButton fx:id="underlineButton" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
                      <graphic>
-                        <ImageView fitHeight="23.0" fitWidth="15.0">
+                        <ImageView fitHeight="15.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../images/icons8_underline_26px.png" />
+                              <Image url="@images/bold-text%20(2).png" />
                            </image>
                         </ImageView>
                      </graphic>

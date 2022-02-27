@@ -10,9 +10,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="contactInfoHBox" accessibleRole="BUTTON" alignment="CENTER_LEFT" spacing="5.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="contactInfoHBox" accessibleRole="BUTTON" alignment="CENTER_LEFT" spacing="8.0" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="53.0">
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="42.0">
          <children>
             <Circle fx:id="contactImage" fill="WHITE" layoutX="20.0" layoutY="34.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
             <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="27.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
@@ -22,7 +22,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER_LEFT" prefWidth="150.0" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" prefWidth="110.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="contactName" prefHeight="20.0" stylesheets="@Styles/chatStyle.css" text="Contact name" VBox.vgrow="ALWAYS">
                <font>
