@@ -12,7 +12,11 @@ import javafx.stage.StageStyle;
 import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +50,22 @@ public class StageCoordinator {
         primaryStage.setMinHeight(900);
         primaryStage.setMinWidth(600);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
+        if( Files.exists(Paths.get("credentials.txt"))){
+
+
+            String username = null;
+            try {
+                FileReader fr = new FileReader("credentials.txt");
+                BufferedReader bufferedReader = new BufferedReader(fr);
+                username = bufferedReader.readLine();
+                String password = bufferedReader.readLine();
+                System.out.println("Username : " + username);
+                System.out.println("Password : " + password);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
         switchToLoginFormScene();
         //switchToChatScreen();
     }

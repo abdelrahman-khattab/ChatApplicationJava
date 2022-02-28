@@ -72,9 +72,6 @@ public class GroupDAOImpl implements  GroupDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
         return users;
     }
 

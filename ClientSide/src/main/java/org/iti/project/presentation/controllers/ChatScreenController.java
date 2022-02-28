@@ -20,6 +20,7 @@ import javafx.scene.text.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.controlsfx.control.Notifications;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
@@ -33,6 +34,7 @@ import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.util.ImageConverter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -285,8 +287,14 @@ public class ChatScreenController implements Initializable {
     //exitTip.show(null);
 
         try {
+            FileWriter fw = new FileWriter("credentials.txt");
+            fw.write(stageCoordinator.currentUser.getUserPhone());
+            fw.write("\n");
+            // encrypt the password here before writing
+            fw.write(stageCoordinator.currentUser.getUserPassword());
+            fw.close();
             RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
-        } catch (RemoteException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         Platform.exit();
