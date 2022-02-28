@@ -38,6 +38,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -287,12 +288,6 @@ public class ChatScreenController implements Initializable {
     //exitTip.show(null);
 
         try {
-            FileWriter fw = new FileWriter("credentials.txt");
-            fw.write(stageCoordinator.currentUser.getUserPhone());
-            fw.write("\n");
-            // encrypt the password here before writing
-            fw.write(stageCoordinator.currentUser.getUserPassword());
-            fw.close();
             RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
         } catch (IOException e) {
             e.printStackTrace();
@@ -306,9 +301,11 @@ public class ChatScreenController implements Initializable {
     void onLogOutButtonClicked(ActionEvent event) {
         try {
             RMIConnector.getRmiConnector().getSignOutService().logoutMe(stageCoordinator.currentUser.getUserPhone());
-        } catch (RemoteException e) {
+            Files.deleteIfExists(Path.of("credentials.txt"));
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
         stageCoordinator.switchToLoginFormScene();
     }
 

@@ -23,6 +23,8 @@ import org.iti.project.services.impls.ClientCallBack;
 import org.iti.project.presentation.util.Validator;
 import org.iti.project.util.ImageConverter;
 import org.iti.project.util.PasswordEncryptor;
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -58,6 +60,7 @@ public class LoginController implements Initializable {
     private VBox vBox;
 
     boolean passFlag =false , phNoFlag=false;
+    private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
     private User mainUser= new User();
 
     @FXML
@@ -139,6 +142,18 @@ public class LoginController implements Initializable {
             updateUserModel(returnedUser);
             StageCoordinator.getStageCoordinator().switchToChatScreen();
 
+            try {
+                FileWriter fw = new FileWriter("credentials.txt");
+                fw.write(stageCoordinator.currentUser.getUserPhone());
+                fw.write("\n");
+                // encrypt the password here before writing
+                fw.write(stageCoordinator.currentUser.getUserPassword());
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
         else {
             validationText.setVisible(true);
@@ -158,6 +173,8 @@ public class LoginController implements Initializable {
 
     public void onLoginBtnClicked(ActionEvent actionEvent) {
     }
+
+
 
     private void updateUserModel(User user){
         userModel.setUserUserName(user.getUserName());

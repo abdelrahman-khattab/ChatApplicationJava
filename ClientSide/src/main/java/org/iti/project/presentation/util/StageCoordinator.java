@@ -5,23 +5,31 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.iti.project.models.User;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.controllers.ChatScreenController;
+import org.iti.project.presentation.models.UserModel;
+import org.iti.project.services.impls.ClientCallBack;
+import org.iti.project.util.ImageConverter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
+    private final ModelFactory modelFactory = ModelFactory.getModelFactory();
+    private final UserModel userModel = modelFactory.getUserModel();
     public User currentUser;
     private ChatScreenController chatScreenController;
 
@@ -51,23 +59,33 @@ public class StageCoordinator {
         primaryStage.setMinWidth(600);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         if( Files.exists(Paths.get("credentials.txt"))){
-
-
-            String username = null;
             try {
                 FileReader fr = new FileReader("credentials.txt");
                 BufferedReader bufferedReader = new BufferedReader(fr);
-                username = bufferedReader.readLine();
+                String userMobile = bufferedReader.readLine();
                 String password = bufferedReader.readLine();
-                System.out.println("Username : " + username);
+                System.out.println("Username : " + userMobile);
                 System.out.println("Password : " + password);
+                User returnedUser = new User();
+                returnedUser = authenticate(userMobile , password);
+                if(returnedUser!=null)
+                {
+                    currentUser = returnedUser;
+                    updateUserModel(returnedUser);
+                    switchToChatScreen();
+
+                }
+                else {
+                    switchToLoginFormScene();
+                    //System.out.println("user not found in table login with different Phone Number And Password");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-        switchToLoginFormScene();
-        //switchToChatScreen();
+        else {
+            switchToLoginFormScene();
+        }
     }
 
     public void switchToLoginFormScene(){
@@ -109,6 +127,31 @@ public class StageCoordinator {
         primaryStage.setFullScreen(true);
     }
 
+    private User authenticate(String phoneNumber, String password){
+        User returnedUser = null;
+        User loginUser = new User();
+        loginUser.setUserPhone(phoneNumber);
+//        password encryption...
+//        String encryptedPass = PasswordEncryptor.encrypt(password.getText());
+//        mainUser.setUserPassword(encryptedPass);
+        loginUser.setUserPassword(password);
+        try {
+            returnedUser = RMIConnector.getRmiConnector().getSignInService().loginMe(loginUser , ClientCallBack.getInstance() );
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return returnedUser;
+    }
 
+    private void updateUserModel(User user){
+        userModel.setUserUserName(user.getUserName());
+        userModel.setEmail(user.getUserEmail());
+        userModel.setPhoneNo(user.getUserPhone());
+        userModel.setUserGender(user.getGender());
+        userModel.setUserCountry(user.getUserCountry());
+        userModel.setUserPassword(user.getUserPassword());
+        Image convertedimg = ImageConverter.fromBytesToImage(user.getImage());
+        userModel.setUserImage(convertedimg);
+    }
 
 }

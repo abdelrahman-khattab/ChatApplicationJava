@@ -1,0 +1,68 @@
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: chat_app_project
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `message` (
+  `MESSAGE_ID` int NOT NULL AUTO_INCREMENT,
+  `BODY` varchar(10000) NOT NULL,
+  `CREATED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CREATOR_ID` varchar(20) NOT NULL,
+  `RECEIPENT_ID` varchar(45) DEFAULT NULL,
+  `GROUP_RECEIPENT_ID` int DEFAULT NULL,
+  `message_color` varchar(45) NOT NULL,
+  `font_familly` varchar(45) NOT NULL,
+  `font_posture` varchar(45) NOT NULL,
+  `font_weight` varchar(45) NOT NULL,
+  `font_size` int NOT NULL,
+  `font_underline` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`MESSAGE_ID`),
+  KEY `phone_number_idx` (`CREATOR_ID`),
+  KEY `receipent_fk_idx` (`RECEIPENT_ID`),
+  KEY `group_receipnt_fk_idx` (`GROUP_RECEIPENT_ID`),
+  KEY `group_receipnt_forignkey_idx` (`GROUP_RECEIPENT_ID`),
+  CONSTRAINT `creator_fk` FOREIGN KEY (`CREATOR_ID`) REFERENCES `user` (`PHONE_NUMBER`),
+  CONSTRAINT `group_receipnt_forignkey` FOREIGN KEY (`GROUP_RECEIPENT_ID`) REFERENCES `groupchat` (`GROUP_ID`),
+  CONSTRAINT `receipent_fk` FOREIGN KEY (`RECEIPENT_ID`) REFERENCES `user` (`PHONE_NUMBER`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` VALUES (2,'a','2022-02-27 12:04:11','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(3,'wla','2022-02-27 12:51:04','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(4,'aywa','2022-02-27 12:51:34','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(5,'hi','2022-02-27 12:51:44','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(6,'hi','2022-02-27 12:51:53','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(7,'how are you','2022-02-27 12:52:25','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(8,'I am mohamed alaa','2022-02-27 12:53:28','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(9,'what\'s your name','2022-02-27 12:53:38','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(10,'hi','2022-02-27 13:10:07','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(11,'how are you','2022-02-27 13:10:26','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(12,'I am sally','2022-02-27 13:10:40','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(13,'yes , how can you remember ?','2022-02-27 13:10:53','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(14,'what\'s your name?','2022-02-27 13:11:05','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(15,'okay from now no , your name is alaa, ok ?','2022-02-27 13:11:26','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(16,'you idiot','2022-02-27 13:11:32','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(17,'yes','2022-02-27 13:11:36','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(18,'talk to me 3la2','2022-02-27 13:11:57','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(19,'hi','2022-02-27 13:24:49','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(20,'Hello! What is your name?','2022-02-27 13:24:51','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(21,'my name is sally','2022-02-27 13:24:58','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(22,'Hi there, Sally. What do you want to talk about?','2022-02-27 13:24:59','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(23,'about you.','2022-02-27 13:25:07','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(24,'OK, let\'s talk about that!','2022-02-27 13:25:08','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(25,'what\'s your name','2022-02-27 13:25:14','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(26,'My name is Chomsky.','2022-02-27 13:25:15','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(27,'nice to meet you!','2022-02-27 13:25:24','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(28,'It\'s nice meeting you too Sally.','2022-02-27 13:25:25','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(29,'bye','2022-02-27 13:25:46','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(30,'bye','2022-02-27 13:26:00','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(31,'Goodbye! And how about taking a vote to show how smart am I? You can say 100 if you think that I am highly intelligent.','2022-02-27 13:26:01','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(32,'80','2022-02-27 13:26:10','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(33,'That\'s a nice round number.','2022-02-27 13:26:11','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(34,'hi','2022-02-27 13:26:18','01111111113','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(35,'We have already said hello!','2022-02-27 13:26:19','01111111111','01111111113',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(36,'how are you ?','2022-02-28 17:02:47','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(37,'I am very well, thank you.','2022-02-28 17:03:08','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(38,'That\'s good to hear.','2022-02-28 17:03:10','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(39,'I appreciate that.','2022-02-28 17:03:11','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(40,'I am glad you appreciate those qualities.','2022-02-28 17:03:12','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(41,'Then I too am glad.','2022-02-28 17:03:13','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(42,'That\'s enough about you! Let\'s talk about me for a change.','2022-02-28 17:03:14','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(43,'Can you ever really have enough of me?   OK. Tell me about yourself.','2022-02-28 17:03:15','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(44,'Yes, enough is enough!       OK, here is a question for you ... What did one rose say to the other?    What did one rose say to the other? \"Hi Bud\". Ha ha!','2022-02-28 17:03:16','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(45,'Enough is what a wise man knows he must have if he isn\'t dead.    Good. I love questions.   What did one rose say to the other? \"Hi Bud\". Ha ha!   What did one rose say to the other? \"Hi Bud\". Ha ha!  Hi! Can I ask you a question?    That\'s funny, isn\'t it?','2022-02-28 17:03:17','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(46,'','2022-02-28 17:03:17','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(47,'','2022-02-28 17:03:18','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(48,'','2022-02-28 17:03:19','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(49,'','2022-02-28 17:03:20','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(50,'','2022-02-28 17:03:20','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(51,'','2022-02-28 17:03:21','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(52,'','2022-02-28 17:03:21','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(53,'','2022-02-28 17:03:22','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(54,'','2022-02-28 17:03:23','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(55,'','2022-02-28 17:03:23','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(56,'','2022-02-28 17:03:24','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(57,'','2022-02-28 17:03:24','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(58,'','2022-02-28 17:03:25','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(59,'','2022-02-28 17:03:26','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(60,'','2022-02-28 17:03:27','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(61,'hi','2022-02-28 17:03:49','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(62,'hello','2022-02-28 17:04:24','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(63,'We have already said hello!','2022-02-28 17:04:26','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(64,'no problem , how are you ?','2022-02-28 17:04:37','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(65,'Should there be a problem?','2022-02-28 17:04:55','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(66,'no','2022-02-28 17:05:14','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(67,'I agree! I don\'t like problems.','2022-02-28 17:05:40','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(68,'okay bye!','2022-02-28 17:05:52','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(69,'Bye bye! Please <a href=\"http://redjellyfish.com/free-donations.shtml\" target=\"_blank\">click here</a> to help protect the environment. It won\'t cost you a penny!','2022-02-28 17:06:05','01111111111','01111111112',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(70,'ezyk ya 3la2','2022-02-28 17:06:29','01111111112','01111111111',NULL,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(71,'ya gama3a','2022-02-28 17:07:35','01111111112',NULL,113,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(72,'n3m ??','2022-02-28 17:09:05','01111111111',NULL,113,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0),(73,'ahmed','2022-02-28 17:15:37','01111111112','01111111111',NULL,'#CC3333','Britannic Bold','ITALIC','BOLD',20,1),(74,'sba7 el kheir','2022-02-28 21:04:46','01111111111',NULL,113,'#FFFFFF','Berlin Sans FB','REGULAR','NORMAL',14,0);
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-03-01  0:05:31
