@@ -4,14 +4,12 @@ import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.util.ImageConverter;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashMap;
 
 public class UserDAOImpl implements UserDAO {
     Connection con = DBConnector.getConnection().connect();
+
 
     @Override
     public boolean insertUser(User user) {
@@ -38,6 +36,7 @@ public class UserDAOImpl implements UserDAO {
             return false;
         }
     }
+
 
     @Override
     public User selectUser(User user) {
@@ -91,6 +90,58 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User selectRowUser(User user) {
+//        Connection conn = DBConnector.getConnection().connect();
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+
+        try {
+            pstmt = con.prepareStatement(
+                    "SELECT * from user WHERE PHONE_NUMBER=?");
+            pstmt.setString(1,user.getUserPhone());
+
+            System.out.println("enter select");
+            rs = pstmt.executeQuery();
+
+            if (rs.next())
+            {            System.out.println("enter RS");
+
+                user.setUserPhone(rs.getString(1));
+                user.setUserName(rs.getString(2));
+                user.setUserEmail(rs.getString(3));
+                user.setUserPassword(rs.getString(4));
+                user.setGender(rs.getString(5));
+                user.setUserCountry(rs.getString(6));
+                user.setUserDOB(rs.getString(7));
+                user.setUserBio(rs.getString(8));
+                Blob userBlopImage = rs.getBlob(9);
+                user.setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+
+                System.out.println("Employee number = " + user.getUserName() +
+                        "Phone number = " + user.getUserPhone());
+                return user;
+                // Print the column values
+            }
+        } catch (SQLException e) {
+            System.out.println("enter problem");
+            e.printStackTrace();
+        }
+        finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getErrorCode() + e.getMessage());
+                }
+            }
+        }
+        // Create a PreparedStatement object    1
+        System.out.println(user.toString());
+        return null;
+    }
+
+
+    @Override
     public boolean updateUser(User user) {
 
         Blob userImageAsBlop;
@@ -142,4 +193,110 @@ public class UserDAOImpl implements UserDAO {
 
         return true;
     }
+
+
+
+    @Override
+    public User checkUser(User user) {
+//        Connection conn = DBConnector.getConnection().connect();
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+
+        try {
+            pstmt = con.prepareStatement(
+                    "SELECT * from user WHERE PHONE_NUMBER=?");
+            pstmt.setString(1,user.getUserPhone());
+            System.out.println("enter select");
+            rs = pstmt.executeQuery();
+
+            if (rs.next())
+            {            System.out.println("enter RS");
+
+                user.setUserPhone(rs.getString(1));
+                user.setUserName(rs.getString(2));
+                user.setUserEmail(rs.getString(3));
+                user.setUserPassword(rs.getString(4));
+                user.setGender(rs.getString(5));
+                user.setUserCountry(rs.getString(6));
+                user.setUserDOB(rs.getString(7));
+                user.setUserBio(rs.getString(8));
+                Blob userBlopImage = rs.getBlob(9);
+                user.setImage(ImageConverter.fromBlobToBytes(userBlopImage));
+
+                System.out.println("Employee number = " + user.getUserName() +
+                        "Phone number = " + user.getUserPhone());
+                return user;
+                // Print the column values
+            }
+        } catch (SQLException e) {
+            System.out.println("enter problem");
+            e.printStackTrace();
+        }
+        finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getErrorCode() + e.getMessage());
+                }
+            }
+        }
+        // Create a PreparedStatement object    1
+        System.out.println(user.toString());
+        return null;
+    }
+
+    @Override
+    public  HashMap<String,Integer> selectGender() {
+      HashMap<String,Integer> gender = new HashMap<>();
+
+
+        Statement stmt = null;
+        ResultSet rs;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("Select Gender,Count(gender)  from user  group by gender");
+            System.out.println(rs==null);
+
+             while( rs.next() )
+             {
+                 gender.put(rs.getString(1),rs.getInt(2));
+
+
+             }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return gender;
+    }
+
+    @Override
+    public HashMap<String, Integer> selectUSerCountries() {
+        HashMap <String,Integer> countries = new HashMap<>();
+        Statement stmt = null;
+        ResultSet rs;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("Select COUNTRY,Count(COUNTRY) from user group by COUNTRY");
+            if(rs != null){
+                while (rs.next()){
+                    countries.put(rs.getString(1), rs.getInt(2));
+                }
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countries;
+    }
+
+
 }
+
+

@@ -1,5 +1,6 @@
 package org.iti.project.services.impls;
 
+import org.iti.project.presentation.controllers.DashboardController;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.services.interfaces.LogInInt;
 
@@ -9,6 +10,7 @@ import java.util.HashMap;
 
 public class LogInImpl extends UnicastRemoteObject implements LogInInt {
     private static HashMap<String, ClientCallBackInt> onlineClients = new HashMap<>();
+
 
     public static HashMap<String, ClientCallBackInt> getOnlineClients(){
         return onlineClients;

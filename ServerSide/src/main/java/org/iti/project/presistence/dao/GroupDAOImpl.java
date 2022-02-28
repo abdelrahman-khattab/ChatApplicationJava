@@ -1,4 +1,5 @@
 package org.iti.project.presistence.dao;
+import org.iti.project.models.Group;
 import org.iti.project.models.User;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.util.ImageConverter;
@@ -75,5 +76,128 @@ public class GroupDAOImpl implements  GroupDAO{
 
 
         return users;
+    }
+
+    @Override
+    public void createNewGroup(Group group , User user) {
+
+        System.out.println("inside the if group insert");
+        Blob groupImageAsBlop = ImageConverter.fromBytesToBlob(group.getGroupImageBytes());
+        try(Connection con = DBConnector.getConnection().connect()) {
+            System.out.println("inside the try group insert");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO groupchat (GROUP_NAME , GROUP_IMAGE) VALUES (?,?)");
+            preparedStatement.setString(1, group.getGroupName());
+            preparedStatement.setBlob(2,groupImageAsBlop);
+            preparedStatement.executeUpdate();
+            System.out.println("after the update insert group execute");
+
+        } catch (SQLException e) {
+            System.out.println("inside group the catch");
+            e.printStackTrace();
+        }
+        int groupId = getSpecialGroup(group);
+        addCurrentUserToGroup(user ,groupId);
+
+    }
+
+    @Override
+    public void addNewUserToGroup(Group group, ArrayList<User> userList) {
+        System.out.println("group id is : "+group.getGroupId());
+        for (int i =0 ; i < userList.size() ; i++)
+        {
+            System.out.println("inside the user to group insert");
+            try(Connection con = DBConnector.getConnection().connect()) {
+                System.out.println("inside the try user to group insert");
+                PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)");
+                preparedStatement.setString(1, userList.get(i).getUserPhone());
+                preparedStatement.setInt(2, group.getGroupId());
+                preparedStatement.executeUpdate();
+                System.out.println("after the update insert group execute");
+
+            } catch (SQLException e) {
+                System.out.println("inside group the catch");
+                e.getMessage();
+            }
+        }
+    }
+
+
+    @Override
+    public ArrayList<Group> getListOfGroups(User user) {
+      ResultSet resultSet;
+        ArrayList<Group> groupList = new ArrayList<>();
+        try(Connection con = DBConnector.getConnection().connect()) {
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM groupchat where group_id IN (Select group_id from user_group where user_id = ? )");
+            preparedStatement.setString(1,user.getUserPhone());
+            resultSet=preparedStatement.executeQuery();
+
+            System.out.println(resultSet == null);
+            if (resultSet!=null)
+            {
+                while (resultSet.next())
+                {
+                    //Blob userBlopImage = resultSet.getBlob(3);
+                    //adding directly in list by using new user with constructor of 3 parameteres
+                    Group newGroup =new Group();
+                    newGroup.setGroupId(resultSet.getInt(1) );
+                    newGroup.setGroupName(resultSet.getString(2) );
+                    Blob groupBlopImage = resultSet.getBlob(3);
+                    newGroup.setGroupImageBytes(ImageConverter.fromBlobToBytes(groupBlopImage));
+                    groupList.add(newGroup);
+
+                }
+                return  groupList;
+            }
+            return null;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
+
+    @Override
+    public void addCurrentUserToGroup(User user , int groupId) {
+        System.out.println("user id : "+user.getUserPhone()+"  group id : "+groupId);
+        System.out.println("inside the user to group insert !1");
+        try(Connection con = DBConnector.getConnection().connect()) {
+            System.out.println("inside the try user to group insert");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)");
+            preparedStatement.setString(1, user.getUserPhone());
+            preparedStatement.setInt(2, groupId);
+            preparedStatement.executeUpdate();
+            System.out.println("after the update insert group execute");
+
+        } catch (SQLException e) {
+            System.out.println("inside group the catch");
+            e.printStackTrace();
+        }
+    }
+    //select group_id from groupchat where GROUP_NAME = 'Group 3ala Allah';
+
+
+    @Override
+    public int getSpecialGroup(Group group) {
+        ResultSet resultSet;
+        int returnGroupId = 0;
+        try(Connection con = DBConnector.getConnection().connect()) {
+            PreparedStatement preparedStatement = con.prepareStatement("select group_id from groupchat where GROUP_NAME = ?");
+            preparedStatement.setString(1,group.getGroupName());
+            resultSet=preparedStatement.executeQuery();
+            System.out.println(resultSet == null);
+            if (resultSet.next())
+            {
+                returnGroupId = resultSet.getInt(1);
+                System.out.println("group Id = " +returnGroupId);
+                return returnGroupId ;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

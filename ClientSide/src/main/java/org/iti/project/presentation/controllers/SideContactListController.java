@@ -46,6 +46,9 @@ public class SideContactListController {
     @FXML
     private ScrollPane secondPane;
 
+    @FXML
+    private Button showRequestsBtn;
+
     private static SideContactListController sideContactListController;
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
 
@@ -80,7 +83,7 @@ public class SideContactListController {
 
     }
 
-    public ObservableList<User> contactObservableList;
+    public static ObservableList<User> contactObservableList;
 //    byte[] user1;
 //    byte[] user2;
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
@@ -88,14 +91,12 @@ public class SideContactListController {
     public void initialize() throws IOException {
 
         contactObservableList = FXCollections.observableArrayList();
-        //get Image
-//        File file=new FileChooser().showOpenDialog(null);
-//        user1= ImageConverter.fromImageToBytes(file.getPath());
-       // userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
 
         User currentUser = new User();
         currentUser.setUserPhone(stageCoordinator.currentUser.getUserPhone());
+        System.out.println("enter the side Contacts");
         contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(currentUser));
+
         contactsLV.setItems(contactObservableList);
         contactsLV.setCellFactory(groupListView -> new ContactsInfoListCellController());
         contactsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
@@ -109,6 +110,23 @@ public class SideContactListController {
 
         });
 
+    }
 
+
+    @FXML
+    void showRequests(ActionEvent event) throws IOException {
+        User currentUser = new User();
+        currentUser.setUserPhone(userModel.getPhoneNo());
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/friendRequestNotification.fxml"));
+        RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser);
+        System.out.println("requests came from server"+RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser));
+        System.out.println("hi");
+        Parent parent= fxmlLoader.load();
+        System.out.println("hiii");
+        Scene scene = new Scene(parent, 400, 400);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }

@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceInt {
-    Connection con = DBConnector.getConnection().connect();
     private final HashMap<String, ClientCallBackInt> onlineClients;
     private GroupDAO groupDAO = new GroupDAOImpl();
     private MessageDAO messageDAO = new MessageDAOImpl();

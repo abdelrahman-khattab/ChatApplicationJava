@@ -17,14 +17,14 @@
             <Insets bottom="3.0" left="5.0" right="50.0" top="15.0" />
          </HBox.margin>
          <children>
-            <TextFlow fx:id="userMessageTextFlow" lineSpacing="2.0" maxWidth="800.0" nodeOrientation="LEFT_TO_RIGHT" styleClass="sender-message-layout" stylesheets="@Styles/message.css" HBox.hgrow="ALWAYS">
+            <TextFlow fx:id="userMessageTextFlow" lineSpacing="2.0" maxWidth="800.0" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #36404A;" styleClass="sender-message-layout" stylesheets="@Styles/message.css" HBox.hgrow="ALWAYS">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
                <children>
                   <Text fx:id="messageBodyText" fill="#f2f2f2" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="ahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmedahmed" textOrigin="TOP" wrappingWidth="47.1611328125">
                      <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                        <Font name="SansSerif Italic" size="14.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="TEXT" />

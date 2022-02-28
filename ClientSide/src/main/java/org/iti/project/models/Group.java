@@ -34,11 +34,22 @@ public class Group implements Serializable {
         this.groupImageBytes = groupImageBytes;
         this.groupId = groupId;
     }
+    public  Group(){}
 
     public Group(String groupName, String description) {
         this.groupName = groupName;
         this.description = description;
     }
+
+    public Group(String groupName, byte[] groupImageBytes) {
+        this.groupName = groupName;
+        this.groupImageBytes = groupImageBytes;
+    }
+
+    public Group(String groupName) {
+        this.groupName=groupName;
+    }
+
 
     public int getGroupId() {
         return groupId;

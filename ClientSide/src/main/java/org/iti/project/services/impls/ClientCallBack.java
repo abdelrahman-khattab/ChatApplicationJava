@@ -3,15 +3,19 @@ package org.iti.project.services.impls;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import org.controlsfx.control.Notifications;
+import javafx.collections.ObservableList;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
 import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
+import org.iti.project.presentation.controllers.FriendRequestNotificationController;
+import org.iti.project.presentation.controllers.SideContactListController;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class ClientCallBack extends UnicastRemoteObject implements ClientCallBackInt {
     private ChatScreenController chatScreenController;
@@ -59,5 +63,13 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
         Platform.runLater(()->{
             stageCoordinator.getChatScreenController().handleFriendAvailability(friendName,friendPhone,onlineFlag);
         });
+    }
+
+    @Override
+    public void getRequestListOfFriends(ArrayList<User> requestList) throws RemoteException
+    {
+        //assign This array with the contact list array
+        FriendRequestNotificationController.contactObservableList.addAll(requestList);
+
     }
 }

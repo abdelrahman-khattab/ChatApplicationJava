@@ -1,8 +1,8 @@
 package org.iti.project.services.impls;
 
-import org.iti.project.models.User;
-import org.iti.project.presistence.dao.ContactDAO;
+import org.iti.project.models.User;import org.iti.project.presistence.dao.ContactDAO;
 import org.iti.project.presistence.dao.ContactDAOImpl;
+import org.iti.project.presentation.controllers.DashboardController;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.services.interfaces.SignInInt;
@@ -35,6 +35,8 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
         }
         else{
             onlineClients.put(user.getUserPhone(), clientCallBack);
+            //System.out.println("counter in map : "+ onlineClients.size());
+            //DashboardController.updateStatus(onlineClients.size());
             System.out.println("user is add"+onlineClients.toString());
             updateAvailability(user);
             return user;
@@ -42,7 +44,7 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
 
     }
     private void updateAvailability(User user) throws RemoteException {
-        List<String> friendsPhones = contactDAO.selectUser(user.getUserPhone())
+        List<String> friendsPhones = contactDAO.selectContacts(user.getUserPhone())
                                         .stream().map(User::getUserPhone)
                                         .collect(Collectors.toList());
         if(friendsPhones.size()>0){

@@ -16,6 +16,7 @@ public class RMIConnector {
     private SignInInt signInService;
     private SignOutInt signOutService;
     private ContactInt contactService;
+    private GroupInt groupServices;
     private Registry reg;
     private static  RMIConnector rmiConnector = new RMIConnector();
 
@@ -103,6 +104,15 @@ public UpdateClientInt getUpdateService(){
         return contactService;
     }
 
+    public GroupInt getGroupServices(){
+        try {
+            groupServices = (GroupInt) reg.lookup(groupServices.lookupName);
+            System.out.println(groupServices.lookupName + " service found!");
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
+        }
+        return groupServices;
+    }
 
     public SignInInt getSignInService() {
         return signInService;

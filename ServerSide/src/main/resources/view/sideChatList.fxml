@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -17,183 +16,169 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="firstPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" pannable="true" prefHeight="713.0" prefWidth="704.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.RegisterController">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.AddNewUserController">
    <content>
-
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="500.0" style="-fx-background-color: #303841;" translateX="170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+      <HBox alignment="CENTER" styleClass="notificationBg">
          <children>
-            <HBox prefHeight="61.0" prefWidth="322.0">
+            <VBox fx:id="editVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="500.0" prefWidth="500.0" style="-fx-background-color: #303841; -fx-border-radius: 40; -fx-background-radius: 40;">
                <children>
-                  <AnchorPane prefHeight="37.0" prefWidth="323.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="566.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" layoutY="18.0" prefHeight="10.0" prefWidth="323.0" text="Register New Contact" textFill="#e1e9f1" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <Label alignment="CENTER" prefHeight="10.0" styleClass="headerFont" text="Add New User" textFill="#e1e9f1">
                            <font>
                               <Font name="SansSerif Bold" size="22.0" />
                            </font>
                         </Label>
                      </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="80.0" prefWidth="322.0" spacing="7.0" HBox.hgrow="ALWAYS">
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="89.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/add.png" />
-                           </image>
-                        </ImageView>
+                        <AnchorPane maxWidth="100.0" minHeight="80.0" minWidth="100.0" prefWidth="100.0">
+                           <children>
+                              <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="110.0" prefWidth="110.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 50;">
+                                 <children>
+                                    <ImageView fx:id="memberImage" fitHeight="110.0" fitWidth="110.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../R.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="uploadImageBtn" layoutX="62.0" layoutY="64.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 30;" styleClass="secondBGcolor">
+                                 <graphic>
+                                    <ImageView fitHeight="33.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
                      </children>
-                     <HBox.margin>
+                  </HBox>
+                  <VBox spacing="5.0" style="-fx-background-color: #303841; -fx-background-radius: 20;">
+                     <children>
+                        <Label styleClass="tfinputHeader" text="Name" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="userName" onKeyTyped="#enterUserName" prefHeight="40.0" promptText="username" styleClass="tfinput" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="10.0" styleClass="tfinputHeader" text="Mobile" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="phoneNo" layoutX="10.0" layoutY="98.0" onKeyTyped="#enterPhoneNumber" prefHeight="40.0" promptText="Phone Number" styleClass="tfinput" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="27.0" styleClass="tfinputHeader" text="Email" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="eMail" onKeyTyped="#enterEmail" prefHeight="40.0" promptText="Email" styleClass="tfinput">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="27.0" styleClass="tfinputHeader" text="Country" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="countryComboBox" promptText="Choose Country" styleClass="btnGender" />
+                        <Label layoutX="10.0" layoutY="95.0" styleClass="tfinputHeader" text="Gender" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="genderComboBox" promptText="Choose Gender" style="-fx-prompt-fill: white;" styleClass="btnGender" />
+                        <Label layoutX="10.0" layoutY="148.0" styleClass="tfinputHeader" text="Date Of Birth" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="birthDate1" editable="false" onAction="#enterBirthDate" />
+                        <Label layoutX="10.0" layoutY="286.0" styleClass="tfinputHeader" text="BIO" textFill="#9aa1b9">
+                           <font>
+                              <Font name="Serif Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="clientBioTextArea" prefHeight="66.0" promptText="Client Bio" styleClass="tfBox" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="clientRegistrationButton" mnemonicParsing="false" onAction="#addUser" prefHeight="38.0" prefWidth="86.0" style="-fx-border-radius: 8;" styleClass="btnNotification" text="Add" textFill="#303841">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="15.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
                         <Insets />
-                     </HBox.margin>
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding>
                   </VBox>
                </children>
-            </HBox>
-            <VBox prefHeight="536.0" prefWidth="500.0" spacing="5.0" style="-fx-background-color: #303841;">
-               <children>
-                  <Label text="Name" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="clientNameTextField" prefHeight="50.0" prefWidth="312.0" promptText="Client Name">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="10.0" layoutY="10.0" text="Mobile" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="clientMobileTextField" layoutX="10.0" layoutY="98.0" prefHeight="50.0" prefWidth="312.0" promptText="Client Mobile">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="10.0" layoutY="27.0" text="Email" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="clientEmailTextField" prefHeight="50.0" promptText="Client Email">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="10.0" layoutY="102.0" text="Password" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="clientPasswordField" prefHeight="50.0" promptText="Client Password">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </PasswordField>
-                  <Label layoutX="10.0" layoutY="27.0" text="Country" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="clientCountryTextField" prefHeight="50.0" promptText="Client Country">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="10.0" layoutY="95.0" text="Gender" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ComboBox fx:id="clientGenderField" prefHeight="37.0" prefWidth="487.0">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </ComboBox>
-                  <Label layoutX="10.0" layoutY="148.0" text="Date Of Birth" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <DatePicker fx:id="clientBirthDateField" prefHeight="47.0" prefWidth="485.0" promptText="Date Of Birth" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </DatePicker>
-                  <Label layoutX="10.0" layoutY="286.0" text="BIO" textFill="#9aa1b9">
-                     <font>
-                        <Font name="Serif Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextArea fx:id="clientBioTextArea" prefHeight="66.0" prefWidth="322.0" promptText="Client Bio">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextArea>
-                  <AnchorPane prefHeight="71.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Button fx:id="clientRegistrationButton" layoutX="140.0" layoutY="8.0" mnemonicParsing="false" onAction="#registerNewClient" prefHeight="37.0" prefWidth="222.0" style="-fx-border-radius: 8;" text="Register" textFill="#303841" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="138.0">
-                           <font>
-                              <Font name="SansSerif Regular" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
             </VBox>
          </children>
-         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </padding>
-      </VBox>
-
+      </HBox>
    </content>
 </ScrollPane>

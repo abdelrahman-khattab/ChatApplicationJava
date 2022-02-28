@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.iti.project.presistence.dao.MessageDAO;
 import org.iti.project.presistence.dao.MessageDAOImpl;
+import org.iti.project.presistence.dao.RequestDAOImpl;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.presistence.util.DBConnector;
 import org.iti.project.services.impls.ChatServiceImpl;
@@ -38,9 +39,8 @@ public class App extends Application {
 
 
 
-    public static void main(String[] args) throws RemoteException {
-        //    Connection conn = DBConnector.getConnection().connect();
-        Application.launch();
+    public static void main(String[] args)  {
+        launch();
     }
 
 

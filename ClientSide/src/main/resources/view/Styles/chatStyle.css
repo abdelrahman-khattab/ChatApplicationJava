@@ -7,14 +7,17 @@
     -blackcolor: #000000;
     -whitecolor: #ffffff;
     -whiteColorTransparent:#E1E9F1;
-    -transparnt-bg:#e6ebf5;
+
     -fontColor:#495057;
-    -iconColor:#a6b0cf;
+    -iconColor:#A6B0CF;
     -test:#57837B;
     -primaryBgColor:#303841;
     -secondBgColor:#36404A;
     -purpleColor:#7269EF;
+    -transparnt-bg:#e6ebf5;
+    -notificationColorBg:#F5F7FB;
     -fx-font-family: Public Sans,sans-serif;
+
 }
 .vBox{
     -fx-background-color:-primaryBgColor;
@@ -25,7 +28,43 @@
 .fontColor{
     -fx-text-fill: -whiteColorTransparent;
 }
+.notificationBg{
+-fx-background-color:-notificationColorBg;
+}
 
+.notificationText{
+ -fx-text-fill: #495057;
+ -fx-font-weight:bold;
+  -fx-font-size: 18px;
+}
+
+
+
+.notificationHeader{
+-fx-text-fill: #495057;
+    -fx-font-weight:bold;
+    -fx-font-size: 15px;
+    -fx-font-style:italic;
+}
+
+.secondNotificationHeader{
+-fx-text-fill: #7a7f9a;
+    -fx-font-size: 14px;
+}
+
+.specialNotificationHeader{
+-fx-text-fill:#495057;
+     -fx-font-weight:bold;
+        -fx-font-size: 13px;
+        -fx-font-style:italic;
+}
+
+.specialsNotificationHeader{
+-fx-text-fill:#495057;
+     -fx-font-weight:bold;
+        -fx-font-size: 12px;
+        -fx-font-style:italic;
+}
 
 .headerFont{
     -fx-text-fill: -whiteColorTransparent;
@@ -73,16 +112,17 @@
     
 }
 .btn{
-    -fx-font-family: Public Sans,sans-serif;
-    -fx-background-color: -secondarycolor;
-    -fx-text-fill:-whitecolor;
     -fx-font-size: 14px;
+    -fx-font-family: Public Sans,sans-serif;
+    -fx-background-color: -primaryBgColor;
+    -fx-text-fill:-whiteColorTransparent;
+
     -fx-font-weight:bold;
 }
 .btnRev{
     -fx-font-family: Public Sans,sans-serif;
-    -fx-background-color: -whitecolor;
-    -fx-text-fill:-secondarycolor;
+    -fx-background-color: -whiteColorTransparent;
+    -fx-text-fill:-secondBgColor;
     -fx-font-size: 14px;
     -fx-font-weight:bold;
 }
@@ -101,6 +141,15 @@
 .hBox:hover{
  -fx-background-color: -secondBgColor
 }
+
+.hBoxWhite:hover{
+-fx-background-color: #495057;
+}
+
+
+
+
+
 .searchFontColor{
 -fx-fill: -secondarycolor;
 }
@@ -110,10 +159,61 @@
     -fx-border-color: #e1e9f159;
 }
 
+.list-cell-white { -fx-background-color: #00000000;}
+.list-cell-white:odd { -fx-background-color: #00000000; }
+.list-cell-white:even { -fx-background-color: #00000000;}
+.list-cell-white:selected{
+    -fx-background-color: -secondBgColor;
+    -fx-text-fill: -secondBgColor;
+}
+
 .list-cell { -fx-background-color: #00000000;}
 .list-cell:odd { -fx-background-color: #00000000; }
 .list-cell:even { -fx-background-color: #00000000;}
 .list-cell:selected{
-    -fx-background-color: -whiteColorTransparent;
-    -fx-text-fill: -primaryBgColor;
+    -fx-background-color: -secondBgColor;
+    -fx-text-fill: -secondBgColor;
 }
+.check-box {
+    /* default properties */
+    selected-box-color: #7269EF;
+    box-color: #E1E9F1;
+    mark-color: #E1E9F1;
+}
+
+.check-box:selected > .box {
+    /* background color for selected checkbox */
+    -fx-background-color: selected-box-color;
+}
+
+.check-box > .box {
+    /* background color of unselected checkbox */
+    -fx-background-color: box-color;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: mark-color;
+}
+.btnNotification{
+-fx-font-weight:bold;
+-fx-background-color:#7269EF;
+-fx-border-radius:5;
+-fx-font-size: 14px;
+ -fx-font-family: Public Sans,sans-serif;
+-fx-text-fill:#E1E9F1;
+-fx-background-radius:7;
+          -fx-border-radius:7;
+}
+.btnNotification:hover{
+          -fx-font-weight:bold;
+          -fx-background-color:#E1E9F1;
+          -fx-background-radius:7;
+          -fx-border-radius:7;
+          -fx-font-size: 14px;
+          -fx-font-family: Public Sans,sans-serif;
+          -fx-text-fill:#7269EF;
+          -fx-border-width:2;
+          -fx-border-color:#7269EF;
+ }
