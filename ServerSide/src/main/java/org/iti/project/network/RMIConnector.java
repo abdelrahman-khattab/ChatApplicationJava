@@ -1,5 +1,6 @@
 package org.iti.project.network;
 
+import org.iti.project.models.User;
 import org.iti.project.services.impls.*;
 import org.iti.project.services.interfaces.*;
 
@@ -31,7 +32,7 @@ public class RMIConnector {
                 ChatServiceInt chatServiceObj = new ChatServiceImpl();
                 SignOutInt signOutObj = new SignOutImpl();
                 ContactInt contactObj=new ContactImpl();
-
+                UpdateClientInt updateObj = new UpdateClientImpl();
                 reg.rebind(signUpObj.lookupName, signUpObj);
                 System.out.println(" SignUp Bounded! ");
                 reg.rebind(logInObj.lookupName, logInObj);
@@ -44,6 +45,7 @@ public class RMIConnector {
                 System.out.println(" chatsignout Service Bounded! ");
                 reg.rebind(contactObj.lookupName,contactObj);
                 System.out.println("ContactService Bounded");
+                reg.rebind(updateObj.lookupName,updateObj);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

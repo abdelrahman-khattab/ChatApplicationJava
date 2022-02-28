@@ -89,14 +89,14 @@ public class ProfileController implements Initializable {
     @FXML
     public void editClientInformation(ActionEvent event) {
 
-        try {
-            ScrollPane editProfile = FXMLLoader.load(getClass().getResource("/view/editprofile.fxml"));
-            vboxContainer.getChildren().removeAll(vboxContainer.getChildren());
-            vboxContainer.getChildren().add(editProfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+//        try {
+//            ScrollPane editProfile = FXMLLoader.load(getClass().getResource("/view/editprofile.fxml"));
+//            vboxContainer.getChildren().removeAll(vboxContainer.getChildren());
+//            vboxContainer.getChildren().add(editProfile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        ChatScreenController.switchToEditProfilePane();
 
     }
 

@@ -7,4 +7,5 @@ import java.rmi.*;
 public interface SignUpInt extends Remote{
     public String lookupName = "SignUpService";
     public boolean registerMe(User user) throws RemoteException;
+
 }

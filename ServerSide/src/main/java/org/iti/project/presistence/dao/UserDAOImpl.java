@@ -92,7 +92,49 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean updateUser(User user) {
-        return true;
+
+        Blob userImageAsBlop;
+        // Update The User Information based on his changes
+        if(user.getImage() != null) {
+            userImageAsBlop = ImageConverter.fromBytesToBlob(user.getImage());
+//          Updateing Image
+            try {
+
+                PreparedStatement preparedStatement = con.prepareStatement("update user set USER_NAME=? ,EMAIL=? ,PASSWORD=? ,GENDER=? , COUNTRY=?  ,IMAGE=? WHERE PHONE_NUMBER=? ");
+                preparedStatement.setString(1, user.getUserName());
+                preparedStatement.setString(2, user.getUserEmail());
+                preparedStatement.setString(3, user.getUserPassword());
+                preparedStatement.setString(4, user.getGender());
+                preparedStatement.setString(5, user.getUserCountry());
+                preparedStatement.setBlob(6,userImageAsBlop);
+                preparedStatement.setString(7, user.getUserPhone());
+                preparedStatement.execute();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+//
+
+        }else{
+            try {
+
+                PreparedStatement preparedStatement = con.prepareStatement("update user set USER_NAME=? ,EMAIL=? ,PASSWORD=? ,GENDER=? , COUNTRY=?  WHERE PHONE_NUMBER=? ");
+                preparedStatement.setString(1, user.getUserName());
+                preparedStatement.setString(2, user.getUserEmail());
+                preparedStatement.setString(3, user.getUserPassword());
+                preparedStatement.setString(4, user.getGender());
+                preparedStatement.setString(5, user.getUserCountry());
+                preparedStatement.setString(6, user.getUserPhone());
+                preparedStatement.execute();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+//
     }
 
     @Override
