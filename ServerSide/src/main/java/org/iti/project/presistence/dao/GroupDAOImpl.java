@@ -102,7 +102,7 @@ public class GroupDAOImpl implements  GroupDAO{
 
     @Override
     public void addNewUserToGroup(Group group, ArrayList<User> userList) {
-      //INSERT INTO user_group (user_id, group_id) VALUES (?, ?)
+        System.out.println("group id is : "+group.getGroupId());
         for (int i =0 ; i < userList.size() ; i++)
         {
             System.out.println("inside the user to group insert");
@@ -116,7 +116,7 @@ public class GroupDAOImpl implements  GroupDAO{
 
             } catch (SQLException e) {
                 System.out.println("inside group the catch");
-                e.printStackTrace();
+                e.getMessage();
             }
         }
     }
@@ -139,7 +139,7 @@ public class GroupDAOImpl implements  GroupDAO{
                     //Blob userBlopImage = resultSet.getBlob(3);
                     //adding directly in list by using new user with constructor of 3 parameteres
                     Group newGroup =new Group();
-                    newGroup.setGroupName(resultSet.getString(1) );
+                    newGroup.setGroupId(resultSet.getInt(1) );
                     newGroup.setGroupName(resultSet.getString(2) );
                     Blob groupBlopImage = resultSet.getBlob(3);
                     newGroup.setGroupImageBytes(ImageConverter.fromBlobToBytes(groupBlopImage));

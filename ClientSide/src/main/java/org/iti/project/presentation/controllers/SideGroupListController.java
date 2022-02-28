@@ -50,7 +50,7 @@ public class SideGroupListController implements Initializable {
 
     private ChatScreenController chatScreenController;
 
-    public ObservableList<Group> groupsObservableList;
+    public static ObservableList<Group> groupsObservableList;
 
     byte[] user1Img;
 
@@ -69,7 +69,6 @@ public class SideGroupListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        chatScreenController = ChatScreenController.getInstance();
         groupsObservableList = FXCollections.observableArrayList();
 
         File file=new FileChooser().showOpenDialog(null);

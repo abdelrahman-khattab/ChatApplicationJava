@@ -92,11 +92,21 @@ public class AddGroupAndGroupMembers implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        try {
+            SideGroupListController.groupsObservableList.clear();
+            SideGroupListController.groupsObservableList.addAll(RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(currentUser));
+            groupsObservableList.clear();
+            groupsObservableList.addAll(RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(currentUser));
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     private final UserModel userModel = modelFactory.getUserModel();
     ArrayList<User>selectedUser = new ArrayList<>();
+    Group selectedGroup = new Group();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -137,10 +147,10 @@ public class AddGroupAndGroupMembers implements Initializable {
                 ObservableList<User> selected = memberLV.getSelectionModel().getSelectedItems();
                 // Display the selections.
                 for(int i=0; i < selected.size(); i++) {
-                    selectedUser.clear();
+                   // selectedUser.clear();
                     User newUser = new User();
                     newUser.setUserName(selected.get(i).getUserName());
-                    newUser.setUserPhone(selectedUser.get(i).getUserPhone());
+                    newUser.setUserPhone(selected.get(i).getUserPhone());
                     selectedUser.add(newUser);
                     System.out.println(selected.get(i).getUserName());
 
@@ -158,9 +168,8 @@ public class AddGroupAndGroupMembers implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Group> observable, Group oldValue, Group newValue) {
                 System.out.println("Select group  values : " + newValue.getGroupName());
-                System.out.println("Select group  values : " + newValue.getGroupImageBytes());
-
-
+                System.out.println("Select group  number : " + newValue.getGroupId());
+                selectedGroup.setGroupId(newValue.getGroupId());
             }
 
         });
@@ -199,6 +208,16 @@ public class AddGroupAndGroupMembers implements Initializable {
             addMembers.setDisable(false);
     }
 
+    @FXML
+    void addMembersToGroup(ActionEvent event) {
+        try {
 
+            System.out.println("select user in array is : "+selectedUser);
+            RMIConnector.getRmiConnector().getGroupServices().addUsersToGroup(selectedGroup , selectedUser);
+        } catch (RemoteException e) {
+            System.out.println("here the problem in member to group");
+            e.getMessage();
+        }
+    }
 }
 
