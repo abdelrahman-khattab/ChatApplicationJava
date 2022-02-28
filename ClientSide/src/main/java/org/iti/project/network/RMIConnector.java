@@ -10,6 +10,7 @@ import java.rmi.registry.Registry;
 
 public class RMIConnector {
     private SignUpInt signUpService;
+    private UpdateClientInt updateClientService;
     private LogInInt loginService;  //// not needed I think
     private ChatServiceInt chatService;
     private SignInInt signInService;
@@ -33,9 +34,11 @@ public class RMIConnector {
     private RMIConnector(){
         try {
             reg = LocateRegistry.getRegistry();
+
             signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
             signInService = (SignInInt) reg.lookup(signInService.lookupName);
             signOutService = (SignOutInt) reg.lookup(signOutService.lookupName);
+            //updateClientService = (UpdateClientInt) reg.lookup(updateClientService.lookupName);
             System.out.println(signUpService.lookupName + " service found!");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
@@ -57,7 +60,20 @@ public class RMIConnector {
         }
         return signUpService;
     }
+// create edit service
+public UpdateClientInt getUpdateService(){
+    //getRmiConnector(); //
+    try {
+//        UpdateService
+        System.out.println("Update Client Service Name : " + UpdateClientInt.lookupName);
+        updateClientService = (UpdateClientInt) reg.lookup(UpdateClientInt.lookupName);
 
+    } catch (RemoteException | NotBoundException e) {
+        e.printStackTrace();
+    }
+    return updateClientService;
+}
+//
     public LogInInt getLoginService(){
         try {
             loginService = (LogInInt) reg.lookup(LogInInt.lookupName);
@@ -76,7 +92,6 @@ public class RMIConnector {
             e.printStackTrace();
         }
         return chatService;
-
     }
     public ContactInt getContactService(){
         try {

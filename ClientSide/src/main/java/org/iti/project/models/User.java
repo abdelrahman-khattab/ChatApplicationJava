@@ -1,9 +1,7 @@
 package org.iti.project.models;
 
-import org.iti.project.presentation.models.MessageModel;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class User  implements Serializable {
     private String userName;
@@ -29,7 +27,15 @@ public class User  implements Serializable {
         this.status = status;
         this.unsavedMessageCount = unsavedMessageCount;
     }
-
+    public User(String userPhone, String userName,String userEmail,String userPassword,String gender,String userCountry,byte[]image){
+        this.userPhone = userPhone;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.gender = gender;
+        this.userCountry = userCountry;
+        this.image = image;
+    }
     public User(String userName, String userPhone, byte[] image) {
         this.userName = userName;
         this.userPhone = userPhone;

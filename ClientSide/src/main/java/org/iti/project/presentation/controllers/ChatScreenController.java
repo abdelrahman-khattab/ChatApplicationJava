@@ -46,7 +46,7 @@ public class ChatScreenController implements Initializable {
 
     private static ChatScreenController chatScreenController;
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
-    private final Map<String, ScrollPane> paneMap = new HashMap<>();
+    private final static Map<String, ScrollPane> paneMap = new HashMap<>();
     private FileChooser fileChooser;
 
     @FXML
@@ -131,13 +131,15 @@ public class ChatScreenController implements Initializable {
     private TextField messageTextField;
 
     private ScrollPane sideContactListPane;
-    private ScrollPane sideProfilePane;
+    private static ScrollPane sideProfilePane;
+    private static ScrollPane editProfilePane;
     private ScrollPane sideGroupPane;
     private ScrollPane chatListPane;
 
     private SideGroupListController sideGroupListController;
     private SideChatListController sideChatListController;
     private ProfileController profileController;
+    private EditProfileController editProfileController;
     private SideContactListController sideContactListController;
 
     private static volatile boolean isGroup = false;
@@ -242,7 +244,7 @@ public class ChatScreenController implements Initializable {
     void onProfileButtonClicked(ActionEvent event) {
         switchToProfilePane();
     }
-    private void switchToProfilePane() {
+    public static void switchToProfilePane() {
         sideProfilePane = paneMap.get("sideProfilePane");
 //        if(sideProfilePane == null) {
 //            try {
@@ -256,11 +258,15 @@ public class ChatScreenController implements Initializable {
 //            }
 //        }
         sideProfilePane.toFront();
-        System.out.println(sideNavigationStackPane.getChildren().get(sideNavigationStackPane.getChildren().size()-1)==sideProfilePane);
-
 
     }
+    // call the edit profile pane 1234
+    public static void switchToEditProfilePane(){
 
+        editProfilePane = paneMap.get("editProfilePane");
+        editProfilePane.toFront();
+    }
+    //
     @FXML
     void onUnownButtonClicked(ActionEvent event) {
     //Tooltip.install(unknownFunctionaityButton,exitTip);
@@ -588,6 +594,16 @@ public class ChatScreenController implements Initializable {
 //            System.out.println("sideProfilePane created");
             paneMap.put("sideProfilePane",sideProfilePane);
             sideNavigationStackPane.getChildren().add(sideProfilePane);
+
+            //Adding Edit profile to map 1234
+            FXMLLoader editProfileLoader = new FXMLLoader(getClass().getResource("/view/editProfile.fxml"));
+            editProfilePane = editProfileLoader.load();
+            editProfileController.setController(editProfileLoader.getController());
+            editProfileController = EditProfileController.getInstance();
+            paneMap.put("editProfilePane",editProfilePane);
+            sideNavigationStackPane.getChildren().add(editProfilePane);
+
+            // end of edit profile
 
             FXMLLoader sideGroupListLoader = new FXMLLoader(getClass().getResource("/view/SideGroupList.fxml"));
             sideGroupPane = sideGroupListLoader.load();
