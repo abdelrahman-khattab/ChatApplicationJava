@@ -89,6 +89,22 @@ public class AddNewUserController implements Initializable {
     public ObservableList<User> membersObservableList;
     byte[] userImg;
 
+    @FXML
+    void uploadImage(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg", "*.png");
+        fc.getExtensionFilters().add(extFilter);
+        file = fc.showOpenDialog((Stage) editVBox.getScene().getWindow());
+        if (file != null) {
+            memberImage.setImage(new Image(file.getPath()));
+
+        }else{
+            memberImage.setImage(new Image("/images/R.png"));
+        }
+
+    }
+
 
     @FXML
     void enterEmail(KeyEvent event) {

@@ -250,6 +250,14 @@
 .tfinput{
     -fx-background-color:transparent;
     -fx-text-fill:#E1E9F1;
+    -fx-font-size:11;
+    -fx-font-weight:bold;
+    -fx-prompt-text-size : 8;
+    -fx-prompt-text-fill : -blackGray;
+}
+.tfinputHeader{
+    -fx-background-color:transparent;
+    -fx-text-fill:#E1E9F1;
     -fx-font-size:14;
     -fx-font-weight:bold;
     -fx-prompt-text-size : 12;
