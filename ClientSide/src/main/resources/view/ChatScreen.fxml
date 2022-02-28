@@ -220,11 +220,11 @@
                         <String fx:value="mouse-hand" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="emojiButton" mnemonicParsing="false" stylesheets="@Styles/mainscreen.css">
+                  <Button fx:id="chatBotButton" mnemonicParsing="false" onAction="#onChatBotButtonClicked" stylesheets="@Styles/mainscreen.css">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="27.0">
                            <image>
-                              <Image url="@../images/icons8_smiling_50px.png" />
+                              <Image url="@../images/bot.png" />
                            </image>
                         </ImageView>
                      </graphic>
