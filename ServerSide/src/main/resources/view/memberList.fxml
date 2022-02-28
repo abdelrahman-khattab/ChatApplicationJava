@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.MemberListController">
@@ -59,7 +58,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <TextField fx:id="searchBar1" prefHeight="35.0" promptText="Search users" stylesheets="@../../../../../ClientSide/src/main/resources/view/Styles/chatStyle.css">
+                              <TextField fx:id="searchBar" prefHeight="35.0" promptText="Search users" stylesheets="@../../../../../ClientSide/src/main/resources/view/Styles/chatStyle.css">
                                  <styleClass>
                                     <String fx:value="transparent-bg" />
                                     <String fx:value="radius" />
@@ -104,7 +103,7 @@
                   </padding>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <VBox minWidth="500.0" prefWidth="500.0" style="-fx-background-radius: 20;" styleClass="vBox" stylesheets="@Styles/chatStyle.css" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="editVBox" minWidth="500.0" prefWidth="500.0" style="-fx-background-radius: 20;" styleClass="vBox" stylesheets="@Styles/chatStyle.css" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets left="20.0" right="30.0" top="10.0" />
                      </padding>
@@ -129,10 +128,10 @@
                                        <children>
                                           <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="110.0" prefWidth="110.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 50;">
                                              <children>
-                                                <Circle fx:id="memberImage1" fill="WHITE" layoutX="55.0" layoutY="55.0" radius="48.0" stroke="WHITE" strokeType="INSIDE" styleClass="borderWhite" />
+                                                <ImageView fx:id="memberImage" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </AnchorPane>
-                                          <Button fx:id="uploadImageBtn1" layoutX="62.0" layoutY="64.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 30;" styleClass="secondBGcolor">
+                                          <Button fx:id="uploadImageBtn" layoutX="62.0" layoutY="64.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 30;" styleClass="secondBGcolor">
                                              <graphic>
                                                 <ImageView fitHeight="33.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -145,7 +144,7 @@
                                     </AnchorPane>
                                  </children>
                               </HBox>
-                              <Label styleClass="fieldHeader" text="Name" textFill="#9aa1b9">
+                              <Label styleClass="tfinputHeader" text="Name" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
@@ -153,7 +152,7 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="userName1" onKeyTyped="#enterUserName" prefHeight="40.0" promptText="username" styleClass="tfinput" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="userName" onKeyTyped="#enterUserName" prefHeight="40.0" promptText="username" styleClass="tfinput" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -161,7 +160,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="10.0" layoutY="10.0" styleClass="fieldHeader" text="Mobile" textFill="#9aa1b9">
+                              <Label layoutX="10.0" layoutY="10.0" styleClass="tfinputHeader" text="Mobile" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
@@ -169,7 +168,7 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="phoneNo1" layoutX="10.0" layoutY="98.0" onKeyTyped="#enterPhoneNumber" prefHeight="40.0" promptText="Phone Number" styleClass="tfinput" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="phoneNo" layoutX="10.0" layoutY="98.0" onKeyTyped="#enterPhoneNumber" prefHeight="40.0" promptText="Phone Number" styleClass="tfinput" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -177,7 +176,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="10.0" layoutY="27.0" styleClass="fieldHeader" text="Email" textFill="#9aa1b9">
+                              <Label layoutX="10.0" layoutY="27.0" styleClass="tfinputHeader" text="Email" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
@@ -185,7 +184,7 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="eMail1" onKeyTyped="#enterEmail" prefHeight="40.0" promptText="email" styleClass="tfinput">
+                              <TextField fx:id="eMail" onKeyTyped="#enterEmail" prefHeight="40.0" promptText="email" styleClass="tfinput">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -193,42 +192,42 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="10.0" layoutY="27.0" styleClass="fieldHeader" text="Country" textFill="#9aa1b9">
+                              <Label layoutX="10.0" layoutY="27.0" styleClass="tfinputHeader" text="Country" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets left="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <ComboBox fx:id="countryComboBox1" promptText="Choose Country" style="-fx-prompt-fill: white;" styleClass="btnGender" />
-                              <Label layoutX="10.0" layoutY="95.0" styleClass="fieldHeader" text="Gender" textFill="#9aa1b9">
+                              <ComboBox fx:id="countryComboBox" promptText="Choose Country" style="-fx-prompt-fill: white;" styleClass="btnGender" />
+                              <Label layoutX="10.0" layoutY="95.0" styleClass="tfinputHeader" text="Gender" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets left="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <ComboBox fx:id="genderComboBox1" promptText="Choose Gender" style="-fx-prompt-fill: white;" styleClass="btnGender" />
-                              <Label layoutX="10.0" layoutY="148.0" styleClass="fieldHeader" text="Date Of Birth" textFill="#9aa1b9">
+                              <ComboBox fx:id="genderComboBox" promptText="Choose Gender" style="-fx-prompt-fill: white;" styleClass="btnGender" />
+                              <Label layoutX="10.0" layoutY="148.0" styleClass="tfinputHeader" text="Date Of Birth" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets left="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <DatePicker fx:id="birthDate11" editable="false" onAction="#enterBirthDate" />
-                              <Label layoutX="10.0" layoutY="286.0" styleClass="fieldHeader" text="BIO" textFill="#9aa1b9">
+                              <DatePicker fx:id="birthDate" editable="false" onAction="#enterBirthDate" />
+                              <Label layoutX="10.0" layoutY="286.0" styleClass="tfinputHeader" text="BIO" textFill="#9aa1b9">
                                  <font>
                                     <Font name="Serif Bold" size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets left="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextArea fx:id="clientBioTextArea1" prefHeight="66.0" promptText="Client Bio" styleClass="tfBox" VBox.vgrow="ALWAYS">
+                              <TextArea fx:id="clientBioTextArea" prefHeight="66.0" promptText="Client Bio" styleClass="tfBox" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </VBox.margin>
@@ -238,7 +237,7 @@
                               </TextArea>
                               <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Button fx:id="clientRegistrationButton1" mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" style="-fx-border-radius: 8;" styleClass="btnNotification" text="Edit" textFill="#303841">
+                                    <Button fx:id="editUserDatabtn" mnemonicParsing="false" onAction="#editUserData" prefHeight="38.0" prefWidth="86.0" style="-fx-border-radius: 8;" styleClass="btnNotification" text="Edit" textFill="#303841">
                                        <font>
                                           <Font name="SansSerif Regular" size="16.0" />
                                        </font>

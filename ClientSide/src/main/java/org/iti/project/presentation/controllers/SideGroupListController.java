@@ -71,8 +71,6 @@ public class SideGroupListController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         groupsObservableList = FXCollections.observableArrayList();
 
-        File file=new FileChooser().showOpenDialog(null);
-        user1Img= ImageConverter.fromImageToBytes(file.getPath());
 
         //add user groups here
         User user = new User();
@@ -82,6 +80,7 @@ public class SideGroupListController implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
         groupListView.setItems(groupsObservableList);
         groupListView.setCellFactory(groupListView -> new GroupsInfoListCellController());
         groupListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group>() {
@@ -96,7 +95,6 @@ public class SideGroupListController implements Initializable {
                 stageCoordinator.getChatScreenController().setCurrentContactedGroup(newGroup);
                 Image newGroupImage = ImageConverter.fromBytesToImage(newGroup.getGroupImageBytes());
                 stageCoordinator.getChatScreenController().updateChatScene(newGroupImage , newGroup.getGroupName());
-
 
             }
 

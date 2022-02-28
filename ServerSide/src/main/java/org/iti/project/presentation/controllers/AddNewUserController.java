@@ -54,7 +54,7 @@ public class AddNewUserController implements Initializable {
     private Button clientRegistrationButton;
 
     @FXML
-    private Circle memberImage;
+    private ImageView memberImage;
 
     @FXML
     private TextField eMail;
@@ -88,6 +88,22 @@ public class AddNewUserController implements Initializable {
     private File file;
     public ObservableList<User> membersObservableList;
     byte[] userImg;
+
+    @FXML
+    void uploadImage(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg", "*.png");
+        fc.getExtensionFilters().add(extFilter);
+        file = fc.showOpenDialog((Stage) editVBox.getScene().getWindow());
+        if (file != null) {
+            memberImage.setImage(new Image(file.getPath()));
+
+        }else{
+            memberImage.setImage(new Image("/images/R.png"));
+        }
+
+    }
 
 
     @FXML
@@ -135,29 +151,6 @@ public class AddNewUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-       /* uploadImageBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FileChooser fc = new FileChooser();
-                FileChooser.ExtensionFilter extFilter =
-                        new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg", "*.png");
-                fc.getExtensionFilters().add(extFilter);
-                file = fc.showOpenDialog((Stage) editVBox.getScene().getWindow());
-                if (file != null) {
-                   memberImage.setFill(new ImagePattern(new Image(file.getPath())));
-                  //  Image image = new Image(file.getPath());
-
-                    imageValidation = true;
-                }else{
-                   memberImage.setFill(new ImagePattern(new Image("/images/R.png")));
-                    //   Image image = new Image("/images/R.png");
-
-
-
-                }
-            }
-        });*/
         countryComboBox.getItems().addAll(countries);
         genderComboBox.getItems().addAll(genders);
 
@@ -177,8 +170,6 @@ public class AddNewUserController implements Initializable {
             user.setGender(genderComboBox.getValue());
             user.setUserCountry(countryComboBox.getValue());
 
-          //  byte[] fileContent = ImageConverter.fromImageToBytes(addUser.getImage().getUrl());
-           // user.setImage(fileContent);
 
             user.setUserEmail(eMail.getText());
             user.setUserName(userName.getText());

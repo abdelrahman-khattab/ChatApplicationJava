@@ -136,6 +136,7 @@ public class AddGroupAndGroupMembers implements Initializable {
             e.printStackTrace();
         }
 
+
         memberLV.setItems(contactsObservableList);
         memberLV.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         memberLV.setCellFactory(groupListView -> new AddContactsWithGroupListCell());

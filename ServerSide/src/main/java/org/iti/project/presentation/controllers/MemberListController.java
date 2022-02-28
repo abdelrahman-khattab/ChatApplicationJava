@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -52,7 +53,7 @@ public class MemberListController implements Initializable {
     private Button clientRegistrationButton;
 
     @FXML
-    private Circle memberImage;
+    private ImageView memberImage;
 
     @FXML
     private ComboBox<String> countryComboBox;
@@ -74,7 +75,7 @@ public class MemberListController implements Initializable {
     private TextField phoneNo;
 
     @FXML
-    private TextField searchBar1;
+    private TextField searchBar;
 
     @FXML
     private Button uploadImageBtn;
@@ -87,6 +88,12 @@ public class MemberListController implements Initializable {
     private File file;
     public ObservableList<User> membersObservableList;
     byte[] userImg;
+
+    @FXML
+    void editUserData(ActionEvent event) {
+        System.out.println("editbtn");
+    }
+
     @FXML
     void enterBirthDate(ActionEvent event) {
         birthDate.getEditor().setDisable(true);
@@ -152,9 +159,10 @@ public class MemberListController implements Initializable {
         fc.getExtensionFilters().add(extFilter);
         file = fc.showOpenDialog((Stage) editVBox.getScene().getWindow());
         if (file != null) {
-            memberImage.setFill(new ImagePattern(new Image(file.getPath())));
+            memberImage.setImage(new Image(file.getPath()));
+
         }else{
-            memberImage.setFill(new ImagePattern(new Image("/images/R.png")));
+            memberImage.setImage(new Image("/images/R.png"));
         }
 
     }
@@ -179,6 +187,8 @@ public class MemberListController implements Initializable {
             }
 
         });
+
+
 //        countryComboBox.getItems().addAll(countries);
 //        genderComboBox.getItems().addAll(genders);
 //
