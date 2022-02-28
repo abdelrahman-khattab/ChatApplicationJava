@@ -1,12 +1,9 @@
 package org.iti.project.presentation.controllers;
 
+import com.google.code.chatterbotapi.ChatterBotSession;
 import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +28,7 @@ import org.iti.project.network.RMIConnector;
 import org.iti.project.models.Group;
 import org.iti.project.presentation.models.MessageModel;
 import org.iti.project.presentation.models.UserModel;
+import org.iti.project.presentation.util.ChatBot;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.util.ImageConverter;
 
@@ -73,7 +71,7 @@ public class ChatScreenController implements Initializable {
     private Button contactListButton;
 
     @FXML
-    private Button emojiButton;
+    private Button chatBotButton;
 
     @FXML
     private Button fileAttachementButton;
@@ -145,21 +143,27 @@ public class ChatScreenController implements Initializable {
     private SideContactListController sideContactListController;
 
     private static volatile boolean isGroup = false;
+    private boolean chatBotFlag = false;
     private Group currentContactedGroup;
     private User currentContactedUser;
 
     private final UserModel userModel = new UserModel();
     MessageModel messageModel = new MessageModel();
+    ChatBot chatBot = new ChatBot();
+    ChatterBotSession botSession = chatBot.createBotSession();
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void setController(ChatScreenController chatScreenController) {
         ChatScreenController.chatScreenController = chatScreenController;
     }
+
     public static ChatScreenController getInstance(){
         return chatScreenController;
     }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     public Group getCurrentContactedGroup() {
         return currentContactedGroup;
@@ -267,7 +271,8 @@ public class ChatScreenController implements Initializable {
     void onUnownButtonClicked(ActionEvent event) {
     //Tooltip.install(unknownFunctionaityButton,exitTip);
     //exitTip.show(null);
-    System.exit(0);
+        Platform.exit();
+        System.exit(0);
 
     }
 
@@ -281,8 +286,14 @@ public class ChatScreenController implements Initializable {
         stageCoordinator.switchToLoginFormScene();
     }
 
+    @FXML
+    void onChatBotButtonClicked(ActionEvent event){
+        chatBotFlag = !chatBotFlag;
+        Notifications.create().title("Chat Bot").text("Chat Bot Is "+(chatBotFlag ? "ON":"OFF"))
+                .position(Pos.TOP_CENTER).showInformation();
+    }
 
-
+    @FXML
     public void onFileAttachingButtonClicked(ActionEvent actionEvent) {
 
         fileChooser = new FileChooser();
@@ -313,12 +324,7 @@ public class ChatScreenController implements Initializable {
                 .text(senderName+" wants to send you a file")
                 .position(Pos.TOP_CENTER)
                 .showInformation();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Do you want to receive file from "+ senderName + " ?");
-        alert.setTitle("File Download");
-        alert.getButtonTypes().remove(0,2);
-        alert.getButtonTypes().add(0,ButtonType.YES);
-        alert.getButtonTypes().add( 1,ButtonType.NO);
+        Alert alert = creatFileAlert(senderName);
         Optional<ButtonType> alertActionResult = alert.showAndWait();
         if (alertActionResult.isPresent()){
 
@@ -346,7 +352,7 @@ public class ChatScreenController implements Initializable {
                             dialogPaneDialog.setDialogPane(progressDialogPane);
                             DownloadTask downloadTask = new DownloadTask(sentFile , chosenFile);
                             progressBarController.getDownloadProgressBar().progressProperty().bind(downloadTask.progressProperty());
-                            
+
                             dialogPaneDialog.show();
                             Thread thread = new Thread(downloadTask);
                             thread.setDaemon(true);
@@ -359,6 +365,16 @@ public class ChatScreenController implements Initializable {
                 }
             }
         }
+    }
+
+    private Alert creatFileAlert(String senderName){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Do you want to receive file from "+ senderName + " ?");
+        alert.setTitle("File Download");
+        alert.getButtonTypes().remove(0,2);
+        alert.getButtonTypes().add(0,ButtonType.YES);
+        alert.getButtonTypes().add( 1,ButtonType.NO);
+        return alert;
     }
 
     private class DownloadTask extends Task<Void>{
@@ -377,30 +393,25 @@ public class ChatScreenController implements Initializable {
             int remainder = mainArrayLength % 100;
             int numberOfArrays = (mainArrayLength / 100);
             if (remainder != 0) {
-                numberOfArrays = (mainArrayLength / 100) + 1;
+                numberOfArrays += 1;
             }
-            double counter = 0;
             long progress;
             for (int i = 0; i < numberOfArrays; i++) {
                 int x = 100;
                 if (i == (numberOfArrays - 1)) {
                     x = mainArrayLength % 100;
                 }
-                byte[] byteArr = new byte[x];
-                System.out.println(counter + " " + i);
-                System.arraycopy(sentFile, i * 100, byteArr, 0, byteArr.length);
-                counter++;
-                updateProgress(counter ,numberOfArrays);
-//                ObservableValue<Double> progress = new SimpleDoubleProperty(Double.valueOf(i*100/numberOfArrays)).asObject();
-//                progressBarController.getDownloadProgressBar();
-                System.out.println(Arrays.toString(byteArr));
-                FileUtils.writeByteArrayToFile(chosenFile, byteArr, true);
+                updateProgress(i ,numberOfArrays);
+                FileUtils.writeByteArrayToFile(chosenFile , sentFile , i*100 ,x , true);
             }
             return null;
         }
     }
 
     public void onSendButtonClicked(ActionEvent actionEvent) {
+        //making sure that chatBot is disabled
+        chatBotFlag = false;
+        //sending messages manually
         if (!messageTextField.getText().isEmpty()){
             String messageBody = messageTextField.getText().trim();
             try {
@@ -410,7 +421,7 @@ public class ChatScreenController implements Initializable {
                     RMIConnector.getRmiConnector().getChattingService().sendGroupMessage(sentMessage);
                 }
                 else {
-                    SingleMessage sentMessage = createSingleMessage();
+                    SingleMessage sentMessage = createSingleMessage(messageTextField.getText().trim());
                     displayMySentSingleMessage(sentMessage);
                     RMIConnector.getRmiConnector().getChattingService().sendSingleMessage(sentMessage);
                 }
@@ -426,6 +437,17 @@ public class ChatScreenController implements Initializable {
     public void handleSingleMessage(SingleMessage singleMessage){
         if (!isGroup && singleMessage.getSender().getUserPhone().equals(currentContactedUser.getUserPhone())){
             renderSingleMessage(singleMessage);
+            if(chatBotFlag){
+                try {
+                    System.out.println("should respond");
+                    String response = botSession.think(singleMessage.getSingleMessageContent());
+                    SingleMessage sentMessage = createSingleMessage(response);
+                    displayMySentSingleMessage(sentMessage);
+                    RMIConnector.getRmiConnector().getChattingService().sendSingleMessage(sentMessage);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 //        else if(!singleMessage.getSender().getUserPhone().equals(stageCoordinator.currentUser.getUserPhone())){
         else{
@@ -625,8 +647,8 @@ public class ChatScreenController implements Initializable {
         return groupMessage;
     }
 
-    private SingleMessage createSingleMessage(){
-        SingleMessage singleMessage = new SingleMessage(messageTextField.getText().trim(),
+    private SingleMessage createSingleMessage(String messageText){
+        SingleMessage singleMessage = new SingleMessage(messageText,
                 stageCoordinator.currentUser, currentContactedUser.getUserPhone());
         System.out.println(currentContactedUser.getUserPhone()+" from createSingleMessage I am the phone number");
         String msgColor = toRGBCode(messageColorPickerButton.getValue());
@@ -654,6 +676,7 @@ public class ChatScreenController implements Initializable {
         chatVBox.getChildren().clear();
         currentContactedUser = new User("#","#",null);
         previewGroupChatHistory();
+//        sideChatListController.getContactinfoLV().getSelectionModel().clearSelection();
 
     }
     public void updateSingleChatScene(User currentContactedUser){
@@ -664,6 +687,7 @@ public class ChatScreenController implements Initializable {
         chatVBox.getChildren().clear();
         currentContactedGroup= new Group("#","#",null,-1);
         previewSingleChatHistory();
+//        sideGroupListController.getGroupListView().getSelectionModel().clearSelection();
 
     }
     private void previewSingleChatHistory(){
@@ -671,7 +695,7 @@ public class ChatScreenController implements Initializable {
         try {
 
             singleMessageHistory = RMIConnector.getRmiConnector().getChattingService().fetchSingleMessageHistory(stageCoordinator.currentUser.getUserPhone(), currentContactedUser.getUserPhone());
-            System.out.println(" All Old messages  : "+ singleMessageHistory);
+//            System.out.println(" All Old messages  : "+ singleMessageHistory);
         } catch (RemoteException e) {
 
             e.printStackTrace();
@@ -698,7 +722,7 @@ public class ChatScreenController implements Initializable {
 
             groupMessageHistory = RMIConnector.getRmiConnector().getChattingService().fetchGroupMessageHistory(currentContactedGroup.getGroupId());
 
-                    System.out.println(" All Old messages  : "+ groupMessageHistory);
+//                    System.out.println(" All Old messages  : "+ groupMessageHistory);
         } catch (RemoteException e) {
 
             e.printStackTrace();

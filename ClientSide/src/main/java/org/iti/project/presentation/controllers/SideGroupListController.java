@@ -45,7 +45,12 @@ public class SideGroupListController implements Initializable {
         SideGroupListController.sideGroupListController = sideGroupListController;
     }
     public static SideGroupListController getInstance(){
+
         return sideGroupListController;
+    }
+
+    public ListView<Group> getGroupListView() {
+        return groupListView;
     }
 
     @Override

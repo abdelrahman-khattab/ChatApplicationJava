@@ -20,14 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.impls.ClientCallBack;
-import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.presentation.util.Validator;
 import org.iti.project.util.ImageConverter;
-
+import org.iti.project.util.PasswordEncryptor;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -76,11 +74,11 @@ public class LoginController implements Initializable {
     }
     void checkLoginFields()
     {
-       if(passFlag==false){
+       if(!passFlag){
             btnLogin.setDisable(true);
 
         }
-        else if(phNoFlag==false){
+        else if(!phNoFlag){
             btnLogin.setDisable(true);
 
         }
@@ -126,8 +124,9 @@ public class LoginController implements Initializable {
         User returnedUser = null;
         System.out.println(userPhone.getText());
         mainUser.setUserPhone(userPhone.getText());
+//        String encryptedPass = PasswordEncryptor.encrypt(password.getText());
+//        mainUser.setUserPassword(encryptedPass);
         mainUser.setUserPassword(password.getText());
-        ClientCallBackInt clientCallBackInt=null;
         try {
             returnedUser = RMIConnector.getRmiConnector().getSignInService().loginMe(mainUser ,ClientCallBack.getInstance() );
                   } catch (RemoteException e) {
@@ -150,7 +149,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userPhone.textProperty().bindBidirectional(userModel.phoneNoProperty());
-        password.textProperty().bindBidirectional(userModel.userPasswordProperty());
+//        password.textProperty().bindBidirectional(userModel.userPasswordProperty());
         profileImage.imageProperty().bindBidirectional(userModel.userImageProperty());
         btnLogin.setDisable(true);
         validationText.setVisible(false);
