@@ -53,4 +53,11 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
         });
 
     }
+
+    @Override
+    public void updateFriendAvailability(String friendName, String friendPhone, boolean onlineFlag) {
+        Platform.runLater(()->{
+            stageCoordinator.getChatScreenController().handleFriendAvailability(friendName,friendPhone,onlineFlag);
+        });
+    }
 }

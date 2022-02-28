@@ -124,6 +124,7 @@ public class LoginController implements Initializable {
         User returnedUser = null;
         System.out.println(userPhone.getText());
         mainUser.setUserPhone(userPhone.getText());
+//        password encryption...
 //        String encryptedPass = PasswordEncryptor.encrypt(password.getText());
 //        mainUser.setUserPassword(encryptedPass);
         mainUser.setUserPassword(password.getText());

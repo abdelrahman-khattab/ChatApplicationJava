@@ -31,22 +31,22 @@ public class ChatServiceImpl extends UnicastRemoteObject implements ChatServiceI
         System.out.println("your groupMessage received from server");
         int groupId = groupMessage.getGroupId();
         
-        List<String> userPhones = new ArrayList<>();
-             userPhones = groupDAO.findUsersPhoneByGroupId(groupId);
+        List<String> usersPhones = new ArrayList<>();
+             usersPhones = groupDAO.findUsersPhoneByGroupId(groupId);
 //        try {
 //            PreparedStatement psttmnt = con.prepareStatement("select user_id from user_group where group_id = ?");
 //            psttmnt.setInt(1,groupId);
 //            ResultSet res = psttmnt.executeQuery();
 //            while (res.next()){
 //                String userPhoneNumber = res.getString(1);
-//                userPhones.add(userPhoneNumber);
+//                usersPhones.add(userPhoneNumber);
 //                System.out.println("we found friends for you to send them your message with phone: "+ userPhoneNumber + groupId);
 //            }
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        if(userPhones != null && userPhones.size()>0){
-            for (String userPhone : userPhones){
+        if(usersPhones != null && usersPhones.size()>0){
+            for (String userPhone : usersPhones){
                 ClientCallBackInt clientCallBack =  onlineClients.get(userPhone);
                 if (clientCallBack != null && !userPhone.equals(groupMessage.getSender().getUserPhone())){
                     clientCallBack.receiveGroupMessage(groupMessage);

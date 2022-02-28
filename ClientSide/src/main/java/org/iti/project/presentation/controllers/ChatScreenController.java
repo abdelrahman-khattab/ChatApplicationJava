@@ -433,7 +433,6 @@ public class ChatScreenController implements Initializable {
             renderSingleMessage(singleMessage);
             if(chatBotFlag){
                 try {
-                    System.out.println("should respond");
                     String response = botSession.think(singleMessage.getSingleMessageContent());
                     SingleMessage sentMessage = createSingleMessage(response);
                     displayMySentSingleMessage(sentMessage);
@@ -722,5 +721,13 @@ public class ChatScreenController implements Initializable {
             }
 
         }
+    }
+    public void handleFriendAvailability(String frinedName, String friendPhone, boolean onlineFlag){
+        Notifications.create().title("Availability Feed").text(frinedName +" Is "+(onlineFlag ? "ONLINE":"OFFLINE"))
+                .position(Pos.TOP_CENTER).showInformation();
+        /// updateSideContactList with online and offline friends to change the label
+        /// update the sidechatlist to conatain only online people ??
+        /// remember to create a method to get online people once you log in to update the contactlist
+
     }
 }

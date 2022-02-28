@@ -269,6 +269,7 @@ public class RegisterController implements Initializable {
 
             user.setUserEmail(eMail.getText());
             user.setUserName(userName.getText());
+//            password encryption...
 //            String encryptedPass = PasswordEncryptor.encrypt(password.getText());
 //            user.setUserPassword(encryptedPass);
             user.setUserPassword(password.getText());
