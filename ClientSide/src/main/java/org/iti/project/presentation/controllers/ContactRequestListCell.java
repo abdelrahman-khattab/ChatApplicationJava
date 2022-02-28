@@ -63,7 +63,11 @@ public class ContactRequestListCell extends ListCell<User>  implements Initializ
                 try {
                     RMIConnector.getRmiConnector().getContactService().acceptContact(mainUser,secUser);
                     System.out.println("accepted");
+                    SideContactListController.contactObservableList.clear();
+                    SideContactListController.contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().getContact(mainUser));
 
+                    FriendRequestNotificationController.contactObservableList.clear();
+                    FriendRequestNotificationController.contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().requestListFriends(mainUser));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -80,6 +84,7 @@ public class ContactRequestListCell extends ListCell<User>  implements Initializ
                     RMIConnector.getRmiConnector().getContactService().rejectContact(requesterUser,mainUser);
                     User currentUser = new User();
                     currentUser.setUserPhone(userModel.getPhoneNo());
+                   FriendRequestNotificationController.contactObservableList.clear();
                    FriendRequestNotificationController.contactObservableList.addAll(RMIConnector.getRmiConnector().getContactService().requestListFriends(currentUser));
                 } catch (RemoteException e) {
                     e.printStackTrace();
