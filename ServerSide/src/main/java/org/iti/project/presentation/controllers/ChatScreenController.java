@@ -17,12 +17,19 @@ import org.iti.project.services.impls.SignInImpl;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class ChatScreenController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
     private final Tooltip exitTip = new Tooltip("Exit");
+
+    private  DashBoardController dashBoardController;
+    private final Map<String, ScrollPane> paneMap = new HashMap<>();
+    private  ScrollPane dashBoardPane;
+
 
 
 
@@ -59,9 +66,12 @@ public class ChatScreenController implements Initializable {
         @FXML
         void onChatListButtonClicked(ActionEvent event) {
 
-            switchToChatListPane();
-        }
 
+        switchToChatListPane();
+    }
+    public DashBoardController getDashBoardController() {
+        return dashBoardController;
+    }
     private void switchToChatListPane() {
         try {
             ScrollPane chatListScrollPane = FXMLLoader.load(getClass().getResource("/view/sideChatList.fxml"));
@@ -73,87 +83,94 @@ public class ChatScreenController implements Initializable {
 
     }
 
-        @FXML
-        void onContactListButtonClicked(ActionEvent event) {
-            switchToContactListPane();
-        }
+    @FXML
+    void onContactListButtonClicked(ActionEvent event) {
+        switchToContactListPane();
+    }
 
-        private void switchToContactListPane() {
-            try {
-                ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/announcement.fxml"));
-                sideNavigationStackPane.getChildren().removeAll();
-                sideNavigationStackPane.getChildren().add(sideProfilePane);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    private void switchToContactListPane() {
+        try {
+            ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/announcement.fxml"));
+            sideNavigationStackPane.getChildren().removeAll();
+            sideNavigationStackPane.getChildren().add(sideProfilePane);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-        @FXML
-        void onGroupChatButtonClicked(ActionEvent event) {
-            switchToGroupChat();
+    @FXML
+    void onGroupChatButtonClicked(ActionEvent event) {
+        switchToGroupChat();
+    }
+    private void switchToGroupChat(){
+        try {
+            FXMLLoader loader = FXMLLoader.load(getClass().getResource("/view/memberList.fxml"));
+            ScrollPane sideProfilePane = loader.load();
+            sideNavigationStackPane.getChildren().removeAll();
+            sideNavigationStackPane.getChildren().add(sideProfilePane);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        private void switchToGroupChat(){
-            try {
-                ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/memberList.fxml"));
-                sideNavigationStackPane.getChildren().removeAll();
-                sideNavigationStackPane.getChildren().add(sideProfilePane);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    }
 
         @FXML
         void onLogOutButtonClicked(ActionEvent event) {
             //stageCoordinator.switchToLoginScene();
         }
 
-        @FXML
-        void onProfileButtonClicked(ActionEvent event) {
-            switchToProfilePane();
-        }
+    @FXML
+    void onProfileButtonClicked(ActionEvent event) {
+        switchToProfilePane();
+    }
     private void switchToProfilePane() {
-        try {
-            ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/sideProfilePane.fxml"));
-            sideNavigationStackPane.getChildren().removeAll();
-            sideNavigationStackPane.getChildren().add(sideProfilePane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dashBoardPane =  paneMap.get("dashBoardPane");
+        dashBoardPane.toFront();
+        System.out.println(DashBoardController.getInstance()==null);
+//        try {
+//            FXMLLoader dashBoardLoader = new FXMLLoader(getClass().getResource("/view/sideProfilePane.fxml"));
+//            ScrollPane dashBoardPane = dashBoardLoader.load();
+//            dashBoardController.setController(dashBoardLoader.getController());
+//            dashBoardController = dashBoardController.getInstance();
+//            sideNavigationStackPane.getChildren().removeAll();
+//            sideNavigationStackPane.getChildren().add(dashBoardPane);
+//            System.out.println(DashBoardController.getInstance()==null);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
 
-        @FXML
-        void onUnownButtonClicked(ActionEvent event) {
-            System.exit(0);
+    @FXML
+    void onUnownButtonClicked(ActionEvent event) {
+        System.exit(0);
 
-        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Tooltip exitTip = new Tooltip("Exit");
         //exitTip.show(stageCoordinator.getPrimaryStage());
         Tooltip.install(unknownFunctionaityButton, exitTip);
-        stageCoordinator.getPrimaryStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }});
+        try {
+            FXMLLoader dashBoardLoader = new FXMLLoader(getClass().getResource("/view/sideProfilePane.fxml"));
+            ScrollPane dashBoardPane = dashBoardLoader.load();
+            dashBoardController.setController(dashBoardLoader.getController());
+            dashBoardController = dashBoardController.getInstance();
+            paneMap.put("dashBoardPane", dashBoardPane);
+            sideNavigationStackPane.getChildren().add(dashBoardPane);
 
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void onSendButtonClicked(ActionEvent actionEvent) {
-    }
 
-    public void onFileAttachingButtonClicked(ActionEvent actionEvent) {
-    }
-
-    public void addItalicStyle(ActionEvent actionEvent) {
-    }
-
-    public void addBoldStyle(ActionEvent actionEvent) {
-    }
 
     public void addUnderline(ActionEvent actionEvent) {
     }
@@ -176,4 +193,5 @@ public class ChatScreenController implements Initializable {
              RMIConnector.getRmiConnector().connectRMI();
         }
     }
+
 }
