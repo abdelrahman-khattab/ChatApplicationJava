@@ -35,6 +35,7 @@ import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ChatBot;
 import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
+import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.util.ImageConverter;
 import java.io.File;
 import java.io.IOException;
@@ -780,7 +781,7 @@ public class ChatScreenController implements Initializable {
     void onsSeverAnnoncement(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sideServerAnnouncements.fxml"));
         Parent parent= fxmlLoader.load();
-
+     //   ClientCallBackInt clientCallBackInt
         Scene scene = new Scene(parent, 500, 550);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

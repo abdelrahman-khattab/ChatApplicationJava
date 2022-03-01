@@ -15,6 +15,6 @@ public interface ClientCallBackInt extends Remote {
     public void updateFriendAvailability(String friendName, String friendPhone , boolean onlineFlag) throws RemoteException;
     public void getRequestListOfFriends(ArrayList<User> requestList) throws RemoteException;
     public void closeApplicationForUnbinding() throws RemoteException;
-
+    public void adminAnnouncement(String message) throws RemoteException;
 
 }

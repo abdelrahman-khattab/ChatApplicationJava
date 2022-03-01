@@ -84,6 +84,7 @@ public class FormsController implements Initializable {
         {
             stage =(Stage) anchPane.getScene().getWindow();
             stage.close();
+            System.exit(0);
         }
     }
 

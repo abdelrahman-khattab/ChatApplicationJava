@@ -14,6 +14,7 @@ import org.iti.project.models.User;
 import org.iti.project.presentation.controllers.ChatScreenController;
 import org.iti.project.presentation.controllers.FriendRequestNotificationController;
 import org.iti.project.presentation.controllers.SideContactListController;
+import org.iti.project.presentation.controllers.SideServerAnnouncementController;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 
@@ -25,7 +26,7 @@ import java.util.Optional;
 public class ClientCallBack extends UnicastRemoteObject implements ClientCallBackInt {
     private ChatScreenController chatScreenController;
     private final StageCoordinator stageCoordinator =  StageCoordinator.getStageCoordinator(); //this is would be null if used before creating the chat screen.
-
+    public static ArrayList<String> announcementMessageList = new ArrayList<>();
     private ClientCallBack() throws RemoteException {
     }
 
@@ -94,6 +95,12 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
             System.exit(0);
 
         });
+
+    }
+
+    @Override
+    public void adminAnnouncement(String message) throws RemoteException {
+        announcementMessageList.add(message);
 
     }
 }

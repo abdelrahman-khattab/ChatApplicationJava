@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import org.iti.project.models.Group;
 import org.iti.project.network.RMIConnector;
+import org.iti.project.services.impls.ClientCallBack;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,13 +25,23 @@ public class SideServerAnnouncementController implements Initializable {
 
     @FXML
     private ScrollPane secondPane;
-
+//
+//    private static SideServerAnnouncementController sideServerAnnouncementController;
+//    private SideServerAnnouncementController()
+//    {
+//        sideServerAnnouncementController= new SideServerAnnouncementController();
+//    }
+//
+//    public static SideServerAnnouncementController getInstance()
+//    {
+//        return sideServerAnnouncementController;
+//    }
     public static ObservableList<String> announcementObservableList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         announcementObservableList = FXCollections.observableArrayList();
-        announcementObservableList.addAll("first message from server", "Second message");
+        announcementObservableList.addAll(ClientCallBack.announcementMessageList);
         announcementListView.setItems(announcementObservableList);
         announcementListView.setCellFactory(groupListView -> new ServerAnnouncementsListCell());
         announcementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
