@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.AddContactController">
    <children>
@@ -26,7 +27,10 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <Label fx:id="errorsLbl" text="erro" textFill="#dcced1" />
+      <Label fx:id="errorsLbl" textFill="#303841">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
    <padding>
       <Insets bottom="10.0" top="10.0" />

@@ -17,8 +17,6 @@ import java.io.IOException;
 public class AddContactsWithGroupListCell extends ListCell<User> {
 
 
-    @FXML
-    private CheckBox checkbtn;
 
     @FXML
     private Circle contactImage;
@@ -53,7 +51,6 @@ public class AddContactsWithGroupListCell extends ListCell<User> {
             userImage= ImageConverter.fromBytesToImage(user.getImage());
             contactName.setText(user.getUserName());
             contactImage.setFill(new ImagePattern(userImage));
-            checkbtn.setSelected(false);
             setGraphic(contactInfoHBox);
         }
     }

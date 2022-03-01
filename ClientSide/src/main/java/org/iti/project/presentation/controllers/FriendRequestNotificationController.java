@@ -30,10 +30,7 @@ public class FriendRequestNotificationController {
     public void initialize() throws IOException {
 
         contactObservableList = FXCollections.observableArrayList();
-        //get Image
-        //System.out.println("before requestList");
-        File file=new FileChooser().showOpenDialog(null);
-        user1= ImageConverter.fromImageToBytes(file.getPath());
+
         ArrayList<User> requestList = new ArrayList<>();
         User currentUser = new User();
         currentUser.setUserPhone(userModel.getPhoneNo());

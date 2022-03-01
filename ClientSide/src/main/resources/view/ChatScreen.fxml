@@ -124,6 +124,24 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
+                  <Button fx:id="severAnnoncementBtn" mnemonicParsing="false" onAction="#onsSeverAnnoncement" prefHeight="35.0" prefWidth="10.0" textFill="#690f0f">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" preserveRatio="true">
+                           <image>
+                              <Image url="@images/img_1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="icons" />
+                        <String fx:value="mouse-hand" />
+                        <String fx:value="side-bar-buttons" />
+                        <String fx:value="button-pressing" />
+                     </styleClass>
+                  </Button>
                </children>
             </VBox>
             <VBox alignment="CENTER" layoutX="5.0" layoutY="488.0" spacing="10.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

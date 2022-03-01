@@ -113,8 +113,6 @@ public class AddGroupAndGroupMembers implements Initializable {
         contactsObservableList = FXCollections.observableArrayList();
         groupsObservableList = FXCollections.observableArrayList();
 
-        File file=new FileChooser().showOpenDialog(null);
-        userImg= ImageConverter.fromImageToBytes(file.getPath());
         User user = new User();
         user.setUserPhone(userModel.getPhoneNo());
         try {

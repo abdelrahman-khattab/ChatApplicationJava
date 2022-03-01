@@ -38,8 +38,7 @@ public class ContactMessageController implements Initializable {
 
     public void setGroupMessage(GroupMessage groupMessage){
         Image senderImage = ImageConverter.fromBytesToImage(groupMessage.getSender().getImage());
-//        System.out.println(senderImage+ "image coming from server after converting");
-//        messageModel.setImageObjectProperty(senderImage);
+
         imageCircle.setFill(new ImagePattern(senderImage));
         messageBodyText.setText(groupMessage.getGroupMessageContent());
         int fontSize = groupMessage.getFontSize();

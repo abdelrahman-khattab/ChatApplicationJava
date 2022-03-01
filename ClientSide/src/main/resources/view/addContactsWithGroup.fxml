@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
@@ -9,7 +8,6 @@
 
 <HBox fx:id="contactInfoHBox" alignment="CENTER_LEFT" spacing="5.0" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <CheckBox fx:id="checkbtn" mnemonicParsing="false" />
       <Circle fx:id="contactImage" fill="WHITE" radius="15.0" stroke="WHITE" strokeType="INSIDE" />
       <Label fx:id="contactName" prefHeight="20.0" styleClass="secondNotificationHeader" stylesheets="@Styles/chatStyle.css" text="Contact Name">
          <font>
@@ -18,6 +16,6 @@
       </Label>
    </children>
    <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
    </padding>
 </HBox>

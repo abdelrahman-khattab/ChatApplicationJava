@@ -80,7 +80,7 @@
                <content>
                   <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="400.0" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                      <children>
-                        <ListView fx:id="contactsLV" styleClass="vBox" />
+                        <ListView fx:id="contactsLV" styleClass="vBox" stylesheets="@Styles/listStyle.css" />
                      </children>
                   </VBox>
                </content>

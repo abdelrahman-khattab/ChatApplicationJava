@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -71,11 +72,11 @@
          <content>
             <VBox nodeOrientation="LEFT_TO_RIGHT" spacing="5.0" styleClass="vBox" stylesheets="@Styles/chatStyle.css">
                <children>
-                        <ListView fx:id="groupListView" minWidth="220.0" prefWidth="250.0" stylesheets="@Styles/chatStyle.css" VBox.vgrow="ALWAYS">
-                           <styleClass>
-                              <String fx:value="list-cell" />
-                              <String fx:value="vBox" />
-                           </styleClass>
+                        <ListView fx:id="groupListView" minWidth="220.0" prefWidth="250.0" styleClass="vBox" VBox.vgrow="ALWAYS">
+                           <stylesheets>
+                              <URL value="@Styles/chatStyle.css" />
+                              <URL value="@Styles/listStyle.css" />
+                           </stylesheets>
                         </ListView>
                </children>
             </VBox>

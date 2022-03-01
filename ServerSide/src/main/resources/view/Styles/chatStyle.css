@@ -161,7 +161,7 @@
     -fx-border-width: 1;
     -fx-border-color: #e1e9f159;
 }
-
+/*
 .list-cell-white { -fx-background-color: #00000000;}
 .list-cell-white:odd { -fx-background-color: #00000000; }
 .list-cell-white:even { -fx-background-color: #00000000;}
@@ -176,7 +176,7 @@
 .list-cell:selected{
     -fx-background-color: -secondBgColor;
     -fx-text-fill: -secondBgColor;
-}
+}*/
 .check-box {
     /* default properties */
     selected-box-color: #7269EF;
@@ -287,4 +287,21 @@
   -fx-border-radius: 5;
   -fx-border-color: #7269EF;
 }
+
+.btnGender{
+
+ -fx-border-radius:5;
+ -fx-border-width: 0px 0px 2px 0px;
+ -fx-font-size:14;
+ }
+ .btnGender:hover{
+           -fx-font-weight:bold;
+
+           -fx-background-radius:5;
+           -fx-border-radius:5;
+           -fx-border-width: 0px 0px 2px 0px;
+  }
+
+
+
 

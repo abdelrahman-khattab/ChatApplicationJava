@@ -45,6 +45,15 @@ public class User  implements Serializable {
         this.userName = userName;
         this.image = image;
     }
+    public User(String userName, byte[] image, String status) {
+        this.userName = userName;
+        this.image = image;
+        this.status = status;
+    }
+
+    public User(String userName) {
+        this.userName = userName;
+    }
 
     public User() {
     }

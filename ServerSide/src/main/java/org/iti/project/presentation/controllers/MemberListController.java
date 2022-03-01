@@ -188,12 +188,11 @@ public class MemberListController implements Initializable {
 
         });
 
+        countryComboBox.getItems().addAll(countries);
+        genderComboBox.getItems().addAll(genders);
 
-//        countryComboBox.getItems().addAll(countries);
-//        genderComboBox.getItems().addAll(genders);
-//
-//        countryComboBox.getSelectionModel().select(0);
-//        genderComboBox.getSelectionModel().select(0);
+        countryComboBox.getSelectionModel().select(0);
+        genderComboBox.getSelectionModel().select(0);
 
     }
 

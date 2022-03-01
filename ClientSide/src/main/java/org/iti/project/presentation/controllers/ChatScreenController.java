@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -19,8 +21,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.controlsfx.control.Notifications;
 import org.iti.project.models.GroupMessage;
 import org.iti.project.models.SingleMessage;
@@ -34,7 +37,6 @@ import org.iti.project.presentation.util.ModelFactory;
 import org.iti.project.presentation.util.StageCoordinator;
 import org.iti.project.util.ImageConverter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -51,6 +53,9 @@ public class ChatScreenController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
     private final static Map<String, ScrollPane> paneMap = new HashMap<>();
     private FileChooser fileChooser;
+
+    @FXML
+    private Button severAnnoncementBtn;
 
     @FXML
     private Button callButton;
@@ -767,6 +772,19 @@ public class ChatScreenController implements Initializable {
         /// updateSideContactList with online and offline friends to change the label
         /// update the sidechatlist to conatain only online people ??
         /// remember to create a method to get online people once you log in to update the contactlist
+
+    }
+
+    @FXML
+    void onsSeverAnnoncement(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sideServerAnnouncements.fxml"));
+        Parent parent= fxmlLoader.load();
+
+        Scene scene = new Scene(parent, 500, 550);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
 
     }
 }

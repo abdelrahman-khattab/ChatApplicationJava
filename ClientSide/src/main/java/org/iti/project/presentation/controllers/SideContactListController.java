@@ -84,8 +84,6 @@ public class SideContactListController {
     }
 
     public static ObservableList<User> contactObservableList;
-//    byte[] user1;
-//    byte[] user2;
     private final ModelFactory modelFactory = ModelFactory.getModelFactory();
     private final UserModel userModel = modelFactory.getUserModel();
     public void initialize() throws IOException {
