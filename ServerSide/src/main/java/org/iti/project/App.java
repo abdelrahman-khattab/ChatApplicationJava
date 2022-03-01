@@ -29,10 +29,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
-
+        RMIConnector.getRmiConnector().connectRMI();
         stageCoordinator.initStage(stage);
-        RMIConnector rmiConnector = new RMIConnector();
-        rmiConnector.connectRMI();
         stage.show();
 
     }

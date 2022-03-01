@@ -160,7 +160,7 @@ public class LoginController implements Initializable {
 
             //System.out.println("user not found in table login with different Phone Number And Password");
         }
-//>>>>>>> 3d670fcfaf68ca90f7d9cd3e7567c4793bfe4e0d
+
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

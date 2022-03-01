@@ -32,25 +32,25 @@ public class StageCoordinator {
         this.primaryStage = primaryStage;
         primaryStage.setMinHeight(900);
         primaryStage.setMinWidth(600);
-        switchToLoginScene();
-        //switchToChatScreen();
+        //switchToLoginScene();
+        switchToChatScreen();
     }
 
-    public void switchToLoginScene(){
-        Scene loginScene = sceneMap.get("loginScene");
-        //Parent root = null;
-        if (loginScene == null){}
-        try {
-            Pane root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
-            System.out.println("login scene created");
-            loginScene = new Scene(root);
-            sceneMap.put("loginScene", loginScene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        primaryStage.setScene(loginScene);
-    }
+//    public void switchToLoginScene(){
+//        Scene loginScene = sceneMap.get("loginScene");
+//        //Parent root = null;
+//        if (loginScene == null){}
+//        try {
+//            Pane root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+//            System.out.println("login scene created");
+//            loginScene = new Scene(root);
+//            sceneMap.put("loginScene", loginScene);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        primaryStage.setScene(loginScene);
+//    }
 
     public void switchToChatScreen() {
         Scene chatScene = sceneMap.get("chatScene");

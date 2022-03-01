@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import org.iti.project.services.impls.AdminImpl;
 import org.iti.project.services.interfaces.AdminInt;
@@ -22,15 +23,16 @@ public class DashboardController implements Initializable {
 
     @FXML
     private BarChart<?, ?> lineChart;
-
+    @FXML
+    private static Text onliine = null;
     @FXML
     private PieChart pieChart;
 
     @FXML
-    private static   Text offLineUsers;
+    private static Label onlineUserNumber;
 
     @FXML
-    private static   Text onLiineUsers;
+    private static Label OfflineUserNumer;
 
     private AdminInt adminObj;
 
@@ -68,14 +70,6 @@ public class DashboardController implements Initializable {
                 pieChart.getData().addAll(slice1, slice2, slice3);
 
             }
-
-
-                // Rectangle clip = new Rectangle(
-                // imageView.getFitWidth(), imageView.getFitHeight());
-                // clip.setArcWidth(100);
-                // clip.setArcHeight(100);
-                // imageView.setClip(clip);
-                // imageView.setEffect(new DropShadow(20, Color.BLACK));
 
 
         } catch (RemoteException e) {

@@ -405,6 +405,7 @@ public class ChatScreenController implements Initializable {
         return alert;
     }
 
+
     private class DownloadTask extends Task<Void>{
         private byte[] sentFile;
         private File chosenFile;

@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.WindowEvent;
+import org.iti.project.network.RMIConnector;
 import org.iti.project.presentation.util.StageCoordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +13,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
+import org.iti.project.services.impls.SignInImpl;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class ChatScreenController implements Initializable {
@@ -31,6 +34,9 @@ public class ChatScreenController implements Initializable {
 
         @FXML
         private ScrollPane firstPane;
+
+    @FXML
+    private ToggleButton serverStatusBtn;
 
         @FXML
         private Button groupChatButton;
@@ -98,7 +104,7 @@ public class ChatScreenController implements Initializable {
 
         @FXML
         void onLogOutButtonClicked(ActionEvent event) {
-            stageCoordinator.switchToLoginScene();
+            //stageCoordinator.switchToLoginScene();
         }
 
         @FXML
@@ -150,5 +156,24 @@ public class ChatScreenController implements Initializable {
     }
 
     public void addUnderline(ActionEvent actionEvent) {
+    }
+    @FXML
+    void setServerSatuts(ActionEvent event) {
+       //fireOnClientSide();
+
+        if(serverStatusBtn.isSelected()){
+            SignInImpl.getOnlineClients().forEach((k,v)-> {
+                try {
+                    v.closeApplicationForUnbinding();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            });
+              RMIConnector.getRmiConnector().closeConncetion();
+
+        }
+        else{
+             RMIConnector.getRmiConnector().connectRMI();
+        }
     }
 }

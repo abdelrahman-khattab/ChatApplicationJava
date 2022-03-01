@@ -25,7 +25,7 @@ public class DBConnector {
 
     static {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/chat_app_project?user=root&password=1234567890");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/chat_app_project?user=root&password=admin1234");
         dataSource = new HikariDataSource(config);
         dataSource.setMaximumPoolSize(5);
     }
