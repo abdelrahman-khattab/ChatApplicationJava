@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.text.Text;
@@ -20,8 +21,9 @@ import org.iti.project.services.impls.SignInImpl;
 
 public class DashboardController implements Initializable {
 
+
     @FXML
-    private BarChart<?, ?> lineChart;
+    private BarChart<?, ?> barChar;
 
     @FXML
     private PieChart pieChart;
@@ -56,7 +58,7 @@ public class DashboardController implements Initializable {
                 dataSeries1.setName("2014");
                 dataSeries1.getData().add(new XYChart.Data("Male", gender.get("Male")));
                 dataSeries1.getData().add(new XYChart.Data("Female", gender.get("Female")));
-                lineChart.getData().add(dataSeries1);
+                barChar.getData().add(dataSeries1);
             }
 
 

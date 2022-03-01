@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -27,12 +26,6 @@
                   <String fx:value="textColor" />
                </styleClass>
             </Label>
-            <Label fx:id="GroupDescription" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="Last mesaage">
-               <styleClass>
-                  <String fx:value="textColor" />
-                  <String fx:value="message" />
-               </styleClass>
-            </Label>
          </children>
       </VBox>
       <VBox alignment="CENTER_RIGHT" prefHeight="70.0" HBox.hgrow="ALWAYS">
@@ -42,18 +35,6 @@
                   <String fx:value="textColor" />
                   <String fx:value="time" />
                </styleClass>
-            </Label>
-            <Label fx:id="groupMesaageNumbers" alignment="CENTER" prefHeight="18.0" prefWidth="32.0" stylesheets="@Styles/chatStyle.css" text="02" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="messageNumber" />
-                  <String fx:value="radius" />
-               </styleClass>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
             </Label>
          </children>
       </VBox>

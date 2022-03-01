@@ -28,7 +28,7 @@
                   <String fx:value="textColor" />
                </styleClass>
             </Label>
-            <Label fx:id="contactMessageContactBar" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="Hey! there I'm availableHey! there I'm availableHey! there I'm available">
+            <Label fx:id="contactMessageContactBar" prefHeight="26.0" stylesheets="@Styles/chatStyle.css" text="Hey! there I'm availableHey! there I'm availableHey! there I'm available" wrapText="true">
                <styleClass>
                   <String fx:value="textColor" />
                   <String fx:value="message" />
@@ -44,18 +44,6 @@
                   <String fx:value="time" />
                </styleClass>
             </Label>
-            <Label fx:id="mesaageNumbersContactBar" alignment="CENTER" prefHeight="18.0" prefWidth="32.0" stylesheets="@Styles/chatStyle.css" text="02" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="messageNumber" />
-                  <String fx:value="radius" />
-               </styleClass>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </Label>
          </children>
       </VBox>
    </children>
@@ -63,4 +51,7 @@
       <String fx:value="vBox" />
       <String fx:value="hBox" />
    </styleClass>
+   <padding>
+      <Insets left="2.0" right="2.0" />
+   </padding>
 </HBox>

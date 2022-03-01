@@ -32,9 +32,6 @@ public class ContactsChatInfoListCellController extends ListCell<User> {
     private Circle contactStatusContactBar;
 
     @FXML
-    private Label mesaageNumbersContactBar;
-
-    @FXML
     private Label messageTimeContactBar;
 
     public FXMLLoader fxmlLoader;
@@ -61,7 +58,6 @@ public class ContactsChatInfoListCellController extends ListCell<User> {
             userImage= ImageConverter.fromBytesToImage(user.getImage());
             contactNameContactBar.setText(user.getUserName());
             contactImageContactBar.setFill(new ImagePattern(userImage));
-            mesaageNumbersContactBar.setText(String.valueOf(user.getUnsavedMessageCount()));
             userStatus=user.getStatus();
 //            if(userStatus.equalsIgnoreCase("online"))
 //                contactStatusContactBar.setFill(Color.rgb(39,93,16));

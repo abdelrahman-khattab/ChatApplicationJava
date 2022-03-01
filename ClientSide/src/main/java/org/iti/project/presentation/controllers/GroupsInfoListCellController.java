@@ -21,8 +21,6 @@ public class GroupsInfoListCellController extends ListCell<Group> {
     @FXML
     private Circle groupImage;
 
-    @FXML
-    private Label GroupDescription;
 
     @FXML
     private Label groupMesaageNumbers;
@@ -64,7 +62,6 @@ public class GroupsInfoListCellController extends ListCell<Group> {
                 groupImage.setFill(new ImagePattern(userImage));
             }
             groupName.setText(group.getGroupName());
-            GroupDescription.setText(group.getDescription());
             setGraphic(contactInfoHBox);
         }
     }

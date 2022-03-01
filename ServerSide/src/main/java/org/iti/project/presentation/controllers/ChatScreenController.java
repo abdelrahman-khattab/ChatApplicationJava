@@ -32,6 +32,9 @@ public class ChatScreenController implements Initializable {
         @FXML
         private ScrollPane firstPane;
 
+    @FXML
+    private ToggleButton serverStatusBtn;
+
         @FXML
         private Button groupChatButton;
 
@@ -133,6 +136,12 @@ public class ChatScreenController implements Initializable {
                 Platform.exit();
                 System.exit(0);
             }});
+        if(serverStatusBtn.isSelected()){
+            System.out.println("selected");
+        }
+        else{
+            System.out.println("unselected");
+        }
 
     }
 
@@ -150,5 +159,14 @@ public class ChatScreenController implements Initializable {
     }
 
     public void addUnderline(ActionEvent actionEvent) {
+    }
+    @FXML
+    void setServerSatuts(ActionEvent event) {
+        if(serverStatusBtn.isSelected()){
+            System.out.println("selected");
+        }
+        else{
+            System.out.println("unselected");
+        }
     }
 }

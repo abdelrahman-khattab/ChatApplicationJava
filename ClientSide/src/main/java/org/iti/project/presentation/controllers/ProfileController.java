@@ -8,8 +8,11 @@ import java.util.ResourceBundle;
 //import gov.iti.jets.presentation.util.ModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import org.iti.project.presentation.models.UserModel;
 import org.iti.project.presentation.util.ModelFactory;
@@ -36,6 +39,8 @@ public class ProfileController implements Initializable {
 
     @FXML
     private Text clientBioText;
+    @FXML
+    private Circle userImage;
 
     @FXML
     private Label clientNameLabel;
@@ -79,11 +84,9 @@ public class ProfileController implements Initializable {
         infoClientGenderLabel.textProperty().bindBidirectional(userModel.userGenderProperty());
         infoClientNameLabel.textProperty().bindBidirectional(userModel.userUserNameProperty());
         clientimageView.imageProperty().bindBidirectional(userModel.userImageProperty());
-        // set border radius of image view
-        Rectangle clip = new Rectangle(70, 70);
-        clip.setArcWidth(70);
-        clip.setArcHeight(70);
-        clientimageView.setClip(clip);
+        userImage.setFill(new ImagePattern(clientimageView.getImage()));
+
+
     }
 
     @FXML

@@ -1,16 +1,7 @@
-
-
 .list-cell { -fx-background-color: #00000000;}
 .list-cell:odd { -fx-background-color: #00000000; }
 .list-cell:even { -fx-background-color: #00000000;}
 .list-cell:selected{
-    -fx-background-color: #E1E9F1;
+    -fx-background-color: #303841;
     -fx-text-fill: #303841;
-}
-.list-view .scroll-bar:vertical {
-   -fx-padding: 0px;
-}
-.list-view .scroll-bar:horizontal {
-   -fx-padding: 0px;
-}
-
+    }

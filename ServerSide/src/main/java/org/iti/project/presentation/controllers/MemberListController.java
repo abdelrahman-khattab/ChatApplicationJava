@@ -4,6 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -187,6 +189,28 @@ public class MemberListController implements Initializable {
             }
 
         });
+        FilteredList<User> filteredData = new FilteredList<User>(membersObservableList, p -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(user ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(user.getUserName().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }else if(user.getUserPhone().toLowerCase().contains(lowerCaseFilter)){
+                    return true; //filter matches last name
+                }
+                return false;
+            });
+        });
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        membersLV.setItems(sortedData);
 
         countryComboBox.getItems().addAll(countries);
         genderComboBox.getItems().addAll(genders);

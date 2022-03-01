@@ -52,7 +52,7 @@
                   <String fx:value="transparent-bg" />
                </styleClass>
             </HBox>
-            <Label prefHeight="39.0" prefWidth="399.0"  text="Recent" textFill="#181d31" wrapText="true">
+            <Label prefHeight="39.0" prefWidth="399.0" text="Recent" textFill="#181d31" wrapText="true">
                <styleClass>
                   <String fx:value="SecondHeaderFont" />
                   <String fx:value="fontColor" />
@@ -62,12 +62,7 @@
                <content>
                   <VBox nodeOrientation="LEFT_TO_RIGHT" spacing="5.0" styleClass="vBox">
                      <children>
-                        <ListView fx:id="announcementListView" minWidth="220.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
-                           <styleClass>
-                              <String fx:value="list-cell" />
-                              <String fx:value="vBox" />
-                           </styleClass>
-                        </ListView>
+                        <ListView fx:id="announcementListView" minWidth="220.0" prefWidth="250.0" styleClass="vBox" stylesheets="@Styles/listStyle.css" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </content>

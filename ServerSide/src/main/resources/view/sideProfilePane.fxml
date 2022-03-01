@@ -140,14 +140,14 @@
                   <children>
                      <VBox alignment="TOP_CENTER" fillWidth="false" spacing="3.0" styleClass="shadow" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Gender Statistics ">
+                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender Statistics ">
                               <font>
                                  <Font name="System Bold" size="24.0" />
                               </font>
                            </Text>
-                           <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <AnchorPane prefHeight="241.0" prefWidth="288.0" VBox.vgrow="ALWAYS">
                               <children>
-                                 <BarChart fx:id="lineChart" barGap="0.0" categoryGap="60.0" layoutX="-17.0" maxHeight="220.0" maxWidth="400.0" prefHeight="180.0" prefWidth="297.0">
+                                 <BarChart fx:id="barChar" layoutY="22.0" prefHeight="221.0" prefWidth="303.0" stylesheets="@Styles/chartBar.css">
                                    <xAxis>
                                      <CategoryAxis side="BOTTOM" />
                                    </xAxis>
@@ -164,7 +164,7 @@
                      </VBox>
                      <VBox alignment="TOP_CENTER" layoutX="15.0" layoutY="15.0" prefHeight="400.0" prefWidth="289.0" spacing="3.0" styleClass="shadow">
                         <children>
-                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Country Statistic">
+                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Country Statistic">
                               <font>
                                  <Font name="System Bold" size="24.0" />
                               </font>

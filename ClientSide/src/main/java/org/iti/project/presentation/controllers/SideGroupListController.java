@@ -4,6 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -103,6 +105,29 @@ public class SideGroupListController implements Initializable {
             }
 
         });
+
+
+
+        FilteredList<Group> filteredData = new FilteredList<Group>(groupsObservableList, p -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(group ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(group.getGroupName().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Group> sortedData = new SortedList<>(filteredData);
+
+        groupListView.setItems(sortedData);
 
 
     }

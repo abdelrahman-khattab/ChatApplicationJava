@@ -22,22 +22,26 @@
             <HBox alignment="CENTER_LEFT">
                <children>
             <Label prefHeight="51.0" prefWidth="399.0" styleClass="headerFont" stylesheets="@Styles/chatStyle.css" text="Group chats" textFill="#181d31" />
-                  <Button fx:id="addGroupAddContactsBtn" mnemonicParsing="false" onAction="#addGroupAddContacts" style="-fx-background-color: #00000000;" styleClass="mouse-hand" stylesheets="@Styles/mainscreen.css">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/group.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="addGroupAddContactsBtn" mnemonicParsing="false" onAction="#addGroupAddContacts" style="-fx-background-color: #00000000;" styleClass="mouse-hand" stylesheets="@Styles/mainscreen.css">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/group.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
       <HBox alignment="CENTER_LEFT" stylesheets="@Styles/chatStyle.css">
          <children>
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="38.0" style="-fx-background-color: #00000000;">
                <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="29.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/search.png" />
                      </image>

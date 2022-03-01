@@ -34,7 +34,7 @@ public class RMIConnector {
 
     private RMIConnector(){
         try {
-            reg = LocateRegistry.getRegistry();
+            reg = LocateRegistry.getRegistry(1099);
 
             signUpService = (SignUpInt) reg.lookup(signUpService.lookupName);
             signInService = (SignInInt) reg.lookup(signInService.lookupName);
