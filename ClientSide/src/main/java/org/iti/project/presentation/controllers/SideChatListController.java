@@ -4,6 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
@@ -98,6 +100,30 @@ public class SideChatListController {
             }
 
         });
+
+        FilteredList<User> filteredData = new FilteredList<User>(sideContactListController.contactObservableList, p -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(user ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(user.getUserName().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }else if(user.getUserPhone().toLowerCase().contains(lowerCaseFilter)){
+                    return true; //filter matches last name
+                }
+                return false;
+            });
+        });
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        userStatusListView.setItems(sortedData);
+        contactinfoLV.setItems(sortedData);
 
     }
    

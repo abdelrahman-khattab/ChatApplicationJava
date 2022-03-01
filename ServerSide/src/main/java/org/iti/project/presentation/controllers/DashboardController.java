@@ -110,7 +110,7 @@ public class DashBoardController implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        ObservableList<XYChart.Series<String, Integer>> answer = FXCollections.observableArrayList();
+        ObservableList<Series<String, Integer>> answer = FXCollections.observableArrayList();
 
         Series<String, Integer> barChartFemaleSeries = new Series<String, Integer>();
 

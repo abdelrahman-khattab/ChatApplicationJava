@@ -9,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -42,6 +44,9 @@ public class EditProfileController implements Initializable {
 
     @FXML
     private Label clientbioLabel;
+
+    @FXML
+    private Circle userImage;
 
     @FXML
     private ComboBox<String> countryCombobox;
@@ -203,6 +208,7 @@ public class EditProfileController implements Initializable {
         if (file != null) {
             image = new Image(file.getPath());
             imageProfileView.setImage(image);
+            userImage.setFill(new ImagePattern(image));
         }
 
 

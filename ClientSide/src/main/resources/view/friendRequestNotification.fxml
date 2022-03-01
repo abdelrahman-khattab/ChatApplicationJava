@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.FriendRequestNotificationController" >
+<VBox alignment="CENTER" spacing="10.0" styleClass="notificationBg" stylesheets="@Styles/chatStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iti.project.presentation.controllers.FriendRequestNotificationController">
    <children>
       <Label alignment="CENTER" styleClass="notificationText" stylesheets="@Styles/chatStyle.css" text="Freiend Request " textAlignment="CENTER" textFill="#181d31" VBox.vgrow="ALWAYS" />
       <VBox>
@@ -15,7 +15,7 @@
                <content>
                   <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="400.0" spacing="5.0" stylesheets="@Styles/chatStyle.css">
                      <children>
-                        <ListView fx:id="requestLV" styleClass="notificationBg" />
+                        <ListView fx:id="requestLV" styleClass="notificationBg" stylesheets="@Styles/listViewCustom.css" />
                      </children>
                   </VBox>
                </content>

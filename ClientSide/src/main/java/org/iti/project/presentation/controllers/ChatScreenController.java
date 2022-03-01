@@ -572,6 +572,13 @@ public class ChatScreenController implements Initializable {
 
     public void onGroupChatButtonClicked(ActionEvent actionEvent) {
         sideGroupPane = paneMap.get("sideGroupPane");
+        SideGroupListController.groupsObservableList.clear();
+        try {
+            SideGroupListController.groupsObservableList.addAll(RMIConnector.getRmiConnector().getGroupServices().getListOfGroupsForCurrentUser(stageCoordinator.currentUser));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
 //        if(sideGroupPane == null) {
 //            try {
 //                FXMLLoader sideGroupListLoader = new FXMLLoader(getClass().getResource("/view/SideGroupList.fxml"));

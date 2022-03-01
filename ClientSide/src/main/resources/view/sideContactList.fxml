@@ -44,7 +44,7 @@
                <children>
                   <Button fx:id="search" mnemonicParsing="false" prefHeight="42.0" prefWidth="38.0" style="-fx-background-color: #00000000;">
                      <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/search.png" />
                            </image>
@@ -55,7 +55,7 @@
                      <styleClass>
                         <String fx:value="transparent-bg" />
                         <String fx:value="radius" />
-                        <String fx:value="textColor" />
+                        <String fx:value="searchFontColor" />
                      </styleClass>
                      <HBox.margin>
                         <Insets left="10.0" />

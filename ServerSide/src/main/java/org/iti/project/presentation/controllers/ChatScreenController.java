@@ -155,6 +155,13 @@ public class ChatScreenController implements Initializable {
         //Tooltip exitTip = new Tooltip("Exit");
         //exitTip.show(stageCoordinator.getPrimaryStage());
         Tooltip.install(unknownFunctionaityButton, exitTip);
+
+        stageCoordinator.getPrimaryStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }});
+
         try {
             FXMLLoader dashBoardLoader = new FXMLLoader(getClass().getResource("/view/sideProfilePane.fxml"));
             ScrollPane dashBoardPane = dashBoardLoader.load();
@@ -162,6 +169,7 @@ public class ChatScreenController implements Initializable {
             dashBoardController = dashBoardController.getInstance();
             paneMap.put("dashBoardPane", dashBoardPane);
             sideNavigationStackPane.getChildren().add(dashBoardPane);
+
 
 
         } catch (IOException e) {
@@ -193,5 +201,4 @@ public class ChatScreenController implements Initializable {
              RMIConnector.getRmiConnector().connectRMI();
         }
     }
-
 }

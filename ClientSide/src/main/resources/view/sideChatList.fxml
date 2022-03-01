@@ -51,16 +51,16 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </HBox>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="88.0" style="-fx-background-color: #303841;" stylesheets="@Styles/chatStyle.css" vbarPolicy="NEVER">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="116.0" prefWidth="278.0" style="-fx-background-color: #00000000;" stylesheets="@Styles/chatStyle.css" vbarPolicy="NEVER">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
                <content>
-                  <VBox styleClass="vBox">
+                  <HBox styleClass="vBox">
                      <children>
-                        <ListView fx:id="userStatusListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000000;" />
+                        <ListView fx:id="userStatusListView" style="-fx-background-color: #00000000;" stylesheets="@Styles/listStyle.css" HBox.hgrow="ALWAYS" />
                      </children>
-                  </VBox>
+                  </HBox>
                </content>
             </ScrollPane>
             <Label prefHeight="39.0" prefWidth="399.0" stylesheets="@Styles/chatStyle.css" text="Recent" textFill="#181d31" wrapText="true">

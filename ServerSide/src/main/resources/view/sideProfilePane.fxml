@@ -43,7 +43,6 @@
                         <children>
                            <VBox alignment="TOP_CENTER" minHeight="110.0" minWidth="180.0" prefHeight="110.0" prefWidth="180.0" style="-fx-background-radius: 20;">
                               <children>
-                                 <Text fx:id="onliine" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                                  <HBox alignment="CENTER_LEFT">
                                     <children>
                                        <Label prefHeight="20.0" prefWidth="132.0" style="-fx-font-weight: bold;" styleClass="secondNotificationHeader" text="Total User">
