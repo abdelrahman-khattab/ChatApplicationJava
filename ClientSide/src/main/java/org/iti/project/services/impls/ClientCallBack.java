@@ -1,7 +1,11 @@
 package org.iti.project.services.impls;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.controlsfx.control.Notifications;
 import javafx.collections.ObservableList;
 import org.iti.project.models.GroupMessage;
@@ -16,6 +20,7 @@ import org.iti.project.services.interfaces.ClientCallBackInt;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ClientCallBack extends UnicastRemoteObject implements ClientCallBackInt {
     private ChatScreenController chatScreenController;
@@ -70,6 +75,25 @@ public class ClientCallBack extends UnicastRemoteObject implements ClientCallBac
     {
         //assign This array with the contact list array
         FriendRequestNotificationController.contactObservableList.addAll(requestList);
+
+    }
+
+    @Override
+    public void closeApplicationForUnbinding() throws RemoteException {
+        Platform.runLater(()->{
+            Alert a = new Alert(Alert.AlertType.NONE);
+
+            a.setAlertType(Alert.AlertType.ERROR);
+
+            // show the dialog
+
+            a.setHeaderText("Server is down");
+            a.showAndWait();
+            //Optional<ButtonType> alertResult = a.showAndWait();
+            // StageCoordinator.getStageCoordinator().switchToLoginFormScene();
+            System.exit(0);
+
+        });
 
     }
 }

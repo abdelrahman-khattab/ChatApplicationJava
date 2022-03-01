@@ -14,4 +14,7 @@ public interface ClientCallBackInt extends Remote {
     public void receiveFile(String senderName, byte[] sentFile , String fileName) throws RemoteException;
     public void updateFriendAvailability(String friendName, String friendPhone , boolean onlineFlag) throws RemoteException;
     public void getRequestListOfFriends(ArrayList<User> requestList) throws RemoteException;
+    public void closeApplicationForUnbinding() throws RemoteException;
+
+
 }

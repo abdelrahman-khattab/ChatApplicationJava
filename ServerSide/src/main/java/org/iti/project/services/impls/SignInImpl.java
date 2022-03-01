@@ -1,8 +1,10 @@
 package org.iti.project.services.impls;
 
-import org.iti.project.models.User;import org.iti.project.presistence.dao.ContactDAO;
+import javafx.application.Platform;
+import org.iti.project.models.User;
+import org.iti.project.presentation.controllers.DashBoardController;
+import org.iti.project.presistence.dao.ContactDAO;
 import org.iti.project.presistence.dao.ContactDAOImpl;
-import org.iti.project.presentation.controllers.DashboardController;
 import org.iti.project.presistence.dao.UserDAOImpl;
 import org.iti.project.services.interfaces.ClientCallBackInt;
 import org.iti.project.services.interfaces.SignInInt;
@@ -24,7 +26,7 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
 
     @Override
     public User loginMe(User user , ClientCallBackInt clientCallBack) throws RemoteException {
-
+        System.out.println("user number is connected : "+user.getUserPhone());
         UserDAOImpl userDAO = new UserDAOImpl();
 
          user = userDAO.selectUser(user);
@@ -39,6 +41,10 @@ public class SignInImpl extends UnicastRemoteObject implements SignInInt {
             //DashboardController.updateStatus(onlineClients.size());
             System.out.println("user is add"+onlineClients.toString());
             updateAvailability(user);
+            Platform.runLater(()->{
+                DashBoardController.getInstance().data(onlineClients.size(),10);
+            });
+
             return user;
         }
 
