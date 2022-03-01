@@ -15,47 +15,59 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ChatScreenController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
     private final Tooltip exitTip = new Tooltip("Exit");
 
+    private  DashBoardController dashBoardController;
+    private final Map<String, ScrollPane> paneMap = new HashMap<>();
+    private  ScrollPane dashBoardPane;
 
 
-        @FXML
-        private Button chatListButton;
 
-        @FXML
-        private Button contactListButton;
 
-        @FXML
-        private ScrollPane firstPane;
+    @FXML
+    private Button chatListButton;
 
-        @FXML
-        private Button groupChatButton;
+    @FXML
+    private Button contactListButton;
 
-        @FXML
-        private Button logOutButton;
+    @FXML
+    private ScrollPane firstPane;
 
-        @FXML
-        private Button profileButton;
+    @FXML
+    private Button groupChatButton;
 
-        @FXML
-        private ScrollPane secondPane;
+    @FXML
+    private Button logOutButton;
 
-        @FXML
-        private StackPane sideNavigationStackPane;
+    @FXML
+    private Button profileButton;
 
-        @FXML
-        private Button unknownFunctionaityButton;
+    @FXML
+    private ScrollPane secondPane;
 
-        @FXML
-        void onChatListButtonClicked(ActionEvent event) {
+    @FXML
+    private StackPane sideNavigationStackPane;
 
-            switchToChatListPane();
-        }
+    @FXML
+    private Button unknownFunctionaityButton;
 
+
+
+    @FXML
+    void onChatListButtonClicked(ActionEvent event) {
+
+
+        switchToChatListPane();
+    }
+    public DashBoardController getDashBoardController() {
+        return dashBoardController;
+    }
     private void switchToChatListPane() {
         try {
             ScrollPane chatListScrollPane = FXMLLoader.load(getClass().getResource("/view/sideChatList.fxml"));
@@ -67,88 +79,94 @@ public class ChatScreenController implements Initializable {
 
     }
 
-        @FXML
-        void onContactListButtonClicked(ActionEvent event) {
-            switchToContactListPane();
-        }
+    @FXML
+    void onContactListButtonClicked(ActionEvent event) {
+        switchToContactListPane();
+    }
 
-        private void switchToContactListPane() {
-            try {
-                ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/announcement.fxml"));
-                sideNavigationStackPane.getChildren().removeAll();
-                sideNavigationStackPane.getChildren().add(sideProfilePane);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @FXML
-        void onGroupChatButtonClicked(ActionEvent event) {
-            switchToGroupChat();
-        }
-        private void switchToGroupChat(){
-            try {
-                ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/memberList.fxml"));
-                sideNavigationStackPane.getChildren().removeAll();
-                sideNavigationStackPane.getChildren().add(sideProfilePane);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @FXML
-        void onLogOutButtonClicked(ActionEvent event) {
-            stageCoordinator.switchToLoginScene();
-        }
-
-        @FXML
-        void onProfileButtonClicked(ActionEvent event) {
-            switchToProfilePane();
-        }
-    private void switchToProfilePane() {
+    private void switchToContactListPane() {
         try {
-            ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/sideProfilePane.fxml"));
+            ScrollPane sideProfilePane = FXMLLoader.load(getClass().getResource("/view/announcement.fxml"));
             sideNavigationStackPane.getChildren().removeAll();
             sideNavigationStackPane.getChildren().add(sideProfilePane);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void onGroupChatButtonClicked(ActionEvent event) {
+        switchToGroupChat();
+    }
+    private void switchToGroupChat(){
+        try {
+            FXMLLoader loader = FXMLLoader.load(getClass().getResource("/view/memberList.fxml"));
+            ScrollPane sideProfilePane = loader.load();
+            sideNavigationStackPane.getChildren().removeAll();
+            sideNavigationStackPane.getChildren().add(sideProfilePane);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void onLogOutButtonClicked(ActionEvent event) {
+        stageCoordinator.switchToLoginScene();
+    }
+
+    @FXML
+    void onProfileButtonClicked(ActionEvent event) {
+        switchToProfilePane();
+    }
+    private void switchToProfilePane() {
+        dashBoardPane =  paneMap.get("dashBoardPane");
+        dashBoardPane.toFront();
+        System.out.println(DashBoardController.getInstance()==null);
+//        try {
+//            FXMLLoader dashBoardLoader = new FXMLLoader(getClass().getResource("/view/sideProfilePane.fxml"));
+//            ScrollPane dashBoardPane = dashBoardLoader.load();
+//            dashBoardController.setController(dashBoardLoader.getController());
+//            dashBoardController = dashBoardController.getInstance();
+//            sideNavigationStackPane.getChildren().removeAll();
+//            sideNavigationStackPane.getChildren().add(dashBoardPane);
+//            System.out.println(DashBoardController.getInstance()==null);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
 
-        @FXML
-        void onUnownButtonClicked(ActionEvent event) {
-            System.exit(0);
+    @FXML
+    void onUnownButtonClicked(ActionEvent event) {
+        System.exit(0);
 
-        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Tooltip exitTip = new Tooltip("Exit");
         //exitTip.show(stageCoordinator.getPrimaryStage());
         Tooltip.install(unknownFunctionaityButton, exitTip);
-        stageCoordinator.getPrimaryStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }});
+        try {
+            FXMLLoader dashBoardLoader = new FXMLLoader(getClass().getResource("/view/sideProfilePane.fxml"));
+            ScrollPane dashBoardPane = dashBoardLoader.load();
+            dashBoardController.setController(dashBoardLoader.getController());
+            dashBoardController = dashBoardController.getInstance();
+            paneMap.put("dashBoardPane", dashBoardPane);
+            sideNavigationStackPane.getChildren().add(dashBoardPane);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
 
-    public void onSendButtonClicked(ActionEvent actionEvent) {
-    }
 
-    public void onFileAttachingButtonClicked(ActionEvent actionEvent) {
-    }
-
-    public void addItalicStyle(ActionEvent actionEvent) {
-    }
-
-    public void addBoldStyle(ActionEvent actionEvent) {
-    }
-
-    public void addUnderline(ActionEvent actionEvent) {
-    }
 }
