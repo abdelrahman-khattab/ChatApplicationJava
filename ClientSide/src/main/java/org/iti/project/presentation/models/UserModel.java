@@ -13,8 +13,8 @@ public class UserModel {
     private StringProperty email = new SimpleStringProperty();
     private StringProperty phoneNo = new SimpleStringProperty();
     private StringProperty userCountry = new SimpleStringProperty();
-    private StringProperty userGender = new SimpleStringProperty();
-    private ObjectProperty<Image> userImage = new SimpleObjectProperty(new Image("/images/R.png"));
+    private StringProperty userGender = new SimpleStringProperty();//new Image(getClass().getResource("/images/R.png"));
+    private ObjectProperty<Image> userImage = new SimpleObjectProperty(new Image(getClass().getResource("/images/R.png").toString()));
 
     public String getUserCountry() {
         return userCountry.get();

@@ -29,7 +29,8 @@ public class ContactDAOImpl implements ContactDAO{
             resultSet.close();
             return contacts;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Problem in selecting contact to user");
+            e.getMessage();
             return null;
         } finally {
             try {
@@ -43,7 +44,7 @@ public class ContactDAOImpl implements ContactDAO{
     }
 
     @Override
-    public ArrayList<User> insertContact(User mainUser , User secondaryUser) {
+    public boolean insertContact(User mainUser , User secondaryUser) {
         ResultSet resultSet;
 
         try(Connection con = DBConnector.getConnection().connect()) {
@@ -52,10 +53,12 @@ public class ContactDAOImpl implements ContactDAO{
             preparedStatement.setString(2, secondaryUser.getUserPhone());
             preparedStatement.execute();
             preparedStatement.close();
+            return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Problem in insert new contact to user");
+            e.getMessage();
+            return false;
         }
 
-        return null;
     }
 }

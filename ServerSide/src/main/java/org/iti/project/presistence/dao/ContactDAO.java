@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface ContactDAO {
     ArrayList<User> selectContacts(String userPhone);
-    ArrayList<User> insertContact(User mainUser , User secondaryUser);
+    boolean insertContact(User mainUser , User secondaryUser);
 
 
 

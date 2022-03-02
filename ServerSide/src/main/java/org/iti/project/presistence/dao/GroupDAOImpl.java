@@ -70,7 +70,8 @@ public class GroupDAOImpl implements  GroupDAO{
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("after the update insert group execute");
+            e.getMessage();
         }
         return users;
     }
@@ -86,11 +87,10 @@ public class GroupDAOImpl implements  GroupDAO{
             preparedStatement.setString(1, group.getGroupName());
             preparedStatement.setBlob(2,groupImageAsBlop);
             preparedStatement.executeUpdate();
-            System.out.println("after the update insert group execute");
 
         } catch (SQLException e) {
-            System.out.println("inside group the catch");
-            e.printStackTrace();
+            System.out.println("Problem in creating new group");
+            e.getMessage();
         }
         int groupId = getSpecialGroup(group);
         addCurrentUserToGroup(user ,groupId);
@@ -99,20 +99,16 @@ public class GroupDAOImpl implements  GroupDAO{
 
     @Override
     public void addNewUserToGroup(Group group, ArrayList<User> userList) {
-        System.out.println("group id is : "+group.getGroupId());
         for (int i =0 ; i < userList.size() ; i++)
         {
-            System.out.println("inside the user to group insert");
             try(Connection con = DBConnector.getConnection().connect()) {
-                System.out.println("inside the try user to group insert");
                 PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)");
                 preparedStatement.setString(1, userList.get(i).getUserPhone());
                 preparedStatement.setInt(2, group.getGroupId());
                 preparedStatement.executeUpdate();
-                System.out.println("after the update insert group execute");
 
             } catch (SQLException e) {
-                System.out.println("inside group the catch");
+                System.out.println("problem inside adding user to group");
                 e.getMessage();
             }
         }
@@ -148,7 +144,8 @@ public class GroupDAOImpl implements  GroupDAO{
             return null;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("problem inside selecting group list");
+            e.getMessage();
         }
 
 
@@ -169,8 +166,8 @@ public class GroupDAOImpl implements  GroupDAO{
             System.out.println("after the update insert group execute");
 
         } catch (SQLException e) {
-            System.out.println("inside group the catch");
-            e.printStackTrace();
+            System.out.println("problem inside add current user to group ");
+            e.getMessage();
         }
     }
     //select group_id from groupchat where GROUP_NAME = 'Group 3ala Allah';
@@ -193,7 +190,8 @@ public class GroupDAOImpl implements  GroupDAO{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Problem inside select special Group");
+            e.getMessage();
         }
         return 0;
     }

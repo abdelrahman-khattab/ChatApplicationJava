@@ -20,12 +20,17 @@ public class RequestDAOImpl implements RequestDAO{
             preparedStatement.close();
             return true;
         } catch (SQLException e) {
-            System.out.println("inside the catch");
-            e.printStackTrace();
+            System.out.println("Problem inside insert the friend  request ");
+            e.getMessage();
         }
         return false;
      }
      else {
+         deleteUser(user1,user2);
+         deleteUser(user2,user1);
+         ContactDAO contactDAO = new ContactDAOImpl();
+         contactDAO.insertContact(user1,user2);
+         contactDAO.insertContact(user2,user1);
          return false;
      }
     }
@@ -50,7 +55,8 @@ public class RequestDAOImpl implements RequestDAO{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Problem inside select user request for checking");
+            e.getMessage();
         }
 
         return false;
@@ -73,8 +79,8 @@ public class RequestDAOImpl implements RequestDAO{
             preparedStatement.close();
             return  true;
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Problem inside delete request");
+            e.getMessage();     }
 
         return false;
     }
@@ -103,8 +109,8 @@ public class RequestDAOImpl implements RequestDAO{
             return null;
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Problem inside select all request for the user ");
+            e.getMessage();        }
 
 
         return null;

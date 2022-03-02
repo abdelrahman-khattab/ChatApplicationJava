@@ -14,7 +14,6 @@ public class ClientApp extends Application {
 
     @Override
     public void start(Stage stage) {
-
         StageCoordinator stageCoordinator = StageCoordinator.getStageCoordinator();
         stageCoordinator.initStage(stage);
         stage.show();
@@ -22,9 +21,6 @@ public class ClientApp extends Application {
 
 
 
-    public static void main(String[] args) {
-        launch();
-
-    }
+    public static void main(String[] args) {launch();}
 
 }
